@@ -58,7 +58,6 @@ export const Dashboard = () => {
     const checkinsQuery = query(
       collection(db, "checkins"),
       where("userId", "==", user.uid),
-      orderBy("createdAt", "desc"),
     );
 
     const unsubMeetings = onSnapshot(
@@ -89,21 +88,31 @@ export const Dashboard = () => {
     const unsubCheckins = onSnapshot(
       checkinsQuery,
       (snapshot) => {
-        setCheckins(
-          snapshot.docs.map((d) => {
-            const data = d.data();
-            return {
-              id: d.id,
-              userId: data.userId,
-              meetingId: data.meetingId,
-              meetingName: data.meetingName,
-              dayKey: data.dayKey,
-              createdAt: safeDate(data.createdAt),
-            } satisfies Checkin;
-          }),
-        );
+        const parsed = snapshot.docs.map((d) => {
+          const data = d.data();
+          return {
+            id: d.id,
+            userId: data.userId,
+            meetingId: data.meetingId,
+            meetingName: data.meetingName,
+            dayKey: data.dayKey,
+            createdAt: safeDate(data.createdAt),
+          } satisfies Checkin;
+        });
+
+        parsed.sort((a, b) => {
+          const aTime = a.createdAt?.getTime() ?? 0;
+          const bTime = b.createdAt?.getTime() ?? 0;
+          return bTime - aTime;
+        });
+
+        setCheckins(parsed);
       },
-      () => {
+      (err) => {
+        if (err instanceof FirebaseError) {
+          setError(`Unable to load check-ins (${err.code}).`);
+          return;
+        }
         setError("Unable to load check-ins.");
       },
     );
