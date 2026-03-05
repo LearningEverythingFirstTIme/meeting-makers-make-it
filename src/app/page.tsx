@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { AuthForm } from "@/components/auth-form";
 import { Dashboard } from "@/components/dashboard";
 import { useAuth } from "@/components/auth-provider";
@@ -10,26 +9,32 @@ export default function Home() {
 
   if (loading) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[var(--background)] px-4">
-        <motion.div 
-          animate={{ rotate: 360 }}
-          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-          className="h-16 w-16 border-4 border-black bg-yellow-400 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-        />
+      <main className="flex min-h-screen items-center justify-center bg-[#1a1a1a] px-4">
+        <div className="panel p-8 text-center">
+          <div className="mb-4 flex justify-center">
+            <div className="status-indicator bg-[#fbbf24] text-[#fbbf24]"></div>
+          </div>
+          <p className="font-mono text-sm font-bold uppercase tracking-widest text-[#fbbf24] animate-pulse">
+            INITIALIZING SYSTEM...
+          </p>
+        </div>
       </main>
     );
   }
 
   if (configError) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[var(--background)] px-4">
-        <div className="w-full max-w-lg border-4 border-black bg-rose-400 p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-          <h1 className="text-2xl font-black uppercase tracking-tight text-black">Configuration Error</h1>
-          <p className="mt-4 font-mono text-sm font-bold text-black">
-            {configError}
+      <main className="flex min-h-screen items-center justify-center bg-[#1a1a1a] px-4">
+        <div className="industrial-card border-[#ef4444] max-w-lg p-8">
+          <div className="mb-4 flex items-center gap-3">
+            <div className="led bg-[#ef4444]"></div>
+            <h1 className="text-2xl font-black uppercase tracking-tight">SYSTEM ERROR</h1>
+          </div>
+          <p className="font-mono text-sm font-bold text-[#ef4444] mb-4">
+            ERROR: {configError}
           </p>
-          <p className="mt-4 font-mono text-sm font-bold text-black">
-            Copy <code className="bg-black px-1 py-0.5 text-white">.env.example</code> to <code className="bg-black px-1 py-0.5 text-white">.env.local</code> and set your Firebase values.
+          <p className="font-mono text-xs text-[#888]">
+            Copy <code className="bg-[#1f1f1f] px-2 py-1 text-[#fbbf24]">[.env.example]</code> to <code className="bg-[#1f1f1f] px-2 py-1 text-[#fbbf24]">[.env.local]</code> and configure Firebase values.
           </p>
         </div>
       </main>
@@ -38,7 +43,7 @@ export default function Home() {
 
   if (!user) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[var(--background)] px-4 py-8">
+      <main className="flex min-h-screen items-center justify-center bg-[#1a1a1a] px-4 py-8">
         <AuthForm />
       </main>
     );

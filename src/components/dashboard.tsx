@@ -218,11 +218,11 @@ export const Dashboard = () => {
       }
 
       if (err instanceof FirebaseError && err.code === "permission-denied") {
-        setError("You do not have permission to check in to this meeting.");
+        setError("Permission denied for this operation.");
         return;
       }
 
-      setError("Could not check in right now. Please try again.");
+      setError("Check-in failed. Please retry.");
     } finally {
       setPendingCheckinId(null);
     }
@@ -232,26 +232,29 @@ export const Dashboard = () => {
     checkins.some((entry) => entry.meetingId === meetingId && entry.dayKey === todayKey);
 
   return (
-    <main className="min-h-screen bg-[var(--background)] px-4 py-8 md:px-8 overflow-hidden">
-      <div className="mx-auto max-w-6xl space-y-8">
+    <main className="min-h-screen bg-[#1a1a1a] px-4 py-8 md:px-8 overflow-hidden">
+      <div className="mx-auto max-w-6xl space-y-6">
         <motion.header 
-          initial={{ y: -50, opacity: 0 }}
+          initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="flex flex-col gap-6 border-4 border-black bg-white p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:flex-row md:items-center md:justify-between"
+          className="panel border-2 border-[#404040] p-6 flex flex-col gap-6 md:flex-row md:items-center md:justify-between"
         >
           <div>
-            <p className="font-mono text-sm font-bold uppercase tracking-widest text-pink-500">Welcome back</p>
-            <h1 className="text-3xl font-black uppercase tracking-tighter md:text-5xl">Meeting Makers<br/>Make It</h1>
-            <p className="mt-2 font-mono text-xs font-bold uppercase text-gray-500">ID: {user.email}</p>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="led bg-[#10b981]"></div>
+              <p className="font-mono text-xs font-bold uppercase tracking-widest text-[#10b981]">{'//'} SYSTEM ONLINE</p>
+            </div>
+            <h1 className="text-3xl font-black uppercase tracking-tighter md:text-5xl text-[#e5e5e5]">MEETING<br/>TRACKER</h1>
+            <p className="mt-2 font-mono text-xs font-bold uppercase text-[#555]">USER: {user.email}</p>
           </div>
           <motion.button
-            whileHover={{ scale: 1.05, rotate: 2 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.02, x: 2 }}
+            whileTap={{ scale: 0.98 }}
             type="button"
             onClick={() => void logout()}
-            className="self-start md:self-center flex items-center gap-2 border-2 border-black bg-rose-400 px-6 py-3 font-black uppercase tracking-widest text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-rose-300"
+            className="industrial-button industrial-button-danger self-start md:self-center flex items-center gap-2"
           >
-            <LogOut size={16} strokeWidth={3} /> Sign out
+            <LogOut size={14} strokeWidth={3} /> [ LOGOUT ]
           </motion.button>
         </motion.header>
 
@@ -261,86 +264,115 @@ export const Dashboard = () => {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="border-2 border-black bg-rose-100 px-4 py-3 font-bold text-rose-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+              className="panel-inset border-2 border-[#ef4444] px-4 py-3"
             >
-              ⚠ ERROR: {error}
+              <div className="flex items-center gap-3">
+                <div className="led bg-[#ef4444]"></div>
+                <span className="font-mono text-sm font-bold uppercase text-[#ef4444]">ERROR: {error}</span>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
 
-        <section className="grid gap-6 md:grid-cols-3">
+        <section className="grid gap-4 md:grid-cols-3">
           <motion.article 
-            initial={{ scale: 0.8, opacity: 0 }}
+            initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.1 }}
-            className="border-2 border-black bg-cyan-200 p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+            className="panel border-2 border-[#404040] p-5"
           >
-            <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest">
-              <Calendar size={16} strokeWidth={3} /> Weekly Check-ins
+            <div className="flex items-center gap-2 mb-3 font-mono text-xs font-bold uppercase tracking-widest text-[#3b82f6]">
+              <Calendar size={14} strokeWidth={3} /> WEEKLY_CHECKINS
             </div>
-            <p className="mt-2 text-6xl font-black">{thisWeekCheckins.length}</p>
+            <div className="flex items-end gap-2">
+              <p className="text-5xl font-black text-[#3b82f6]">{thisWeekCheckins.length}</p>
+              <p className="mb-2 font-mono text-xs text-[#555]">/ 7 DAYS</p>
+            </div>
           </motion.article>
           <motion.article 
-            initial={{ scale: 0.8, opacity: 0 }}
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.15 }}
+            className="panel border-2 border-[#404040] p-5"
+          >
+            <div className="flex items-center gap-2 mb-3 font-mono text-xs font-bold uppercase tracking-widest text-[#fbbf24]">
+              <Activity size={14} strokeWidth={3} /> ACTIVE_MEETINGS
+            </div>
+            <div className="flex items-end gap-2">
+              <p className="text-5xl font-black text-[#fbbf24]">{meetings.length}</p>
+              <p className="mb-2 font-mono text-xs text-[#555]">CONFIGURED</p>
+            </div>
+          </motion.article>
+          <motion.article 
+            initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="border-2 border-black bg-yellow-300 p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+            className="panel border-2 border-[#404040] p-5"
           >
-            <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest">
-              <Activity size={16} strokeWidth={3} /> Active Meetings
+            <div className="flex items-center gap-2 mb-3 font-mono text-xs font-bold uppercase tracking-widest text-[#10b981]">
+              <Clock size={14} strokeWidth={3} /> LAST_ACTIVITY
             </div>
-            <p className="mt-2 text-6xl font-black">{meetings.length}</p>
-          </motion.article>
-          <motion.article 
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="border-2 border-black bg-lime-300 p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
-          >
-            <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest">
-              <Clock size={16} strokeWidth={3} /> Latest Activity
-            </div>
-            <p className="mt-2 text-sm font-bold uppercase truncate">
-              {checkins[0]?.createdAt ? formatDateTime(checkins[0].createdAt) : "NO CHECK-INS YET"}
+            <p className="text-sm font-bold uppercase truncate text-[#10b981]">
+              {checkins[0]?.createdAt ? formatDateTime(checkins[0].createdAt) : "NO DATA"}
             </p>
           </motion.article>
         </section>
 
-        <section className="grid gap-8 lg:grid-cols-[1.1fr_1.4fr]">
+        <section className="grid gap-6 lg:grid-cols-[1fr_1.5fr]">
           <div className="space-y-6">
-            <h2 className="flex items-center gap-3 border-b-4 border-black pb-2 text-2xl font-black uppercase tracking-tight">
-              <Plus size={24} strokeWidth={4} /> Add Meeting
-            </h2>
+            <div className="panel border-2 border-[#404040] p-1">
+              <div className="panel-inset p-4">
+                <h2 className="flex items-center gap-3 text-xl font-black uppercase tracking-tight text-[#fbbf24]">
+                  <Plus size={20} strokeWidth={4} /> ADD_MEETING
+                </h2>
+              </div>
+            </div>
             <MeetingForm submitLabel="Create Meeting" onSubmit={createMeeting} />
 
-            <div className="border-2 border-black bg-white p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-              <h3 className="mb-4 font-mono text-sm font-black uppercase tracking-widest text-pink-600">// RECENT LOGS</h3>
-              <ul className="space-y-3">
+            <div className="panel border-2 border-[#404040] p-6">
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#404040]">
+                <span className="font-mono text-xs text-[#10b981]">{'//'}</span>
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#10b981]">RECENT_LOGS</span>
+              </div>
+              <ul className="space-y-2">
                 {checkins.slice(0, 8).map((entry, i) => (
                   <motion.li 
-                    initial={{ x: -20, opacity: 0 }}
+                    initial={{ x: -10, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: i * 0.05 }}
+                    transition={{ delay: i * 0.03 }}
                     key={entry.id} 
-                    className="flex items-center justify-between border-2 border-black bg-gray-50 px-3 py-3 text-sm font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                    className="panel-inset border border-[#404040] px-3 py-3 text-xs font-bold flex items-center justify-between"
                   >
-                    <span className="uppercase text-black truncate max-w-[150px]">{entry.meetingName}</span>
-                    <span className="font-mono text-xs text-gray-500 whitespace-nowrap">
+                    <span className="uppercase text-[#e5e5e5] truncate max-w-[160px]">{entry.meetingName}</span>
+                    <span className="font-mono text-[10px] text-[#555] whitespace-nowrap">
                       {entry.createdAt ? formatDateTime(entry.createdAt) : entry.dayKey}
                     </span>
                   </motion.li>
                 ))}
                 {checkins.length === 0 ? (
-                  <li className="font-mono text-sm font-bold text-gray-400">WAITING FOR DATA...</li>
+                  <li className="font-mono text-xs text-[#555]">NO_RECORDS_FOUND</li>
                 ) : null}
               </ul>
             </div>
           </div>
 
           <div className="space-y-6">
-            <h2 className="border-b-4 border-black pb-2 text-2xl font-black uppercase tracking-tight">Your Meetings</h2>
-            {loading ? <p className="font-mono text-sm font-bold animate-pulse">LOADING DATA...</p> : null}
-            <div className="space-y-6">
+            <div className="panel border-2 border-[#404040] p-1">
+              <div className="panel-inset p-4">
+                <h2 className="text-xl font-black uppercase tracking-tight text-[#e5e5e5]">YOUR_MEETINGS</h2>
+              </div>
+            </div>
+            
+            {loading ? (
+              <div className="panel-inset border-2 border-[#404040] p-6 text-center">
+                <div className="flex items-center justify-center gap-3">
+                  <span className="status-indicator text-[#fbbf24] bg-[#fbbf24]"></span>
+                  <p className="font-mono text-sm font-bold animate-pulse text-[#fbbf24]">LOADING_DATA...</p>
+                </div>
+              </div>
+            ) : null}
+            
+            <div className="space-y-4">
               <AnimatePresence>
               {meetings.map((meeting) => {
                 const isEditing = editingMeetingId === meeting.id;
@@ -350,11 +382,11 @@ export const Dashboard = () => {
                 return (
                   <motion.article 
                     layout
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
                     key={meeting.id} 
-                    className={`border-4 border-black bg-white p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-colors ${todaysCheckin ? 'bg-emerald-50' : ''}`}
+                    className={`panel border-2 border-[#404040] p-5 ${todaysCheckin ? 'border-[#10b981]' : ''}`}
                   >
                     {isEditing ? (
                       <MeetingForm
@@ -374,77 +406,82 @@ export const Dashboard = () => {
                       <>
                         <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                           <div>
-                            <h3 className="text-2xl font-black uppercase text-black">{meeting.name}</h3>
-                            <div className="mt-2 flex flex-col gap-1 font-mono text-sm font-bold text-gray-600">
+                            <div className="flex items-center gap-2 mb-2">
+                              {todaysCheckin ? (
+                                <div className="led bg-[#10b981]"></div>
+                              ) : (
+                                <div className="led bg-[#555]"></div>
+                              )}
+                              <h3 className="text-xl font-black uppercase text-[#e5e5e5]">{meeting.name}</h3>
+                            </div>
+                            <div className="flex flex-col gap-1 font-mono text-xs font-bold text-[#888]">
                               <span className="flex items-center gap-2">
-                                <MapPin size={14} strokeWidth={3} />
-                                {meeting.location.toUpperCase()}
+                                <MapPin size={12} strokeWidth={3} />
+                                <span className="uppercase">{meeting.location}</span>
                               </span>
                               <span className="flex items-center gap-2">
-                                <Clock size={14} strokeWidth={3} />
-                                {timeLabel(meeting.time)}
+                                <Clock size={12} strokeWidth={3} />
+                                <span className="uppercase">{timeLabel(meeting.time)}</span>
                               </span>
                             </div>
                           </div>
                           
-                          <div className="flex flex-wrap items-center gap-3">
+                          <div className="flex flex-wrap items-center gap-2">
                             <motion.button
-                              whileHover={{ scale: 1.05, y: -2 }}
-                              whileTap={{ scale: 0.95 }}
+                              whileHover={{ scale: 1.03 }}
+                              whileTap={{ scale: 0.97 }}
                               type="button"
                               onClick={() => setEditingMeetingId(meeting.id)}
-                              className="flex items-center gap-1 border-2 border-black bg-yellow-300 px-3 py-2 text-xs font-black uppercase tracking-wider text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-yellow-200"
+                              className="industrial-button text-xs py-2"
                             >
-                              <Edit2 size={12} strokeWidth={3} /> Edit
+                              <Edit2 size={10} strokeWidth={3} /> EDIT
                             </motion.button>
                             <motion.button
-                              whileHover={{ scale: 1.05, y: -2 }}
-                              whileTap={{ scale: 0.95 }}
+                              whileHover={{ scale: 1.03 }}
+                              whileTap={{ scale: 0.97 }}
                               type="button"
                               onClick={() => void removeMeeting(meeting.id)}
-                              className="flex items-center gap-1 border-2 border-black bg-rose-400 px-3 py-2 text-xs font-black uppercase tracking-wider text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-rose-300"
+                              className="industrial-button industrial-button-danger text-xs py-2"
                             >
-                              <Trash2 size={12} strokeWidth={3} /> Delete
+                              <Trash2 size={10} strokeWidth={3} /> DEL
                             </motion.button>
                             <motion.button
-                              whileHover={{ scale: 1.05, y: -2 }}
-                              whileTap={{ scale: 0.95 }}
+                              whileHover={{ scale: 1.03 }}
+                              whileTap={{ scale: 0.97 }}
                               type="button"
                               disabled={todaysCheckin || pendingCheckinId === meeting.id}
                               onClick={() => void checkIn(meeting)}
-                              className={`
-                                flex items-center gap-2 border-2 border-black px-4 py-2 text-xs font-black uppercase tracking-wider shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]
-                                ${todaysCheckin 
-                                  ? "bg-emerald-500 text-white cursor-default" 
-                                  : "bg-blue-500 text-white hover:bg-blue-400"}
-                                disabled:opacity-70
-                              `}
+                              className={`industrial-button text-xs py-2 ${
+                                todaysCheckin 
+                                  ? "industrial-button-success" 
+                                  : "bg-[#3b82f6] border-[#2563eb] text-white hover:bg-[#60a5fa]"
+                              }`}
                             >
                               {todaysCheckin ? (
                                 <>
-                                  <CheckCircle size={14} strokeWidth={3} /> Checked In
+                                  <CheckCircle size={10} strokeWidth={3} /> DONE
                                 </>
                               ) : pendingCheckinId === meeting.id ? (
-                                "Checking..."
+                                "..."
                               ) : (
-                                "Check In"
+                                "CHECK_IN"
                               )}
                             </motion.button>
                           </div>
                         </div>
 
-                        <div className="mt-6 border-t-2 border-dashed border-black pt-4">
-                          <p className="font-mono text-xs font-black uppercase tracking-widest text-gray-500">
-                            // History ({history.length})
+                        <div className="mt-5 pt-4 border-t border-dashed border-[#404040]">
+                          <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#555] mb-3">
+                            {'//'} HISTORY ({history.length})
                           </p>
-                          <div className="mt-3 flex flex-wrap gap-2">
-                            {history.slice(0, 5).map((entry) => (
-                              <span key={entry.id} className="inline-block border border-black bg-white px-2 py-1 font-mono text-xs font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                          <div className="flex flex-wrap gap-2">
+                            {history.slice(0, 6).map((entry) => (
+                              <span key={entry.id} className="panel-inset border border-[#404040] px-2 py-1 font-mono text-[10px] font-bold text-[#888]">
                                 {entry.createdAt ? formatDateTime(entry.createdAt).split(' ')[0] : entry.dayKey}
                               </span>
                             ))}
                             {history.length === 0 ? (
-                              <span className="font-mono text-xs font-bold text-gray-400">NO RECORDS</span>
+                              <span className="font-mono text-[10px] text-[#444]">NO_DATA</span>
                             ) : null}
                           </div>
                         </div>
@@ -456,35 +493,39 @@ export const Dashboard = () => {
               </AnimatePresence>
 
               {!loading && meetings.length === 0 ? (
-                <div className="border-2 border-dashed border-black bg-gray-50 p-12 text-center">
-                  <p className="text-xl font-black uppercase text-gray-400">No Meetings Configured</p>
-                  <p className="mt-2 font-mono text-sm text-gray-400">Add a meeting above to start tracking.</p>
+                <div className="panel-inset border-2 border-dashed border-[#404040] p-12 text-center">
+                  <div className="led bg-[#555] mb-4 mx-auto"></div>
+                  <p className="text-lg font-black uppercase text-[#555]">NO_MEETINGS_CONFIGURED</p>
+                  <p className="mt-2 font-mono text-xs text-[#444]">Add a meeting to begin tracking.</p>
                 </div>
               ) : null}
             </div>
 
-            <section className="border-2 border-black bg-white p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-              <h3 className="mb-4 font-mono text-sm font-black uppercase tracking-widest text-indigo-600">// WEEKLY ACTIVITY LOG</h3>
-              <ul className="space-y-3">
+            <section className="panel border-2 border-[#404040] p-6">
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#404040]">
+                <span className="font-mono text-xs text-[#8b5cf6]">{'//'}</span>
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#8b5cf6]">WEEKLY_ACTIVITY_LOG</span>
+              </div>
+              <ul className="space-y-2">
                 {thisWeekCheckins.map((entry, i) => {
                   const meeting = meetingById.get(entry.meetingId);
                   return (
                     <motion.li 
-                      initial={{ opacity: 0, x: 20 }}
+                      initial={{ opacity: 0, x: 10 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.1 }}
+                      transition={{ delay: i * 0.05 }}
                       key={entry.id} 
-                      className="flex items-center justify-between border-2 border-black bg-indigo-50 px-4 py-3 font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                      className="panel-inset border border-[#404040] px-4 py-3 text-xs font-bold flex items-center justify-between"
                     >
-                      <span className="uppercase">{meeting?.name ?? entry.meetingName}</span>
-                      <span className="font-mono text-xs text-gray-500">
+                      <span className="uppercase text-[#e5e5e5]">{meeting?.name ?? entry.meetingName}</span>
+                      <span className="font-mono text-[10px] text-[#555]">
                         {entry.createdAt ? formatDateTime(entry.createdAt) : entry.dayKey}
                       </span>
                     </motion.li>
                   );
                 })}
                 {thisWeekCheckins.length === 0 ? (
-                  <li className="font-mono text-sm font-bold text-gray-400">NO ACTIVITY THIS WEEK.</li>
+                  <li className="font-mono text-xs text-[#444] text-center py-4">NO_ACTIVITY_THIS_WEEK</li>
                 ) : null}
               </ul>
             </section>

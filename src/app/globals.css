@@ -2,87 +2,222 @@
 
 @layer theme {
   :root {
-    --background: #e0f2fe; /* Light blue background */
-    --foreground: #000000;
-    --card: #ffffff;
-    --primary: #fbbf24; /* Amber-400 */
-    --secondary: #a78bfa; /* Violet-400 */
-    --accent: #f472b6; /* Pink-400 */
-    --border: #000000;
+    --background: #1a1a1a;
+    --background-alt: #252525;
+    --foreground: #e5e5e5;
+    --panel: #2d2d2d;
+    --panel-inset: #1f1f1f;
+    --primary: #fbbf24;
+    --primary-dim: #b8860b;
+    --secondary: #3b82f6;
+    --accent: #10b981;
+    --danger: #ef4444;
+    --border: #404040;
+    --border-bright: #606060;
+    --text-dim: #888888;
+    --scanline: rgba(0, 0, 0, 0.1);
   }
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), monospace, sans-serif;
+  font-family: 'JetBrains Mono', monospace;
   overflow-x: hidden;
+  background-image: 
+    linear-gradient(var(--scanline) 1px, transparent 1px),
+    linear-gradient(90deg, var(--scanline) 1px, transparent 1px);
+  background-size: 20px 20px;
+  min-height: 100vh;
 }
 
-@utility neo-border {
-  border: 2px solid black;
+@utility panel {
+  background: var(--panel);
+  border: 2px solid var(--border);
+  box-shadow: 
+    inset 2px 2px 4px rgba(0,0,0,0.3),
+    inset -1px -1px 2px rgba(255,255,255,0.05);
 }
 
-@utility neo-shadow {
-  box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+@utility panel-inset {
+  background: var(--panel-inset);
+  border: 2px solid var(--border);
+  box-shadow: 
+    inset 2px 2px 4px rgba(0,0,0,0.5),
+    inset -1px -1px 2px rgba(255,255,255,0.02);
 }
 
-@utility neo-shadow-hover {
-  transition: all 0.2s;
-  &:hover {
-    box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
-    transform: translate(2px, 2px);
-  }
+@utility industrial-border {
+  border: 2px solid var(--border-bright);
+  box-shadow: 
+    0 0 0 1px var(--background),
+    4px 4px 0px 0px rgba(0,0,0,0.5);
 }
 
-@utility neo-shadow-active {
+@utility industrial-button {
+  background: var(--panel);
+  border: 2px solid var(--border-bright);
+  color: var(--foreground);
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 
+    inset 1px 1px 2px rgba(255,255,255,0.1),
+    inset -1px -1px 2px rgba(0,0,0,0.2),
+    3px 3px 0px 0px rgba(0,0,0,0.4);
   transition: all 0.1s;
+  cursor: pointer;
+  
+  &:hover {
+    background: var(--background-alt);
+    box-shadow: 
+      inset 1px 1px 2px rgba(255,255,255,0.15),
+      inset -1px -1px 2px rgba(0,0,0,0.2),
+      2px 2px 0px 0px rgba(0,0,0,0.4);
+    transform: translate(1px, 1px);
+  }
+  
   &:active {
-    box-shadow: none;
-    transform: translate(4px, 4px);
+    box-shadow: 
+      inset 2px 2px 4px rgba(0,0,0,0.4),
+      inset -1px -1px 2px rgba(255,255,255,0.05);
+    transform: translate(3px, 3px);
   }
 }
 
-@utility neo-input {
+@utility industrial-button-primary {
+  background: var(--primary);
+  border: 2px solid var(--primary-dim);
+  color: #000;
+  box-shadow: 
+    0 0 0 1px var(--background),
+    4px 4px 0px 0px rgba(0,0,0,0.5);
+  
+  &:hover {
+    background: #fcd34d;
+    box-shadow: 
+      0 0 0 1px var(--background),
+      2px 2px 0px 0px rgba(0,0,0,0.5);
+  }
+  
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: none;
+  }
+}
+
+@utility industrial-button-success {
+  background: var(--accent);
+  border: 2px solid #059669;
+  color: #000;
+  box-shadow: 
+    0 0 0 1px var(--background),
+    4px 4px 0px 0px rgba(0,0,0,0.5);
+  
+  &:hover {
+    background: #34d399;
+  }
+  
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: none;
+  }
+}
+
+@utility industrial-button-danger {
+  background: var(--danger);
+  border: 2px solid #dc2626;
+  color: #fff;
+  box-shadow: 
+    0 0 0 1px var(--background),
+    4px 4px 0px 0px rgba(0,0,0,0.5);
+  
+  &:hover {
+    background: #f87171;
+  }
+  
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: none;
+  }
+}
+
+@utility industrial-input {
   width: 100%;
-  border: 2px solid black;
-  background-color: white;
+  background: var(--panel-inset);
+  border: 2px solid var(--border);
   padding: 0.5rem 0.75rem;
-  color: black;
+  color: var(--foreground);
+  font-family: 'JetBrains Mono', monospace;
   transition: all 0.2s;
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.3);
   
   &:focus {
     outline: none;
-    box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+    border-color: var(--primary);
+    box-shadow: 
+      inset 2px 2px 4px rgba(0,0,0,0.3),
+      0 0 0 2px rgba(251, 191, 36, 0.2);
   }
   
   &::placeholder {
-    color: #6b7280;
+    color: var(--text-dim);
   }
 }
 
-@utility neo-button {
-  border: 2px solid black;
-  padding: 0.5rem 1rem;
-  font-weight: 700;
-  color: black;
-  box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
-  transition: all 0.2s;
-  
-  &:hover {
-    box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
-    transform: translate(2px, 2px);
-  }
-  
-  &:active {
-    box-shadow: none;
-    transform: translate(4px, 4px);
-  }
-}
-
-@utility neo-card {
-  border: 2px solid black;
-  background-color: white;
+@utility industrial-card {
+  background: var(--panel);
+  border: 2px solid var(--border);
   padding: 1rem;
-  box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+  box-shadow: 
+    inset 1px 1px 2px rgba(255,255,255,0.05),
+    4px 4px 0px 0px rgba(0,0,0,0.4);
+}
+
+@utility status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  box-shadow: 
+    inset 1px 1px 2px rgba(0,0,0,0.5),
+    0 0 8px currentColor;
+  animation: pulse 2s infinite;
+}
+
+@utility blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@utility led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 6px currentColor;
 }
