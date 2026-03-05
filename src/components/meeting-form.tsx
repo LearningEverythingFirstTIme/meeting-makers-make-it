@@ -11,6 +11,29 @@ interface MeetingFormProps {
   onCancel?: () => void;
 }
 
+const inputVariants = {
+  hidden: { opacity: 0, x: -8 },
+  show: { 
+    opacity: 1, 
+    x: 0,
+    transition: { duration: 0.25, ease: "easeOut" as const }
+  },
+};
+
+const errorVariants = {
+  hidden: { height: 0, opacity: 0 },
+  show: { 
+    height: "auto", 
+    opacity: 1,
+    transition: { duration: 0.18 }
+  },
+  exit: { 
+    height: 0, 
+    opacity: 0,
+    transition: { duration: 0.12 }
+  },
+};
+
 export const MeetingForm = ({
   initialValues = { name: "", location: "", time: "" },
   submitLabel,
@@ -20,6 +43,7 @@ export const MeetingForm = ({
   const [values, setValues] = useState<MeetingInput>(initialValues);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [shakeError, setShakeError] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -27,7 +51,10 @@ export const MeetingForm = ({
 
     const parsed = meetingSchema.safeParse(values);
     if (!parsed.success) {
-      setError(parsed.error.issues[0]?.message ?? "INPUT VALIDATION FAILED");
+      const errMsg = parsed.error.issues[0]?.message ?? "INPUT VALIDATION FAILED";
+      setError(errMsg);
+      setShakeError(true);
+      setTimeout(() => setShakeError(false), 400);
       return;
     }
 
@@ -39,6 +66,8 @@ export const MeetingForm = ({
       }
     } catch {
       setError("WRITE ERROR: COULD NOT SAVE");
+      setShakeError(true);
+      setTimeout(() => setShakeError(false), 400);
     } finally {
       setSubmitting(false);
     }
@@ -46,21 +75,25 @@ export const MeetingForm = ({
 
   return (
     <motion.form
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 0.2 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
       onSubmit={handleSubmit}
       className="space-y-4 panel border-2 border-[#404040] p-6"
     >
       <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#404040]">
-        <div className="led bg-[#fbbf24]"></div>
+        <motion.div 
+          className="led bg-[#fbbf24]"
+          animate={{ opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        />
         <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#fbbf24]">
           {'//'} MEETING_DATA
         </span>
       </div>
 
-      <div className="relative">
+      <motion.div variants={inputVariants} initial="hidden" animate="show" transition={{ delay: 0.05 }}>
         <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-[#888]">
           &gt; MEETING_NAME
         </label>
@@ -71,9 +104,9 @@ export const MeetingForm = ({
           className="industrial-input"
           required
         />
-      </div>
+      </motion.div>
 
-      <div className="relative">
+      <motion.div variants={inputVariants} initial="hidden" animate="show" transition={{ delay: 0.1 }}>
         <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-[#888]">
           &gt; LOCATION
         </label>
@@ -84,9 +117,9 @@ export const MeetingForm = ({
           className="industrial-input"
           required
         />
-      </div>
+      </motion.div>
 
-      <div className="relative">
+      <motion.div variants={inputVariants} initial="hidden" animate="show" transition={{ delay: 0.15 }}>
         <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-[#888]">
           &gt; TIME
         </label>
@@ -97,14 +130,15 @@ export const MeetingForm = ({
           className="industrial-input"
           required
         />
-      </div>
+      </motion.div>
 
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {error && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
+            variants={errorVariants}
+            initial="hidden"
+            animate={shakeError ? { ...errorVariants.show, x: [0, -3, 3, -2, 2, 0] } : "show"}
+            exit="exit"
             className="panel-inset border-2 border-[#ef4444] p-3"
           >
             <div className="flex items-center gap-2">
@@ -117,15 +151,19 @@ export const MeetingForm = ({
 
       <div className="flex items-center gap-3 pt-2">
         <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          whileHover={!submitting ? { scale: 1.015 } : {}}
+          whileTap={!submitting ? { scale: 0.985 } : {}}
           type="submit"
           disabled={submitting}
           className="industrial-button industrial-button-primary flex-1 py-3"
         >
           {submitting ? (
             <span className="flex items-center justify-center gap-2">
-              <span className="status-indicator text-[#000] bg-[#000] w-3 h-3"></span>
+              <motion.span 
+                className="status-indicator text-[#000] bg-[#000] w-3 h-3"
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 0.8, repeat: Infinity }}
+              />
               SAVING...
             </span>
           ) : (
@@ -135,8 +173,8 @@ export const MeetingForm = ({
         
         {onCancel ? (
           <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ scale: 1.015 }}
+            whileTap={{ scale: 0.985 }}
             type="button"
             onClick={onCancel}
             className="industrial-button flex-1 py-3"

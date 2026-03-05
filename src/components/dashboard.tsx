@@ -38,6 +38,59 @@ const timeLabel = (time: string) => {
   return `${hour12}:${String(m).padStart(2, "0")} ${ampm}`;
 };
 
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.06,
+      delayChildren: 0.12,
+    },
+  },
+} as const;
+
+const statCardVariants = {
+  hidden: { opacity: 0, scale: 0.96, y: 8 },
+  show: { 
+    opacity: 1, 
+    scale: 1, 
+    y: 0,
+    transition: { duration: 0.4, ease: [0.34, 1.56, 0.64, 1] as const }
+  },
+};
+
+const meetingCardVariants = {
+  hidden: { opacity: 0, y: 10 },
+  show: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] as const }
+  },
+  exit: { 
+    opacity: 0, 
+    scale: 0.98,
+    transition: { duration: 0.18 }
+  },
+} as const;
+
+const logItemVariants = {
+  hidden: { opacity: 0, x: -6 },
+  show: { 
+    opacity: 1, 
+    x: 0,
+    transition: { duration: 0.2, ease: "easeOut" as const }
+  },
+};
+
+const historyItemVariants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  show: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { duration: 0.18 }
+  },
+};
+
 export const Dashboard = () => {
   const { user, logout } = useAuth();
   const db = getClientDb();
@@ -47,6 +100,7 @@ export const Dashboard = () => {
   const [error, setError] = useState<string | null>(null);
   const [editingMeetingId, setEditingMeetingId] = useState<string | null>(null);
   const [pendingCheckinId, setPendingCheckinId] = useState<string | null>(null);
+  const [checkinSuccessId, setCheckinSuccessId] = useState<string | null>(null);
 
   useEffect(() => {
     if (!user) return;
@@ -211,6 +265,8 @@ export const Dashboard = () => {
           createdAt: serverTimestamp(),
         });
       });
+      setCheckinSuccessId(meeting.id);
+      setTimeout(() => setCheckinSuccessId(null), 500);
     } catch (err) {
       if (err instanceof Error && err.message === "already-checked-in") {
         setError(`Already checked in to ${meeting.name} today.`);
@@ -235,13 +291,14 @@ export const Dashboard = () => {
     <main className="min-h-screen bg-[#1a1a1a] px-4 py-8 md:px-8 overflow-hidden">
       <div className="mx-auto max-w-6xl space-y-6">
         <motion.header 
-          initial={{ y: -20, opacity: 0 }}
+          initial={{ y: -12, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.35, ease: [0.34, 1.56, 0.64, 1] }}
           className="panel border-2 border-[#404040] p-6 flex flex-col gap-6 md:flex-row md:items-center md:justify-between"
         >
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <div className="led bg-[#10b981]"></div>
+              <div className="led led-pulse bg-[#10b981]"></div>
               <p className="font-mono text-xs font-bold uppercase tracking-widest text-[#10b981]">{'//'} SYSTEM ONLINE</p>
             </div>
             <h1 className="text-3xl font-black uppercase tracking-tighter md:text-5xl text-[#e5e5e5]">MEETING<br/>TRACKER</h1>
@@ -258,12 +315,13 @@ export const Dashboard = () => {
           </motion.button>
         </motion.header>
 
-        <AnimatePresence>
+        <AnimatePresence mode="sync">
           {error && (
             <motion.div 
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.18 }}
               className="panel-inset border-2 border-[#ef4444] px-4 py-3"
             >
               <div className="flex items-center gap-3">
@@ -274,25 +332,34 @@ export const Dashboard = () => {
           )}
         </AnimatePresence>
 
-        <section className="grid gap-4 md:grid-cols-3">
+        <motion.section 
+          variants={staggerContainer}
+          initial="hidden"
+          animate="show"
+          className="grid gap-4 md:grid-cols-3"
+        >
           <motion.article 
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.1 }}
+            variants={statCardVariants}
             className="panel border-2 border-[#404040] p-5"
           >
             <div className="flex items-center gap-2 mb-3 font-mono text-xs font-bold uppercase tracking-widest text-[#3b82f6]">
               <Calendar size={14} strokeWidth={3} /> WEEKLY_CHECKINS
             </div>
             <div className="flex items-end gap-2">
-              <p className="text-5xl font-black text-[#3b82f6]">{thisWeekCheckins.length}</p>
+              <motion.p 
+                className="text-5xl font-black text-[#3b82f6]"
+                key={thisWeekCheckins.length}
+                initial={{ scale: 1 }}
+                animate={{ scale: [1, 1.06, 1] }}
+                transition={{ duration: 0.35 }}
+              >
+                {thisWeekCheckins.length}
+              </motion.p>
               <p className="mb-2 font-mono text-xs text-[#555]">/ 7 DAYS</p>
             </div>
           </motion.article>
           <motion.article 
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.15 }}
+            variants={statCardVariants}
             className="panel border-2 border-[#404040] p-5"
           >
             <div className="flex items-center gap-2 mb-3 font-mono text-xs font-bold uppercase tracking-widest text-[#fbbf24]">
@@ -304,42 +371,54 @@ export const Dashboard = () => {
             </div>
           </motion.article>
           <motion.article 
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.2 }}
+            variants={statCardVariants}
             className="panel border-2 border-[#404040] p-5"
           >
             <div className="flex items-center gap-2 mb-3 font-mono text-xs font-bold uppercase tracking-widest text-[#10b981]">
               <Clock size={14} strokeWidth={3} /> LAST_ACTIVITY
             </div>
-            <p className="text-sm font-bold uppercase truncate text-[#10b981]">
+            <motion.p 
+              className="text-sm font-bold uppercase truncate text-[#10b981]"
+              key={checkins[0]?.id || 'none'}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.2 }}
+            >
               {checkins[0]?.createdAt ? formatDateTime(checkins[0].createdAt) : "NO DATA"}
-            </p>
+            </motion.p>
           </motion.article>
-        </section>
+        </motion.section>
 
         <section className="grid gap-6 lg:grid-cols-[1fr_1.5fr]">
           <div className="space-y-6">
-            <div className="panel border-2 border-[#404040] p-1">
+            <motion.div 
+              initial={{ opacity: 0, x: -8 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.28, delay: 0.08 }}
+              className="panel border-2 border-[#404040] p-1"
+            >
               <div className="panel-inset p-4">
                 <h2 className="flex items-center gap-3 text-xl font-black uppercase tracking-tight text-[#fbbf24]">
                   <Plus size={20} strokeWidth={4} /> ADD_MEETING
                 </h2>
               </div>
-            </div>
+            </motion.div>
             <MeetingForm submitLabel="Create Meeting" onSubmit={createMeeting} />
 
-            <div className="panel border-2 border-[#404040] p-6">
+            <motion.div 
+              variants={staggerContainer}
+              initial="hidden"
+              animate="show"
+              className="panel border-2 border-[#404040] p-6"
+            >
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#404040]">
                 <span className="font-mono text-xs text-[#10b981]">{'//'}</span>
                 <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#10b981]">RECENT_LOGS</span>
               </div>
               <ul className="space-y-2">
-                {checkins.slice(0, 8).map((entry, i) => (
+                {checkins.slice(0, 8).map((entry) => (
                   <motion.li 
-                    initial={{ x: -10, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: i * 0.03 }}
+                    variants={logItemVariants}
                     key={entry.id} 
                     className="panel-inset border border-[#404040] px-3 py-3 text-xs font-bold flex items-center justify-between"
                   >
@@ -350,41 +429,60 @@ export const Dashboard = () => {
                   </motion.li>
                 ))}
                 {checkins.length === 0 ? (
-                  <li className="font-mono text-xs text-[#555]">NO_RECORDS_FOUND</li>
+                  <motion.li 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="font-mono text-xs text-[#555] float"
+                  >
+                    NO_RECORDS_FOUND
+                  </motion.li>
                 ) : null}
               </ul>
-            </div>
+            </motion.div>
           </div>
 
           <div className="space-y-6">
-            <div className="panel border-2 border-[#404040] p-1">
+            <motion.div 
+              initial={{ opacity: 0, x: 8 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.28, delay: 0.12 }}
+              className="panel border-2 border-[#404040] p-1"
+            >
               <div className="panel-inset p-4">
                 <h2 className="text-xl font-black uppercase tracking-tight text-[#e5e5e5]">YOUR_MEETINGS</h2>
               </div>
-            </div>
+            </motion.div>
             
             {loading ? (
-              <div className="panel-inset border-2 border-[#404040] p-6 text-center">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="panel-inset border-2 border-[#404040] p-6 text-center"
+              >
                 <div className="flex items-center justify-center gap-3">
-                  <span className="status-indicator text-[#fbbf24] bg-[#fbbf24]"></span>
+                  <span className="status-indicator status-indicator-fast text-[#fbbf24] bg-[#fbbf24]"></span>
                   <p className="font-mono text-sm font-bold animate-pulse text-[#fbbf24]">LOADING_DATA...</p>
                 </div>
-              </div>
+              </motion.div>
             ) : null}
             
-            <div className="space-y-4">
-              <AnimatePresence>
+            <motion.div 
+              variants={staggerContainer}
+              initial="hidden"
+              animate="show"
+              className="space-y-4"
+            >
+              <AnimatePresence mode="popLayout">
               {meetings.map((meeting) => {
                 const isEditing = editingMeetingId === meeting.id;
                 const todaysCheckin = alreadyCheckedInToday(meeting.id);
                 const history = checkinsByMeeting.get(meeting.id) ?? [];
+                const showSuccess = checkinSuccessId === meeting.id;
 
                 return (
                   <motion.article 
                     layout
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
+                    variants={meetingCardVariants}
                     key={meeting.id} 
                     className={`panel border-2 border-[#404040] p-5 ${todaysCheckin ? 'border-[#10b981]' : ''}`}
                   >
@@ -408,7 +506,11 @@ export const Dashboard = () => {
                           <div>
                             <div className="flex items-center gap-2 mb-2">
                               {todaysCheckin ? (
-                                <div className="led bg-[#10b981]"></div>
+                                <motion.div 
+                                  className="led bg-[#10b981]"
+                                  animate={showSuccess ? { scale: [1, 1.6, 1] } : {}}
+                                  transition={{ duration: 0.4 }}
+                                />
                               ) : (
                                 <div className="led bg-[#555]"></div>
                               )}
@@ -437,7 +539,7 @@ export const Dashboard = () => {
                               <Edit2 size={10} strokeWidth={3} /> EDIT
                             </motion.button>
                             <motion.button
-                              whileHover={{ scale: 1.03 }}
+                              whileHover={{ scale: 1.03, x: [0, -1.5, 1.5, -1, 1, 0] }}
                               whileTap={{ scale: 0.97 }}
                               type="button"
                               onClick={() => void removeMeeting(meeting.id)}
@@ -446,14 +548,14 @@ export const Dashboard = () => {
                               <Trash2 size={10} strokeWidth={3} /> DEL
                             </motion.button>
                             <motion.button
-                              whileHover={{ scale: 1.03 }}
-                              whileTap={{ scale: 0.97 }}
+                              whileHover={!todaysCheckin && !pendingCheckinId ? { scale: 1.03 } : {}}
+                              whileTap={!todaysCheckin && !pendingCheckinId ? { scale: 0.97 } : {}}
                               type="button"
                               disabled={todaysCheckin || pendingCheckinId === meeting.id}
                               onClick={() => void checkIn(meeting)}
                               className={`industrial-button text-xs py-2 ${
                                 todaysCheckin 
-                                  ? "industrial-button-success" 
+                                  ? "industrial-button-success checkin-success" 
                                   : "bg-[#3b82f6] border-[#2563eb] text-white hover:bg-[#60a5fa]"
                               }`}
                             >
@@ -462,7 +564,10 @@ export const Dashboard = () => {
                                   <CheckCircle size={10} strokeWidth={3} /> DONE
                                 </>
                               ) : pendingCheckinId === meeting.id ? (
-                                "..."
+                                <span className="flex items-center gap-1">
+                                  <span className="status-indicator text-white bg-white w-2 h-2"></span>
+                                  ...
+                                </span>
                               ) : (
                                 "CHECK_IN"
                               )}
@@ -470,21 +575,30 @@ export const Dashboard = () => {
                           </div>
                         </div>
 
-                        <div className="mt-5 pt-4 border-t border-dashed border-[#404040]">
+                        <motion.div 
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.18 }}
+                          className="mt-5 pt-4 border-t border-dashed border-[#404040]"
+                        >
                           <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#555] mb-3">
                             {'//'} HISTORY ({history.length})
                           </p>
                           <div className="flex flex-wrap gap-2">
                             {history.slice(0, 6).map((entry) => (
-                              <span key={entry.id} className="panel-inset border border-[#404040] px-2 py-1 font-mono text-[10px] font-bold text-[#888]">
+                              <motion.span 
+                                key={entry.id}
+                                variants={historyItemVariants}
+                                className="panel-inset border border-[#404040] px-2 py-1 font-mono text-[10px] font-bold text-[#888]"
+                              >
                                 {entry.createdAt ? formatDateTime(entry.createdAt).split(' ')[0] : entry.dayKey}
-                              </span>
+                              </motion.span>
                             ))}
                             {history.length === 0 ? (
                               <span className="font-mono text-[10px] text-[#444]">NO_DATA</span>
                             ) : null}
                           </div>
-                        </div>
+                        </motion.div>
                       </>
                     )}
                   </motion.article>
@@ -493,15 +607,29 @@ export const Dashboard = () => {
               </AnimatePresence>
 
               {!loading && meetings.length === 0 ? (
-                <div className="panel-inset border-2 border-dashed border-[#404040] p-12 text-center">
-                  <div className="led bg-[#555] mb-4 mx-auto"></div>
+                <motion.div 
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="panel-inset border-2 border-dashed border-[#404040] p-12 text-center"
+                >
+                  <motion.div 
+                    className="led bg-[#555] mb-4 mx-auto"
+                    animate={{ opacity: [0.4, 1, 0.4] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  ></motion.div>
                   <p className="text-lg font-black uppercase text-[#555]">NO_MEETINGS_CONFIGURED</p>
                   <p className="mt-2 font-mono text-xs text-[#444]">Add a meeting to begin tracking.</p>
-                </div>
+                </motion.div>
               ) : null}
-            </div>
+            </motion.div>
 
-            <section className="panel border-2 border-[#404040] p-6">
+            <motion.section 
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.28 }}
+              className="panel border-2 border-[#404040] p-6"
+            >
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#404040]">
                 <span className="font-mono text-xs text-[#8b5cf6]">{'//'}</span>
                 <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#8b5cf6]">WEEKLY_ACTIVITY_LOG</span>
@@ -511,9 +639,9 @@ export const Dashboard = () => {
                   const meeting = meetingById.get(entry.meetingId);
                   return (
                     <motion.li 
-                      initial={{ opacity: 0, x: 10 }}
+                      initial={{ opacity: 0, x: 8 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.05 }}
+                      transition={{ delay: i * 0.04 + 0.32 }}
                       key={entry.id} 
                       className="panel-inset border border-[#404040] px-4 py-3 text-xs font-bold flex items-center justify-between"
                     >
@@ -525,10 +653,17 @@ export const Dashboard = () => {
                   );
                 })}
                 {thisWeekCheckins.length === 0 ? (
-                  <li className="font-mono text-xs text-[#444] text-center py-4">NO_ACTIVITY_THIS_WEEK</li>
+                  <motion.li 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.35 }}
+                    className="font-mono text-xs text-[#444] text-center py-4"
+                  >
+                    NO_ACTIVITY_THIS_WEEK
+                  </motion.li>
                 ) : null}
               </ul>
-            </section>
+            </motion.section>
           </div>
         </section>
       </div>
