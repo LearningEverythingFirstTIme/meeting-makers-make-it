@@ -14,6 +14,8 @@ import {
   where,
 } from "firebase/firestore";
 import { FirebaseError } from "firebase/app";
+import { motion, AnimatePresence } from "framer-motion";
+import { LogOut, MapPin, Clock, Edit2, Trash2, CheckCircle, Plus, Activity, Calendar } from "lucide-react";
 import { getClientDb } from "@/lib/firebase/client";
 import { useAuth } from "@/components/auth-provider";
 import { MeetingForm } from "@/components/meeting-form";
@@ -230,83 +232,133 @@ export const Dashboard = () => {
     checkins.some((entry) => entry.meetingId === meetingId && entry.dayKey === todayKey);
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-8 md:px-8">
-      <div className="mx-auto max-w-6xl space-y-6">
-        <header className="flex flex-col gap-4 rounded-2xl bg-gradient-to-r from-sky-700 to-indigo-700 p-6 text-white shadow-lg md:flex-row md:items-center md:justify-between">
+    <main className="min-h-screen bg-[var(--background)] px-4 py-8 md:px-8 overflow-hidden">
+      <div className="mx-auto max-w-6xl space-y-8">
+        <motion.header 
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          className="flex flex-col gap-6 border-4 border-black bg-white p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:flex-row md:items-center md:justify-between"
+        >
           <div>
-            <p className="text-sm text-sky-100">Welcome back</p>
-            <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">Meeting Makers Make It</h1>
-            <p className="mt-1 text-sm text-sky-100">Signed in as {user.email}</p>
+            <p className="font-mono text-sm font-bold uppercase tracking-widest text-pink-500">Welcome back</p>
+            <h1 className="text-3xl font-black uppercase tracking-tighter md:text-5xl">Meeting Makers<br/>Make It</h1>
+            <p className="mt-2 font-mono text-xs font-bold uppercase text-gray-500">ID: {user.email}</p>
           </div>
-          <button
+          <motion.button
+            whileHover={{ scale: 1.05, rotate: 2 }}
+            whileTap={{ scale: 0.95 }}
             type="button"
             onClick={() => void logout()}
-            className="rounded-lg bg-white/15 px-4 py-2 text-sm font-medium hover:bg-white/25"
+            className="self-start md:self-center flex items-center gap-2 border-2 border-black bg-rose-400 px-6 py-3 font-black uppercase tracking-widest text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-rose-300"
           >
-            Sign out
-          </button>
-        </header>
+            <LogOut size={16} strokeWidth={3} /> Sign out
+          </motion.button>
+        </motion.header>
 
-        {error ? (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
-            {error}
-          </div>
-        ) : null}
+        <AnimatePresence>
+          {error && (
+            <motion.div 
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="border-2 border-black bg-rose-100 px-4 py-3 font-bold text-rose-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+            >
+              ⚠ ERROR: {error}
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-        <section className="grid gap-4 md:grid-cols-3">
-          <article className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-            <p className="text-sm text-slate-500">This week check-ins</p>
-            <p className="mt-2 text-3xl font-semibold text-slate-900">{thisWeekCheckins.length}</p>
-          </article>
-          <article className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-            <p className="text-sm text-slate-500">Meetings tracked</p>
-            <p className="mt-2 text-3xl font-semibold text-slate-900">{meetings.length}</p>
-          </article>
-          <article className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-            <p className="text-sm text-slate-500">Latest check-in</p>
-            <p className="mt-2 text-sm font-medium text-slate-900">
-              {checkins[0]?.createdAt ? formatDateTime(checkins[0].createdAt) : "No check-ins yet"}
+        <section className="grid gap-6 md:grid-cols-3">
+          <motion.article 
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            className="border-2 border-black bg-cyan-200 p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+          >
+            <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest">
+              <Calendar size={16} strokeWidth={3} /> Weekly Check-ins
+            </div>
+            <p className="mt-2 text-6xl font-black">{thisWeekCheckins.length}</p>
+          </motion.article>
+          <motion.article 
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="border-2 border-black bg-yellow-300 p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+          >
+            <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest">
+              <Activity size={16} strokeWidth={3} /> Active Meetings
+            </div>
+            <p className="mt-2 text-6xl font-black">{meetings.length}</p>
+          </motion.article>
+          <motion.article 
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="border-2 border-black bg-lime-300 p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+          >
+            <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest">
+              <Clock size={16} strokeWidth={3} /> Latest Activity
+            </div>
+            <p className="mt-2 text-sm font-bold uppercase truncate">
+              {checkins[0]?.createdAt ? formatDateTime(checkins[0].createdAt) : "NO CHECK-INS YET"}
             </p>
-          </article>
+          </motion.article>
         </section>
 
-        <section className="grid gap-6 lg:grid-cols-[1.1fr_1.4fr]">
-          <div className="space-y-4">
-            <h2 className="text-lg font-semibold text-slate-900">Add meeting</h2>
-            <MeetingForm submitLabel="Save meeting" onSubmit={createMeeting} />
+        <section className="grid gap-8 lg:grid-cols-[1.1fr_1.4fr]">
+          <div className="space-y-6">
+            <h2 className="flex items-center gap-3 border-b-4 border-black pb-2 text-2xl font-black uppercase tracking-tight">
+              <Plus size={24} strokeWidth={4} /> Add Meeting
+            </h2>
+            <MeetingForm submitLabel="Create Meeting" onSubmit={createMeeting} />
 
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Latest check-ins</h3>
-              <ul className="mt-3 space-y-2">
-                {checkins.slice(0, 8).map((entry) => (
-                  <li key={entry.id} className="rounded-lg bg-slate-50 px-3 py-2 text-sm text-slate-700">
-                    <span className="font-medium text-slate-900">{entry.meetingName}</span>
-                    <span className="ml-2 text-slate-500">
+            <div className="border-2 border-black bg-white p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+              <h3 className="mb-4 font-mono text-sm font-black uppercase tracking-widest text-pink-600">// RECENT LOGS</h3>
+              <ul className="space-y-3">
+                {checkins.slice(0, 8).map((entry, i) => (
+                  <motion.li 
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: i * 0.05 }}
+                    key={entry.id} 
+                    className="flex items-center justify-between border-2 border-black bg-gray-50 px-3 py-3 text-sm font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                  >
+                    <span className="uppercase text-black truncate max-w-[150px]">{entry.meetingName}</span>
+                    <span className="font-mono text-xs text-gray-500 whitespace-nowrap">
                       {entry.createdAt ? formatDateTime(entry.createdAt) : entry.dayKey}
                     </span>
-                  </li>
+                  </motion.li>
                 ))}
                 {checkins.length === 0 ? (
-                  <li className="text-sm text-slate-500">No check-ins recorded yet.</li>
+                  <li className="font-mono text-sm font-bold text-gray-400">WAITING FOR DATA...</li>
                 ) : null}
               </ul>
             </div>
           </div>
 
-          <div className="space-y-4">
-            <h2 className="text-lg font-semibold text-slate-900">Your meetings</h2>
-            {loading ? <p className="text-sm text-slate-500">Loading meetings...</p> : null}
-            <div className="space-y-3">
+          <div className="space-y-6">
+            <h2 className="border-b-4 border-black pb-2 text-2xl font-black uppercase tracking-tight">Your Meetings</h2>
+            {loading ? <p className="font-mono text-sm font-bold animate-pulse">LOADING DATA...</p> : null}
+            <div className="space-y-6">
+              <AnimatePresence>
               {meetings.map((meeting) => {
                 const isEditing = editingMeetingId === meeting.id;
                 const todaysCheckin = alreadyCheckedInToday(meeting.id);
                 const history = checkinsByMeeting.get(meeting.id) ?? [];
 
                 return (
-                  <article key={meeting.id} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <motion.article 
+                    layout
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    key={meeting.id} 
+                    className={`border-4 border-black bg-white p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-colors ${todaysCheckin ? 'bg-emerald-50' : ''}`}
+                  >
                     {isEditing ? (
                       <MeetingForm
-                        submitLabel="Update meeting"
+                        submitLabel="Update Meeting"
                         initialValues={{
                           name: meeting.name,
                           location: meeting.location,
@@ -320,86 +372,119 @@ export const Dashboard = () => {
                       />
                     ) : (
                       <>
-                        <div className="flex flex-wrap items-start justify-between gap-3">
+                        <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                           <div>
-                            <h3 className="text-lg font-semibold text-slate-900">{meeting.name}</h3>
-                            <p className="text-sm text-slate-600">{meeting.location}</p>
-                            <p className="text-sm text-slate-600">{timeLabel(meeting.time)}</p>
+                            <h3 className="text-2xl font-black uppercase text-black">{meeting.name}</h3>
+                            <div className="mt-2 flex flex-col gap-1 font-mono text-sm font-bold text-gray-600">
+                              <span className="flex items-center gap-2">
+                                <MapPin size={14} strokeWidth={3} />
+                                {meeting.location.toUpperCase()}
+                              </span>
+                              <span className="flex items-center gap-2">
+                                <Clock size={14} strokeWidth={3} />
+                                {timeLabel(meeting.time)}
+                              </span>
+                            </div>
                           </div>
-                          <div className="flex items-center gap-2">
-                            <button
+                          
+                          <div className="flex flex-wrap items-center gap-3">
+                            <motion.button
+                              whileHover={{ scale: 1.05, y: -2 }}
+                              whileTap={{ scale: 0.95 }}
                               type="button"
                               onClick={() => setEditingMeetingId(meeting.id)}
-                              className="rounded-lg border border-slate-300 px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50"
+                              className="flex items-center gap-1 border-2 border-black bg-yellow-300 px-3 py-2 text-xs font-black uppercase tracking-wider text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-yellow-200"
                             >
-                              Edit
-                            </button>
-                            <button
+                              <Edit2 size={12} strokeWidth={3} /> Edit
+                            </motion.button>
+                            <motion.button
+                              whileHover={{ scale: 1.05, y: -2 }}
+                              whileTap={{ scale: 0.95 }}
                               type="button"
                               onClick={() => void removeMeeting(meeting.id)}
-                              className="rounded-lg border border-rose-300 px-3 py-1.5 text-sm text-rose-700 hover:bg-rose-50"
+                              className="flex items-center gap-1 border-2 border-black bg-rose-400 px-3 py-2 text-xs font-black uppercase tracking-wider text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-rose-300"
                             >
-                              Delete
-                            </button>
-                            <button
+                              <Trash2 size={12} strokeWidth={3} /> Delete
+                            </motion.button>
+                            <motion.button
+                              whileHover={{ scale: 1.05, y: -2 }}
+                              whileTap={{ scale: 0.95 }}
                               type="button"
                               disabled={todaysCheckin || pendingCheckinId === meeting.id}
                               onClick={() => void checkIn(meeting)}
-                              className="rounded-lg bg-emerald-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-emerald-500 disabled:cursor-not-allowed disabled:bg-emerald-300"
+                              className={`
+                                flex items-center gap-2 border-2 border-black px-4 py-2 text-xs font-black uppercase tracking-wider shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]
+                                ${todaysCheckin 
+                                  ? "bg-emerald-500 text-white cursor-default" 
+                                  : "bg-blue-500 text-white hover:bg-blue-400"}
+                                disabled:opacity-70
+                              `}
                             >
-                              {todaysCheckin
-                                ? "Checked in today"
-                                : pendingCheckinId === meeting.id
-                                  ? "Checking in..."
-                                  : "Check in"}
-                            </button>
+                              {todaysCheckin ? (
+                                <>
+                                  <CheckCircle size={14} strokeWidth={3} /> Checked In
+                                </>
+                              ) : pendingCheckinId === meeting.id ? (
+                                "Checking..."
+                              ) : (
+                                "Check In"
+                              )}
+                            </motion.button>
                           </div>
                         </div>
 
-                        <div className="mt-4">
-                          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                            Meeting history ({history.length})
+                        <div className="mt-6 border-t-2 border-dashed border-black pt-4">
+                          <p className="font-mono text-xs font-black uppercase tracking-widest text-gray-500">
+                            // History ({history.length})
                           </p>
-                          <ul className="mt-2 space-y-1">
+                          <div className="mt-3 flex flex-wrap gap-2">
                             {history.slice(0, 5).map((entry) => (
-                              <li key={entry.id} className="text-sm text-slate-700">
-                                {entry.createdAt ? formatDateTime(entry.createdAt) : entry.dayKey}
-                              </li>
+                              <span key={entry.id} className="inline-block border border-black bg-white px-2 py-1 font-mono text-xs font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                                {entry.createdAt ? formatDateTime(entry.createdAt).split(' ')[0] : entry.dayKey}
+                              </span>
                             ))}
                             {history.length === 0 ? (
-                              <li className="text-sm text-slate-500">No check-ins for this meeting yet.</li>
+                              <span className="font-mono text-xs font-bold text-gray-400">NO RECORDS</span>
                             ) : null}
-                          </ul>
+                          </div>
                         </div>
                       </>
                     )}
-                  </article>
+                  </motion.article>
                 );
               })}
+              </AnimatePresence>
 
               {!loading && meetings.length === 0 ? (
-                <div className="rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center text-sm text-slate-500">
-                  Add your first meeting to start tracking attendance.
+                <div className="border-2 border-dashed border-black bg-gray-50 p-12 text-center">
+                  <p className="text-xl font-black uppercase text-gray-400">No Meetings Configured</p>
+                  <p className="mt-2 font-mono text-sm text-gray-400">Add a meeting above to start tracking.</p>
                 </div>
               ) : null}
             </div>
 
-            <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">This week activity</h3>
-              <ul className="mt-3 space-y-2">
-                {thisWeekCheckins.map((entry) => {
+            <section className="border-2 border-black bg-white p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+              <h3 className="mb-4 font-mono text-sm font-black uppercase tracking-widest text-indigo-600">// WEEKLY ACTIVITY LOG</h3>
+              <ul className="space-y-3">
+                {thisWeekCheckins.map((entry, i) => {
                   const meeting = meetingById.get(entry.meetingId);
                   return (
-                    <li key={entry.id} className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 text-sm">
-                      <span className="font-medium text-slate-900">{meeting?.name ?? entry.meetingName}</span>
-                      <span className="text-slate-500">
+                    <motion.li 
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      key={entry.id} 
+                      className="flex items-center justify-between border-2 border-black bg-indigo-50 px-4 py-3 font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                    >
+                      <span className="uppercase">{meeting?.name ?? entry.meetingName}</span>
+                      <span className="font-mono text-xs text-gray-500">
                         {entry.createdAt ? formatDateTime(entry.createdAt) : entry.dayKey}
                       </span>
-                    </li>
+                    </motion.li>
                   );
                 })}
                 {thisWeekCheckins.length === 0 ? (
-                  <li className="text-sm text-slate-500">No check-ins this week yet.</li>
+                  <li className="font-mono text-sm font-bold text-gray-400">NO ACTIVITY THIS WEEK.</li>
                 ) : null}
               </ul>
             </section>

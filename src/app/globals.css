@@ -1,12 +1,88 @@
 @import "tailwindcss";
 
-:root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+@layer theme {
+  :root {
+    --background: #e0f2fe; /* Light blue background */
+    --foreground: #000000;
+    --card: #ffffff;
+    --primary: #fbbf24; /* Amber-400 */
+    --secondary: #a78bfa; /* Violet-400 */
+    --accent: #f472b6; /* Pink-400 */
+    --border: #000000;
+  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), Inter, system-ui, -apple-system, sans-serif;
+  font-family: var(--font-inter), monospace, sans-serif;
+  overflow-x: hidden;
+}
+
+@utility neo-border {
+  border: 2px solid black;
+}
+
+@utility neo-shadow {
+  box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+}
+
+@utility neo-shadow-hover {
+  transition: all 0.2s;
+  &:hover {
+    box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+    transform: translate(2px, 2px);
+  }
+}
+
+@utility neo-shadow-active {
+  transition: all 0.1s;
+  &:active {
+    box-shadow: none;
+    transform: translate(4px, 4px);
+  }
+}
+
+@utility neo-input {
+  width: 100%;
+  border: 2px solid black;
+  background-color: white;
+  padding: 0.5rem 0.75rem;
+  color: black;
+  transition: all 0.2s;
+  
+  &:focus {
+    outline: none;
+    box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+  }
+  
+  &::placeholder {
+    color: #6b7280;
+  }
+}
+
+@utility neo-button {
+  border: 2px solid black;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  color: black;
+  box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+  transition: all 0.2s;
+  
+  &:hover {
+    box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+    transform: translate(2px, 2px);
+  }
+  
+  &:active {
+    box-shadow: none;
+    transform: translate(4px, 4px);
+  }
+}
+
+@utility neo-card {
+  border: 2px solid black;
+  background-color: white;
+  padding: 1rem;
+  box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
 }

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FirebaseError } from "firebase/app";
+import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/components/auth-provider";
 
 type Mode = "login" | "register";
@@ -53,18 +54,25 @@ export const AuthForm = () => {
   };
 
   return (
-    <div className="mx-auto w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-      <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
-        Meeting Makers Make It
-      </h1>
-      <p className="mt-2 text-sm text-slate-600">
-        Sign in to manage meetings and track your attendance.
+    <motion.div
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      className="mx-auto w-full max-w-md border-4 border-black bg-white p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
+    >
+      <div className="mb-8 border-b-4 border-black pb-4">
+        <h1 className="text-4xl font-black uppercase tracking-tighter text-black leading-none">
+          Meeting<br />Makers<br /><span className="text-pink-500">Make It</span>
+        </h1>
+      </div>
+      
+      <p className="mb-6 font-mono text-sm font-bold uppercase tracking-wider text-gray-500">
+        // {mode === "login" ? "AUTHENTICATE" : "INITIALIZE_USER"}
       </p>
 
-      <form onSubmit={onSubmit} className="mt-6 space-y-4">
+      <form onSubmit={onSubmit} className="space-y-6">
         <div>
-          <label htmlFor="email" className="mb-1 block text-sm font-medium text-slate-700">
-            Email
+          <label htmlFor="email" className="mb-2 block text-xs font-black uppercase tracking-widest text-black">
+            Email Address
           </label>
           <input
             id="email"
@@ -73,12 +81,13 @@ export const AuthForm = () => {
             onChange={(e) => setEmail(e.target.value)}
             autoComplete="email"
             required
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-sky-500 focus:ring"
+            className="w-full border-2 border-black bg-yellow-50 px-4 py-3 font-bold text-black placeholder:text-gray-400 focus:bg-yellow-100 focus:outline-none focus:ring-0 focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
+            placeholder="USER@EXAMPLE.COM"
           />
         </div>
 
         <div>
-          <label htmlFor="password" className="mb-1 block text-sm font-medium text-slate-700">
+          <label htmlFor="password" className="mb-2 block text-xs font-black uppercase tracking-widest text-black">
             Password
           </label>
           <input
@@ -89,33 +98,50 @@ export const AuthForm = () => {
             autoComplete={mode === "login" ? "current-password" : "new-password"}
             required
             minLength={6}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-sky-500 focus:ring"
+            className="w-full border-2 border-black bg-cyan-50 px-4 py-3 font-bold text-black placeholder:text-gray-400 focus:bg-cyan-100 focus:outline-none focus:ring-0 focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
+            placeholder="••••••••"
           />
         </div>
 
-        {error ? <p className="text-sm text-rose-600">{error}</p> : null}
+        <AnimatePresence>
+          {error && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="border-2 border-black bg-rose-500 p-3 text-sm font-bold text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+            >
+              ⚠ {error.toUpperCase()}
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-        <button
+        <motion.button
+          whileHover={{ scale: 1.02, x: 2, y: 2, boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)" }}
+          whileTap={{ scale: 0.98, x: 6, y: 6, boxShadow: "0px 0px 0px 0px rgba(0,0,0,1)" }}
           type="submit"
           disabled={submitting}
-          className="w-full rounded-lg bg-sky-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-sky-500 disabled:cursor-not-allowed disabled:bg-sky-300"
+          className="w-full border-2 border-black bg-lime-400 px-4 py-4 text-base font-black uppercase tracking-widest text-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:bg-lime-300 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {submitting ? "Please wait..." : mode === "login" ? "Sign in" : "Create account"}
-        </button>
+          {submitting ? "PROCESSING..." : mode === "login" ? "ENTER SYSTEM" : "CREATE USER"}
+        </motion.button>
       </form>
 
-      <button
-        type="button"
-        onClick={() => {
-          setMode((prev) => (prev === "login" ? "register" : "login"));
-          setError(null);
-        }}
-        className="mt-4 text-sm text-sky-700 hover:text-sky-600"
-      >
-        {mode === "login"
-          ? "Need an account? Register"
-          : "Already have an account? Sign in"}
-      </button>
-    </div>
+      <div className="mt-8 text-center">
+        <button
+          type="button"
+          onClick={() => {
+            setMode((prev) => (prev === "login" ? "register" : "login"));
+            setError(null);
+          }}
+          className="group relative inline-block font-bold uppercase tracking-wider text-black"
+        >
+          <span className="relative z-10 border-b-2 border-black pb-0.5 group-hover:text-pink-600 transition-colors">
+            {mode === "login" ? "Need an account? Register" : "Have an account? Sign in"}
+          </span>
+          <span className="absolute bottom-0 left-0 -z-0 h-2 w-full bg-pink-300 transition-all group-hover:h-full"></span>
+        </button>
+      </div>
+    </motion.div>
   );
 };
