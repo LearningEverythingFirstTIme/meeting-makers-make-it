@@ -12,11 +12,11 @@ interface MeetingFormProps {
 }
 
 const inputVariants = {
-  hidden: { opacity: 0, x: -8 },
+  hidden: { opacity: 0, x: -10 },
   show: { 
     opacity: 1, 
     x: 0,
-    transition: { duration: 0.25, ease: "easeOut" as const }
+    transition: { duration: 0.3 }
   },
 };
 
@@ -25,12 +25,12 @@ const errorVariants = {
   show: { 
     height: "auto", 
     opacity: 1,
-    transition: { duration: 0.18 }
+    transition: { duration: 0.2 }
   },
   exit: { 
     height: 0, 
     opacity: 0,
-    transition: { duration: 0.12 }
+    transition: { duration: 0.15 }
   },
 };
 
@@ -43,7 +43,7 @@ export const MeetingForm = ({
   const [values, setValues] = useState<MeetingInput>(initialValues);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  const [shakeError, setShakeError] = useState(false);
+  const [shakeKey, setShakeKey] = useState(0);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -53,8 +53,7 @@ export const MeetingForm = ({
     if (!parsed.success) {
       const errMsg = parsed.error.issues[0]?.message ?? "INPUT VALIDATION FAILED";
       setError(errMsg);
-      setShakeError(true);
-      setTimeout(() => setShakeError(false), 400);
+      setShakeKey(k => k + 1);
       return;
     }
 
@@ -66,8 +65,7 @@ export const MeetingForm = ({
       }
     } catch {
       setError("WRITE ERROR: COULD NOT SAVE");
-      setShakeError(true);
-      setTimeout(() => setShakeError(false), 400);
+      setShakeKey(k => k + 1);
     } finally {
       setSubmitting(false);
     }
@@ -75,59 +73,58 @@ export const MeetingForm = ({
 
   return (
     <motion.form
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -8 }}
-      transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+      key={shakeKey}
+      initial={{ opacity: 0, y: -10 }}
+      animate={shakeKey > 0 ? { x: [-4, 4, -4, 4, 0] } : { opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: shakeKey > 0 ? 0.3 : 0.3 }}
       onSubmit={handleSubmit}
-      className="space-y-4 panel border-2 border-[#404040] p-6"
+      className="neo-card p-6"
     >
-      <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#404040]">
+      <div className="flex items-center gap-2 mb-5 pb-4 border-b-4 border-black">
         <motion.div 
-          className="led bg-[#fbbf24]"
-          animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          className="h-3 w-3 bg-[var(--butter)] border-2 border-black"
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
         />
-        <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#fbbf24]">
-          {'//'} MEETING_DATA
-        </span>
+        <span className="neo-title text-sm">MEETING DATA</span>
       </div>
 
       <motion.div variants={inputVariants} initial="hidden" animate="show" transition={{ delay: 0.05 }}>
-        <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-[#888]">
-          &gt; MEETING_NAME
+        <label className="neo-label">
+          MEETING NAME
         </label>
         <input
           value={values.name}
           onChange={(e) => setValues((prev) => ({ ...prev, name: e.target.value }))}
-          placeholder="MORNING_SERENITY"
-          className="industrial-input"
+          placeholder="MORNING SERENITY"
+          className="neo-input neo-input-mint mb-4"
           required
         />
       </motion.div>
 
       <motion.div variants={inputVariants} initial="hidden" animate="show" transition={{ delay: 0.1 }}>
-        <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-[#888]">
-          &gt; LOCATION
+        <label className="neo-label">
+          LOCATION
         </label>
         <input
           value={values.location}
           onChange={(e) => setValues((prev) => ({ ...prev, location: e.target.value }))}
-          placeholder="COMMUNITY_CENTER_ROOM_2"
-          className="industrial-input"
+          placeholder="COMMUNITY CENTER - ROOM 2"
+          className="neo-input neo-input-coral mb-4"
           required
         />
       </motion.div>
 
       <motion.div variants={inputVariants} initial="hidden" animate="show" transition={{ delay: 0.15 }}>
-        <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-[#888]">
-          &gt; TIME
+        <label className="neo-label">
+          TIME
         </label>
         <input
           type="time"
           value={values.time}
           onChange={(e) => setValues((prev) => ({ ...prev, time: e.target.value }))}
-          className="industrial-input"
+          className="neo-input neo-input-lavender mb-4"
           required
         />
       </motion.div>
@@ -137,13 +134,14 @@ export const MeetingForm = ({
           <motion.div
             variants={errorVariants}
             initial="hidden"
-            animate={shakeError ? { ...errorVariants.show, x: [0, -3, 3, -2, 2, 0] } : "show"}
+            animate="show"
             exit="exit"
-            className="panel-inset border-2 border-[#ef4444] p-3"
+            className="bg-[var(--coral)] border-3 border-black p-4 mb-4"
+            style={{ boxShadow: '4px 4px 0px 0px black' }}
           >
             <div className="flex items-center gap-2">
-              <div className="led bg-[#ef4444]"></div>
-              <span className="text-xs font-bold uppercase text-[#ef4444]">{error}</span>
+              <div className="h-3 w-3 bg-black" />
+              <span className="neo-mono text-xs uppercase text-black">{error}</span>
             </div>
           </motion.div>
         )}
@@ -151,35 +149,35 @@ export const MeetingForm = ({
 
       <div className="flex items-center gap-3 pt-2">
         <motion.button
-          whileHover={!submitting ? { scale: 1.015 } : {}}
-          whileTap={!submitting ? { scale: 0.985 } : {}}
+          whileHover={!submitting ? { scale: 1.02 } : {}}
+          whileTap={!submitting ? { scale: 0.98 } : {}}
           type="submit"
           disabled={submitting}
-          className="industrial-button industrial-button-primary flex-1 py-3"
+          className="neo-button neo-button-primary flex-1 py-3"
         >
           {submitting ? (
             <span className="flex items-center justify-center gap-2">
               <motion.span 
-                className="status-indicator text-[#000] bg-[#000] w-3 h-3"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 0.8, repeat: Infinity }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                className="inline-block h-3 w-3 border-2 border-black border-t-transparent"
               />
               SAVING...
             </span>
           ) : (
-            `[ ${submitLabel.toUpperCase()} ]`
+            `► ${submitLabel.toUpperCase()}`
           )}
         </motion.button>
         
         {onCancel ? (
           <motion.button
-            whileHover={{ scale: 1.015 }}
-            whileTap={{ scale: 0.985 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             type="button"
             onClick={onCancel}
-            className="industrial-button flex-1 py-3"
+            className="neo-button flex-1 py-3 bg-gray-200"
           >
-            [ CANCEL ]
+            CANCEL
           </motion.button>
         ) : null}
       </div>

@@ -1,17 +1,23 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { Archivo, Archivo_Black } from "next/font/google";
 import { AuthProvider } from "@/components/auth-provider";
 import "./globals.css";
 
-const jetbrainsMono = JetBrains_Mono({
+const archivo = Archivo({
   subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-mono",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-archivo",
+});
+
+const archivoBlack = Archivo_Black({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-archivo-black",
 });
 
 export const metadata: Metadata = {
-  title: "MEETING TRACKER // SYSTEM",
-  description: "Track meetings and daily attendance check-ins",
+  title: "MEETING MAKERS // v2.0",
+  description: "Track your AA meetings with brutalist precision",
 };
 
 export default function RootLayout({
@@ -21,10 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${jetbrainsMono.variable} bg-[#1a1a1a] text-[#e5e5e5] antialiased selection:bg-[#fbbf24] selection:text-black`}>
-        <div className="pointer-events-none fixed inset-0 z-50 opacity-[0.03]" 
-          style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, #000 2px, #000 4px)' }}>
-        </div>
+      <body className={`${archivo.variable} ${archivoBlack.variable} antialiased`}>
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>

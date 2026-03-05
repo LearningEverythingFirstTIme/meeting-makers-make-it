@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { AuthForm } from "@/components/auth-form";
 import { Dashboard } from "@/components/dashboard";
 import { useAuth } from "@/components/auth-provider";
@@ -9,41 +10,57 @@ export default function Home() {
 
   if (loading) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#1a1a1a] px-4">
-        <div className="panel p-8 text-center">
-          <div className="mb-4 flex justify-center">
-            <div className="status-indicator bg-[#fbbf24] text-[#fbbf24]"></div>
-          </div>
-          <p className="font-mono text-sm font-bold uppercase tracking-widest text-[#fbbf24] animate-pulse">
-            INITIALIZING SYSTEM...
+      <main className="flex min-h-screen items-center justify-center px-4">
+        <motion.div 
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
+          className="neo-card p-12 text-center"
+        >
+          <motion.div 
+            animate={{ rotate: 360 }}
+            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            className="mx-auto mb-6 h-16 w-16 border-4 border-black bg-[var(--butter)]"
+            style={{ boxShadow: '6px 6px 0px 0px black' }}
+          />
+          <p className="neo-title text-xl text-black animate-blink">
+            INITIALIZING...
           </p>
-        </div>
+        </motion.div>
       </main>
     );
   }
 
   if (configError) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#1a1a1a] px-4">
-        <div className="industrial-card border-[#ef4444] max-w-lg p-8">
-          <div className="mb-4 flex items-center gap-3">
-            <div className="led bg-[#ef4444]"></div>
-            <h1 className="text-2xl font-black uppercase tracking-tight">SYSTEM ERROR</h1>
+      <main className="flex min-h-screen items-center justify-center px-4 py-8">
+        <motion.div 
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.4, type: "spring", stiffness: 200 }}
+          className="neo-card border-[var(--coral)] max-w-lg p-8"
+          style={{ boxShadow: '12px 12px 0px 0px var(--coral)' }}
+        >
+          <div className="mb-6 flex items-center gap-3 border-b-4 border-black pb-4">
+            <div className="h-6 w-6 bg-[var(--coral)] border-2 border-black" />
+            <h1 className="neo-title text-3xl text-black">ERROR</h1>
           </div>
-          <p className="font-mono text-sm font-bold text-[#ef4444] mb-4">
-            ERROR: {configError}
+          <p className="neo-mono text-sm mb-6 text-[var(--coral)]">
+            {configError}
           </p>
-          <p className="font-mono text-xs text-[#888]">
-            Copy <code className="bg-[#1f1f1f] px-2 py-1 text-[#fbbf24]">[.env.example]</code> to <code className="bg-[#1f1f1f] px-2 py-1 text-[#fbbf24]">[.env.local]</code> and configure Firebase values.
-          </p>
-        </div>
+          <div className="bg-[var(--cream)] border-3 border-black p-4">
+            <p className="neo-mono text-xs text-black">
+              COPY <span className="bg-black text-white px-2 py-1">.env.example</span> TO <span className="bg-black text-white px-2 py-1">.env.local</span>
+            </p>
+          </div>
+        </motion.div>
       </main>
     );
   }
 
   if (!user) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#1a1a1a] px-4 py-8">
+      <main className="flex min-h-screen items-center justify-center px-4 py-8">
         <AuthForm />
       </main>
     );

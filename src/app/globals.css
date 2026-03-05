@@ -2,290 +2,302 @@
 
 @layer theme {
   :root {
-    --background: #1a1a1a;
-    --background-alt: #252525;
-    --foreground: #e5e5e5;
-    --panel: #2d2d2d;
-    --panel-inset: #1f1f1f;
-    --primary: #fbbf24;
-    --primary-dim: #b8860b;
-    --secondary: #3b82f6;
-    --accent: #10b981;
-    --danger: #ef4444;
-    --border: #404040;
-    --border-bright: #606060;
-    --text-dim: #888888;
-    --scanline: rgba(0, 0, 0, 0.1);
+    --cream: #F5F0E6;
+    --butter: #FFE66D;
+    --coral: #FF6B6B;
+    --mint: #4ECDC4;
+    --lavender: #A78BFA;
+    --sky: #38BDF8;
+    --black: #000000;
+    --white: #FFFFFF;
+    --pink: #FF69B4;
+    --lime: #84CC16;
   }
 }
 
-@font-face {
-  font-family: 'JetBrains Mono';
-  src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2') format('woff2');
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'JetBrains Mono';
-  src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2') format('woff2');
-  font-weight: 700;
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800;900&display=swap');
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: 'JetBrains Mono', monospace;
+  background: var(--cream);
+  color: var(--black);
+  font-family: 'Archivo', sans-serif;
   overflow-x: hidden;
-  background-image: 
-    linear-gradient(var(--scanline) 1px, transparent 1px),
-    linear-gradient(90deg, var(--scanline) 1px, transparent 1px);
-  background-size: 20px 20px;
+  background-image: radial-gradient(var(--black) 1px, transparent 1px);
+  background-size: 24px 24px;
   min-height: 100vh;
 }
 
-@utility panel {
-  background: var(--panel);
-  border: 2px solid var(--border);
-  box-shadow: 
-    inset 2px 2px 4px rgba(0,0,0,0.3),
-    inset -1px -1px 2px rgba(255,255,255,0.05);
-  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
-  will-change: transform;
+::selection {
+  background: var(--butter);
+  color: var(--black);
 }
 
-@utility panel-hover {
+@utility neo-card {
+  background: var(--white);
+  border: 4px solid var(--black);
+  box-shadow: 8px 8px 0px 0px var(--black);
+}
+
+@utility neo-card-hover {
+  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+  
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 
-      inset 2px 2px 4px rgba(0,0,0,0.3),
-      inset -1px -1px 2px rgba(255,255,255,0.05),
-      0 6px 0px 0px rgba(0,0,0,0.3);
+    transform: translate(-2px, -2px);
+    box-shadow: 10px 10px 0px 0px var(--black);
+  }
+  
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: 4px 4px 0px 0px var(--black);
   }
 }
 
-@utility panel-inset {
-  background: var(--panel-inset);
-  border: 2px solid var(--border);
-  box-shadow: 
-    inset 2px 2px 4px rgba(0,0,0,0.5),
-    inset -1px -1px 2px rgba(255,255,255,0.02);
-}
-
-@utility industrial-border {
-  border: 2px solid var(--border-bright);
-  box-shadow: 
-    0 0 0 1px var(--background),
-    4px 4px 0px 0px rgba(0,0,0,0.5);
-}
-
-@utility industrial-button {
-  background: var(--panel);
-  border: 2px solid var(--border-bright);
-  color: var(--foreground);
-  padding: 0.5rem 1rem;
-  font-weight: 700;
-  font-family: 'JetBrains Mono', monospace;
+@utility neo-button {
+  background: var(--white);
+  border: 3px solid var(--black);
+  box-shadow: 4px 4px 0px 0px var(--black);
+  font-family: 'Archivo Black', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  box-shadow: 
-    inset 1px 1px 2px rgba(255,255,255,0.1),
-    inset -1px -1px 2px rgba(0,0,0,0.2),
-    3px 3px 0px 0px rgba(0,0,0,0.4);
-  transition: all 0.1s ease-out;
+  font-size: 0.75rem;
+  padding: 0.75rem 1.5rem;
   cursor: pointer;
+  transition: all 0.1s ease-out;
   will-change: transform, box-shadow;
   
   &:hover {
-    background: var(--background-alt);
-    box-shadow: 
-      inset 1px 1px 2px rgba(255,255,255,0.15),
-      inset -1px -1px 2px rgba(0,0,0,0.2),
-      2px 2px 0px 0px rgba(0,0,0,0.4);
-    transform: translate(1px, 1px);
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px 0px var(--black);
   }
   
   &:active {
-    box-shadow: 
-      inset 2px 2px 4px rgba(0,0,0,0.4),
-      inset -1px -1px 2px rgba(255,255,255,0.05);
-    transform: translate(3px, 3px);
+    box-shadow: none;
+    transform: translate(4px, 4px);
   }
-
+  
   &:focus-visible {
     outline: none;
-    box-shadow: 
-      inset 1px 1px 2px rgba(255,255,255,0.1),
-      inset -1px -1px 2px rgba(0,0,0,0.2),
-      3px 3px 0px 0px rgba(0,0,0,0.4),
-      0 0 0 2px var(--primary);
+    box-shadow: 4px 4px 0px 0px var(--black), 0 0 0 3px var(--butter);
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 4px 4px 0px 0px var(--black);
   }
 }
 
-@utility industrial-button-primary {
-  background: var(--primary);
-  border: 2px solid var(--primary-dim);
-  color: #000;
-  box-shadow: 
-    0 0 0 1px var(--background),
-    4px 4px 0px 0px rgba(0,0,0,0.5);
+@utility neo-button-primary {
+  background: var(--butter);
   
   &:hover {
-    background: #fcd34d;
-    box-shadow: 
-      0 0 0 1px var(--background),
-      2px 2px 0px 0px rgba(0,0,0,0.5);
-  }
-  
-  &:active {
-    transform: translate(3px, 3px);
-    box-shadow: none;
-  }
-
-  &:focus-visible {
-    outline: none;
-    box-shadow: 
-      0 0 0 1px var(--background),
-      4px 4px 0px 0px rgba(0,0,0,0.5),
-      0 0 0 2px #fcd34d;
+    background: #FFF176;
   }
 }
 
-@utility industrial-button-success {
-  background: var(--accent);
-  border: 2px solid #059669;
-  color: #000;
-  box-shadow: 
-    0 0 0 1px var(--background),
-    4px 4px 0px 0px rgba(0,0,0,0.5);
+@utility neo-button-success {
+  background: var(--mint);
   
   &:hover {
-    background: #34d399;
-  }
-  
-  &:active {
-    transform: translate(3px, 3px);
-    box-shadow: none;
+    background: #6EE7DE;
   }
 }
 
-@utility industrial-button-danger {
-  background: var(--danger);
-  border: 2px solid #dc2626;
-  color: #fff;
-  box-shadow: 
-    0 0 0 1px var(--background),
-    4px 4px 0px 0px rgba(0,0,0,0.5);
+@utility neo-button-danger {
+  background: var(--coral);
   
   &:hover {
-    background: #f87171;
-  }
-  
-  &:active {
-    transform: translate(3px, 3px);
-    box-shadow: none;
+    background: #FF8A8A;
   }
 }
 
-@utility industrial-input {
+@utility neo-button-secondary {
+  background: var(--lavender);
+  
+  &:hover {
+    background: #B9A3FA;
+  }
+}
+
+@utility neo-input {
   width: 100%;
-  background: var(--panel-inset);
-  border: 2px solid var(--border);
-  padding: 0.5rem 0.75rem;
-  color: var(--foreground);
-  font-family: 'JetBrains Mono', monospace;
-  transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out;
-  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.3);
-  will-change: border-color, box-shadow;
+  background: var(--white);
+  border: 3px solid var(--black);
+  padding: 0.75rem 1rem;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.15s ease-out;
+  box-shadow: 4px 4px 0px 0px transparent;
   
   &:focus {
     outline: none;
-    border-color: var(--primary);
-    box-shadow: 
-      inset 2px 2px 4px rgba(0,0,0,0.3),
-      0 0 0 2px rgba(251, 191, 36, 0.2),
-      0 0 12px rgba(251, 191, 36, 0.15);
-    animation: input-glow 2s ease-in-out infinite;
+    box-shadow: 6px 6px 0px 0px var(--black);
   }
   
   &::placeholder {
-    color: var(--text-dim);
-  }
-
-  &:focus::placeholder {
-    opacity: 0.6;
+    color: #666;
+    font-weight: 500;
   }
 }
 
-@utility industrial-card {
-  background: var(--panel);
-  border: 2px solid var(--border);
-  padding: 1rem;
-  box-shadow: 
-    inset 1px 1px 2px rgba(255,255,255,0.05),
-    4px 4px 0px 0px rgba(0,0,0,0.4);
-}
-
-@utility status-indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid currentColor;
-  box-shadow: 
-    inset 1px 1px 2px rgba(0,0,0,0.5),
-    0 0 8px currentColor;
-  animation: pulse 2s infinite;
-}
-
-@utility status-indicator-fast {
-  animation: pulse 1s ease-in-out infinite;
-}
-
-@utility status-indicator-slow {
-  animation: pulse 3s ease-in-out infinite;
-}
-
-@utility blink {
-  animation: blink 1s step-end infinite;
-}
-
-@utility shake {
-  animation: shake 0.4s ease-out;
-}
-
-@utility float {
-  animation: float 3s ease-in-out infinite;
-}
-
-@utility breathe {
-  animation: breathe 2s ease-in-out infinite;
-}
-
-@utility ripple {
-  position: relative;
-  overflow: hidden;
+@utility neo-input-mint {
+  background: #E0F7F5;
   
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle, currentColor 0%, transparent 70%);
-    opacity: 0;
-    transform: scale(0);
-    transition: transform 0.5s, opacity 0.3s;
-  }
-  
-  &:active::after {
-    opacity: 0.15;
-    transform: scale(2);
-    transition: transform 0s, opacity 0s;
+  &:focus {
+    background: #B2F5EA;
   }
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
+@utility neo-input-coral {
+  background: #FFE8E8;
+  
+  &:focus {
+    background: #FFDADA;
+  }
+}
+
+@utility neo-input-lavender {
+  background: #F3EEFF;
+  
+  &:focus {
+    background: #E9DFFF;
+  }
+}
+
+@utility neo-input-sky {
+  background: #E0F7FF;
+  
+  &:focus {
+    background: #BEEAFF;
+  }
+}
+
+@utility neo-stripe {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--butter),
+    var(--butter) 10px,
+    var(--coral) 10px,
+    var(--coral) 20px
+  );
+}
+
+@utility neo-stripe-mint {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--mint),
+    var(--mint) 10px,
+    #3BA99C 10px,
+    #3BA99C 20px
+  );
+}
+
+@utility neo-stripe-lavender {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--lavender),
+    var(--lavender) 10px,
+    #8B5CF6 10px,
+    #8B5CF6 20px
+  );
+}
+
+@utility neo-label {
+  display: block;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  color: var(--black);
+}
+
+@utility neo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.5rem;
+  border: 2px solid var(--black);
+  box-shadow: 2px 2px 0px 0px var(--black);
+}
+
+@utility neo-dot {
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--black);
+  border-radius: 0;
+  
+  &.active {
+    background: var(--mint);
+  }
+  
+  &.inactive {
+    background: #999;
+  }
+}
+
+@utility neo-title {
+  font-family: 'Archivo Black', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+
+@utility neo-mono {
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes stamp {
+  0% { transform: scale(1.5); opacity: 0; }
+  60% { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slide-up {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slide-down {
+  0% { transform: translateY(-20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse-bg {
+  0%, 100% { background-color: var(--white); }
+  50% { background-color: #FFF9C4; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @keyframes blink {
@@ -293,96 +305,51 @@ body {
   50% { opacity: 0; }
 }
 
-@keyframes input-glow {
-  0%, 100% { 
-    box-shadow: 
-      inset 2px 2px 4px rgba(0,0,0,0.3),
-      0 0 0 2px rgba(251, 191, 36, 0.2),
-      0 0 12px rgba(251, 191, 36, 0.15);
-  }
-  50% { 
-    box-shadow: 
-      inset 2px 2px 4px rgba(0,0,0,0.3),
-      0 0 0 2px rgba(251, 191, 36, 0.25),
-      0 0 16px rgba(251, 191, 36, 0.2);
-  }
+@keyframes bounce-xy {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, -2px); }
+  50% { transform: translate(2px, -2px); }
+  75% { transform: translate(-2px, 2px); }
 }
 
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
-  20%, 40%, 60%, 80% { transform: translateX(2px); }
+@utility animate-wobble {
+  animation: wobble 0.5s ease-in-out;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+@utility animate-shake {
+  animation: shake 0.4s ease-out;
 }
 
-@keyframes breathe {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+@utility animate-pop-in {
+  animation: pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-@keyframes scanline {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100%); }
+@utility animate-stamp {
+  animation: stamp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-@utility led {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  box-shadow: 0 0 6px currentColor;
+@utility animate-slide-up {
+  animation: slide-up 0.4s ease-out forwards;
 }
 
-@utility led-pulse {
-  animation: led-pulse 1.5s ease-in-out infinite;
+@utility animate-slide-down {
+  animation: slide-down 0.4s ease-out forwards;
 }
 
-@keyframes led-pulse {
-  0%, 100% { 
-    box-shadow: 0 0 4px currentColor;
-    opacity: 0.8;
-  }
-  50% { 
-    box-shadow: 0 0 10px currentColor, 0 0 14px currentColor;
-    opacity: 1;
-  }
+@utility animate-pulse-bg {
+  animation: pulse-bg 2s ease-in-out infinite;
 }
 
-@utility progress-bar {
-  position: relative;
-  overflow: hidden;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 4px,
-      rgba(255,255,255,0.05) 4px,
-      rgba(255,255,255,0.05) 8px
-    );
-    animation: progress-stripe 1s linear infinite;
-  }
+@utility animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
 }
 
-@keyframes progress-stripe {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(28px); }
+@utility animate-blink {
+  animation: blink 1s step-end infinite;
 }
 
-@utility checkin-success {
-  animation: checkin-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes checkin-pop {
-  0% { transform: scale(1); }
-  30% { transform: scale(1.15); }
-  100% { transform: scale(1); }
+@utility animate-bounce-xy {
+  animation: bounce-xy 0.5s ease-in-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -392,29 +359,5 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-  
-  .status-indicator {
-    animation: none;
-  }
-  
-  .led-pulse {
-    animation: none;
-  }
-  
-  .float {
-    animation: none;
-  }
-  
-  .breathe {
-    animation: none;
-  }
-  
-  .shake {
-    animation: none;
-  }
-  
-  .progress-bar::after {
-    animation: none;
   }
 }

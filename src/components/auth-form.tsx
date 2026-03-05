@@ -28,27 +28,23 @@ const friendlyAuthError = (error: unknown): string => {
 };
 
 const formVariants = {
-  hidden: { opacity: 0, scale: 0.96, y: 16 },
-  show: { 
-    opacity: 1, 
+  hidden: { scale: 0.8, opacity: 0 },
+  visible: { 
     scale: 1, 
-    y: 0,
-    transition: { duration: 0.4, ease: [0.34, 1.56, 0.64, 1] as const }
+    opacity: 1,
+    transition: { duration: 0.5, type: "spring" as const, stiffness: 150, damping: 15 }
   },
+};
+
+const inputVariants = {
+  hidden: { x: -20, opacity: 0 },
+  visible: { x: 0, opacity: 1 }
 };
 
 const errorVariants = {
   hidden: { height: 0, opacity: 0 },
-  show: { 
-    height: "auto", 
-    opacity: 1,
-    transition: { duration: 0.2 }
-  },
-  exit: { 
-    height: 0, 
-    opacity: 0,
-    transition: { duration: 0.15 }
-  },
+  visible: { height: "auto", opacity: 1 },
+  exit: { height: 0, opacity: 0 }
 };
 
 export const AuthForm = () => {
@@ -58,6 +54,7 @@ export const AuthForm = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [shake, setShake] = useState(false);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -71,7 +68,10 @@ export const AuthForm = () => {
         await register(email.trim(), password);
       }
     } catch (err) {
-      setError(friendlyAuthError(err));
+      const msg = friendlyAuthError(err);
+      setError(msg);
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
     } finally {
       setSubmitting(false);
     }
@@ -84,71 +84,65 @@ export const AuthForm = () => {
 
   return (
     <motion.div
-      variants={formVariants}
       initial="hidden"
-      animate="show"
+      animate="visible"
+      variants={formVariants}
       className="w-full max-w-md"
     >
       <motion.div 
-        className="panel border-2 border-[#404040] p-1 mb-6"
-        whileHover={{ scale: 1.01 }}
-        transition={{ duration: 0.15 }}
+        className="neo-card mb-6 p-2"
+        whileHover={{ scale: 1.02 }}
+        transition={{ duration: 0.2 }}
       >
-        <div className="panel-inset p-4">
-          <div className="flex items-center gap-3 mb-2">
+        <div className="bg-[var(--lavender)] border-4 border-black p-6">
+          <div className="flex items-center gap-3 mb-4">
             <motion.div 
-              className="led bg-[#fbbf24]"
-              animate={{ opacity: [0.6, 1, 0.6] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              className="h-4 w-4 bg-[var(--butter)] border-2 border-black"
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 1, repeat: Infinity }}
             />
             <motion.div 
-              className="led bg-[#fbbf24]"
-              animate={{ opacity: [0.6, 1, 0.6] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+              className="h-4 w-4 bg-[var(--coral)] border-2 border-black"
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 1, repeat: Infinity, delay: 0.2 }}
             />
             <motion.div 
-              className="led bg-[#10b981]"
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+              className="h-4 w-4 bg-[var(--mint)] border-2 border-black"
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 1, repeat: Infinity, delay: 0.4 }}
             />
           </div>
-          <h1 className="text-3xl font-black uppercase tracking-tighter text-[#e5e5e5] leading-none">
-            MEETING<br />TRACKER<br /><span className="text-[#fbbf24]">v2.0</span>
+          <h1 className="neo-title text-5xl text-black leading-none">
+            MEETING<br/>
+            MAKERS<br/>
+            <span className="text-[var(--lavender)]" style={{ textShadow: '3px 3px 0px black' }}>
+              v2.0
+            </span>
           </h1>
         </div>
       </motion.div>
 
       <motion.div 
-        className="panel border-2 border-[#404040] p-8"
-        variants={formVariants}
+        className="neo-card p-8"
+        animate={shake ? { x: [-8, 8, -8, 8, 0] } : {}}
+        transition={{ duration: 0.4 }}
       >
         <motion.div 
-          className="flex items-center gap-2 mb-6 pb-4 border-b border-[#404040]"
           key={mode}
-          initial={{ opacity: 0, x: -8 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.2 }}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-6 pb-4 border-b-4 border-black flex items-center gap-2"
         >
-          <span className="font-mono text-xs text-[#fbbf24]">{'//'}</span>
-          <motion.span 
-            className="font-mono text-xs font-bold uppercase tracking-wider text-[#888]"
-            key={mode}
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.15 }}
-          >
-            {mode === "login" ? "AUTHENTICATE_USER" : "CREATE_NEW_USER"}
-          </motion.span>
+          <span className="neo-mono text-sm text-[var(--coral)]">►</span>
+          <span className="neo-title text-lg text-black">
+            {mode === "login" ? "AUTHENTICATE" : "REGISTER"}
+          </span>
         </motion.div>
 
-        <form onSubmit={onSubmit} className="space-y-6">
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-          >
-            <label htmlFor="email" className="mb-2 block text-xs font-bold uppercase tracking-widest text-[#888]">
-              &gt; EMAIL_ADDRESS
+        <form onSubmit={onSubmit} className="space-y-5">
+          <motion.div variants={inputVariants} initial="hidden" animate="visible" transition={{ delay: 0.1 }}>
+            <label htmlFor="email" className="neo-label">
+              EMAIL ADDRESS
             </label>
             <input
               id="email"
@@ -157,18 +151,14 @@ export const AuthForm = () => {
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
               required
-              className="industrial-input"
-              placeholder="USER@DOMAIN.COM"
+              className="neo-input neo-input-sky"
+              placeholder="USER@EXAMPLE.COM"
             />
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 }}
-          >
-            <label htmlFor="password" className="mb-2 block text-xs font-bold uppercase tracking-widest text-[#888]">
-              &gt; PASSWORD
+          <motion.div variants={inputVariants} initial="hidden" animate="visible" transition={{ delay: 0.2 }}>
+            <label htmlFor="password" className="neo-label">
+              PASSWORD
             </label>
             <input
               id="password"
@@ -178,8 +168,8 @@ export const AuthForm = () => {
               autoComplete={mode === "login" ? "current-password" : "new-password"}
               required
               minLength={6}
-              className="industrial-input"
-              placeholder="********"
+              className="neo-input neo-input-lavender"
+              placeholder="••••••••"
             />
           </motion.div>
 
@@ -188,65 +178,54 @@ export const AuthForm = () => {
               <motion.div
                 variants={errorVariants}
                 initial="hidden"
-                animate="show"
+                animate="visible"
                 exit="exit"
-                className="panel-inset border-2 border-[#ef4444] p-3"
+                className="bg-[var(--coral)] border-3 border-black p-4"
+                style={{ boxShadow: '4px 4px 0px 0px black' }}
               >
-                <motion.div
-                  initial={{ x: -4 }}
-                  animate={{ x: [0, -3, 3, -2, 2, 0] }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="flex items-center gap-2">
-                    <div className="led bg-[#ef4444]"></div>
-                    <span className="text-xs font-bold uppercase text-[#ef4444]">{error}</span>
-                  </div>
-                </motion.div>
+                <span className="neo-mono text-xs text-black uppercase">
+                  ⚠ {error}
+                </span>
               </motion.div>
             )}
           </AnimatePresence>
 
           <motion.button
-            whileHover={!submitting ? { scale: 1.015 } : {}}
-            whileTap={!submitting ? { scale: 0.985 } : {}}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             type="submit"
             disabled={submitting}
-            className={`industrial-button industrial-button-primary w-full py-4 text-base tracking-widest ${
-              submitting ? "breathe" : ""
-            }`}
+            className="neo-button neo-button-primary w-full py-4 text-lg"
           >
             {submitting ? (
               <span className="flex items-center justify-center gap-2">
                 <motion.span 
-                  className="status-indicator text-[#fbbf24] bg-[#fbbf24] w-3 h-3"
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 0.8, repeat: Infinity }}
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                  className="inline-block h-4 w-4 border-2 border-black border-t-transparent"
                 />
                 PROCESSING...
               </span>
             ) : (
-              mode === "login" ? "[ ENTER SYSTEM ]" : "[ INITIALIZE USER ]"
+              mode === "login" ? "► ENTER SYSTEM" : "► CREATE USER"
             )}
           </motion.button>
         </form>
 
         <motion.div 
-          className="mt-8 pt-6 border-t border-[#404040]"
+          className="mt-8 pt-6 border-t-4 border-black"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.25 }}
+          transition={{ delay: 0.3 }}
         >
           <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ scale: 1.05, backgroundColor: 'var(--coral)' }}
+            whileTap={{ scale: 0.95 }}
             type="button"
             onClick={toggleMode}
-            className="w-full text-center font-bold uppercase tracking-wider text-[#888] hover:text-[#fbbf24] transition-colors"
+            className="w-full py-3 border-3 border-black font-['Archivo_Black'] uppercase tracking-wider text-sm hover:text-black transition-colors"
           >
-            {mode === "login" 
-              ? "[ NO ACCOUNT? REGISTER ]" 
-              : "[ HAS ACCOUNT? LOGIN ]"
-            }
+            {mode === "login" ? "NO ACCOUNT? REGISTER" : "HAS ACCOUNT? LOGIN"}
           </motion.button>
         </motion.div>
       </motion.div>
@@ -255,10 +234,10 @@ export const AuthForm = () => {
         className="mt-6 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
+        transition={{ delay: 0.4 }}
       >
-        <p className="font-mono text-xs text-[#555] uppercase tracking-widest">
-          SECURE {'//'} ENCRYPTED {'//'} LOGGED
+        <p className="neo-mono text-xs text-black bg-white border-2 border-black px-4 py-2 inline-block" style={{ boxShadow: '3px 3px 0px 0px black' }}>
+          🔒 SECURE // ENCRYPTED // LOGGED
         </p>
       </motion.div>
     </motion.div>

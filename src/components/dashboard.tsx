@@ -43,51 +43,42 @@ const staggerContainer = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.06,
-      delayChildren: 0.12,
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
     },
   },
 } as const;
 
 const statCardVariants = {
-  hidden: { opacity: 0, scale: 0.96, y: 8 },
+  hidden: { opacity: 0, scale: 0.8 },
   show: { 
     opacity: 1, 
-    scale: 1, 
-    y: 0,
-    transition: { duration: 0.4, ease: [0.34, 1.56, 0.64, 1] as const }
+    scale: 1,
+    transition: { duration: 0.5, type: "spring" as const, stiffness: 200 }
   },
 };
 
 const meetingCardVariants = {
-  hidden: { opacity: 0, y: 10 },
+  hidden: { opacity: 0, y: 20, scale: 0.95 },
   show: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] as const }
+    scale: 1,
+    transition: { duration: 0.4, type: "spring" as const, stiffness: 150 }
   },
   exit: { 
     opacity: 0, 
-    scale: 0.98,
-    transition: { duration: 0.18 }
-  },
-} as const;
-
-const logItemVariants = {
-  hidden: { opacity: 0, x: -6 },
-  show: { 
-    opacity: 1, 
-    x: 0,
-    transition: { duration: 0.2, ease: "easeOut" as const }
+    scale: 0.9,
+    transition: { duration: 0.2 }
   },
 };
 
-const historyItemVariants = {
-  hidden: { opacity: 0, scale: 0.9 },
+const logItemVariants = {
+  hidden: { opacity: 0, x: -10 },
   show: { 
     opacity: 1, 
-    scale: 1,
-    transition: { duration: 0.18 }
+    x: 0,
+    transition: { duration: 0.3 }
   },
 };
 
@@ -266,7 +257,7 @@ export const Dashboard = () => {
         });
       });
       setCheckinSuccessId(meeting.id);
-      setTimeout(() => setCheckinSuccessId(null), 500);
+      setTimeout(() => setCheckinSuccessId(null), 600);
     } catch (err) {
       if (err instanceof Error && err.message === "already-checked-in") {
         setError(`Already checked in to ${meeting.name} today.`);
@@ -288,45 +279,54 @@ export const Dashboard = () => {
     checkins.some((entry) => entry.meetingId === meetingId && entry.dayKey === todayKey);
 
   return (
-    <main className="min-h-screen bg-[#1a1a1a] px-4 py-8 md:px-8 overflow-hidden">
+    <main className="min-h-screen px-4 py-8 md:px-8">
       <div className="mx-auto max-w-6xl space-y-6">
         <motion.header 
-          initial={{ y: -12, opacity: 0 }}
+          initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.35, ease: [0.34, 1.56, 0.64, 1] }}
-          className="panel border-2 border-[#404040] p-6 flex flex-col gap-6 md:flex-row md:items-center md:justify-between"
+          transition={{ duration: 0.5, type: "spring", stiffness: 150 }}
+          className="bg-white border-4 border-black"
+          style={{ boxShadow: '8px 8px 0px 0px black' }}
         >
-          <div>
-            <div className="flex items-center gap-3 mb-3">
-              <div className="led led-pulse bg-[#10b981]"></div>
-              <p className="font-mono text-xs font-bold uppercase tracking-widest text-[#10b981]">{'//'} SYSTEM ONLINE</p>
+          <div className="neo-stripe p-1">
+            <div className="bg-white border-2 border-black p-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <motion.div 
+                    className="h-3 w-3 bg-[var(--mint)] border-2 border-black"
+                    animate={{ scale: [1, 1.3, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  />
+                  <p className="neo-title text-sm text-black">● ONLINE</p>
+                </div>
+                <h1 className="neo-title text-4xl md:text-5xl text-black">MEETING<br/>MAKERS</h1>
+                <p className="neo-mono text-xs mt-2 text-black">{user.email}</p>
+              </div>
+              <motion.button
+                whileHover={{ scale: 1.05, rotate: -2 }}
+                whileTap={{ scale: 0.95 }}
+                type="button"
+                onClick={() => void logout()}
+                className="neo-button neo-button-danger self-start md:self-center flex items-center gap-2"
+              >
+                <LogOut size={16} strokeWidth={3} /> LOGOUT
+              </motion.button>
             </div>
-            <h1 className="text-3xl font-black uppercase tracking-tighter md:text-5xl text-[#e5e5e5]">MEETING<br/>TRACKER</h1>
-            <p className="mt-2 font-mono text-xs font-bold uppercase text-[#555]">USER: {user.email}</p>
           </div>
-          <motion.button
-            whileHover={{ scale: 1.02, x: 2 }}
-            whileTap={{ scale: 0.98 }}
-            type="button"
-            onClick={() => void logout()}
-            className="industrial-button industrial-button-danger self-start md:self-center flex items-center gap-2"
-          >
-            <LogOut size={14} strokeWidth={3} /> [ LOGOUT ]
-          </motion.button>
         </motion.header>
 
-        <AnimatePresence mode="sync">
+        <AnimatePresence>
           {error && (
             <motion.div 
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.18 }}
-              className="panel-inset border-2 border-[#ef4444] px-4 py-3"
+              className="bg-[var(--coral)] border-4 border-black p-4"
+              style={{ boxShadow: '6px 6px 0px 0px black' }}
             >
               <div className="flex items-center gap-3">
-                <div className="led bg-[#ef4444]"></div>
-                <span className="font-mono text-sm font-bold uppercase text-[#ef4444]">ERROR: {error}</span>
+                <div className="h-4 w-4 bg-black" />
+                <span className="neo-title text-sm text-black">ERROR: {error}</span>
               </div>
             </motion.div>
           )}
@@ -340,49 +340,52 @@ export const Dashboard = () => {
         >
           <motion.article 
             variants={statCardVariants}
-            className="panel border-2 border-[#404040] p-5"
+            className="bg-[var(--mint)] border-4 border-black p-5"
+            style={{ boxShadow: '6px 6px 0px 0px black' }}
           >
-            <div className="flex items-center gap-2 mb-3 font-mono text-xs font-bold uppercase tracking-widest text-[#3b82f6]">
-              <Calendar size={14} strokeWidth={3} /> WEEKLY_CHECKINS
-            </div>
-            <div className="flex items-end gap-2">
-              <motion.p 
-                className="text-5xl font-black text-[#3b82f6]"
-                key={thisWeekCheckins.length}
-                initial={{ scale: 1 }}
-                animate={{ scale: [1, 1.06, 1] }}
-                transition={{ duration: 0.35 }}
-              >
-                {thisWeekCheckins.length}
-              </motion.p>
-              <p className="mb-2 font-mono text-xs text-[#555]">/ 7 DAYS</p>
-            </div>
-          </motion.article>
-          <motion.article 
-            variants={statCardVariants}
-            className="panel border-2 border-[#404040] p-5"
-          >
-            <div className="flex items-center gap-2 mb-3 font-mono text-xs font-bold uppercase tracking-widest text-[#fbbf24]">
-              <Activity size={14} strokeWidth={3} /> ACTIVE_MEETINGS
-            </div>
-            <div className="flex items-end gap-2">
-              <p className="text-5xl font-black text-[#fbbf24]">{meetings.length}</p>
-              <p className="mb-2 font-mono text-xs text-[#555]">CONFIGURED</p>
-            </div>
-          </motion.article>
-          <motion.article 
-            variants={statCardVariants}
-            className="panel border-2 border-[#404040] p-5"
-          >
-            <div className="flex items-center gap-2 mb-3 font-mono text-xs font-bold uppercase tracking-widest text-[#10b981]">
-              <Clock size={14} strokeWidth={3} /> LAST_ACTIVITY
+            <div className="flex items-center gap-2 mb-3">
+              <Calendar size={18} strokeWidth={3} />
+              <span className="neo-title text-xs">WEEKLY</span>
             </div>
             <motion.p 
-              className="text-sm font-bold uppercase truncate text-[#10b981]"
+              className="neo-title text-5xl text-black"
+              key={thisWeekCheckins.length}
+              initial={{ scale: 1.3 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              {thisWeekCheckins.length}
+            </motion.p>
+            <p className="neo-mono text-xs text-black mt-1">CHECK-INS</p>
+          </motion.article>
+
+          <motion.article 
+            variants={statCardVariants}
+            className="bg-[var(--butter)] border-4 border-black p-5"
+            style={{ boxShadow: '6px 6px 0px 0px black' }}
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <Activity size={18} strokeWidth={3} />
+              <span className="neo-title text-xs">ACTIVE</span>
+            </div>
+            <p className="neo-title text-5xl text-black">{meetings.length}</p>
+            <p className="neo-mono text-xs text-black mt-1">MEETINGS</p>
+          </motion.article>
+
+          <motion.article 
+            variants={statCardVariants}
+            className="bg-[var(--lavender)] border-4 border-black p-5"
+            style={{ boxShadow: '6px 6px 0px 0px black' }}
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <Clock size={18} strokeWidth={3} />
+              <span className="neo-title text-xs">LATEST</span>
+            </div>
+            <motion.p 
+              className="neo-mono text-sm text-black truncate"
               key={checkins[0]?.id || 'none'}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.2 }}
             >
               {checkins[0]?.createdAt ? formatDateTime(checkins[0].createdAt) : "NO DATA"}
             </motion.p>
@@ -392,50 +395,46 @@ export const Dashboard = () => {
         <section className="grid gap-6 lg:grid-cols-[1fr_1.5fr]">
           <div className="space-y-6">
             <motion.div 
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.28, delay: 0.08 }}
-              className="panel border-2 border-[#404040] p-1"
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="bg-[var(--coral)] border-4 border-black p-1"
+              style={{ boxShadow: '6px 6px 0px 0px black' }}
             >
-              <div className="panel-inset p-4">
-                <h2 className="flex items-center gap-3 text-xl font-black uppercase tracking-tight text-[#fbbf24]">
-                  <Plus size={20} strokeWidth={4} /> ADD_MEETING
+              <div className="bg-white border-2 border-black p-4">
+                <h2 className="neo-title text-xl text-black flex items-center gap-2">
+                  <Plus size={24} strokeWidth={3} /> ADD MEETING
                 </h2>
               </div>
             </motion.div>
-            <MeetingForm submitLabel="Create Meeting" onSubmit={createMeeting} />
+            
+            <MeetingForm submitLabel="Create" onSubmit={createMeeting} />
 
             <motion.div 
               variants={staggerContainer}
               initial="hidden"
               animate="show"
-              className="panel border-2 border-[#404040] p-6"
+              className="neo-card p-6"
             >
-              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#404040]">
-                <span className="font-mono text-xs text-[#10b981]">{'//'}</span>
-                <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#10b981]">RECENT_LOGS</span>
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b-4 border-black">
+                <span className="neo-title text-sm text-[var(--mint)]">►</span>
+                <span className="neo-title text-sm">RECENT</span>
               </div>
               <ul className="space-y-2">
                 {checkins.slice(0, 8).map((entry) => (
                   <motion.li 
                     variants={logItemVariants}
                     key={entry.id} 
-                    className="panel-inset border border-[#404040] px-3 py-3 text-xs font-bold flex items-center justify-between"
+                    className="bg-[var(--cream)] border-2 border-black px-3 py-2 flex items-center justify-between"
                   >
-                    <span className="uppercase text-[#e5e5e5] truncate max-w-[160px]">{entry.meetingName}</span>
-                    <span className="font-mono text-[10px] text-[#555] whitespace-nowrap">
+                    <span className="neo-mono text-xs uppercase truncate max-w-[150px]">{entry.meetingName}</span>
+                    <span className="neo-mono text-[10px]">
                       {entry.createdAt ? formatDateTime(entry.createdAt) : entry.dayKey}
                     </span>
                   </motion.li>
                 ))}
                 {checkins.length === 0 ? (
-                  <motion.li 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="font-mono text-xs text-[#555] float"
-                  >
-                    NO_RECORDS_FOUND
-                  </motion.li>
+                  <li className="neo-mono text-xs text-gray-500">NO RECORDS</li>
                 ) : null}
               </ul>
             </motion.div>
@@ -443,13 +442,14 @@ export const Dashboard = () => {
 
           <div className="space-y-6">
             <motion.div 
-              initial={{ opacity: 0, x: 8 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.28, delay: 0.12 }}
-              className="panel border-2 border-[#404040] p-1"
+              initial={{ x: 20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.15 }}
+              className="bg-[var(--sky)] border-4 border-black p-1"
+              style={{ boxShadow: '6px 6px 0px 0px black' }}
             >
-              <div className="panel-inset p-4">
-                <h2 className="text-xl font-black uppercase tracking-tight text-[#e5e5e5]">YOUR_MEETINGS</h2>
+              <div className="bg-white border-2 border-black p-4">
+                <h2 className="neo-title text-xl text-black">YOUR MEETINGS</h2>
               </div>
             </motion.div>
             
@@ -457,12 +457,15 @@ export const Dashboard = () => {
               <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="panel-inset border-2 border-[#404040] p-6 text-center"
+                className="neo-card p-8 text-center"
               >
-                <div className="flex items-center justify-center gap-3">
-                  <span className="status-indicator status-indicator-fast text-[#fbbf24] bg-[#fbbf24]"></span>
-                  <p className="font-mono text-sm font-bold animate-pulse text-[#fbbf24]">LOADING_DATA...</p>
-                </div>
+                <motion.div 
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                  className="mx-auto mb-4 h-12 w-12 border-4 border-black bg-[var(--butter)]"
+                  style={{ boxShadow: '4px 4px 0px 0px black' }}
+                />
+                <p className="neo-title animate-blink">LOADING...</p>
               </motion.div>
             ) : null}
             
@@ -484,11 +487,14 @@ export const Dashboard = () => {
                     layout
                     variants={meetingCardVariants}
                     key={meeting.id} 
-                    className={`panel border-2 border-[#404040] p-5 ${todaysCheckin ? 'border-[#10b981]' : ''}`}
+                    className={`neo-card p-5 ${todaysCheckin ? 'border-[var(--mint)]' : ''}`}
+                    style={todaysCheckin ? { boxShadow: '10px 10px 0px 0px var(--mint)' } : {}}
+                    whileHover={{ scale: 1.01 }}
+                    transition={{ duration: 0.2 }}
                   >
                     {isEditing ? (
                       <MeetingForm
-                        submitLabel="Update Meeting"
+                        submitLabel="Update"
                         initialValues={{
                           name: meeting.name,
                           location: meeting.location,
@@ -502,103 +508,89 @@ export const Dashboard = () => {
                       />
                     ) : (
                       <>
-                        <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                        <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                           <div>
                             <div className="flex items-center gap-2 mb-2">
-                              {todaysCheckin ? (
-                                <motion.div 
-                                  className="led bg-[#10b981]"
-                                  animate={showSuccess ? { scale: [1, 1.6, 1] } : {}}
-                                  transition={{ duration: 0.4 }}
-                                />
-                              ) : (
-                                <div className="led bg-[#555]"></div>
-                              )}
-                              <h3 className="text-xl font-black uppercase text-[#e5e5e5]">{meeting.name}</h3>
+                              <motion.div 
+                                className={`h-3 w-3 border-2 border-black ${todaysCheckin ? 'bg-[var(--mint)]' : 'bg-gray-400'}`}
+                                animate={showSuccess ? { scale: [1, 1.5, 1] } : {}}
+                                transition={{ duration: 0.4 }}
+                              />
+                              <h3 className="neo-title text-xl">{meeting.name}</h3>
                             </div>
-                            <div className="flex flex-col gap-1 font-mono text-xs font-bold text-[#888]">
-                              <span className="flex items-center gap-2">
+                            <div className="neo-mono text-xs space-y-1">
+                              <div className="flex items-center gap-2">
                                 <MapPin size={12} strokeWidth={3} />
                                 <span className="uppercase">{meeting.location}</span>
-                              </span>
-                              <span className="flex items-center gap-2">
+                              </div>
+                              <div className="flex items-center gap-2">
                                 <Clock size={12} strokeWidth={3} />
                                 <span className="uppercase">{timeLabel(meeting.time)}</span>
-                              </span>
+                              </div>
                             </div>
                           </div>
                           
-                          <div className="flex flex-wrap items-center gap-2">
+                          <div className="flex flex-wrap gap-2">
                             <motion.button
-                              whileHover={{ scale: 1.03 }}
-                              whileTap={{ scale: 0.97 }}
+                              whileHover={{ scale: 1.05, y: -2 }}
+                              whileTap={{ scale: 0.95 }}
                               type="button"
                               onClick={() => setEditingMeetingId(meeting.id)}
-                              className="industrial-button text-xs py-2"
+                              className="neo-button neo-button-primary text-xs py-2"
                             >
-                              <Edit2 size={10} strokeWidth={3} /> EDIT
+                              <Edit2 size={12} strokeWidth={3} /> EDIT
                             </motion.button>
                             <motion.button
-                              whileHover={{ scale: 1.03, x: [0, -1.5, 1.5, -1, 1, 0] }}
-                              whileTap={{ scale: 0.97 }}
+                              whileHover={{ scale: 1.05, y: -2, x: [0, -2, 2, -1, 1, 0] }}
+                              whileTap={{ scale: 0.95 }}
                               type="button"
                               onClick={() => void removeMeeting(meeting.id)}
-                              className="industrial-button industrial-button-danger text-xs py-2"
+                              className="neo-button neo-button-danger text-xs py-2"
                             >
-                              <Trash2 size={10} strokeWidth={3} /> DEL
+                              <Trash2 size={12} strokeWidth={3} /> DEL
                             </motion.button>
                             <motion.button
-                              whileHover={!todaysCheckin && !pendingCheckinId ? { scale: 1.03 } : {}}
-                              whileTap={!todaysCheckin && !pendingCheckinId ? { scale: 0.97 } : {}}
+                              whileHover={!todaysCheckin ? { scale: 1.05, y: -2 } : {}}
+                              whileTap={!todaysCheckin ? { scale: 0.95 } : {}}
                               type="button"
                               disabled={todaysCheckin || pendingCheckinId === meeting.id}
                               onClick={() => void checkIn(meeting)}
-                              className={`industrial-button text-xs py-2 ${
+                              className={`neo-button text-xs py-2 ${
                                 todaysCheckin 
-                                  ? "industrial-button-success checkin-success" 
-                                  : "bg-[#3b82f6] border-[#2563eb] text-white hover:bg-[#60a5fa]"
+                                  ? "neo-button-success animate-stamp" 
+                                  : "bg-[var(--sky)] border-3 border-black text-black hover:bg-[#7DD3FC]"
                               }`}
+                              style={!todaysCheckin ? { boxShadow: '4px 4px 0px 0px black' } : {}}
                             >
                               {todaysCheckin ? (
                                 <>
-                                  <CheckCircle size={10} strokeWidth={3} /> DONE
+                                  <CheckCircle size={12} strokeWidth={3} /> ✓ DONE
                                 </>
                               ) : pendingCheckinId === meeting.id ? (
-                                <span className="flex items-center gap-1">
-                                  <span className="status-indicator text-white bg-white w-2 h-2"></span>
-                                  ...
-                                </span>
+                                "..."
                               ) : (
-                                "CHECK_IN"
+                                "CHECK IN"
                               )}
                             </motion.button>
                           </div>
                         </div>
 
-                        <motion.div 
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: 0.18 }}
-                          className="mt-5 pt-4 border-t border-dashed border-[#404040]"
-                        >
-                          <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#555] mb-3">
-                            {'//'} HISTORY ({history.length})
-                          </p>
-                          <div className="flex flex-wrap gap-2">
+                        <div className="mt-4 pt-3 border-t-2 border-dashed border-black">
+                          <p className="neo-mono text-[10px] mb-2">HISTORY ({history.length})</p>
+                          <div className="flex flex-wrap gap-1">
                             {history.slice(0, 6).map((entry) => (
-                              <motion.span 
-                                key={entry.id}
-                                variants={historyItemVariants}
-                                className="panel-inset border border-[#404040] px-2 py-1 font-mono text-[10px] font-bold text-[#888]"
+                              <span 
+                                key={entry.id} 
+                                className="bg-[var(--cream)] border border-black px-2 py-1 neo-mono text-[10px]"
                               >
                                 {entry.createdAt ? formatDateTime(entry.createdAt).split(' ')[0] : entry.dayKey}
-                              </motion.span>
+                              </span>
                             ))}
                             {history.length === 0 ? (
-                              <span className="font-mono text-[10px] text-[#444]">NO_DATA</span>
+                              <span className="neo-mono text-[10px] text-gray-400">NO DATA</span>
                             ) : null}
                           </div>
-                        </motion.div>
+                        </div>
                       </>
                     )}
                   </motion.article>
@@ -608,59 +600,51 @@ export const Dashboard = () => {
 
               {!loading && meetings.length === 0 ? (
                 <motion.div 
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="panel-inset border-2 border-dashed border-[#404040] p-12 text-center"
+                  className="neo-card p-12 text-center border-dashed"
                 >
                   <motion.div 
-                    className="led bg-[#555] mb-4 mx-auto"
-                    animate={{ opacity: [0.4, 1, 0.4] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  ></motion.div>
-                  <p className="text-lg font-black uppercase text-[#555]">NO_MEETINGS_CONFIGURED</p>
-                  <p className="mt-2 font-mono text-xs text-[#444]">Add a meeting to begin tracking.</p>
+                    className="h-6 w-6 bg-[var(--coral)] border-2 border-black mx-auto mb-4"
+                    animate={{ rotate: [0, 10, -10, 0] }}
+                    transition={{ duration: 0.5, repeat: Infinity }}
+                  />
+                  <p className="neo-title text-lg">NO MEETINGS</p>
+                  <p className="neo-mono text-xs mt-2">Add a meeting above to start tracking.</p>
                 </motion.div>
               ) : null}
             </motion.div>
 
             <motion.section 
-              initial={{ opacity: 0, y: 8 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.28 }}
-              className="panel border-2 border-[#404040] p-6"
+              transition={{ delay: 0.4 }}
+              className="neo-card p-6"
             >
-              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#404040]">
-                <span className="font-mono text-xs text-[#8b5cf6]">{'//'}</span>
-                <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#8b5cf6]">WEEKLY_ACTIVITY_LOG</span>
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b-4 border-black">
+                <span className="neo-title text-sm text-[var(--lavender)]">►</span>
+                <span className="neo-title text-sm">WEEKLY LOG</span>
               </div>
               <ul className="space-y-2">
                 {thisWeekCheckins.map((entry, i) => {
                   const meeting = meetingById.get(entry.meetingId);
                   return (
                     <motion.li 
-                      initial={{ opacity: 0, x: 8 }}
+                      initial={{ opacity: 0, x: 10 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.04 + 0.32 }}
+                      transition={{ delay: i * 0.05 + 0.5 }}
                       key={entry.id} 
-                      className="panel-inset border border-[#404040] px-4 py-3 text-xs font-bold flex items-center justify-between"
+                      className="bg-[var(--lavender)] border-2 border-black px-4 py-2 flex items-center justify-between"
                     >
-                      <span className="uppercase text-[#e5e5e5]">{meeting?.name ?? entry.meetingName}</span>
-                      <span className="font-mono text-[10px] text-[#555]">
+                      <span className="neo-mono text-xs uppercase">{meeting?.name ?? entry.meetingName}</span>
+                      <span className="neo-mono text-[10px]">
                         {entry.createdAt ? formatDateTime(entry.createdAt) : entry.dayKey}
                       </span>
                     </motion.li>
                   );
                 })}
                 {thisWeekCheckins.length === 0 ? (
-                  <motion.li 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.35 }}
-                    className="font-mono text-xs text-[#444] text-center py-4"
-                  >
-                    NO_ACTIVITY_THIS_WEEK
-                  </motion.li>
+                  <li className="neo-mono text-xs text-center py-4">NO ACTIVITY</li>
                 ) : null}
               </ul>
             </motion.section>
