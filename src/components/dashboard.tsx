@@ -7,7 +7,6 @@ import {
   deleteDoc,
   doc,
   onSnapshot,
-  orderBy,
   query,
   runTransaction,
   serverTimestamp,
@@ -101,7 +100,6 @@ export const Dashboard = () => {
     const meetingsQuery = query(
       collection(db, "meetings"),
       where("userId", "==", user.uid),
-      orderBy("createdAt", "desc"),
     );
 
     const checkinsQuery = query(
