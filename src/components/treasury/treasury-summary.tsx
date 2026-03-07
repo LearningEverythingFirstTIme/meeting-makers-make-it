@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import {
   collection,
   onSnapshot,
-  orderBy,
   query,
   where,
 } from "firebase/firestore";
@@ -34,7 +33,6 @@ export const TreasurySummary = () => {
     const transactionsQuery = query(
       collection(db, "transactions"),
       where("userId", "==", user.uid),
-      orderBy("date", "desc"),
     );
 
     const unsubscribe = onSnapshot(
@@ -46,7 +44,7 @@ export const TreasurySummary = () => {
             id: d.id,
             userId: data.userId,
             date: data.date,
-            amount: data.amount,
+            amount: Number(data.amount) || 0,
             type: data.type,
             category: data.category,
             note: data.note ?? "",
