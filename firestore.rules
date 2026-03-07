@@ -5,21 +5,105 @@ service cloud.firestore {
       return request.auth != null;
     }
 
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
     function ownsMeeting(meetingId) {
-      return get(/databases/$(database)/documents/meetings/$(meetingId)).data.userId == request.auth.uid;
+      return isSignedIn()
+        && exists(/databases/$(database)/documents/meetings/$(meetingId))
+        && get(/databases/$(database)/documents/meetings/$(meetingId)).data.userId == request.auth.uid;
+    }
+
+    function meetingCreateIsValid() {
+      return request.resource.data.keys().hasOnly([
+          'userId',
+          'name',
+          'location',
+          'time',
+          'createdAt',
+          'updatedAt'
+        ])
+        && isOwner(request.resource.data.userId)
+        && request.resource.data.name is string
+        && request.resource.data.location is string
+        && request.resource.data.time is string;
+    }
+
+    function meetingUpdateIsValid() {
+      return isOwner(resource.data.userId)
+        && request.resource.data.userId == resource.data.userId
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.name is string
+        && request.resource.data.location is string
+        && request.resource.data.time is string;
+    }
+
+    function checkinCreateIsValid() {
+      return request.resource.data.keys().hasOnly([
+          'userId',
+          'meetingId',
+          'meetingName',
+          'dayKey',
+          'createdAt'
+        ])
+        && isOwner(request.resource.data.userId)
+        && request.resource.data.meetingId is string
+        && request.resource.data.meetingName is string
+        && request.resource.data.dayKey is string
+        && isSignedIn()
+        && exists(/databases/$(database)/documents/meetings/$(request.resource.data.meetingId))
+        && get(/databases/$(database)/documents/meetings/$(request.resource.data.meetingId)).data.userId == request.auth.uid
+        && get(/databases/$(database)/documents/meetings/$(request.resource.data.meetingId)).data.name == request.resource.data.meetingName;
+    }
+
+    function transactionCreateIsValid() {
+      return request.resource.data.keys().hasOnly([
+          'userId',
+          'date',
+          'amount',
+          'type',
+          'category',
+          'note',
+          'createdAt',
+          'updatedAt'
+        ])
+        && isOwner(request.resource.data.userId)
+        && request.resource.data.date is string
+        && request.resource.data.amount is number
+        && request.resource.data.type is string
+        && request.resource.data.category is string
+        && request.resource.data.note is string;
+    }
+
+    function transactionUpdateIsValid() {
+      return isOwner(resource.data.userId)
+        && request.resource.data.userId == resource.data.userId
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.date is string
+        && request.resource.data.amount is number
+        && request.resource.data.type is string
+        && request.resource.data.category is string
+        && request.resource.data.note is string;
     }
 
     match /meetings/{meetingId} {
-      allow read, update, delete: if isSignedIn() && request.auth.uid == resource.data.userId;
-      allow create: if isSignedIn() && request.auth.uid == request.resource.data.userId;
+      allow read, delete: if isOwner(resource.data.userId);
+      allow create: if meetingCreateIsValid();
+      allow update: if meetingUpdateIsValid();
     }
 
     match /checkins/{checkinId} {
-      allow read, write: if isSignedIn();
+      allow get: if true;
+      allow list: if isOwner(resource.data.userId);
+      allow create: if checkinCreateIsValid();
+      allow update, delete: if false;
     }
 
     match /transactions/{transactionId} {
-      allow read, write: if isSignedIn();
+      allow read, delete: if isOwner(resource.data.userId);
+      allow create: if transactionCreateIsValid();
+      allow update: if transactionUpdateIsValid();
     }
   }
 }

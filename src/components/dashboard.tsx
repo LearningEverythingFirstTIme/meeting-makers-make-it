@@ -6,6 +6,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   onSnapshot,
   query,
   runTransaction,
@@ -305,22 +306,23 @@ export const Dashboard = () => {
     setError(null);
 
     try {
+      const existingCheckin = checkins.find(
+        (entry) => entry.meetingId === meeting.id && entry.dayKey === todayKey,
+      );
+
+      if (existingCheckin) {
+        throw new Error("already-checked-in");
+      }
+
       await runTransaction(db, async (transaction) => {
         const meetingRef = doc(db, "meetings", meeting.id);
-        const checkinRef = doc(db, "checkins", checkinId);
-
-        const [meetingSnap, checkinSnap] = await Promise.all([
-          transaction.get(meetingRef),
-          transaction.get(checkinRef),
-        ]);
+        const meetingSnap = await transaction.get(meetingRef);
 
         if (!meetingSnap.exists() || meetingSnap.data().userId !== user.uid) {
           throw new Error("Meeting no longer exists.");
         }
 
-        if (checkinSnap.exists()) {
-          throw new Error("already-checked-in");
-        }
+        const checkinRef = doc(db, "checkins", checkinId);
 
         transaction.set(checkinRef, {
           userId: user.uid,
@@ -330,11 +332,22 @@ export const Dashboard = () => {
           createdAt: serverTimestamp(),
         });
       });
+
+      const persistedCheckin = await getDoc(doc(db, "checkins", checkinId));
+      if (!persistedCheckin.exists()) {
+        throw new Error("checkin-write-missing");
+      }
+
       setCheckinSuccessId(meeting.id);
       setTimeout(() => setCheckinSuccessId(null), 600);
     } catch (err) {
       if (err instanceof Error && err.message === "already-checked-in") {
         setError(`Already checked in to ${meeting.name} today.`);
+        return;
+      }
+
+      if (err instanceof Error && err.message === "checkin-write-missing") {
+        setError("Check-in could not be confirmed. Please refresh and try again.");
         return;
       }
 
