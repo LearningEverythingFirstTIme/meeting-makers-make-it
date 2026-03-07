@@ -772,14 +772,14 @@ export const Dashboard = () => {
           </div>
           <div className="mt-auto space-y-3">
             <motion.p
-              className="neo-mono text-lg leading-snug text-black"
+              className="neo-mono text-2xl font-bold leading-snug text-black"
               key={checkins[0]?.id || "none"}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
               {checkins[0]?.createdAt ? formatDateTime(checkins[0].createdAt) : "NO DATA"}
             </motion.p>
-            <p className="neo-mono text-base font-bold text-black">
+            <p className="neo-mono text-xl font-bold text-black">
               {checkins[0]?.meetingName?.toUpperCase() ?? "NO RECENT CHECK-IN"}
             </p>
           </div>
