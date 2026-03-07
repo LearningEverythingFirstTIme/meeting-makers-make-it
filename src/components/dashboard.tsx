@@ -534,14 +534,13 @@ export const Dashboard = () => {
 
   const checkIn = async (meeting: Meeting) => {
     const checkinId = makeCheckinId(user.uid, meeting.id, todayKey);
+    const meetingRef = doc(db, "meetings", meeting.id);
+    const checkinRef = doc(db, "checkins", checkinId);
     setPendingCheckinId(meeting.id);
     setError(null);
 
     try {
       await user.getIdToken();
-
-      const meetingRef = doc(db, "meetings", meeting.id);
-      const checkinRef = doc(db, "checkins", checkinId);
 
       const existingCheckin = checkins.find(
         (entry) => entry.meetingId === meeting.id && entry.dayKey === todayKey,
@@ -574,6 +573,22 @@ export const Dashboard = () => {
       }
 
       if (err instanceof FirebaseError && err.code === "permission-denied") {
+        try {
+          const existingCheckinSnap = await getDoc(checkinRef);
+          const existingCheckinData = existingCheckinSnap.data();
+          if (
+            existingCheckinSnap.exists()
+            && existingCheckinData?.userId === user.uid
+            && existingCheckinData?.meetingId === meeting.id
+            && existingCheckinData?.dayKey === todayKey
+          ) {
+            setError(`Already checked in to ${meeting.name} today.`);
+            return;
+          }
+        } catch {
+          // Ignore follow-up read failures and fall through to the original error.
+        }
+
         console.error("Check-in permission denied", {
           uid: user.uid,
           meetingId: meeting.id,
