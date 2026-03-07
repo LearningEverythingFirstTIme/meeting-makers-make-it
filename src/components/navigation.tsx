@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Home, DollarSign, LogOut } from "lucide-react";
+import { Home, DollarSign, BookOpen, LogOut } from "lucide-react";
 import { useAuth } from "@/components/auth-provider";
 
 export const Navigation = () => {
@@ -13,6 +13,7 @@ export const Navigation = () => {
   const navItems = [
     { href: "/", label: "Meetings", icon: Home },
     { href: "/treasury", label: "Treasury", icon: DollarSign },
+    { href: "/literature", label: "Literature", icon: BookOpen },
   ];
 
   return (
