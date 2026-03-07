@@ -536,11 +536,17 @@ export const Dashboard = () => {
     const checkinId = makeCheckinId(user.uid, meeting.id, todayKey);
     const meetingRef = doc(db, "meetings", meeting.id);
     const checkinRef = doc(db, "checkins", checkinId);
+    let tokenUid: string | null = null;
     setPendingCheckinId(meeting.id);
     setError(null);
 
     try {
-      await user.getIdToken();
+      const tokenResult = await user.getIdTokenResult(true);
+      tokenUid = typeof tokenResult.claims.user_id === "string"
+        ? tokenResult.claims.user_id
+        : typeof tokenResult.claims.sub === "string"
+          ? tokenResult.claims.sub
+          : null;
 
       const existingCheckin = checkins.find(
         (entry) => entry.meetingId === meeting.id && entry.dayKey === todayKey,
@@ -591,6 +597,7 @@ export const Dashboard = () => {
 
         console.error("Check-in permission denied", {
           uid: user.uid,
+          tokenUid,
           meetingId: meeting.id,
           checkinId,
           code: err.code,

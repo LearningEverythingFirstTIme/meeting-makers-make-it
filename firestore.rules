@@ -9,139 +9,32 @@ service cloud.firestore {
       return isSignedIn() && request.auth.uid == userId;
     }
 
-    function ownsResource() {
+    function ownsDoc() {
       return isSignedIn() && resource.data.userId == request.auth.uid;
     }
 
-    function hasOnlyKeys(allowedKeys) {
-      return request.resource.data.keys().hasOnly(allowedKeys);
+    function createsOwnDoc() {
+      return isCurrentUser(request.resource.data.userId);
     }
 
-    function createsOwnedDocument(allowedKeys) {
-      return hasOnlyKeys(allowedKeys)
-        && isCurrentUser(request.resource.data.userId);
+    function updatesOwnDoc() {
+      return ownsDoc() && request.resource.data.userId == resource.data.userId;
     }
 
-    function updatesOwnedDocument(allowedKeys) {
-      return ownsResource()
-        && hasOnlyKeys(allowedKeys)
-        && request.resource.data.userId == resource.data.userId;
+    function isTrackedCollection(collection) {
+      return ["meetings", "checkins", "transactions"].hasAny([collection]);
     }
 
-    match /meetings/{meetingId} {
-      allow read, delete: if ownsResource();
-      allow create: if createsOwnedDocument([
-          'userId',
-          'name',
-          'location',
-          'time',
-          'createdAt',
-          'updatedAt'
-        ])
-        && request.resource.data.name is string
-        && request.resource.data.location is string
-        && request.resource.data.time is string;
-      allow update: if updatesOwnedDocument([
-          'userId',
-          'name',
-          'location',
-          'time',
-          'createdAt',
-          'updatedAt'
-        ])
-        && request.resource.data.createdAt == resource.data.createdAt
-        && request.resource.data.name is string
-        && request.resource.data.location is string
-        && request.resource.data.time is string;
-    }
-
-    match /checkins/{checkinId} {
-      allow read, delete: if ownsResource();
-      allow create: if createsOwnedDocument([
-          'userId',
-          'meetingId',
-          'meetingName',
-          'dayKey',
-          'note',
-          'createdAt'
-        ])
-        && request.resource.data.meetingId is string
-        && request.resource.data.meetingName is string
-        && request.resource.data.dayKey is string
-        && (request.resource.data.note == null || request.resource.data.note is string);
-      allow update: if updatesOwnedDocument([
-          'userId',
-          'meetingId',
-          'meetingName',
-          'dayKey',
-          'note',
-          'createdAt',
-          'updatedAt'
-        ])
-        && request.resource.data.meetingId == resource.data.meetingId
-        && request.resource.data.meetingName == resource.data.meetingName
-        && request.resource.data.createdAt == resource.data.createdAt
-        && request.resource.data.dayKey is string
-        && (request.resource.data.note == null || request.resource.data.note is string);
-    }
-
-    match /transactions/{transactionId} {
-      allow read, delete: if ownsResource();
-      allow create: if createsOwnedDocument([
-          'userId',
-          'date',
-          'amount',
-          'type',
-          'category',
-          'note',
-          'createdAt',
-          'updatedAt'
-        ])
-        && request.resource.data.date is string
-        && request.resource.data.amount is number
-        && request.resource.data.type is string
-        && request.resource.data.category is string
-        && request.resource.data.note is string;
-      allow update: if updatesOwnedDocument([
-          'userId',
-          'date',
-          'amount',
-          'type',
-          'category',
-          'note',
-          'createdAt',
-          'updatedAt'
-        ])
-        && request.resource.data.createdAt == resource.data.createdAt
-        && request.resource.data.date is string
-        && request.resource.data.amount is number
-        && request.resource.data.type is string
-        && request.resource.data.category is string
-        && request.resource.data.note is string;
+    match /{collection}/{docId} {
+      allow read, delete: if isTrackedCollection(collection) && ownsDoc();
+      allow create: if isTrackedCollection(collection) && createsOwnDoc();
+      allow update: if isTrackedCollection(collection) && updatesOwnDoc();
     }
 
     match /userProfiles/{userId} {
       allow read: if isCurrentUser(userId);
-      allow create: if isCurrentUser(userId)
-        && hasOnlyKeys([
-          'userId',
-          'sobrietyDate',
-          'dashboardLayout',
-          'updatedAt'
-        ])
-        && request.resource.data.userId == userId
-        && (request.resource.data.sobrietyDate == null || request.resource.data.sobrietyDate is string)
-        && (!('dashboardLayout' in request.resource.data) || request.resource.data.dashboardLayout is list);
-      allow update: if isCurrentUser(userId)
-        && hasOnlyKeys([
-          'userId',
-          'sobrietyDate',
-          'dashboardLayout',
-          'updatedAt'
-        ])
-        && request.resource.data.userId == userId
-        && (request.resource.data.sobrietyDate == null || request.resource.data.sobrietyDate is string)
-        && (!('dashboardLayout' in request.resource.data) || request.resource.data.dashboardLayout is list);
+      allow create, update: if isCurrentUser(userId)
+        && request.resource.data.userId == userId;
       allow delete: if false;
     }
   }
