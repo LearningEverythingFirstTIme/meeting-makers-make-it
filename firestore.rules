@@ -53,10 +53,7 @@ service cloud.firestore {
         && request.resource.data.meetingName is string
         && request.resource.data.dayKey is string
         && (request.resource.data.note == null || request.resource.data.note is string)
-        && isSignedIn()
-        && exists(/databases/$(database)/documents/meetings/$(request.resource.data.meetingId))
-        && get(/databases/$(database)/documents/meetings/$(request.resource.data.meetingId)).data.userId == request.auth.uid
-        && get(/databases/$(database)/documents/meetings/$(request.resource.data.meetingId)).data.name == request.resource.data.meetingName;
+        && ownsMeeting(request.resource.data.meetingId);
     }
 
     function checkinUpdateIsValid() {

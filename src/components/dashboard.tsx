@@ -538,6 +538,9 @@ export const Dashboard = () => {
     setError(null);
 
     try {
+      const meetingRef = doc(db, "meetings", meeting.id);
+      const checkinRef = doc(db, "checkins", checkinId);
+
       const existingCheckin = checkins.find(
         (entry) => entry.meetingId === meeting.id && entry.dayKey === todayKey,
       );
@@ -546,26 +549,28 @@ export const Dashboard = () => {
         throw new Error("already-checked-in");
       }
 
-      await runTransaction(db, async (transaction) => {
-        const meetingRef = doc(db, "meetings", meeting.id);
-        const meetingSnap = await transaction.get(meetingRef);
+      const [meetingSnap, checkinSnap] = await Promise.all([
+        getDoc(meetingRef),
+        getDoc(checkinRef),
+      ]);
 
-        if (!meetingSnap.exists() || meetingSnap.data().userId !== user.uid) {
-          throw new Error("Meeting no longer exists.");
-        }
+      if (!meetingSnap.exists() || meetingSnap.data().userId !== user.uid) {
+        throw new Error("Meeting no longer exists.");
+      }
 
-        const checkinRef = doc(db, "checkins", checkinId);
+      if (checkinSnap.exists()) {
+        throw new Error("already-checked-in");
+      }
 
-        transaction.set(checkinRef, {
-          userId: user.uid,
-          meetingId: meeting.id,
-          meetingName: meeting.name,
-          dayKey: todayKey,
-          createdAt: serverTimestamp(),
-        });
+      await setDoc(checkinRef, {
+        userId: user.uid,
+        meetingId: meeting.id,
+        meetingName: meeting.name,
+        dayKey: todayKey,
+        createdAt: serverTimestamp(),
       });
 
-      const persistedCheckin = await getDoc(doc(db, "checkins", checkinId));
+      const persistedCheckin = await getDoc(checkinRef);
       if (!persistedCheckin.exists()) {
         throw new Error("checkin-write-missing");
       }
