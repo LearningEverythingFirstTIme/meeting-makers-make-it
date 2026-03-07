@@ -687,7 +687,7 @@ export const Dashboard = () => {
       id: "sobrietyCounter",
       label: "Sobriety Counter",
       hint: "Progress, milestones, and anniversaries",
-      className: "md:col-span-2 lg:col-span-4",
+      className: "md:col-span-6 lg:col-span-4",
       content: (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -797,7 +797,7 @@ export const Dashboard = () => {
       id: "addMeeting",
       label: "Add Meeting",
       hint: "Create a new meeting card",
-      className: "lg:col-span-6",
+      className: "md:col-span-6 lg:col-span-4",
       content: (
         <div className="space-y-6">
           <motion.div
@@ -822,7 +822,7 @@ export const Dashboard = () => {
       id: "recentCheckins",
       label: "Recent Check-Ins",
       hint: "Edit and review your latest check-ins",
-      className: "lg:col-span-6",
+      className: "md:col-span-6 lg:col-span-4",
       content: (
         <motion.div
           variants={staggerContainer}
@@ -1107,7 +1107,7 @@ export const Dashboard = () => {
       id: "activityTracker",
       label: "Activity Tracker",
       hint: "Heatmap of the last sixteen weeks",
-      className: "md:col-span-2 lg:col-span-6",
+      className: "md:col-span-6 lg:col-span-6",
       content: (
         <motion.section
           initial={{ opacity: 0, y: 10 }}
@@ -1194,7 +1194,7 @@ export const Dashboard = () => {
       id: "weeklyLog",
       label: "Weekly Log",
       hint: "Chronological check-ins from this week",
-      className: "md:col-span-2 lg:col-span-6",
+      className: "md:col-span-6 lg:col-span-6",
       content: (
         <motion.section
           initial={{ opacity: 0, y: 10 }}
