@@ -1,5 +1,10 @@
 export const DASHBOARD_SECTION_IDS = [
-  "hero",
+  "sobrietyCounter",
+  "weeklyStat",
+  "activeStat",
+  "latestStat",
+  "treasurySummary",
+  "addMeeting",
   "recentCheckins",
   "yourMeetings",
   "activityTracker",

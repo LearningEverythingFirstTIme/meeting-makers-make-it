@@ -676,94 +676,115 @@ export const Dashboard = () => {
   };
 
   const dashboardSections: Record<DashboardSectionId, DashboardSectionDefinition> = {
-    hero: {
-      id: "hero",
-      label: "Overview",
-      hint: "Sobriety, stats, and treasury snapshot",
-      className: "lg:col-span-2",
+    sobrietyCounter: {
+      id: "sobrietyCounter",
+      label: "Sobriety Counter",
+      hint: "Progress, milestones, and anniversaries",
+      className: "md:col-span-2 lg:col-span-4",
       content: (
-        <motion.section
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
         >
-          <div className="lg:col-span-1">
-            <SobrietyCounter
-              sobrietyDate={userProfile?.sobrietyDate || null}
-              onEdit={() => setShowSobrietySetup(true)}
-            />
-          </div>
-
-          <div className="lg:col-span-2">
-            <motion.section
-              variants={staggerContainer}
-              initial="hidden"
-              animate="show"
-              className="grid grid-cols-2 gap-4 md:grid-cols-4"
-            >
-              <motion.article
-                variants={statCardVariants}
-                className="bg-[var(--mint)] border-4 border-black p-5"
-                style={{ boxShadow: "6px 6px 0px 0px black" }}
-              >
-                <div className="mb-3 flex items-center gap-2">
-                  <Calendar size={18} strokeWidth={3} />
-                  <span className="neo-title text-xs">WEEKLY</span>
-                </div>
-                <motion.p
-                  className="neo-title text-5xl text-black"
-                  key={thisWeekCheckins.length}
-                  initial={{ scale: 1.3 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {thisWeekCheckins.length}
-                </motion.p>
-                <p className="neo-mono mt-1 text-xs text-black">CHECK-INS</p>
-              </motion.article>
-
-              <motion.article
-                variants={statCardVariants}
-                className="bg-[var(--butter)] border-4 border-black p-5"
-                style={{ boxShadow: "6px 6px 0px 0px black" }}
-              >
-                <div className="mb-3 flex items-center gap-2">
-                  <Activity size={18} strokeWidth={3} />
-                  <span className="neo-title text-xs">ACTIVE</span>
-                </div>
-                <p className="neo-title text-5xl text-black">{meetings.length}</p>
-                <p className="neo-mono mt-1 text-xs text-black">MEETINGS</p>
-              </motion.article>
-
-              <motion.article
-                variants={statCardVariants}
-                className="bg-[var(--lavender)] border-4 border-black p-5"
-                style={{ boxShadow: "6px 6px 0px 0px black" }}
-              >
-                <div className="mb-3 flex items-center gap-2">
-                  <Clock size={18} strokeWidth={3} />
-                  <span className="neo-title text-xs">LATEST</span>
-                </div>
-                <motion.p
-                  className="neo-mono truncate text-sm text-black"
-                  key={checkins[0]?.id || "none"}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                >
-                  {checkins[0]?.createdAt ? formatDateTime(checkins[0].createdAt) : "NO DATA"}
-                </motion.p>
-              </motion.article>
-
-              <TreasurySummary />
-            </motion.section>
-          </div>
-        </motion.section>
+          <SobrietyCounter
+            sobrietyDate={userProfile?.sobrietyDate || null}
+            onEdit={() => setShowSobrietySetup(true)}
+          />
+        </motion.div>
       ),
     },
-    recentCheckins: {
-      id: "recentCheckins",
-      label: "Meeting Setup",
-      hint: "Create meetings and review recent check-ins",
+    weeklyStat: {
+      id: "weeklyStat",
+      label: "Weekly Check-Ins",
+      hint: "This week's total attendance",
+      className: "lg:col-span-2",
+      content: (
+        <motion.article
+          variants={statCardVariants}
+          initial="hidden"
+          animate="show"
+          className="bg-[var(--mint)] border-4 border-black p-5"
+          style={{ boxShadow: "6px 6px 0px 0px black" }}
+        >
+          <div className="mb-3 flex items-center gap-2">
+            <Calendar size={18} strokeWidth={3} />
+            <span className="neo-title text-xs">WEEKLY</span>
+          </div>
+          <motion.p
+            className="neo-title text-5xl text-black"
+            key={thisWeekCheckins.length}
+            initial={{ scale: 1.3 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            {thisWeekCheckins.length}
+          </motion.p>
+          <p className="neo-mono mt-1 text-xs text-black">CHECK-INS</p>
+        </motion.article>
+      ),
+    },
+    activeStat: {
+      id: "activeStat",
+      label: "Active Meetings",
+      hint: "Current number of tracked meetings",
+      className: "lg:col-span-2",
+      content: (
+        <motion.article
+          variants={statCardVariants}
+          initial="hidden"
+          animate="show"
+          className="bg-[var(--butter)] border-4 border-black p-5"
+          style={{ boxShadow: "6px 6px 0px 0px black" }}
+        >
+          <div className="mb-3 flex items-center gap-2">
+            <Activity size={18} strokeWidth={3} />
+            <span className="neo-title text-xs">ACTIVE</span>
+          </div>
+          <p className="neo-title text-5xl text-black">{meetings.length}</p>
+          <p className="neo-mono mt-1 text-xs text-black">MEETINGS</p>
+        </motion.article>
+      ),
+    },
+    latestStat: {
+      id: "latestStat",
+      label: "Latest Check-In",
+      hint: "Most recent activity timestamp",
+      className: "lg:col-span-2",
+      content: (
+        <motion.article
+          variants={statCardVariants}
+          initial="hidden"
+          animate="show"
+          className="bg-[var(--lavender)] border-4 border-black p-5"
+          style={{ boxShadow: "6px 6px 0px 0px black" }}
+        >
+          <div className="mb-3 flex items-center gap-2">
+            <Clock size={18} strokeWidth={3} />
+            <span className="neo-title text-xs">LATEST</span>
+          </div>
+          <motion.p
+            className="neo-mono truncate text-sm text-black"
+            key={checkins[0]?.id || "none"}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            {checkins[0]?.createdAt ? formatDateTime(checkins[0].createdAt) : "NO DATA"}
+          </motion.p>
+        </motion.article>
+      ),
+    },
+    treasurySummary: {
+      id: "treasurySummary",
+      label: "Treasury Snapshot",
+      hint: "Quick jump to the treasury page",
+      className: "lg:col-span-2",
+      content: <TreasurySummary />,
+    },
+    addMeeting: {
+      id: "addMeeting",
+      label: "Add Meeting",
+      hint: "Create a new meeting card",
+      className: "lg:col-span-5",
       content: (
         <div className="space-y-6">
           <motion.div
@@ -781,107 +802,115 @@ export const Dashboard = () => {
           </motion.div>
 
           <MeetingForm submitLabel="Create" onSubmit={createMeeting} />
-
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate="show"
-            className="neo-card p-6"
-          >
-            <div className="mb-4 flex items-center gap-2 border-b-4 border-black pb-3">
-              <span className="neo-title text-sm text-[var(--mint)]">►</span>
-              <span className="neo-title text-sm">RECENT CHECK-INS</span>
-            </div>
-            <ul className="space-y-2">
-              {checkins.slice(0, 8).map((entry) => (
-                <motion.li
-                  variants={logItemVariants}
-                  key={entry.id}
-                  className="border-2 border-black bg-[var(--cream)] px-3 py-2"
-                >
-                  {editingCheckinId === entry.id ? (
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="date"
-                          value={editingCheckinDate}
-                          onChange={(e) => setEditingCheckinDate(e.target.value)}
-                          className="neo-input py-1 text-xs"
-                          max={getTodayDate()}
-                        />
-                      </div>
-                      <input
-                        type="text"
-                        value={editingCheckinNote}
-                        onChange={(e) => setEditingCheckinNote(e.target.value)}
-                        placeholder="Add a note..."
-                        className="neo-input py-1 text-xs"
-                        maxLength={200}
-                      />
-                      <div className="flex gap-2">
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          onClick={() => saveCheckinEdit(entry.id)}
-                          className="neo-button bg-[var(--mint)] px-2 py-1 text-[10px]"
-                        >
-                          SAVE
-                        </motion.button>
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          onClick={cancelEditingCheckin}
-                          className="neo-button bg-gray-200 px-2 py-1 text-[10px]"
-                        >
-                          CANCEL
-                        </motion.button>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="flex items-center justify-between">
-                      <div className="min-w-0 flex-1">
-                        <span className="neo-mono block truncate text-xs uppercase">{entry.meetingName}</span>
-                        {entry.note && (
-                          <span className="neo-mono block truncate text-[10px] text-gray-500">&ldquo;{entry.note}&rdquo;</span>
-                        )}
-                      </div>
-                      <div className="ml-2 flex items-center gap-2">
-                        <span className="neo-mono whitespace-nowrap text-[10px]">
-                          {entry.createdAt ? formatDateTime(entry.createdAt).split(" ")[0] : entry.dayKey}
-                        </span>
-                        <motion.button
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          onClick={() => startEditingCheckin(entry)}
-                          className="border border-black p-1 hover:bg-[var(--butter)]"
-                        >
-                          <Edit2 size={10} strokeWidth={3} />
-                        </motion.button>
-                        <motion.button
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          onClick={() => deleteCheckin(entry.id, entry.meetingName)}
-                          className="border border-black p-1 hover:bg-[var(--coral)]"
-                        >
-                          <Trash2 size={10} strokeWidth={3} />
-                        </motion.button>
-                      </div>
-                    </div>
-                  )}
-                </motion.li>
-              ))}
-              {checkins.length === 0 ? (
-                <li className="neo-mono text-xs text-gray-500">NO RECORDS</li>
-              ) : null}
-            </ul>
-          </motion.div>
         </div>
+      ),
+    },
+    recentCheckins: {
+      id: "recentCheckins",
+      label: "Recent Check-Ins",
+      hint: "Edit and review your latest check-ins",
+      className: "lg:col-span-5",
+      content: (
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate="show"
+          className="neo-card p-6"
+        >
+          <div className="mb-4 flex items-center gap-2 border-b-4 border-black pb-3">
+            <span className="neo-title text-sm text-[var(--mint)]">►</span>
+            <span className="neo-title text-sm">RECENT CHECK-INS</span>
+          </div>
+          <ul className="space-y-2">
+            {checkins.slice(0, 8).map((entry) => (
+              <motion.li
+                variants={logItemVariants}
+                key={entry.id}
+                className="border-2 border-black bg-[var(--cream)] px-3 py-2"
+              >
+                {editingCheckinId === entry.id ? (
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="date"
+                        value={editingCheckinDate}
+                        onChange={(e) => setEditingCheckinDate(e.target.value)}
+                        className="neo-input py-1 text-xs"
+                        max={getTodayDate()}
+                      />
+                    </div>
+                    <input
+                      type="text"
+                      value={editingCheckinNote}
+                      onChange={(e) => setEditingCheckinNote(e.target.value)}
+                      placeholder="Add a note..."
+                      className="neo-input py-1 text-xs"
+                      maxLength={200}
+                    />
+                    <div className="flex gap-2">
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => saveCheckinEdit(entry.id)}
+                        className="neo-button bg-[var(--mint)] px-2 py-1 text-[10px]"
+                      >
+                        SAVE
+                      </motion.button>
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={cancelEditingCheckin}
+                        className="neo-button bg-gray-200 px-2 py-1 text-[10px]"
+                      >
+                        CANCEL
+                      </motion.button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-between">
+                    <div className="min-w-0 flex-1">
+                      <span className="neo-mono block truncate text-xs uppercase">{entry.meetingName}</span>
+                      {entry.note && (
+                        <span className="neo-mono block truncate text-[10px] text-gray-500">&ldquo;{entry.note}&rdquo;</span>
+                      )}
+                    </div>
+                    <div className="ml-2 flex items-center gap-2">
+                      <span className="neo-mono whitespace-nowrap text-[10px]">
+                        {entry.createdAt ? formatDateTime(entry.createdAt).split(" ")[0] : entry.dayKey}
+                      </span>
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => startEditingCheckin(entry)}
+                        className="border border-black p-1 hover:bg-[var(--butter)]"
+                      >
+                        <Edit2 size={10} strokeWidth={3} />
+                      </motion.button>
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => deleteCheckin(entry.id, entry.meetingName)}
+                        className="border border-black p-1 hover:bg-[var(--coral)]"
+                      >
+                        <Trash2 size={10} strokeWidth={3} />
+                      </motion.button>
+                    </div>
+                  </div>
+                )}
+              </motion.li>
+            ))}
+            {checkins.length === 0 ? (
+              <li className="neo-mono text-xs text-gray-500">NO RECORDS</li>
+            ) : null}
+          </ul>
+        </motion.div>
       ),
     },
     yourMeetings: {
       id: "yourMeetings",
       label: "Your Meetings",
       hint: "Manage meetings and daily check-ins",
+      className: "md:col-span-2 lg:col-span-7",
       content: (
         <div className="space-y-6">
           <motion.div
@@ -1065,6 +1094,7 @@ export const Dashboard = () => {
       id: "activityTracker",
       label: "Activity Tracker",
       hint: "Heatmap of the last sixteen weeks",
+      className: "md:col-span-2 lg:col-span-6",
       content: (
         <motion.section
           initial={{ opacity: 0, y: 10 }}
@@ -1151,6 +1181,7 @@ export const Dashboard = () => {
       id: "weeklyLog",
       label: "Weekly Log",
       hint: "Chronological check-ins from this week",
+      className: "md:col-span-2 lg:col-span-6",
       content: (
         <motion.section
           initial={{ opacity: 0, y: 10 }}
@@ -1280,7 +1311,7 @@ export const Dashboard = () => {
             onDragEnd={handleLayoutDragEnd}
           >
             <SortableContext items={activeLayout} strategy={rectSortingStrategy}>
-              <div className="grid gap-6 lg:grid-cols-2">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-12">
                 {activeLayout.map((sectionId) => (
                   <SortableDashboardSection
                     key={sectionId}
