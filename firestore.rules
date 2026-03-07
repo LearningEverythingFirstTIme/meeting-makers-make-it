@@ -24,5 +24,9 @@ service cloud.firestore {
       allow delete: if isSignedIn() && request.auth.uid == resource.data.userId;
       allow update: if false;
     }
+
+    match /transactions/{transactionId} {
+      allow read, write: if isSignedIn() && request.auth.uid == resource.data.userId;
+    }
   }
 }
