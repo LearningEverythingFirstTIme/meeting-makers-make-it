@@ -15,7 +15,11 @@ import { useAuth } from "@/components/auth-provider";
 import { calculateSummary, formatCurrency, sortByDateDesc } from "@/lib/treasury-utils";
 import type { TreasuryTransaction } from "@/types";
 
-export const TreasurySummary = () => {
+type TreasurySummaryProps = {
+  className?: string;
+};
+
+export const TreasurySummary = ({ className }: TreasurySummaryProps) => {
   const { user } = useAuth();
   const [transactions, setTransactions] = useState<TreasuryTransaction[]>([]);
   const [loading, setLoading] = useState(true);
@@ -74,12 +78,13 @@ export const TreasurySummary = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3 }}
+      className="h-full"
     >
-      <Link href="/treasury">
+      <Link href="/treasury" className="block h-full">
         <motion.div
           whileHover={{ scale: 1.01, y: -2 }}
           whileTap={{ scale: 0.99 }}
-          className="neo-card p-6 cursor-pointer"
+          className={["neo-card flex h-full cursor-pointer flex-col p-6", className].filter(Boolean).join(" ")}
         >
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
@@ -96,33 +101,35 @@ export const TreasurySummary = () => {
             </div>
           ) : (
             <>
-              <motion.p
-                className={`neo-title text-5xl ${summary.net >= 0 ? 'text-black' : 'text-[var(--coral)]'}`}
-                key={summary.net}
-                initial={{ scale: 1.2 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.3 }}
-              >
-                {formatCurrency(summary.net)}
-              </motion.p>
-              
-              <div className="mt-4 pt-4 border-t-2 border-black grid grid-cols-2 gap-6">
-                <div className="flex items-center gap-3">
-                  <TrendingUp size={16} strokeWidth={3} className="text-[var(--mint)]" />
-                  <div>
-                    <p className="neo-mono text-xs text-black">CONTRIBUTIONS</p>
-                    <p className="neo-mono text-base font-bold text-[var(--mint)]">
-                      {formatCurrency(summary.contributions)}
-                    </p>
+              <div className="mt-auto">
+                <motion.p
+                  className={`neo-title text-5xl ${summary.net >= 0 ? 'text-black' : 'text-[var(--coral)]'}`}
+                  key={summary.net}
+                  initial={{ scale: 1.2 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {formatCurrency(summary.net)}
+                </motion.p>
+
+                <div className="mt-4 grid grid-cols-2 gap-6 border-t-2 border-black pt-4">
+                  <div className="flex items-center gap-3">
+                    <TrendingUp size={16} strokeWidth={3} className="text-[var(--mint)]" />
+                    <div>
+                      <p className="neo-mono text-xs text-black">CONTRIBUTIONS</p>
+                      <p className="neo-mono text-base font-bold text-[var(--mint)]">
+                        {formatCurrency(summary.contributions)}
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <TrendingDown size={16} strokeWidth={3} className="text-[var(--coral)]" />
-                  <div>
-                    <p className="neo-mono text-xs text-black">EXPENSES</p>
-                    <p className="neo-mono text-base font-bold text-[var(--coral)]">
-                      {formatCurrency(summary.expenses)}
-                    </p>
+                  <div className="flex items-center gap-3">
+                    <TrendingDown size={16} strokeWidth={3} className="text-[var(--coral)]" />
+                    <div>
+                      <p className="neo-mono text-xs text-black">EXPENSES</p>
+                      <p className="neo-mono text-base font-bold text-[var(--coral)]">
+                        {formatCurrency(summary.expenses)}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

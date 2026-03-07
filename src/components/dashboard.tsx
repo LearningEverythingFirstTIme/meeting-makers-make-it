@@ -160,6 +160,8 @@ type SortableDashboardSectionProps = DashboardSectionDefinition & {
   isEditing: boolean;
 };
 
+const dashboardStatCardClass = "neo-dashboard-stat";
+
 const SortableDashboardSection = ({
   id,
   label,
@@ -703,23 +705,24 @@ export const Dashboard = () => {
           variants={statCardVariants}
           initial="hidden"
           animate="show"
-          className="bg-[var(--mint)] border-4 border-black p-6"
-          style={{ boxShadow: "6px 6px 0px 0px black" }}
+          className={`${dashboardStatCardClass} bg-[var(--mint)]`}
         >
           <div className="mb-4 flex items-center gap-2">
             <Calendar size={20} strokeWidth={3} />
             <span className="neo-title text-sm">WEEKLY</span>
           </div>
-          <motion.p
-            className="neo-title text-6xl text-black"
-            key={thisWeekCheckins.length}
-            initial={{ scale: 1.3 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            {thisWeekCheckins.length}
-          </motion.p>
-          <p className="neo-mono mt-2 text-sm text-black">CHECK-INS</p>
+          <div className="mt-auto">
+            <motion.p
+              className="neo-title text-6xl text-black"
+              key={thisWeekCheckins.length}
+              initial={{ scale: 1.3 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              {thisWeekCheckins.length}
+            </motion.p>
+            <p className="neo-mono mt-2 text-sm text-black">CHECK-INS</p>
+          </div>
         </motion.article>
       ),
     },
@@ -733,15 +736,16 @@ export const Dashboard = () => {
           variants={statCardVariants}
           initial="hidden"
           animate="show"
-          className="bg-[var(--butter)] border-4 border-black p-6"
-          style={{ boxShadow: "6px 6px 0px 0px black" }}
+          className={`${dashboardStatCardClass} bg-[var(--butter)]`}
         >
           <div className="mb-4 flex items-center gap-2">
             <Activity size={20} strokeWidth={3} />
             <span className="neo-title text-sm">ACTIVE</span>
           </div>
-          <p className="neo-title text-6xl text-black">{meetings.length}</p>
-          <p className="neo-mono mt-2 text-sm text-black">MEETINGS</p>
+          <div className="mt-auto">
+            <p className="neo-title text-6xl text-black">{meetings.length}</p>
+            <p className="neo-mono mt-2 text-sm text-black">MEETINGS</p>
+          </div>
         </motion.article>
       ),
     },
@@ -755,21 +759,25 @@ export const Dashboard = () => {
           variants={statCardVariants}
           initial="hidden"
           animate="show"
-          className="bg-[var(--lavender)] border-4 border-black p-6"
-          style={{ boxShadow: "6px 6px 0px 0px black" }}
+          className={`${dashboardStatCardClass} bg-[var(--lavender)]`}
         >
           <div className="mb-4 flex items-center gap-2">
             <Clock size={20} strokeWidth={3} />
             <span className="neo-title text-sm">LATEST</span>
           </div>
-          <motion.p
-            className="neo-mono text-base text-black"
-            key={checkins[0]?.id || "none"}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            {checkins[0]?.createdAt ? formatDateTime(checkins[0].createdAt) : "NO DATA"}
-          </motion.p>
+          <div className="mt-auto space-y-2">
+            <motion.p
+              className="neo-mono text-sm leading-snug text-black"
+              key={checkins[0]?.id || "none"}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              {checkins[0]?.createdAt ? formatDateTime(checkins[0].createdAt) : "NO DATA"}
+            </motion.p>
+            <p className="neo-mono text-sm text-black/75">
+              {checkins[0]?.meetingName?.toUpperCase() ?? "NO RECENT CHECK-IN"}
+            </p>
+          </div>
         </motion.article>
       ),
     },
@@ -778,13 +786,13 @@ export const Dashboard = () => {
       label: "Treasury Snapshot",
       hint: "Quick jump to the treasury page",
       className: "lg:col-span-3",
-      content: <TreasurySummary />,
+      content: <TreasurySummary className={dashboardStatCardClass} />,
     },
     addMeeting: {
       id: "addMeeting",
       label: "Add Meeting",
       hint: "Create a new meeting card",
-      className: "lg:col-span-5",
+      className: "lg:col-span-6",
       content: (
         <div className="space-y-6">
           <motion.div
@@ -809,7 +817,7 @@ export const Dashboard = () => {
       id: "recentCheckins",
       label: "Recent Check-Ins",
       hint: "Edit and review your latest check-ins",
-      className: "lg:col-span-5",
+      className: "lg:col-span-6",
       content: (
         <motion.div
           variants={staggerContainer}
@@ -910,7 +918,7 @@ export const Dashboard = () => {
       id: "yourMeetings",
       label: "Your Meetings",
       hint: "Manage meetings and daily check-ins",
-      className: "md:col-span-2 lg:col-span-7",
+      className: "md:col-span-2 lg:col-span-12",
       content: (
         <div className="space-y-6">
           <motion.div
