@@ -697,21 +697,21 @@ export const Dashboard = () => {
       id: "weeklyStat",
       label: "Weekly Check-Ins",
       hint: "This week's total attendance",
-      className: "lg:col-span-2",
+      className: "lg:col-span-3",
       content: (
         <motion.article
           variants={statCardVariants}
           initial="hidden"
           animate="show"
-          className="bg-[var(--mint)] border-4 border-black p-5"
+          className="bg-[var(--mint)] border-4 border-black p-6"
           style={{ boxShadow: "6px 6px 0px 0px black" }}
         >
-          <div className="mb-3 flex items-center gap-2">
-            <Calendar size={18} strokeWidth={3} />
-            <span className="neo-title text-xs">WEEKLY</span>
+          <div className="mb-4 flex items-center gap-2">
+            <Calendar size={20} strokeWidth={3} />
+            <span className="neo-title text-sm">WEEKLY</span>
           </div>
           <motion.p
-            className="neo-title text-5xl text-black"
+            className="neo-title text-6xl text-black"
             key={thisWeekCheckins.length}
             initial={{ scale: 1.3 }}
             animate={{ scale: 1 }}
@@ -719,7 +719,7 @@ export const Dashboard = () => {
           >
             {thisWeekCheckins.length}
           </motion.p>
-          <p className="neo-mono mt-1 text-xs text-black">CHECK-INS</p>
+          <p className="neo-mono mt-2 text-sm text-black">CHECK-INS</p>
         </motion.article>
       ),
     },
@@ -727,21 +727,21 @@ export const Dashboard = () => {
       id: "activeStat",
       label: "Active Meetings",
       hint: "Current number of tracked meetings",
-      className: "lg:col-span-2",
+      className: "lg:col-span-3",
       content: (
         <motion.article
           variants={statCardVariants}
           initial="hidden"
           animate="show"
-          className="bg-[var(--butter)] border-4 border-black p-5"
+          className="bg-[var(--butter)] border-4 border-black p-6"
           style={{ boxShadow: "6px 6px 0px 0px black" }}
         >
-          <div className="mb-3 flex items-center gap-2">
-            <Activity size={18} strokeWidth={3} />
-            <span className="neo-title text-xs">ACTIVE</span>
+          <div className="mb-4 flex items-center gap-2">
+            <Activity size={20} strokeWidth={3} />
+            <span className="neo-title text-sm">ACTIVE</span>
           </div>
-          <p className="neo-title text-5xl text-black">{meetings.length}</p>
-          <p className="neo-mono mt-1 text-xs text-black">MEETINGS</p>
+          <p className="neo-title text-6xl text-black">{meetings.length}</p>
+          <p className="neo-mono mt-2 text-sm text-black">MEETINGS</p>
         </motion.article>
       ),
     },
@@ -749,21 +749,21 @@ export const Dashboard = () => {
       id: "latestStat",
       label: "Latest Check-In",
       hint: "Most recent activity timestamp",
-      className: "lg:col-span-2",
+      className: "lg:col-span-3",
       content: (
         <motion.article
           variants={statCardVariants}
           initial="hidden"
           animate="show"
-          className="bg-[var(--lavender)] border-4 border-black p-5"
+          className="bg-[var(--lavender)] border-4 border-black p-6"
           style={{ boxShadow: "6px 6px 0px 0px black" }}
         >
-          <div className="mb-3 flex items-center gap-2">
-            <Clock size={18} strokeWidth={3} />
-            <span className="neo-title text-xs">LATEST</span>
+          <div className="mb-4 flex items-center gap-2">
+            <Clock size={20} strokeWidth={3} />
+            <span className="neo-title text-sm">LATEST</span>
           </div>
           <motion.p
-            className="neo-mono truncate text-sm text-black"
+            className="neo-mono text-base text-black"
             key={checkins[0]?.id || "none"}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -777,7 +777,7 @@ export const Dashboard = () => {
       id: "treasurySummary",
       label: "Treasury Snapshot",
       hint: "Quick jump to the treasury page",
-      className: "lg:col-span-2",
+      className: "lg:col-span-3",
       content: <TreasurySummary />,
     },
     addMeeting: {
