@@ -5,18 +5,32 @@ service cloud.firestore {
       return request.auth != null;
     }
 
-    function isOwner(userId) {
+    function isCurrentUser(userId) {
       return isSignedIn() && request.auth.uid == userId;
     }
 
-    function ownsMeeting(meetingId) {
-      return isSignedIn()
-        && exists(/databases/$(database)/documents/meetings/$(meetingId))
-        && get(/databases/$(database)/documents/meetings/$(meetingId)).data.userId == request.auth.uid;
+    function ownsResource() {
+      return isSignedIn() && resource.data.userId == request.auth.uid;
     }
 
-    function meetingCreateIsValid() {
-      return request.resource.data.keys().hasOnly([
+    function hasOnlyKeys(allowedKeys) {
+      return request.resource.data.keys().hasOnly(allowedKeys);
+    }
+
+    function createsOwnedDocument(allowedKeys) {
+      return hasOnlyKeys(allowedKeys)
+        && isCurrentUser(request.resource.data.userId);
+    }
+
+    function updatesOwnedDocument(allowedKeys) {
+      return ownsResource()
+        && hasOnlyKeys(allowedKeys)
+        && request.resource.data.userId == resource.data.userId;
+    }
+
+    match /meetings/{meetingId} {
+      allow read, delete: if ownsResource();
+      allow create: if createsOwnedDocument([
           'userId',
           'name',
           'location',
@@ -24,23 +38,26 @@ service cloud.firestore {
           'createdAt',
           'updatedAt'
         ])
-        && isOwner(request.resource.data.userId)
         && request.resource.data.name is string
         && request.resource.data.location is string
         && request.resource.data.time is string;
-    }
-
-    function meetingUpdateIsValid() {
-      return isOwner(resource.data.userId)
-        && request.resource.data.userId == resource.data.userId
+      allow update: if updatesOwnedDocument([
+          'userId',
+          'name',
+          'location',
+          'time',
+          'createdAt',
+          'updatedAt'
+        ])
         && request.resource.data.createdAt == resource.data.createdAt
         && request.resource.data.name is string
         && request.resource.data.location is string
         && request.resource.data.time is string;
     }
 
-    function checkinCreateIsValid() {
-      return request.resource.data.keys().hasOnly([
+    match /checkins/{checkinId} {
+      allow read, delete: if ownsResource();
+      allow create: if createsOwnedDocument([
           'userId',
           'meetingId',
           'meetingName',
@@ -48,23 +65,11 @@ service cloud.firestore {
           'note',
           'createdAt'
         ])
-        && isOwner(request.resource.data.userId)
         && request.resource.data.meetingId is string
         && request.resource.data.meetingName is string
         && request.resource.data.dayKey is string
-        && (request.resource.data.note == null || request.resource.data.note is string)
-        && ownsMeeting(request.resource.data.meetingId);
-    }
-
-    function checkinUpdateIsValid() {
-      return isOwner(resource.data.userId)
-        && request.resource.data.userId == resource.data.userId
-        && request.resource.data.meetingId == resource.data.meetingId
-        && request.resource.data.meetingName == resource.data.meetingName
-        && request.resource.data.createdAt == resource.data.createdAt
-        && request.resource.data.dayKey is string
-        && (request.resource.data.note == null || request.resource.data.note is string)
-        && request.resource.data.keys().hasOnly([
+        && (request.resource.data.note == null || request.resource.data.note is string);
+      allow update: if updatesOwnedDocument([
           'userId',
           'meetingId',
           'meetingName',
@@ -72,11 +77,17 @@ service cloud.firestore {
           'note',
           'createdAt',
           'updatedAt'
-        ]);
+        ])
+        && request.resource.data.meetingId == resource.data.meetingId
+        && request.resource.data.meetingName == resource.data.meetingName
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.dayKey is string
+        && (request.resource.data.note == null || request.resource.data.note is string);
     }
 
-    function transactionCreateIsValid() {
-      return request.resource.data.keys().hasOnly([
+    match /transactions/{transactionId} {
+      allow read, delete: if ownsResource();
+      allow create: if createsOwnedDocument([
           'userId',
           'date',
           'amount',
@@ -86,17 +97,21 @@ service cloud.firestore {
           'createdAt',
           'updatedAt'
         ])
-        && isOwner(request.resource.data.userId)
         && request.resource.data.date is string
         && request.resource.data.amount is number
         && request.resource.data.type is string
         && request.resource.data.category is string
         && request.resource.data.note is string;
-    }
-
-    function transactionUpdateIsValid() {
-      return isOwner(resource.data.userId)
-        && request.resource.data.userId == resource.data.userId
+      allow update: if updatesOwnedDocument([
+          'userId',
+          'date',
+          'amount',
+          'type',
+          'category',
+          'note',
+          'createdAt',
+          'updatedAt'
+        ])
         && request.resource.data.createdAt == resource.data.createdAt
         && request.resource.data.date is string
         && request.resource.data.amount is number
@@ -105,49 +120,28 @@ service cloud.firestore {
         && request.resource.data.note is string;
     }
 
-    function userProfileCreateIsValid() {
-      return request.resource.data.keys().hasOnly([
+    match /userProfiles/{userId} {
+      allow read: if isCurrentUser(userId);
+      allow create: if isCurrentUser(userId)
+        && hasOnlyKeys([
           'userId',
           'sobrietyDate',
           'dashboardLayout',
           'updatedAt'
         ])
-        && isOwner(request.resource.data.userId)
+        && request.resource.data.userId == userId
         && (request.resource.data.sobrietyDate == null || request.resource.data.sobrietyDate is string)
         && (!('dashboardLayout' in request.resource.data) || request.resource.data.dashboardLayout is list);
-    }
-
-    function userProfileUpdateIsValid() {
-      return isOwner(resource.data.userId)
-        && request.resource.data.userId == resource.data.userId
+      allow update: if isCurrentUser(userId)
+        && hasOnlyKeys([
+          'userId',
+          'sobrietyDate',
+          'dashboardLayout',
+          'updatedAt'
+        ])
+        && request.resource.data.userId == userId
         && (request.resource.data.sobrietyDate == null || request.resource.data.sobrietyDate is string)
         && (!('dashboardLayout' in request.resource.data) || request.resource.data.dashboardLayout is list);
-    }
-
-    match /meetings/{meetingId} {
-      allow read, delete: if isOwner(resource.data.userId);
-      allow create: if meetingCreateIsValid();
-      allow update: if meetingUpdateIsValid();
-    }
-
-    match /checkins/{checkinId} {
-      allow get: if isSignedIn();
-      allow list: if isOwner(resource.data.userId);
-      allow create: if checkinCreateIsValid();
-      allow update: if checkinUpdateIsValid();
-      allow delete: if isOwner(resource.data.userId);
-    }
-
-    match /transactions/{transactionId} {
-      allow read, delete: if isOwner(resource.data.userId);
-      allow create: if transactionCreateIsValid();
-      allow update: if transactionUpdateIsValid();
-    }
-
-    match /userProfiles/{userId} {
-      allow read: if isOwner(userId);
-      allow create: if userProfileCreateIsValid();
-      allow update: if userProfileUpdateIsValid();
       allow delete: if false;
     }
   }

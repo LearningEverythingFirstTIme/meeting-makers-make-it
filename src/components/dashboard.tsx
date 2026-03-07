@@ -538,6 +538,8 @@ export const Dashboard = () => {
     setError(null);
 
     try {
+      await user.getIdToken();
+
       const meetingRef = doc(db, "meetings", meeting.id);
       const checkinRef = doc(db, "checkins", checkinId);
 
