@@ -551,17 +551,10 @@ export const Dashboard = () => {
         throw new Error("already-checked-in");
       }
 
-      const [meetingSnap, checkinSnap] = await Promise.all([
-        getDoc(meetingRef),
-        getDoc(checkinRef),
-      ]);
+      const meetingSnap = await getDoc(meetingRef);
 
       if (!meetingSnap.exists() || meetingSnap.data().userId !== user.uid) {
         throw new Error("Meeting no longer exists.");
-      }
-
-      if (checkinSnap.exists()) {
-        throw new Error("already-checked-in");
       }
 
       await setDoc(checkinRef, {
@@ -572,11 +565,6 @@ export const Dashboard = () => {
         createdAt: serverTimestamp(),
       });
 
-      const persistedCheckin = await getDoc(checkinRef);
-      if (!persistedCheckin.exists()) {
-        throw new Error("checkin-write-missing");
-      }
-
       setCheckinSuccessId(meeting.id);
       setTimeout(() => setCheckinSuccessId(null), 600);
     } catch (err) {
@@ -585,15 +573,19 @@ export const Dashboard = () => {
         return;
       }
 
-      if (err instanceof Error && err.message === "checkin-write-missing") {
-        setError("Check-in could not be confirmed. Please refresh and try again.");
-        return;
-      }
-
       if (err instanceof FirebaseError && err.code === "permission-denied") {
+        console.error("Check-in permission denied", {
+          uid: user.uid,
+          meetingId: meeting.id,
+          checkinId,
+          code: err.code,
+          message: err.message,
+        });
         setError("Permission denied for this operation.");
         return;
       }
+
+      console.error("Check-in failed", err);
 
       setError("Check-in failed. Please retry.");
     } finally {
