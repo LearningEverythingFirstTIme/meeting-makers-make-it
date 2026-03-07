@@ -1,3 +1,13 @@
+export const DASHBOARD_SECTION_IDS = [
+  "hero",
+  "recentCheckins",
+  "yourMeetings",
+  "activityTracker",
+  "weeklyLog",
+] as const;
+
+export type DashboardSectionId = (typeof DASHBOARD_SECTION_IDS)[number];
+
 export type Meeting = {
   id: string;
   userId: string;
@@ -64,6 +74,7 @@ export type TreasurySummary = {
 export type UserProfile = {
   userId: string;
   sobrietyDate?: string;
+  dashboardLayout?: DashboardSectionId[];
   updatedAt?: Date;
 };
 

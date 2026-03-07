@@ -112,16 +112,19 @@ service cloud.firestore {
       return request.resource.data.keys().hasOnly([
           'userId',
           'sobrietyDate',
+          'dashboardLayout',
           'updatedAt'
         ])
         && isOwner(request.resource.data.userId)
-        && (request.resource.data.sobrietyDate == null || request.resource.data.sobrietyDate is string);
+        && (request.resource.data.sobrietyDate == null || request.resource.data.sobrietyDate is string)
+        && (!('dashboardLayout' in request.resource.data) || request.resource.data.dashboardLayout is list);
     }
 
     function userProfileUpdateIsValid() {
       return isOwner(resource.data.userId)
         && request.resource.data.userId == resource.data.userId
-        && (request.resource.data.sobrietyDate == null || request.resource.data.sobrietyDate is string);
+        && (request.resource.data.sobrietyDate == null || request.resource.data.sobrietyDate is string)
+        && (!('dashboardLayout' in request.resource.data) || request.resource.data.dashboardLayout is list);
     }
 
     match /meetings/{meetingId} {

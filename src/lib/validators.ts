@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { DASHBOARD_SECTION_IDS } from "@/types";
 
 export const meetingSchema = z.object({
   name: z.string().trim().min(2, "Meeting name is required").max(100),
@@ -42,3 +43,25 @@ export const checkinUpdateSchema = z.object({
 });
 
 export type CheckinUpdateInput = z.infer<typeof checkinUpdateSchema>;
+
+export const dashboardSectionIdSchema = z.enum(DASHBOARD_SECTION_IDS);
+
+export const dashboardLayoutSchema = z.array(dashboardSectionIdSchema).length(
+  DASHBOARD_SECTION_IDS.length,
+  `Layout must include all ${DASHBOARD_SECTION_IDS.length} dashboard sections`,
+).refine(
+  (layout) => new Set(layout).size === DASHBOARD_SECTION_IDS.length,
+  "Layout sections must be unique",
+);
+
+export type DashboardLayoutInput = z.infer<typeof dashboardLayoutSchema>;
+
+export const normalizeDashboardLayout = (value: unknown): DashboardLayoutInput => {
+  const parsed = dashboardLayoutSchema.safeParse(value);
+
+  if (parsed.success) {
+    return parsed.data;
+  }
+
+  return [...DASHBOARD_SECTION_IDS];
+};
