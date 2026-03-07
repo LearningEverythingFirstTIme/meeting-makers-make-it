@@ -11,6 +11,7 @@ import {
   query,
   runTransaction,
   serverTimestamp,
+  setDoc,
   where,
 } from "firebase/firestore";
 import { FirebaseError } from "firebase/app";
@@ -21,9 +22,13 @@ import { useAuth } from "@/components/auth-provider";
 import { Navigation } from "@/components/navigation";
 import { MeetingForm } from "@/components/meeting-form";
 import { TreasurySummary } from "@/components/treasury/treasury-summary";
+import { SobrietyCounter } from "@/components/sobriety-counter";
+import { SobrietySetup } from "@/components/sobriety-setup";
 import { addDays, formatDateTime, formatShortDate, makeCheckinId, startOfWeek, toLocalDayKey } from "@/lib/date";
-import type { Checkin, Meeting } from "@/types";
-import type { MeetingInput } from "@/lib/validators";
+import { getTodayDate } from "@/lib/treasury-utils";
+import { checkinUpdateSchema } from "@/lib/validators";
+import type { Checkin, Meeting, UserProfile } from "@/types";
+import type { MeetingInput, SobrietyDateInput } from "@/lib/validators";
 
 const safeDate = (value: unknown): Date | undefined => {
   if (!value || typeof value !== "object") return undefined;
@@ -118,11 +123,18 @@ export const Dashboard = () => {
   const db = getClientDb();
   const [meetings, setMeetings] = useState<Meeting[]>([]);
   const [checkins, setCheckins] = useState<Checkin[]>([]);
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [editingMeetingId, setEditingMeetingId] = useState<string | null>(null);
   const [pendingCheckinId, setPendingCheckinId] = useState<string | null>(null);
   const [checkinSuccessId, setCheckinSuccessId] = useState<string | null>(null);
+  const [showSobrietySetup, setShowSobrietySetup] = useState(false);
+  
+  // Check-in editing state
+  const [editingCheckinId, setEditingCheckinId] = useState<string | null>(null);
+  const [editingCheckinNote, setEditingCheckinNote] = useState("");
+  const [editingCheckinDate, setEditingCheckinDate] = useState("");
 
   useEffect(() => {
     if (!user) return;
@@ -136,6 +148,8 @@ export const Dashboard = () => {
       collection(db, "checkins"),
       where("userId", "==", user.uid),
     );
+
+    const profileRef = doc(db, "userProfiles", user.uid);
 
     const unsubMeetings = onSnapshot(
       meetingsQuery,
@@ -173,6 +187,7 @@ export const Dashboard = () => {
             meetingId: data.meetingId,
             meetingName: data.meetingName,
             dayKey: data.dayKey,
+            note: data.note,
             createdAt: safeDate(data.createdAt),
           } satisfies Checkin;
         });
@@ -194,9 +209,31 @@ export const Dashboard = () => {
       },
     );
 
+    // Subscribe to user profile
+    const unsubProfile = onSnapshot(
+      profileRef,
+      (snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.data();
+          setUserProfile({
+            userId: snapshot.id,
+            sobrietyDate: data.sobrietyDate,
+            updatedAt: safeDate(data.updatedAt),
+          });
+        } else {
+          setUserProfile(null);
+        }
+      },
+      () => {
+        // Profile might not exist yet, that's okay
+        setUserProfile(null);
+      }
+    );
+
     return () => {
       unsubMeetings();
       unsubCheckins();
+      unsubProfile();
     };
   }, [db, user]);
 
@@ -365,6 +402,86 @@ export const Dashboard = () => {
   const alreadyCheckedInToday = (meetingId: string): boolean =>
     checkins.some((entry) => entry.meetingId === meetingId && entry.dayKey === todayKey);
 
+  // Sobriety date functions
+  const updateSobrietyDate = async (data: SobrietyDateInput) => {
+    if (!user) return;
+    
+    const profileRef = doc(db, "userProfiles", user.uid);
+    
+    if (data.sobrietyDate) {
+      await setDoc(profileRef, {
+        userId: user.uid,
+        sobrietyDate: data.sobrietyDate,
+        updatedAt: serverTimestamp(),
+      }, { merge: true });
+    } else {
+      // Clear sobriety date
+      await setDoc(profileRef, {
+        sobrietyDate: null,
+        updatedAt: serverTimestamp(),
+      }, { merge: true });
+    }
+  };
+
+  // Check-in edit/delete functions
+  const startEditingCheckin = (checkin: Checkin) => {
+    setEditingCheckinId(checkin.id);
+    setEditingCheckinNote(checkin.note || "");
+    setEditingCheckinDate(checkin.dayKey);
+  };
+
+  const cancelEditingCheckin = () => {
+    setEditingCheckinId(null);
+    setEditingCheckinNote("");
+    setEditingCheckinDate("");
+  };
+
+  const saveCheckinEdit = async (checkinId: string) => {
+    setError(null);
+    
+    const parsed = checkinUpdateSchema.safeParse({
+      dayKey: editingCheckinDate,
+      note: editingCheckinNote,
+    });
+
+    if (!parsed.success) {
+      setError(parsed.error.issues[0]?.message ?? "Invalid input");
+      return;
+    }
+
+    try {
+      const checkinRef = doc(db, "checkins", checkinId);
+      await setDoc(checkinRef, {
+        dayKey: parsed.data.dayKey,
+        note: parsed.data.note || null,
+        updatedAt: serverTimestamp(),
+      }, { merge: true });
+      
+      cancelEditingCheckin();
+    } catch (err) {
+      if (err instanceof FirebaseError && err.code === "permission-denied") {
+        setError("Permission denied. You can only edit your own check-ins.");
+        return;
+      }
+      setError("Failed to update check-in.");
+    }
+  };
+
+  const deleteCheckin = async (checkinId: string, meetingName: string) => {
+    const confirmed = window.confirm(`Delete check-in for "${meetingName}"? This cannot be undone.`);
+    if (!confirmed) return;
+
+    try {
+      await deleteDoc(doc(db, "checkins", checkinId));
+    } catch (err) {
+      if (err instanceof FirebaseError && err.code === "permission-denied") {
+        setError("Permission denied. You can only delete your own check-ins.");
+        return;
+      }
+      setError("Failed to delete check-in.");
+    }
+  };
+
   return (
     <main className="min-h-screen">
       <Navigation />
@@ -387,66 +504,82 @@ export const Dashboard = () => {
             )}
           </AnimatePresence>
 
-          <motion.section 
-            variants={staggerContainer}
-            initial="hidden"
-            animate="show"
-            className="grid gap-4 md:grid-cols-4"
+          {/* Sobriety Counter Section */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
           >
-            <motion.article 
-              variants={statCardVariants}
-              className="bg-[var(--mint)] border-4 border-black p-5"
-              style={{ boxShadow: '6px 6px 0px 0px black' }}
-            >
-              <div className="flex items-center gap-2 mb-3">
-                <Calendar size={18} strokeWidth={3} />
-                <span className="neo-title text-xs">WEEKLY</span>
-              </div>
-              <motion.p 
-                className="neo-title text-5xl text-black"
-                key={thisWeekCheckins.length}
-                initial={{ scale: 1.3 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.3 }}
+            <div className="lg:col-span-1">
+              <SobrietyCounter 
+                sobrietyDate={userProfile?.sobrietyDate || null}
+                onEdit={() => setShowSobrietySetup(true)}
+              />
+            </div>
+            
+            <div className="lg:col-span-2">
+              <motion.section 
+                variants={staggerContainer}
+                initial="hidden"
+                animate="show"
+                className="grid gap-4 grid-cols-2 md:grid-cols-4"
               >
-                {thisWeekCheckins.length}
-              </motion.p>
-              <p className="neo-mono text-xs text-black mt-1">CHECK-INS</p>
-            </motion.article>
+                <motion.article 
+                  variants={statCardVariants}
+                  className="bg-[var(--mint)] border-4 border-black p-5"
+                  style={{ boxShadow: '6px 6px 0px 0px black' }}
+                >
+                  <div className="flex items-center gap-2 mb-3">
+                    <Calendar size={18} strokeWidth={3} />
+                    <span className="neo-title text-xs">WEEKLY</span>
+                  </div>
+                  <motion.p 
+                    className="neo-title text-5xl text-black"
+                    key={thisWeekCheckins.length}
+                    initial={{ scale: 1.3 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {thisWeekCheckins.length}
+                  </motion.p>
+                  <p className="neo-mono text-xs text-black mt-1">CHECK-INS</p>
+                </motion.article>
 
-            <motion.article 
-              variants={statCardVariants}
-              className="bg-[var(--butter)] border-4 border-black p-5"
-              style={{ boxShadow: '6px 6px 0px 0px black' }}
-            >
-              <div className="flex items-center gap-2 mb-3">
-                <Activity size={18} strokeWidth={3} />
-                <span className="neo-title text-xs">ACTIVE</span>
-              </div>
-              <p className="neo-title text-5xl text-black">{meetings.length}</p>
-              <p className="neo-mono text-xs text-black mt-1">MEETINGS</p>
-            </motion.article>
+                <motion.article 
+                  variants={statCardVariants}
+                  className="bg-[var(--butter)] border-4 border-black p-5"
+                  style={{ boxShadow: '6px 6px 0px 0px black' }}
+                >
+                  <div className="flex items-center gap-2 mb-3">
+                    <Activity size={18} strokeWidth={3} />
+                    <span className="neo-title text-xs">ACTIVE</span>
+                  </div>
+                  <p className="neo-title text-5xl text-black">{meetings.length}</p>
+                  <p className="neo-mono text-xs text-black mt-1">MEETINGS</p>
+                </motion.article>
 
-            <motion.article 
-              variants={statCardVariants}
-              className="bg-[var(--lavender)] border-4 border-black p-5"
-              style={{ boxShadow: '6px 6px 0px 0px black' }}
-            >
-              <div className="flex items-center gap-2 mb-3">
-                <Clock size={18} strokeWidth={3} />
-                <span className="neo-title text-xs">LATEST</span>
-              </div>
-              <motion.p 
-                className="neo-mono text-sm text-black truncate"
-                key={checkins[0]?.id || 'none'}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-              >
-                {checkins[0]?.createdAt ? formatDateTime(checkins[0].createdAt) : "NO DATA"}
-              </motion.p>
-            </motion.article>
+                <motion.article 
+                  variants={statCardVariants}
+                  className="bg-[var(--lavender)] border-4 border-black p-5"
+                  style={{ boxShadow: '6px 6px 0px 0px black' }}
+                >
+                  <div className="flex items-center gap-2 mb-3">
+                    <Clock size={18} strokeWidth={3} />
+                    <span className="neo-title text-xs">LATEST</span>
+                  </div>
+                  <motion.p 
+                    className="neo-mono text-sm text-black truncate"
+                    key={checkins[0]?.id || 'none'}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                  >
+                    {checkins[0]?.createdAt ? formatDateTime(checkins[0].createdAt) : "NO DATA"}
+                  </motion.p>
+                </motion.article>
 
-            <TreasurySummary />
+                <TreasurySummary />
+              </motion.section>
+            </div>
           </motion.section>
 
           <section className="grid gap-6 lg:grid-cols-[1fr_1.5fr]">
@@ -475,19 +608,84 @@ export const Dashboard = () => {
               >
                 <div className="flex items-center gap-2 mb-4 pb-3 border-b-4 border-black">
                   <span className="neo-title text-sm text-[var(--mint)]">►</span>
-                  <span className="neo-title text-sm">RECENT</span>
+                  <span className="neo-title text-sm">RECENT CHECK-INS</span>
                 </div>
                 <ul className="space-y-2">
                   {checkins.slice(0, 8).map((entry) => (
                     <motion.li 
                       variants={logItemVariants}
                       key={entry.id} 
-                      className="bg-[var(--cream)] border-2 border-black px-3 py-2 flex items-center justify-between"
+                      className="bg-[var(--cream)] border-2 border-black px-3 py-2"
                     >
-                      <span className="neo-mono text-xs uppercase truncate max-w-[150px]">{entry.meetingName}</span>
-                      <span className="neo-mono text-[10px]">
-                        {entry.createdAt ? formatDateTime(entry.createdAt) : entry.dayKey}
-                      </span>
+                      {editingCheckinId === entry.id ? (
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2">
+                            <input
+                              type="date"
+                              value={editingCheckinDate}
+                              onChange={(e) => setEditingCheckinDate(e.target.value)}
+                              className="neo-input text-xs py-1"
+                              max={getTodayDate()}
+                            />
+                          </div>
+                          <input
+                            type="text"
+                            value={editingCheckinNote}
+                            onChange={(e) => setEditingCheckinNote(e.target.value)}
+                            placeholder="Add a note..."
+                            className="neo-input text-xs py-1"
+                            maxLength={200}
+                          />
+                          <div className="flex gap-2">
+                            <motion.button
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                              onClick={() => saveCheckinEdit(entry.id)}
+                              className="neo-button text-[10px] py-1 px-2 bg-[var(--mint)]"
+                            >
+                              SAVE
+                            </motion.button>
+                            <motion.button
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                              onClick={cancelEditingCheckin}
+                              className="neo-button text-[10px] py-1 px-2 bg-gray-200"
+                            >
+                              CANCEL
+                            </motion.button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="flex items-center justify-between">
+                          <div className="flex-1 min-w-0">
+                            <span className="neo-mono text-xs uppercase truncate block">{entry.meetingName}</span>
+                            {entry.note && (
+                              <span className="neo-mono text-[10px] text-gray-500 truncate block">&ldquo;{entry.note}&rdquo;</span>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2 ml-2">
+                            <span className="neo-mono text-[10px] whitespace-nowrap">
+                              {entry.createdAt ? formatDateTime(entry.createdAt).split(' ')[0] : entry.dayKey}
+                            </span>
+                            <motion.button
+                              whileHover={{ scale: 1.1 }}
+                              whileTap={{ scale: 0.9 }}
+                              onClick={() => startEditingCheckin(entry)}
+                              className="p-1 hover:bg-[var(--butter)] border border-black"
+                            >
+                              <Edit2 size={10} strokeWidth={3} />
+                            </motion.button>
+                            <motion.button
+                              whileHover={{ scale: 1.1 }}
+                              whileTap={{ scale: 0.9 }}
+                              onClick={() => deleteCheckin(entry.id, entry.meetingName)}
+                              className="p-1 hover:bg-[var(--coral)] border border-black"
+                            >
+                              <Trash2 size={10} strokeWidth={3} />
+                            </motion.button>
+                          </div>
+                        </div>
+                      )}
                     </motion.li>
                   ))}
                   {checkins.length === 0 ? (
@@ -639,6 +837,7 @@ export const Dashboard = () => {
                                 <span 
                                   key={entry.id} 
                                   className="bg-[var(--cream)] border border-black px-2 py-1 neo-mono text-[10px]"
+                                  title={entry.note || undefined}
                                 >
                                   {entry.createdAt ? formatDateTime(entry.createdAt).split(' ')[0] : entry.dayKey}
                                 </span>
@@ -767,8 +966,13 @@ export const Dashboard = () => {
                         key={entry.id} 
                         className="bg-[var(--lavender)] border-2 border-black px-4 py-2 flex items-center justify-between"
                       >
-                        <span className="neo-mono text-xs uppercase">{meeting?.name ?? entry.meetingName}</span>
-                        <span className="neo-mono text-[10px]">
+                        <div className="flex-1 min-w-0">
+                          <span className="neo-mono text-xs uppercase block">{meeting?.name ?? entry.meetingName}</span>
+                          {entry.note && (
+                            <span className="neo-mono text-[10px] text-gray-600 truncate block">&ldquo;{entry.note}&rdquo;</span>
+                          )}
+                        </div>
+                        <span className="neo-mono text-[10px] whitespace-nowrap ml-2">
                           {entry.createdAt ? formatDateTime(entry.createdAt) : entry.dayKey}
                         </span>
                       </motion.li>
@@ -783,6 +987,17 @@ export const Dashboard = () => {
           </section>
         </div>
       </div>
+
+      {/* Sobriety Setup Modal */}
+      <AnimatePresence>
+        {showSobrietySetup && (
+          <SobrietySetup
+            currentDate={userProfile?.sobrietyDate || null}
+            onSubmit={updateSobrietyDate}
+            onClose={() => setShowSobrietySetup(false)}
+          />
+        )}
+      </AnimatePresence>
     </main>
   );
 };

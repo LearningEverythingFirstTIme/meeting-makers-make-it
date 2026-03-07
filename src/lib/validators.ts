@@ -29,3 +29,16 @@ export const isValidContributionCategory = (category: string): category is typeo
 export const isValidExpenseCategory = (category: string): category is typeof expenseCategories[number] => {
   return expenseCategories.includes(category as typeof expenseCategories[number]);
 };
+
+export const sobrietyDateSchema = z.object({
+  sobrietyDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date format (use YYYY-MM-DD)"),
+});
+
+export type SobrietyDateInput = z.infer<typeof sobrietyDateSchema>;
+
+export const checkinUpdateSchema = z.object({
+  dayKey: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date format (use YYYY-MM-DD)"),
+  note: z.string().trim().max(500, "Note must be 500 characters or less").optional(),
+});
+
+export type CheckinUpdateInput = z.infer<typeof checkinUpdateSchema>;

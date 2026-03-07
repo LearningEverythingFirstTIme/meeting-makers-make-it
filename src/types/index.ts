@@ -14,6 +14,7 @@ export type Checkin = {
   meetingId: string;
   meetingName: string;
   dayKey: string;
+  note?: string;
   createdAt?: Date;
 };
 
@@ -58,4 +59,17 @@ export type TreasurySummary = {
   expenses: number;
   net: number;
   transactionCount: number;
+};
+
+export type UserProfile = {
+  userId: string;
+  sobrietyDate?: string;
+  updatedAt?: Date;
+};
+
+export type SobrietyMilestone = {
+  days: number;
+  label: string;
+  chipColor: string;
+  description: string;
 };

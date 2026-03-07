@@ -45,16 +45,37 @@ service cloud.firestore {
           'meetingId',
           'meetingName',
           'dayKey',
+          'note',
           'createdAt'
         ])
         && isOwner(request.resource.data.userId)
         && request.resource.data.meetingId is string
         && request.resource.data.meetingName is string
         && request.resource.data.dayKey is string
+        && (request.resource.data.note == null || request.resource.data.note is string)
         && isSignedIn()
         && exists(/databases/$(database)/documents/meetings/$(request.resource.data.meetingId))
         && get(/databases/$(database)/documents/meetings/$(request.resource.data.meetingId)).data.userId == request.auth.uid
         && get(/databases/$(database)/documents/meetings/$(request.resource.data.meetingId)).data.name == request.resource.data.meetingName;
+    }
+
+    function checkinUpdateIsValid() {
+      return isOwner(resource.data.userId)
+        && request.resource.data.userId == resource.data.userId
+        && request.resource.data.meetingId == resource.data.meetingId
+        && request.resource.data.meetingName == resource.data.meetingName
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.dayKey is string
+        && (request.resource.data.note == null || request.resource.data.note is string)
+        && request.resource.data.keys().hasOnly([
+          'userId',
+          'meetingId',
+          'meetingName',
+          'dayKey',
+          'note',
+          'createdAt',
+          'updatedAt'
+        ]);
     }
 
     function transactionCreateIsValid() {
@@ -87,6 +108,22 @@ service cloud.firestore {
         && request.resource.data.note is string;
     }
 
+    function userProfileCreateIsValid() {
+      return request.resource.data.keys().hasOnly([
+          'userId',
+          'sobrietyDate',
+          'updatedAt'
+        ])
+        && isOwner(request.resource.data.userId)
+        && (request.resource.data.sobrietyDate == null || request.resource.data.sobrietyDate is string);
+    }
+
+    function userProfileUpdateIsValid() {
+      return isOwner(resource.data.userId)
+        && request.resource.data.userId == resource.data.userId
+        && (request.resource.data.sobrietyDate == null || request.resource.data.sobrietyDate is string);
+    }
+
     match /meetings/{meetingId} {
       allow read, delete: if isOwner(resource.data.userId);
       allow create: if meetingCreateIsValid();
@@ -94,16 +131,24 @@ service cloud.firestore {
     }
 
     match /checkins/{checkinId} {
-      allow get: if true;
+      allow get: if isSignedIn();
       allow list: if isOwner(resource.data.userId);
       allow create: if checkinCreateIsValid();
-      allow update, delete: if false;
+      allow update: if checkinUpdateIsValid();
+      allow delete: if isOwner(resource.data.userId);
     }
 
     match /transactions/{transactionId} {
       allow read, delete: if isOwner(resource.data.userId);
       allow create: if transactionCreateIsValid();
       allow update: if transactionUpdateIsValid();
+    }
+
+    match /userProfiles/{userId} {
+      allow read: if isOwner(userId);
+      allow create: if userProfileCreateIsValid();
+      allow update: if userProfileUpdateIsValid();
+      allow delete: if false;
     }
   }
 }
