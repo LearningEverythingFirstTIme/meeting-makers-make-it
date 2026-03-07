@@ -9,12 +9,12 @@ Production-ready meeting attendance tracker built with **Next.js (App Router) + 
   - Meeting fields: name, location, time
 - Daily check-ins for meetings
 - Duplicate same-day check-in protection
-  - UI disable + Firestore transaction guard using deterministic check-in IDs
+  - UI disable + deterministic check-in IDs per user/meeting/day
 - Activity dashboard
   - This week check-ins
   - Latest check-ins
   - Per-meeting recent history
-- Firestore security rules + indexes included
+- Simple owner-based Firestore security rules + indexes included
 - Unit test for date/check-in utility logic
 
 ## Tech Stack
@@ -50,6 +50,13 @@ Document fields:
 - `createdAt: Timestamp`
 
 This deterministic ID acts as a data-level uniqueness guard for one check-in/day/meeting/user.
+
+## Firestore Security Model
+
+- Every document is scoped to a single Firebase Auth user via `userId`.
+- `meetings`, `checkins`, and `transactions` use simple owner-only access rules.
+- `userProfiles/{userId}` is readable and writable only by that matching signed-in user.
+- The client writes directly to Firestore, so publishing `firestore.rules` is a required deployment step.
 
 ## 1) Firebase Console Setup
 

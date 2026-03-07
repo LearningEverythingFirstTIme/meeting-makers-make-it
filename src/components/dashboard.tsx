@@ -536,17 +536,11 @@ export const Dashboard = () => {
     const checkinId = makeCheckinId(user.uid, meeting.id, todayKey);
     const meetingRef = doc(db, "meetings", meeting.id);
     const checkinRef = doc(db, "checkins", checkinId);
-    let tokenUid: string | null = null;
     setPendingCheckinId(meeting.id);
     setError(null);
 
     try {
-      const tokenResult = await user.getIdTokenResult(true);
-      tokenUid = typeof tokenResult.claims.user_id === "string"
-        ? tokenResult.claims.user_id
-        : typeof tokenResult.claims.sub === "string"
-          ? tokenResult.claims.sub
-          : null;
+      await user.getIdToken();
 
       const existingCheckin = checkins.find(
         (entry) => entry.meetingId === meeting.id && entry.dayKey === todayKey,
@@ -595,19 +589,9 @@ export const Dashboard = () => {
           // Ignore follow-up read failures and fall through to the original error.
         }
 
-        console.error("Check-in permission denied", {
-          uid: user.uid,
-          tokenUid,
-          meetingId: meeting.id,
-          checkinId,
-          code: err.code,
-          message: err.message,
-        });
         setError("Permission denied for this operation.");
         return;
       }
-
-      console.error("Check-in failed", err);
 
       setError("Check-in failed. Please retry.");
     } finally {
@@ -786,16 +770,16 @@ export const Dashboard = () => {
             <Clock size={20} strokeWidth={3} />
             <span className="neo-title text-sm">LATEST</span>
           </div>
-          <div className="mt-auto space-y-2">
+          <div className="mt-auto space-y-3">
             <motion.p
-              className="neo-mono text-sm leading-snug text-black"
+              className="neo-mono text-lg leading-snug text-black"
               key={checkins[0]?.id || "none"}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
               {checkins[0]?.createdAt ? formatDateTime(checkins[0].createdAt) : "NO DATA"}
             </motion.p>
-            <p className="neo-mono text-sm text-black/75">
+            <p className="neo-mono text-base font-bold text-black">
               {checkins[0]?.meetingName?.toUpperCase() ?? "NO RECENT CHECK-IN"}
             </p>
           </div>
@@ -1258,7 +1242,7 @@ export const Dashboard = () => {
     <main className="min-h-screen">
       <Navigation />
       <div className="px-4 py-8 md:px-8">
-        <div className="mx-auto max-w-6xl space-y-6">
+        <div className="mx-auto max-w-[1400px] space-y-6">
           <AnimatePresence>
             {error && (
               <motion.div
