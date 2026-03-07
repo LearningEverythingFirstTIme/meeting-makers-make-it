@@ -14,6 +14,12 @@ export const startOfWeek = (date: Date = new Date()): Date => {
   return d;
 };
 
+export const addDays = (date: Date, amount: number): Date => {
+  const next = new Date(date);
+  next.setDate(next.getDate() + amount);
+  return next;
+};
+
 export const formatDateTime = (date: Date): string =>
   new Intl.DateTimeFormat(undefined, {
     month: "short",
@@ -28,3 +34,9 @@ export const makeCheckinId = (
   meetingId: string,
   dayKey: string,
 ): string => `${userId}_${meetingId}_${dayKey}`;
+
+export const formatShortDate = (date: Date): string =>
+  new Intl.DateTimeFormat(undefined, {
+    month: "short",
+    day: "numeric",
+  }).format(date);

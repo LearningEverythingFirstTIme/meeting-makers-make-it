@@ -20,7 +20,7 @@ import { useAuth } from "@/components/auth-provider";
 import { Navigation } from "@/components/navigation";
 import { MeetingForm } from "@/components/meeting-form";
 import { TreasurySummary } from "@/components/treasury/treasury-summary";
-import { formatDateTime, makeCheckinId, startOfWeek, toLocalDayKey } from "@/lib/date";
+import { addDays, formatDateTime, formatShortDate, makeCheckinId, startOfWeek, toLocalDayKey } from "@/lib/date";
 import type { Checkin, Meeting } from "@/types";
 import type { MeetingInput } from "@/lib/validators";
 
@@ -82,6 +82,35 @@ const logItemVariants = {
     transition: { duration: 0.3 }
   },
 };
+
+const ACTIVITY_WEEKS = 16;
+const ACTIVITY_LEVELS = [0, 1, 2, 3, 4] as const;
+
+const activityToneByLevel = [
+  "var(--white)",
+  "var(--butter)",
+  "var(--sky)",
+  "var(--mint)",
+  "var(--coral)",
+] as const;
+
+const activityShadowByLevel = [
+  "0 0 0 0 var(--black)",
+  "2px 2px 0px 0px var(--black)",
+  "2px 2px 0px 0px var(--black)",
+  "2px 2px 0px 0px var(--black)",
+  "2px 2px 0px 0px var(--black)",
+] as const;
+
+const activityLevelForCount = (count: number) => {
+  if (count <= 0) return 0;
+  if (count === 1) return 1;
+  if (count === 2) return 2;
+  if (count === 3) return 3;
+  return 4;
+};
+
+const weekdayLabels = ["MON", "WED", "FRI"];
 
 export const Dashboard = () => {
   const { user } = useAuth();
@@ -191,6 +220,51 @@ export const Dashboard = () => {
     }
     return map;
   }, [checkins]);
+
+  const activityGrid = useMemo(() => {
+    const dayCounts = new Map<string, number>();
+    for (const entry of checkins) {
+      dayCounts.set(entry.dayKey, (dayCounts.get(entry.dayKey) ?? 0) + 1);
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const start = startOfWeek(addDays(today, -(ACTIVITY_WEEKS - 1) * 7));
+    const weeks = [] as Array<{
+      label: string;
+      days: Array<{
+        key: string;
+        date: Date;
+        count: number;
+        level: number;
+        isToday: boolean;
+      }>;
+    }>;
+
+    for (let weekIndex = 0; weekIndex < ACTIVITY_WEEKS; weekIndex += 1) {
+      const weekStart = addDays(start, weekIndex * 7);
+      const days = Array.from({ length: 7 }, (_, dayOffset) => {
+        const date = addDays(weekStart, dayOffset);
+        const key = toLocalDayKey(date);
+        const count = dayCounts.get(key) ?? 0;
+        return {
+          key,
+          date,
+          count,
+          level: activityLevelForCount(count),
+          isToday: key === todayKey,
+        };
+      });
+
+      weeks.push({
+        label: weekStart.getDate() <= 7 ? weekStart.toLocaleString(undefined, { month: "short" }).toUpperCase() : "",
+        days,
+      });
+    }
+
+    return weeks;
+  }, [checkins, todayKey]);
 
   if (!user) return null;
 
@@ -584,6 +658,80 @@ export const Dashboard = () => {
                   </motion.div>
                 ) : null}
               </motion.div>
+
+              <motion.section 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="neo-card p-6"
+              >
+                <div className="flex items-center gap-2 mb-4 pb-3 border-b-4 border-black">
+                  <span className="neo-title text-sm text-[var(--sky)]">►</span>
+                  <span className="neo-title text-sm">ACTIVITY TRACKER</span>
+                </div>
+                <div className="overflow-x-auto pb-2">
+                  <div className="inline-flex min-w-full gap-3">
+                    <div className="flex flex-col pt-8 text-[10px]">
+                      {Array.from({ length: 7 }, (_, dayIndex) => (
+                        <div key={dayIndex} className="flex h-4 items-center justify-end pr-1 neo-mono text-[10px] text-black/70">
+                          {weekdayLabels.includes(["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"][dayIndex])
+                            ? ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"][dayIndex]
+                            : ""}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="flex-1">
+                      <div className="mb-2 grid" style={{ gridTemplateColumns: `repeat(${activityGrid.length}, minmax(0, 1fr))` }}>
+                        {activityGrid.map((week, index) => (
+                          <div key={`${week.label}-${index}`} className="h-6 px-[2px] neo-mono text-[10px] text-black/70">
+                            {week.label}
+                          </div>
+                        ))}
+                      </div>
+                      <div className="grid gap-1" style={{ gridTemplateColumns: `repeat(${activityGrid.length}, minmax(0, 1fr))`, gridTemplateRows: "repeat(7, minmax(0, 1fr))" }}>
+                        {activityGrid.flatMap((week, weekIndex) =>
+                          week.days.map((day, dayIndex) => (
+                            <motion.div
+                              key={day.key}
+                              initial={{ opacity: 0, scale: 0.85 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: weekIndex * 0.01 + dayIndex * 0.01 }}
+                              className={`group relative h-4 w-4 border-2 border-black ${day.isToday ? "ring-2 ring-black ring-offset-2 ring-offset-[var(--cream)]" : ""}`}
+                              style={{
+                                backgroundColor: activityToneByLevel[day.level],
+                                boxShadow: activityShadowByLevel[day.level],
+                                gridColumn: weekIndex + 1,
+                                gridRow: dayIndex + 1,
+                              }}
+                              aria-label={`${day.count} check-ins on ${formatShortDate(day.date)}`}
+                              title={`${formatShortDate(day.date)} - ${day.count} check-in${day.count === 1 ? "" : "s"}`}
+                            />
+                          )),
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 flex flex-col gap-3 border-t-2 border-dashed border-black pt-3 md:flex-row md:items-center md:justify-between">
+                  <p className="neo-mono text-[10px] uppercase text-black/80">
+                    Last {ACTIVITY_WEEKS} weeks of check-ins across all meetings.
+                  </p>
+                  <div className="flex items-center gap-2 neo-mono text-[10px] uppercase">
+                    <span>Less</span>
+                    {ACTIVITY_LEVELS.map((level) => (
+                      <span
+                        key={level}
+                        className="h-4 w-4 border-2 border-black"
+                        style={{
+                          backgroundColor: activityToneByLevel[level],
+                          boxShadow: activityShadowByLevel[level],
+                        }}
+                      />
+                    ))}
+                    <span>More</span>
+                  </div>
+                </div>
+              </motion.section>
 
               <motion.section 
                 initial={{ opacity: 0, y: 10 }}
