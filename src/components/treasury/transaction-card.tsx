@@ -14,6 +14,7 @@ interface TransactionCardProps {
 export const TransactionCard = ({ transaction, onEdit, onDelete }: TransactionCardProps) => {
   const isContribution = transaction.type === 'contribution';
   const categoryLabel = getCategoryLabel(transaction.type, transaction.category);
+  const amount = Number(transaction.amount) || 0;
 
   return (
     <motion.div
@@ -40,7 +41,7 @@ export const TransactionCard = ({ transaction, onEdit, onDelete }: TransactionCa
           </div>
           
           <p className={`neo-mono text-lg font-bold ${isContribution ? 'text-[var(--mint)]' : 'text-[var(--coral)]'}`}>
-            {isContribution ? '+' : '-'}{formatCurrency(transaction.amount)}
+            {isContribution ? '+' : '-'}{formatCurrency(amount)}
           </p>
 
           {transaction.note && (

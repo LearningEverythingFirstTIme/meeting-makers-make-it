@@ -55,7 +55,7 @@ export default function TreasuryPage() {
             id: d.id,
             userId: data.userId,
             date: data.date,
-            amount: data.amount,
+            amount: Number(data.amount) || 0,
             type: data.type,
             category: data.category,
             note: data.note ?? "",
@@ -86,7 +86,7 @@ export default function TreasuryPage() {
     await setDoc(ref, {
       userId: user.uid,
       date: data.date,
-      amount: data.amount,
+      amount: Number(data.amount),
       type: data.type,
       category: data.category,
       note: data.note,
@@ -101,7 +101,7 @@ export default function TreasuryPage() {
     await setDoc(ref, {
       userId: user.uid,
       date: data.date,
-      amount: data.amount,
+      amount: Number(data.amount),
       type: data.type,
       category: data.category,
       note: data.note,

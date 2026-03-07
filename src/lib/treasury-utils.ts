@@ -32,11 +32,11 @@ export const getCategoryLabel = (type: 'contribution' | 'expense', category: str
 export const calculateSummary = (transactions: TreasuryTransaction[]): TreasurySummary => {
   const contributions = transactions
     .filter(t => t.type === 'contribution')
-    .reduce((sum, t) => sum + t.amount, 0);
+    .reduce((sum, t) => sum + Number(t.amount), 0);
   
   const expenses = transactions
     .filter(t => t.type === 'expense')
-    .reduce((sum, t) => sum + t.amount, 0);
+    .reduce((sum, t) => sum + Number(t.amount), 0);
 
   return {
     contributions,
@@ -49,7 +49,7 @@ export const calculateSummary = (transactions: TreasuryTransaction[]): TreasuryS
 export const getAverageContribution = (transactions: TreasuryTransaction[]): number => {
   const contributions = transactions.filter(t => t.type === 'contribution');
   if (contributions.length === 0) return 0;
-  const total = contributions.reduce((sum, t) => sum + t.amount, 0);
+  const total = contributions.reduce((sum, t) => sum + Number(t.amount), 0);
   return total / contributions.length;
 };
 
