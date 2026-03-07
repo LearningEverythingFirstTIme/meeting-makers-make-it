@@ -40,7 +40,7 @@ export const TransactionCard = ({ transaction, onEdit, onDelete }: TransactionCa
             <span className="neo-title text-sm uppercase">{categoryLabel}</span>
           </div>
           
-          <p className={`neo-mono text-lg font-bold ${isContribution ? 'text-[var(--mint)]' : 'text-[var(--coral)]'}`}>
+          <p className={`neo-mono text-lg font-bold text-black`}>
             {isContribution ? '+' : '-'}{formatCurrency(amount)}
           </p>
 
