@@ -22,7 +22,7 @@ service cloud.firestore {
     }
 
     function isTrackedCollection(collection) {
-      return ["meetings", "checkins", "transactions"].hasAny([collection]);
+      return ["meetings", "checkins", "transactions", "dailyInventory"].hasAny([collection]);
     }
 
     match /{collection}/{docId} {
