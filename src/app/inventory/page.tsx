@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getClientDb } from "@/lib/firebase/client";
 import { motion, AnimatePresence } from "framer-motion";
 import { collection, doc, onSnapshot, query, serverTimestamp, setDoc, where } from "firebase/firestore";
-import { ClipboardList, Save, CheckCircle, Calendar, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, History } from "lucide-react";
+import { ClipboardList, Save, CheckCircle, Calendar, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, History, Edit2, X } from "lucide-react";
 import { Navigation } from "@/components/navigation";
 import { useAuth } from "@/components/auth-provider";
 import { toLocalDayKey } from "@/lib/date";
@@ -65,6 +65,7 @@ export default function InventoryPage() {
   // Date browser state
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'today' | 'browse'>('today');
+  const [editMode, setEditMode] = useState(false);
   
   // Form state
   const [values, setValues] = useState<DailyInventoryInput>({
@@ -157,13 +158,16 @@ export default function InventoryPage() {
       return;
     }
 
+    // Determine which date we're saving for
+    const targetDate = isViewingToday ? todayKey : (selectedDate || todayKey);
+
     try {
-      const docId = `${user.uid}_${todayKey}`;
+      const docId = `${user.uid}_${targetDate}`;
       const docRef = doc(db, "dailyInventory", docId);
 
       await setDoc(docRef, {
         userId: user.uid,
-        date: todayKey,
+        date: targetDate,
         ...parsed.data,
         updatedAt: serverTimestamp(),
         createdAt: serverTimestamp(),
@@ -171,6 +175,7 @@ export default function InventoryPage() {
 
       setSaved(true);
       setTimeout(() => setSaved(false), 2000);
+      setEditMode(false);
     } catch {
       setError("Failed to save. Please try again.");
     } finally {
@@ -178,16 +183,56 @@ export default function InventoryPage() {
     }
   };
 
+  const handleEdit = () => {
+    // Load the current viewing entry's values into the form
+    const entryToEdit = viewingEntry;
+    if (entryToEdit) {
+      setValues({
+        resentments: entryToEdit.resentments || "",
+        fears: entryToEdit.fears || "",
+        dishonesty: entryToEdit.dishonesty || "",
+        amends: entryToEdit.amends || "",
+        gratitude: entryToEdit.gratitude || "",
+      });
+    } else {
+      // Start fresh if no entry exists
+      setValues({
+        resentments: "",
+        fears: "",
+        dishonesty: "",
+        amends: "",
+        gratitude: "",
+      });
+    }
+    setEditMode(true);
+  };
+
+  const handleCancelEdit = () => {
+    setEditMode(false);
+    // Reset to current entry's values
+    const entryToEdit = viewingEntry;
+    if (entryToEdit) {
+      setValues({
+        resentments: entryToEdit.resentments || "",
+        fears: entryToEdit.fears || "",
+        dishonesty: entryToEdit.dishonesty || "",
+        amends: entryToEdit.amends || "",
+        gratitude: entryToEdit.gratitude || "",
+      });
+    }
+  };
+
   const hasChanges = () => {
-    if (!todayInventory) {
+    const compareEntry = isViewingToday ? todayInventory : viewingEntry;
+    if (!compareEntry) {
       return Object.values(values).some(v => v && v.trim() !== "");
     }
     return (
-      values.resentments !== (todayInventory.resentments || "") ||
-      values.fears !== (todayInventory.fears || "") ||
-      values.dishonesty !== (todayInventory.dishonesty || "") ||
-      values.amends !== (todayInventory.amends || "") ||
-      values.gratitude !== (todayInventory.gratitude || "")
+      values.resentments !== (compareEntry.resentments || "") ||
+      values.fears !== (compareEntry.fears || "") ||
+      values.dishonesty !== (compareEntry.dishonesty || "") ||
+      values.amends !== (compareEntry.amends || "") ||
+      values.gratitude !== (compareEntry.gratitude || "")
     );
   };
 
@@ -217,14 +262,17 @@ export default function InventoryPage() {
       const nextEntry = sortedEntries[currentIndex + 1];
       setSelectedDate(nextEntry.date);
       setViewMode('browse');
+      setEditMode(false);
     } else if (direction === 'next' && currentIndex > 0) {
       const prevEntry = sortedEntries[currentIndex - 1];
       setSelectedDate(prevEntry.date);
       setViewMode('browse');
+      setEditMode(false);
     } else if (direction === 'next' && currentIndex === 0) {
       // Going forward from most recent goes to today
       setSelectedDate(null);
       setViewMode('today');
+      setEditMode(false);
     }
   };
 
@@ -347,7 +395,7 @@ export default function InventoryPage() {
               <p className="neo-mono text-xs mb-2 text-black/60">JUMP TO:</p>
               <div className="flex flex-wrap gap-2">
                 <button
-                  onClick={() => { setViewMode('today'); setSelectedDate(null); }}
+                  onClick={() => { setViewMode('today'); setSelectedDate(null); setEditMode(false); }}
                   className={`neo-mono text-xs px-3 py-1.5 border-2 border-black ${
                     isViewingToday ? 'bg-black text-white' : 'bg-white hover:bg-[var(--cream)]'
                   }`}
@@ -357,7 +405,7 @@ export default function InventoryPage() {
                 {pastInventory.slice(0, 6).map((entry) => (
                   <button
                     key={entry.date}
-                    onClick={() => { setSelectedDate(entry.date); setViewMode('browse'); }}
+                    onClick={() => { setSelectedDate(entry.date); setViewMode('browse'); setEditMode(false); }}
                     className={`neo-mono text-xs px-3 py-1.5 border-2 border-black ${
                       selectedDate === entry.date ? 'bg-black text-white' : 'bg-white hover:bg-[var(--cream)]'
                     }`}
@@ -393,8 +441,8 @@ export default function InventoryPage() {
             )}
           </div>
 
-          {isViewingToday ? (
-            /* Today's Edit Form */
+          {isViewingToday || editMode ? (
+            /* Edit Form (for Today or Past Entries in Edit Mode) */
             <>
               <div className="space-y-5">
                 {INVENTORY_PROMPTS.map((prompt, index) => (
@@ -425,14 +473,14 @@ export default function InventoryPage() {
                 ))}
               </div>
 
-              {/* Save Button */}
-              <div className="mt-6 pt-4 border-t-2 border-dashed border-black/20">
+              {/* Save/Cancel Buttons */}
+              <div className="mt-6 pt-4 border-t-2 border-dashed border-black/20 flex gap-3">
                 <motion.button
                   whileHover={!saving ? { scale: 1.02 } : {}}
                   whileTap={!saving ? { scale: 0.98 } : {}}
                   onClick={handleSave}
                   disabled={saving || !hasChanges()}
-                  className={`neo-button py-3 w-full ${
+                  className={`neo-button py-3 flex-1 ${
                     saved 
                       ? "bg-[var(--mint)]" 
                       : hasChanges()
@@ -455,47 +503,86 @@ export default function InventoryPage() {
                     </>
                   ) : (
                     <>
-                      <Save size={16} strokeWidth={3} /> SAVE TODAY&apos;S INVENTORY
+                      <Save size={16} strokeWidth={3} /> {isViewingToday ? "SAVE" : "UPDATE"}
                     </>
                   )}
                 </motion.button>
+                
+                {!isViewingToday && (
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={handleCancelEdit}
+                    className="neo-button py-3 px-6 bg-gray-200"
+                  >
+                    <X size={16} strokeWidth={3} /> CANCEL
+                  </motion.button>
+                )}
               </div>
             </>
           ) : (
-            /* Past Entry View (Read Only) */
+            /* Past Entry View (Read Only with Edit Button) */
             <div className="space-y-5">
               {viewingEntry ? (
-                INVENTORY_PROMPTS.map((prompt, index) => (
-                  <motion.div
-                    key={prompt.key}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    className={!viewingEntry[prompt.key] ? 'opacity-50' : ''}
-                  >
-                    <div className="flex items-start gap-3">
-                      <span 
-                        className="neo-mono text-xs px-2 py-0.5 border-2 border-black shrink-0"
-                        style={{ background: prompt.color }}
-                      >
-                        {prompt.label}
-                      </span>
-                      <div className="flex-1">
-                        <p className="neo-title text-sm mb-1">{prompt.question}</p>
-                        <p className="neo-mono text-sm text-black/70">
-                          {viewingEntry[prompt.key] || "—"}
-                        </p>
+                <>
+                  {INVENTORY_PROMPTS.map((prompt, index) => (
+                    <motion.div
+                      key={prompt.key}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      className={!viewingEntry[prompt.key] ? 'opacity-50' : ''}
+                    >
+                      <div className="flex items-start gap-3">
+                        <span 
+                          className="neo-mono text-xs px-2 py-0.5 border-2 border-black shrink-0"
+                          style={{ background: prompt.color }}
+                        >
+                          {prompt.label}
+                        </span>
+                        <div className="flex-1">
+                          <p className="neo-title text-sm mb-1">{prompt.question}</p>
+                          <p className="neo-mono text-sm text-black/70">
+                            {viewingEntry[prompt.key] || "—"}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </motion.div>
-                ))
+                    </motion.div>
+                  ))}
+                  
+                  {/* Edit Button for Past Entries */}
+                  <div className="pt-4 border-t-2 border-dashed border-black/20">
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={handleEdit}
+                      className="neo-button py-3 w-full bg-[var(--butter)]"
+                    >
+                      <Edit2 size={16} strokeWidth={3} /> EDIT THIS ENTRY
+                    </motion.button>
+                  </div>
+                </>
               ) : (
-                <div className="text-center py-12">
-                  <History size={48} className="mx-auto mb-4 text-black/20" />
-                  <p className="neo-mono text-sm text-black/50">
-                    No inventory was recorded for this day.
-                  </p>
-                </div>
+                <>
+                  <div className="text-center py-12">
+                    <History size={48} className="mx-auto mb-4 text-black/20" />
+                    <p className="neo-mono text-sm text-black/50 mb-4">
+                      No inventory was recorded for this day.
+                    </p>
+                  </div>
+                  
+                  {/* Create Entry Button for Empty Days */}
+                  <div className="pt-4 border-t-2 border-dashed border-black/20">
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={handleEdit}
+                      className="neo-button py-3 w-full neo-button-primary"
+                    >
+                      <Edit2 size={16} strokeWidth={3} /> ADD ENTRY FOR THIS DAY
+                    </motion.button>
+                  </div>
+                </>
               )}
             </div>
           )}
