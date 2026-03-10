@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getClientDb } from "@/lib/firebase/client";
 import { motion, AnimatePresence } from "framer-motion";
 import { collection, doc, onSnapshot, query, serverTimestamp, setDoc, where } from "firebase/firestore";
-import { ClipboardList, Save, CheckCircle, Calendar, ChevronDown, ChevronUp } from "lucide-react";
+import { ClipboardList, Save, CheckCircle, Calendar, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, History } from "lucide-react";
 import { Navigation } from "@/components/navigation";
 import { useAuth } from "@/components/auth-provider";
 import { toLocalDayKey } from "@/lib/date";
@@ -61,6 +61,10 @@ export default function InventoryPage() {
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showHistory, setShowHistory] = useState(false);
+  
+  // Date browser state
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<'today' | 'browse'>('today');
   
   // Form state
   const [values, setValues] = useState<DailyInventoryInput>({
@@ -187,6 +191,66 @@ export default function InventoryPage() {
     );
   };
 
+  // Get all inventory entries sorted by date (including today)
+  const allEntries = [todayInventory, ...pastInventory].filter(Boolean) as DailyInventory[];
+  
+  // Get current viewing entry
+  const getViewingEntry = (): DailyInventory | null => {
+    if (viewMode === 'today') return todayInventory;
+    if (selectedDate) {
+      return allEntries.find(e => e.date === selectedDate) || null;
+    }
+    return null;
+  };
+
+  const viewingEntry = getViewingEntry();
+  const isViewingToday = viewMode === 'today' || selectedDate === todayKey;
+
+  // Navigate to previous/next entry
+  const navigateToEntry = (direction: 'prev' | 'next') => {
+    const sortedEntries = [...allEntries].sort((a, b) => b.date.localeCompare(a.date));
+    const currentIndex = selectedDate 
+      ? sortedEntries.findIndex(e => e.date === selectedDate)
+      : viewMode === 'today' ? 0 : -1;
+    
+    if (direction === 'prev' && currentIndex < sortedEntries.length - 1) {
+      const nextEntry = sortedEntries[currentIndex + 1];
+      setSelectedDate(nextEntry.date);
+      setViewMode('browse');
+    } else if (direction === 'next' && currentIndex > 0) {
+      const prevEntry = sortedEntries[currentIndex - 1];
+      setSelectedDate(prevEntry.date);
+      setViewMode('browse');
+    } else if (direction === 'next' && currentIndex === 0) {
+      // Going forward from most recent goes to today
+      setSelectedDate(null);
+      setViewMode('today');
+    }
+  };
+
+  // Format date for display
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr + 'T12:00:00');
+    return date.toLocaleDateString(undefined, { 
+      weekday: 'long', 
+      year: 'numeric',
+      month: 'long', 
+      day: 'numeric' 
+    });
+  };
+
+  // Get days ago text
+  const getDaysAgo = (dateStr: string) => {
+    const date = new Date(dateStr + 'T12:00:00');
+    const today = new Date();
+    today.setHours(12, 0, 0, 0);
+    const diffTime = today.getTime() - date.getTime();
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    if (diffDays === 0) return 'Today';
+    if (diffDays === 1) return 'Yesterday';
+    return `${diffDays} days ago`;
+  };
+
   if (!user) {
     return (
       <div className="min-h-screen">
@@ -242,7 +306,71 @@ export default function InventoryPage() {
           )}
         </AnimatePresence>
 
-        {/* Today's Inventory Form */}
+        {/* Date Browser Navigation */}
+        {allEntries.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="neo-card p-4 mb-6 bg-[var(--cream)]"
+          >
+            <div className="flex items-center justify-between">
+              <button
+                onClick={() => navigateToEntry('prev')}
+                disabled={selectedDate === allEntries[allEntries.length - 1]?.date && viewMode === 'browse'}
+                className="neo-button py-2 px-3 disabled:opacity-30 disabled:cursor-not-allowed"
+              >
+                <ChevronLeft size={20} strokeWidth={3} />
+              </button>
+              
+              <div className="text-center">
+                <p className="neo-title text-sm">
+                  {isViewingToday ? "TODAY" : formatDate(selectedDate || todayKey)}
+                </p>
+                {!isViewingToday && (
+                  <p className="neo-mono text-xs text-black/60">
+                    {getDaysAgo(selectedDate || '')}
+                  </p>
+                )}
+              </div>
+              
+              <button
+                onClick={() => navigateToEntry('next')}
+                disabled={isViewingToday}
+                className="neo-button py-2 px-3 disabled:opacity-30 disabled:cursor-not-allowed"
+              >
+                <ChevronRight size={20} strokeWidth={3} />
+              </button>
+            </div>
+
+            {/* Date Quick Select */}
+            <div className="mt-4 pt-4 border-t-2 border-dashed border-black/20">
+              <p className="neo-mono text-xs mb-2 text-black/60">JUMP TO:</p>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => { setViewMode('today'); setSelectedDate(null); }}
+                  className={`neo-mono text-xs px-3 py-1.5 border-2 border-black ${
+                    isViewingToday ? 'bg-black text-white' : 'bg-white hover:bg-[var(--cream)]'
+                  }`}
+                >
+                  Today
+                </button>
+                {pastInventory.slice(0, 6).map((entry) => (
+                  <button
+                    key={entry.date}
+                    onClick={() => { setSelectedDate(entry.date); setViewMode('browse'); }}
+                    className={`neo-mono text-xs px-3 py-1.5 border-2 border-black ${
+                      selectedDate === entry.date ? 'bg-black text-white' : 'bg-white hover:bg-[var(--cream)]'
+                    }`}
+                  >
+                    {getDaysAgo(entry.date)}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Inventory Display (View or Edit) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -250,148 +378,153 @@ export default function InventoryPage() {
         >
           <div className="flex items-center gap-2 mb-6 pb-4 border-b-4 border-black">
             <Calendar size={18} strokeWidth={3} />
-            <span className="neo-title text-lg">TODAY: {new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}</span>
-            {todayInventory && (
+            <span className="neo-title text-lg">
+              {isViewingToday ? "TODAY" : formatDate(selectedDate || todayKey)}
+            </span>
+            {viewingEntry && (
               <span className="ml-auto flex items-center gap-1 neo-mono text-xs text-[var(--mint)]">
                 <CheckCircle size={14} /> SAVED
               </span>
             )}
+            {!isViewingToday && !viewingEntry && (
+              <span className="ml-auto neo-mono text-xs text-black/40">
+                NO ENTRY
+              </span>
+            )}
           </div>
 
-          <div className="space-y-5">
-            {INVENTORY_PROMPTS.map((prompt, index) => (
-              <motion.div
-                key={prompt.key}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.05 }}
-              >
-                <label className="block mb-2">
-                  <span 
-                    className="neo-mono text-xs px-2 py-0.5 border-2 border-black inline-block mb-1"
-                    style={{ background: prompt.color }}
+          {isViewingToday ? (
+            /* Today's Edit Form */
+            <>
+              <div className="space-y-5">
+                {INVENTORY_PROMPTS.map((prompt, index) => (
+                  <motion.div
+                    key={prompt.key}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
                   >
-                    {prompt.label}
-                  </span>
-                  <span className="block neo-title text-sm">{prompt.question}</span>
-                </label>
-                <input
-                  type="text"
-                  value={values[prompt.key] || ""}
-                  onChange={(e) => setValues(prev => ({ ...prev, [prompt.key]: e.target.value }))}
-                  placeholder={prompt.placeholder}
-                  maxLength={200}
-                  className="neo-input w-full text-sm"
-                />
-              </motion.div>
-            ))}
-          </div>
+                    <label className="block mb-2">
+                      <span 
+                        className="neo-mono text-xs px-2 py-0.5 border-2 border-black inline-block mb-1"
+                        style={{ background: prompt.color }}
+                      >
+                        {prompt.label}
+                      </span>
+                      <span className="block neo-title text-sm">{prompt.question}</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={values[prompt.key] || ""}
+                      onChange={(e) => setValues(prev => ({ ...prev, [prompt.key]: e.target.value }))}
+                      placeholder={prompt.placeholder}
+                      maxLength={200}
+                      className="neo-input w-full text-sm"
+                    />
+                  </motion.div>
+                ))}
+              </div>
 
-          {/* Save Button */}
-          <div className="mt-6 pt-4 border-t-2 border-dashed border-black/20">
-            <motion.button
-              whileHover={!saving ? { scale: 1.02 } : {}}
-              whileTap={!saving ? { scale: 0.98 } : {}}
-              onClick={handleSave}
-              disabled={saving || !hasChanges()}
-              className={`neo-button py-3 w-full ${
-                saved 
-                  ? "bg-[var(--mint)]" 
-                  : hasChanges()
-                    ? "neo-button-primary"
-                    : "bg-gray-200 cursor-not-allowed"
-              }`}
-            >
-              {saving ? (
-                <span className="flex items-center justify-center gap-2">
-                  <motion.span 
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    className="inline-block h-4 w-4 border-2 border-black border-t-transparent"
-                  />
-                  SAVING...
-                </span>
-              ) : saved ? (
-                <>
-                  <CheckCircle size={16} strokeWidth={3} /> SAVED!
-                </>
+              {/* Save Button */}
+              <div className="mt-6 pt-4 border-t-2 border-dashed border-black/20">
+                <motion.button
+                  whileHover={!saving ? { scale: 1.02 } : {}}
+                  whileTap={!saving ? { scale: 0.98 } : {}}
+                  onClick={handleSave}
+                  disabled={saving || !hasChanges()}
+                  className={`neo-button py-3 w-full ${
+                    saved 
+                      ? "bg-[var(--mint)]" 
+                      : hasChanges()
+                        ? "neo-button-primary"
+                        : "bg-gray-200 cursor-not-allowed"
+                  }`}
+                >
+                  {saving ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <motion.span 
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        className="inline-block h-4 w-4 border-2 border-black border-t-transparent"
+                      />
+                      SAVING...
+                    </span>
+                  ) : saved ? (
+                    <>
+                      <CheckCircle size={16} strokeWidth={3} /> SAVED!
+                    </>
+                  ) : (
+                    <>
+                      <Save size={16} strokeWidth={3} /> SAVE TODAY&apos;S INVENTORY
+                    </>
+                  )}
+                </motion.button>
+              </div>
+            </>
+          ) : (
+            /* Past Entry View (Read Only) */
+            <div className="space-y-5">
+              {viewingEntry ? (
+                INVENTORY_PROMPTS.map((prompt, index) => (
+                  <motion.div
+                    key={prompt.key}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    className={!viewingEntry[prompt.key] ? 'opacity-50' : ''}
+                  >
+                    <div className="flex items-start gap-3">
+                      <span 
+                        className="neo-mono text-xs px-2 py-0.5 border-2 border-black shrink-0"
+                        style={{ background: prompt.color }}
+                      >
+                        {prompt.label}
+                      </span>
+                      <div className="flex-1">
+                        <p className="neo-title text-sm mb-1">{prompt.question}</p>
+                        <p className="neo-mono text-sm text-black/70">
+                          {viewingEntry[prompt.key] || "—"}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))
               ) : (
-                <>
-                  <Save size={16} strokeWidth={3} /> SAVE TODAY&apos;S INVENTORY
-                </>
+                <div className="text-center py-12">
+                  <History size={48} className="mx-auto mb-4 text-black/20" />
+                  <p className="neo-mono text-sm text-black/50">
+                    No inventory was recorded for this day.
+                  </p>
+                </div>
               )}
-            </motion.button>
-          </div>
+            </div>
+          )}
         </motion.div>
 
-        {/* Past Inventory */}
-        {pastInventory.length > 0 && (
+        {/* Stats Summary */}
+        {allEntries.length > 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="neo-card p-6"
+            className="neo-card p-6 bg-[var(--mint)]/20"
           >
-            <button
-              onClick={() => setShowHistory(!showHistory)}
-              className="w-full flex items-center justify-between"
-            >
-              <span className="neo-title text-lg flex items-center gap-2">
-                <Calendar size={18} strokeWidth={3} />
-                PAST ENTRIES ({pastInventory.length})
-              </span>
-              {showHistory ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-            </button>
-
-            <AnimatePresence>
-              {showHistory && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  className="mt-4 space-y-3 overflow-hidden"
-                >
-                  {pastInventory.slice(0, 7).map((entry, idx) => (
-                    <motion.div
-                      key={entry.id}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: idx * 0.05 }}
-                      className="border-2 border-black bg-[var(--cream)] p-3"
-                    >
-                      <p className="neo-mono text-xs font-bold mb-2">
-                        {new Date(entry.date + 'T12:00:00').toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })}
-                      </p>
-                      <div className="space-y-1">
-                        {entry.resentments && (
-                          <p className="neo-mono text-xs">
-                            <span style={{ color: INVENTORY_PROMPTS[0].color }}>●</span> {entry.resentments}
-                          </p>
-                        )}
-                        {entry.fears && (
-                          <p className="neo-mono text-xs">
-                            <span style={{ color: INVENTORY_PROMPTS[1].color }}>●</span> {entry.fears}
-                          </p>
-                        )}
-                        {entry.amends && (
-                          <p className="neo-mono text-xs">
-                            <span style={{ color: INVENTORY_PROMPTS[3].color }}>●</span> Amends: {entry.amends}
-                          </p>
-                        )}
-                        {entry.gratitude && (
-                          <p className="neo-mono text-xs">
-                            <span style={{ color: INVENTORY_PROMPTS[4].color }}>●</span> Grateful for: {entry.gratitude}
-                          </p>
-                        )}
-                        {!entry.resentments && !entry.fears && !entry.amends && !entry.gratitude && (
-                          <p className="neo-mono text-xs text-black/40">No entries</p>
-                        )}
-                      </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <h3 className="neo-title text-lg mb-4">YOUR INVENTORY HISTORY</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="border-2 border-black bg-white p-4 text-center">
+                <p className="neo-title text-3xl">{allEntries.length}</p>
+                <p className="neo-mono text-xs">Total Entries</p>
+              </div>
+              <div className="border-2 border-black bg-white p-4 text-center">
+                <p className="neo-title text-3xl">
+                  {allEntries.filter(e => e.gratitude).length}
+                </p>
+                <p className="neo-mono text-xs">Gratitude Entries</p>
+              </div>
+            </div>
+            <p className="neo-mono text-xs text-black/60 mt-4 text-center">
+              Keep coming back! Progress, not perfection.
+            </p>
           </motion.div>
         )}
       </div>
