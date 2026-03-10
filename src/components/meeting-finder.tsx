@@ -1,10 +1,15 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, MapPin, Clock, Video, Phone, Users, ChevronDown, ChevronUp, ExternalLink } from "lucide-react";
+import { Search, MapPin, Clock, Video, Phone, Users, ChevronDown, ChevronUp, ExternalLink, CheckCircle } from "lucide-react";
+import { collection, query as firestoreQuery, where, onSnapshot, setDoc, doc, serverTimestamp, getDoc } from "firebase/firestore";
+import { FirebaseError } from "firebase/app";
 import { Navigation } from "@/components/navigation";
-import type { NJMeeting, NJMeetingType } from "@/types";
+import { useAuth } from "@/components/auth-provider";
+import { getClientDb } from "@/lib/firebase/client";
+import { makeCheckinId, toLocalDayKey } from "@/lib/date";
+import type { NJMeeting, NJMeetingType, Checkin } from "@/types";
 
 const DAY_LABELS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
@@ -25,7 +30,26 @@ function timeLabel(time: string): string {
   return `${hour12}:${String(m).padStart(2, "0")} ${ampm}`;
 }
 
-function MeetingCard({ meeting }: { meeting: NJMeeting }) {
+// Generate a stable meeting ID for NJ meetings (since they're from static JSON)
+function makeNJMeetingId(meeting: NJMeeting): string {
+  // Use slug if available, otherwise create a deterministic ID from meeting properties
+  if (meeting.slug) {
+    return `nj_${meeting.slug}`;
+  }
+  // Fallback: create ID from name, day, time, and location
+  const base = `${meeting.name}_${meeting.day}_${meeting.time}_${meeting.location}`.toLowerCase();
+  return `nj_${btoa(base).replace(/[^a-zA-Z0-9]/g, "").substring(0, 32)}`;
+}
+
+interface MeetingCardProps {
+  meeting: NJMeeting;
+  checkedInToday: boolean;
+  pendingCheckin: boolean;
+  showSuccess: boolean;
+  onCheckIn: (meeting: NJMeeting) => void;
+}
+
+function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onCheckIn }: MeetingCardProps) {
   const [expanded, setExpanded] = useState(false);
   const isZoom = meeting.types.includes("VM") || !!meeting.conference_url;
 
@@ -36,7 +60,8 @@ function MeetingCard({ meeting }: { meeting: NJMeeting }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.25 }}
-      className="neo-card bg-white overflow-hidden"
+      className={`neo-card bg-white overflow-hidden ${checkedInToday ? "border-[var(--mint)]" : ""}`}
+      style={checkedInToday ? { boxShadow: "10px 10px 0px 0px var(--mint)" } : {}}
     >
       <div
         className="p-4 cursor-pointer select-none"
@@ -104,6 +129,43 @@ function MeetingCard({ meeting }: { meeting: NJMeeting }) {
             })}
           </div>
         )}
+
+        {/* Check-in button - shown in collapsed view when checked in */}
+        <div className="mt-3 flex items-center gap-2">
+          <motion.button
+            whileHover={!checkedInToday ? { scale: 1.05, y: -2 } : {}}
+            whileTap={!checkedInToday ? { scale: 0.95 } : {}}
+            type="button"
+            disabled={checkedInToday || pendingCheckin}
+            onClick={(e) => {
+              e.stopPropagation();
+              onCheckIn(meeting);
+            }}
+            className={`neo-button py-2 text-xs flex-1 ${
+              checkedInToday
+                ? "neo-button-success"
+                : "bg-[var(--sky)] border-3 border-black text-black hover:bg-[#7DD3FC]"
+            }`}
+            style={!checkedInToday ? { boxShadow: "4px 4px 0px 0px black" } : {}}
+          >
+            {checkedInToday ? (
+              <>
+                <CheckCircle size={12} strokeWidth={3} /> ✓ CHECKED IN
+              </>
+            ) : pendingCheckin ? (
+              <span className="flex items-center justify-center gap-2">
+                <motion.span 
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                  className="inline-block h-3 w-3 border-2 border-black border-t-transparent"
+                />
+                CHECKING IN...
+              </span>
+            ) : (
+              "CHECK IN"
+            )}
+          </motion.button>
+        </div>
       </div>
 
       {/* Expanded details */}
@@ -174,6 +236,14 @@ interface MeetingFinderProps {
 }
 
 export function MeetingFinder({ meetings }: MeetingFinderProps) {
+  const { user } = useAuth();
+  const [db, setDb] = useState<ReturnType<typeof getClientDb> | null>(null);
+  
+  const [checkins, setCheckins] = useState<Checkin[]>([]);
+  const [pendingCheckinId, setPendingCheckinId] = useState<string | null>(null);
+  const [checkinSuccessId, setCheckinSuccessId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  
   const [query, setQuery] = useState("");
   const [dayFilter, setDayFilter] = useState<number | null>(null);
   const [formatFilter, setFormatFilter] = useState<"all" | "in-person" | "zoom">("all");
@@ -181,6 +251,63 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
   const [page, setPage] = useState(0);
 
   const PAGE_SIZE = 30;
+  const todayKey = toLocalDayKey();
+
+  // Initialize Firebase DB on client side
+  useEffect(() => {
+    try {
+      setDb(getClientDb());
+    } catch {
+      // Firebase not configured, will show auth error
+    }
+  }, []);
+
+  // Subscribe to user's checkins
+  useEffect(() => {
+    if (!user || !db) return;
+
+    const checkinsQuery = firestoreQuery(
+      collection(db, "checkins"),
+      where("userId", "==", user.uid),
+    );
+
+    const unsubCheckins = onSnapshot(
+      checkinsQuery,
+      (snapshot) => {
+        const parsed = snapshot.docs.map((d) => {
+          const data = d.data();
+          return {
+            id: d.id,
+            userId: data.userId,
+            meetingId: data.meetingId,
+            meetingName: data.meetingName,
+            dayKey: data.dayKey,
+            note: data.note,
+            createdAt: data.createdAt?.toDate?.() || undefined,
+          } satisfies Checkin;
+        });
+
+        parsed.sort((a, b) => {
+          const aTime = a.createdAt?.getTime() ?? 0;
+          const bTime = b.createdAt?.getTime() ?? 0;
+          return bTime - aTime;
+        });
+
+        setCheckins(parsed);
+      },
+      (err) => {
+        if (err instanceof FirebaseError) {
+          setError(`Unable to load check-ins (${err.code}).`);
+          return;
+        }
+        setError("Unable to load check-ins.");
+      },
+    );
+
+    return () => {
+      unsubCheckins();
+    };
+  }, [db, user]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -206,10 +333,129 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
 
   const allTypes: NJMeetingType[] = ["B", "ST", "TR", "M", "W", "PH"];
 
+  // Check if user has already checked in to a specific meeting today
+  const alreadyCheckedInToday = (meetingId: string): boolean =>
+    checkins.some((entry) => entry.meetingId === meetingId && entry.dayKey === todayKey);
+
+  // Handle check-in for NJ meetings
+  const checkIn = async (meeting: NJMeeting) => {
+    if (!user) {
+      setError("You must be signed in to check in.");
+      return;
+    }
+
+    if (!db) {
+      setError("Database not available. Please try again later.");
+      return;
+    }
+
+    const meetingId = makeNJMeetingId(meeting);
+    const checkinId = makeCheckinId(user.uid, meetingId, todayKey);
+    const checkinRef = doc(db, "checkins", checkinId);
+    
+    setPendingCheckinId(meetingId);
+    setError(null);
+
+    try {
+      await user.getIdToken();
+
+      // Check if already checked in today
+      const existingCheckin = checkins.find(
+        (entry) => entry.meetingId === meetingId && entry.dayKey === todayKey,
+      );
+
+      if (existingCheckin) {
+        throw new Error("already-checked-in");
+      }
+
+      // Create check-in document
+      await setDoc(checkinRef, {
+        userId: user.uid,
+        meetingId: meetingId,
+        meetingName: meeting.name,
+        dayKey: todayKey,
+        createdAt: serverTimestamp(),
+      });
+
+      setCheckinSuccessId(meetingId);
+      setTimeout(() => setCheckinSuccessId(null), 600);
+    } catch (err) {
+      if (err instanceof Error && err.message === "already-checked-in") {
+        setError(`Already checked in to ${meeting.name} today.`);
+        return;
+      }
+
+      if (err instanceof FirebaseError && err.code === "permission-denied") {
+        // Double-check if already exists
+        try {
+          const existingCheckinSnap = await getDoc(checkinRef);
+          const existingCheckinData = existingCheckinSnap.data();
+          if (
+            existingCheckinSnap.exists()
+            && existingCheckinData?.userId === user.uid
+            && existingCheckinData?.meetingId === meetingId
+            && existingCheckinData?.dayKey === todayKey
+          ) {
+            setError(`Already checked in to ${meeting.name} today.`);
+            return;
+          }
+        } catch {
+          // Ignore follow-up read failures
+        }
+
+        setError("Permission denied for this operation.");
+        return;
+      }
+
+      setError("Check-in failed. Please retry.");
+    } finally {
+      setPendingCheckinId(null);
+    }
+  };
+
+  if (!user) {
+    return (
+      <div className="min-h-screen">
+        <Navigation />
+        <div className="max-w-4xl mx-auto px-4 py-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="neo-card p-12 text-center"
+          >
+            <Users size={48} className="mx-auto mb-4 text-black/30" strokeWidth={2} />
+            <h1 className="font-['Archivo_Black'] text-2xl text-black mb-2">Sign In Required</h1>
+            <p className="neo-mono text-sm text-black/60">
+              Please sign in to find meetings and track your attendance.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen">
       <Navigation />
       <div className="max-w-4xl mx-auto px-4 py-8">
+        {/* Error display */}
+        <AnimatePresence>
+          {error && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="border-4 border-black bg-[var(--coral)] p-4 mb-6"
+              style={{ boxShadow: "6px 6px 0px 0px black" }}
+            >
+              <div className="flex items-center gap-3">
+                <div className="h-4 w-4 bg-black" />
+                <span className="neo-title text-sm text-black">ERROR: {error}</span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -363,9 +609,19 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
               className="grid gap-3 sm:grid-cols-2"
             >
               <AnimatePresence mode="popLayout">
-                {displayedMeetings.map((meeting) => (
-                  <MeetingCard key={meeting.slug} meeting={meeting} />
-                ))}
+                {displayedMeetings.map((meeting) => {
+                  const meetingId = makeNJMeetingId(meeting);
+                  return (
+                    <MeetingCard 
+                      key={meeting.slug} 
+                      meeting={meeting} 
+                      checkedInToday={alreadyCheckedInToday(meetingId)}
+                      pendingCheckin={pendingCheckinId === meetingId}
+                      showSuccess={checkinSuccessId === meetingId}
+                      onCheckIn={checkIn}
+                    />
+                  );
+                })}
               </AnimatePresence>
             </motion.div>
 
