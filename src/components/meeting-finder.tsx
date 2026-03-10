@@ -111,9 +111,9 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
           <p className="neo-mono text-xs text-black/60">{meeting.city}, {meeting.state}</p>
         )}
 
-        {/* Type badges */}
-        {meeting.types.length > 0 && (
-          <div className="flex flex-wrap gap-1 mt-2">
+        {/* Type badges and check-in indicator */}
+        <div className="flex items-center justify-between mt-2">
+          <div className="flex flex-wrap gap-1">
             {meeting.types.filter(t => t !== "VM").map((t) => {
               const info = TYPE_INFO[t];
               if (!info) return null;
@@ -128,43 +128,12 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
               );
             })}
           </div>
-        )}
-
-        {/* Check-in button - shown in collapsed view when checked in */}
-        <div className="mt-3 flex items-center gap-2">
-          <motion.button
-            whileHover={!checkedInToday ? { scale: 1.05, y: -2 } : {}}
-            whileTap={!checkedInToday ? { scale: 0.95 } : {}}
-            type="button"
-            disabled={checkedInToday || pendingCheckin}
-            onClick={(e) => {
-              e.stopPropagation();
-              onCheckIn(meeting);
-            }}
-            className={`neo-button py-2 text-xs flex-1 ${
-              checkedInToday
-                ? "neo-button-success"
-                : "bg-[var(--sky)] border-3 border-black text-black hover:bg-[#7DD3FC]"
-            }`}
-            style={!checkedInToday ? { boxShadow: "4px 4px 0px 0px black" } : {}}
-          >
-            {checkedInToday ? (
-              <>
-                <CheckCircle size={12} strokeWidth={3} /> ✓ CHECKED IN
-              </>
-            ) : pendingCheckin ? (
-              <span className="flex items-center justify-center gap-2">
-                <motion.span 
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                  className="inline-block h-3 w-3 border-2 border-black border-t-transparent"
-                />
-                CHECKING IN...
-              </span>
-            ) : (
-              "CHECK IN"
-            )}
-          </motion.button>
+          {/* Small indicator when checked in */}
+          {checkedInToday && (
+            <span className="flex items-center gap-1 neo-mono text-xs text-[var(--mint)]">
+              <CheckCircle size={12} strokeWidth={3} /> DONE
+            </span>
+          )}
         </div>
       </div>
 
@@ -223,6 +192,43 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
               {meeting.group && (
                 <p className="neo-mono text-xs text-black/50">Group: {meeting.group}</p>
               )}
+              
+              {/* Check-in button - moved to expanded dropdown */}
+              <div className="pt-3 border-t-2 border-black/20">
+                <motion.button
+                  whileHover={!checkedInToday ? { scale: 1.02 } : {}}
+                  whileTap={!checkedInToday ? { scale: 0.98 } : {}}
+                  type="button"
+                  disabled={checkedInToday || pendingCheckin}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onCheckIn(meeting);
+                  }}
+                  className={`neo-button py-2.5 text-xs w-full ${
+                    checkedInToday
+                      ? "neo-button-success"
+                      : "bg-[var(--sky)] border-3 border-black text-black hover:bg-[#7DD3FC]"
+                  }`}
+                  style={!checkedInToday ? { boxShadow: "4px 4px 0px 0px black" } : {}}
+                >
+                  {checkedInToday ? (
+                    <>
+                      <CheckCircle size={14} strokeWidth={3} /> ✓ CHECKED IN TODAY
+                    </>
+                  ) : pendingCheckin ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <motion.span 
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        className="inline-block h-3 w-3 border-2 border-black border-t-transparent"
+                      />
+                      CHECKING IN...
+                    </span>
+                  ) : (
+                    "CHECK IN TO THIS MEETING"
+                  )}
+                </motion.button>
+              </div>
             </div>
           </motion.div>
         )}
