@@ -89,3 +89,24 @@ export type SobrietyMilestone = {
   chipColor: string;
   description: string;
 };
+
+export type NJMeetingType = 'B' | 'M' | 'PH' | 'ST' | 'TR' | 'VM' | 'W';
+
+export type NJMeeting = {
+  name: string;
+  slug: string;
+  day: number; // 0=Sun, 1=Mon, ..., 6=Sat
+  time: string; // "HH:MM"
+  location: string;
+  address: string;
+  city: string;
+  state: string;
+  postal_code: string;
+  country: string;
+  types: NJMeetingType[];
+  notes: string;
+  group: string;
+  wheelchair: boolean;
+  source?: string;
+  conference_url?: string; // Zoom meetings only
+};
