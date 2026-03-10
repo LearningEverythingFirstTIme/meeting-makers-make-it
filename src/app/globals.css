@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Dark mode configuration - uses class strategy */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer theme {
   :root {
     /* Light Mode - Warm Brutalist */
