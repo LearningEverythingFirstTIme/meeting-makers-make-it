@@ -65,3 +65,14 @@ export const normalizeDashboardLayout = (value: unknown): DashboardLayoutInput =
 
   return [...DASHBOARD_SECTION_IDS];
 };
+
+// Daily Inventory Validator
+export const dailyInventorySchema = z.object({
+  resentments: z.string().max(200).optional(),
+  fears: z.string().max(200).optional(),
+  dishonesty: z.string().max(200).optional(),
+  amends: z.string().max(200).optional(),
+  gratitude: z.string().max(200).optional(),
+});
+
+export type DailyInventoryInput = z.infer<typeof dailyInventorySchema>;

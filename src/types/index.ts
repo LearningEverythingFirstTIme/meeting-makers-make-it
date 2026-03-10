@@ -110,3 +110,16 @@ export type NJMeeting = {
   source?: string;
   conference_url?: string; // Zoom meetings only
 };
+
+export type DailyInventory = {
+  id: string;
+  userId: string;
+  date: string; // YYYY-MM-DD format
+  resentments?: string;
+  fears?: string;
+  dishonesty?: string;
+  amends?: string;
+  gratitude?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+};
