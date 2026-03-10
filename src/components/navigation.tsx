@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Home, DollarSign, BookOpen, LogOut, Search } from "lucide-react";
+import { Home, DollarSign, BookOpen, LogOut, Search, Heart } from "lucide-react";
 import { useAuth } from "@/components/auth-provider";
 
 export const Navigation = () => {
@@ -44,8 +44,22 @@ export const Navigation = () => {
             })}
           </div>
           
-          <div className="flex items-center gap-4">
-            <span className="neo-mono text-xs text-black hidden md:block">
+          <div className="flex items-center gap-3">
+            {/* 24/7 Help Button - Prominent */}
+            <Link href="/help">
+              <motion.div
+                whileHover={{ scale: 1.03, y: -1 }}
+                whileTap={{ scale: 0.97 }}
+                className="flex items-center gap-2 px-4 py-2 border-3 border-black font-['Archivo_Black'] uppercase text-sm bg-[var(--coral)] text-black hover:bg-[#FF6B6B]"
+                style={{ boxShadow: '3px 3px 0px 0px black' }}
+              >
+                <Heart size={14} strokeWidth={3} fill="black" />
+                <span className="hidden sm:inline">24/7 HELP</span>
+                <span className="sm:hidden">HELP</span>
+              </motion.div>
+            </Link>
+            
+            <span className="neo-mono text-xs text-black hidden lg:block ml-2">
               {user?.email}
             </span>
             <motion.button
