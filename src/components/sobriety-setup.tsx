@@ -74,7 +74,7 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
         initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.9, y: 20 }}
-        className="w-full max-w-md bg-white border-4 border-black p-6"
+        className="w-full max-w-md bg-[var(--white)] border-4 border-black p-6"
         style={{ boxShadow: '12px 12px 0px 0px black' }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -88,7 +88,7 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
               <h2 className="neo-title text-xl">
                 {currentDate ? "EDIT" : "SET"} SOBRIETY DATE
               </h2>
-              <p className="neo-mono text-[10px] text-gray-600">
+              <p className="neo-mono text-[10px] text-[var(--gray-muted)]">
                 {currentDate ? "Update your clean date" : "Track your recovery journey"}
               </p>
             </div>
@@ -126,7 +126,7 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setShowConfirmReset(false)}
-                  className="flex-1 neo-button bg-gray-200"
+                  className="flex-1 neo-button bg-[var(--gray-disabled)]"
                   disabled={submitting}
                 >
                   CANCEL
@@ -166,7 +166,7 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
                   className="neo-input neo-input-mint"
                   required
                 />
-                <p className="neo-mono text-[10px] text-gray-500 mt-2">
+                <p className="neo-mono text-[10px] text-[var(--gray-muted)] mt-2">
                   Enter the date of your last drink/drug use.
                 </p>
               </div>
@@ -182,7 +182,7 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
                   >
                     <div className="flex items-center gap-2">
                       <AlertTriangle size={14} strokeWidth={3} />
-                      <span className="neo-mono text-xs text-black">{error}</span>
+                      <span className="neo-mono text-xs text-[var(--black)]">{error}</span>
                     </div>
                   </motion.div>
                 )}
@@ -194,7 +194,7 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={onClose}
-                  className="flex-1 neo-button bg-gray-200"
+                  className="flex-1 neo-button bg-[var(--gray-disabled)]"
                   disabled={submitting}
                 >
                   CANCEL

@@ -91,19 +91,19 @@ export const TreasurySummary = ({ className }: TreasurySummaryProps) => {
               <DollarSign size={18} strokeWidth={3} />
               <span className="neo-title text-xs">TREASURY</span>
             </div>
-            <ArrowRight size={16} strokeWidth={3} className="text-black" />
+            <ArrowRight size={16} strokeWidth={3} className="text-[var(--black)]" />
           </div>
 
           {loading ? (
             <div className="animate-pulse">
-              <div className="h-8 bg-gray-200 rounded w-24 mb-2"></div>
-              <div className="h-4 bg-gray-200 rounded w-16"></div>
+              <div className="h-8 bg-[var(--gray-disabled)] rounded w-24 mb-2"></div>
+              <div className="h-4 bg-[var(--gray-disabled)] rounded w-16"></div>
             </div>
           ) : (
             <>
               <div className="mt-auto">
                 <motion.p
-                  className={`neo-title text-5xl ${summary.net >= 0 ? 'text-black' : 'text-[var(--coral)]'}`}
+                  className={`neo-title text-5xl ${summary.net >= 0 ? 'text-[var(--black)]' : 'text-[var(--coral)]'}`}
                   key={summary.net}
                   initial={{ scale: 1.2 }}
                   animate={{ scale: 1 }}
@@ -116,7 +116,7 @@ export const TreasurySummary = ({ className }: TreasurySummaryProps) => {
                   <div className="flex items-center gap-3">
                     <TrendingUp size={16} strokeWidth={3} className="text-[var(--mint)]" />
                     <div>
-                      <p className="neo-mono text-xs text-black">CONTRIBUTIONS</p>
+                      <p className="neo-mono text-xs text-[var(--black)]">CONTRIBUTIONS</p>
                       <p className="neo-mono text-base font-bold text-[var(--mint)]">
                         {formatCurrency(summary.contributions)}
                       </p>
@@ -125,7 +125,7 @@ export const TreasurySummary = ({ className }: TreasurySummaryProps) => {
                   <div className="flex items-center gap-3">
                     <TrendingDown size={16} strokeWidth={3} className="text-[var(--coral)]" />
                     <div>
-                      <p className="neo-mono text-xs text-black">EXPENSES</p>
+                      <p className="neo-mono text-xs text-[var(--black)]">EXPENSES</p>
                       <p className="neo-mono text-base font-bold text-[var(--coral)]">
                         {formatCurrency(summary.expenses)}
                       </p>

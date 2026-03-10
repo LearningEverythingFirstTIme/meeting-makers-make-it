@@ -33,12 +33,12 @@ function LiteratureCard({ item }: { item: LiteratureItem }) {
               {category?.label.toUpperCase()}
             </span>
             {item.source && (
-              <span className="neo-mono text-xs text-black/50">
+              <span className="neo-mono text-xs text-[var(--black)]/50">
                 {item.source}
               </span>
             )}
           </div>
-          <h3 className="neo-title text-xl text-black">{item.title}</h3>
+          <h3 className="neo-title text-xl text-[var(--black)]">{item.title}</h3>
         </div>
         <motion.div
           animate={{ rotate: isExpanded ? 180 : 0 }}
@@ -46,9 +46,9 @@ function LiteratureCard({ item }: { item: LiteratureItem }) {
           className="flex-shrink-0 ml-4"
         >
           {isExpanded ? (
-            <ChevronUp size={24} strokeWidth={3} className="text-black" />
+            <ChevronUp size={24} strokeWidth={3} className="text-[var(--black)]" />
           ) : (
-            <ChevronDown size={24} strokeWidth={3} className="text-black" />
+            <ChevronDown size={24} strokeWidth={3} className="text-[var(--black)]" />
           )}
         </motion.div>
       </button>
@@ -67,11 +67,11 @@ function LiteratureCard({ item }: { item: LiteratureItem }) {
                 {item.content.map((paragraph, index) => (
                   <p 
                     key={index} 
-                    className={`text-black leading-relaxed ${
+                    className={`text-[var(--black)] leading-relaxed ${
                       paragraph === "" 
                         ? "h-4" 
                         : paragraph.startsWith("STEP") || paragraph.startsWith("FROM PAGE")
-                        ? "neo-title text-lg mt-6 mb-2 text-black/80"
+                        ? "neo-title text-lg mt-6 mb-2 text-[var(--black)]/80"
                         : "mb-4"
                     }`}
                   >
@@ -103,7 +103,7 @@ function CategoryFilter({
         className={`neo-button text-sm ${
           activeCategory === null 
             ? "bg-[var(--butter)]" 
-            : "bg-white"
+            : "bg-[var(--white)]"
         }`}
       >
         ALL
@@ -159,13 +159,13 @@ export default function LiteraturePage() {
               className="p-3 border-4 border-black"
               style={{ backgroundColor: "var(--periwinkle)" }}
             >
-              <BookOpen size={32} strokeWidth={3} className="text-black" />
+              <BookOpen size={32} strokeWidth={3} className="text-[var(--black)]" />
             </div>
             <div>
-              <h1 className="neo-title text-3xl md:text-4xl text-black">
+              <h1 className="neo-title text-3xl md:text-4xl text-[var(--black)]">
                 LITERATURE
               </h1>
-              <p className="neo-mono text-sm text-black/60">
+              <p className="neo-mono text-sm text-[var(--black)]/60">
                 AA READINGS, PRAYERS & PROMISES
               </p>
             </div>
@@ -197,7 +197,7 @@ export default function LiteraturePage() {
                     className="w-4 h-4 border-3 border-black"
                     style={{ backgroundColor: group.color }}
                   />
-                  <h2 className="neo-title text-xl text-black">
+                  <h2 className="neo-title text-xl text-[var(--black)]">
                     {group.label.toUpperCase()}
                   </h2>
                 </div>
@@ -218,7 +218,7 @@ export default function LiteraturePage() {
             animate={{ opacity: 1 }}
             className="text-center py-16"
           >
-            <p className="neo-mono text-black/50">
+            <p className="neo-mono text-[var(--black)]/50">
               No literature found in this category.
             </p>
           </motion.div>
@@ -231,10 +231,10 @@ export default function LiteraturePage() {
           transition={{ delay: 0.5 }}
           className="mt-16 pt-8 border-t-4 border-black/10 text-center"
         >
-          <p className="neo-mono text-xs text-black/40">
+          <p className="neo-mono text-xs text-[var(--black)]/40">
             &ldquo;Rarely have we seen a person fail who has thoroughly followed our path.&rdquo;
           </p>
-          <p className="neo-mono text-xs text-black/30 mt-2">
+          <p className="neo-mono text-xs text-[var(--black)]/30 mt-2">
             — Alcoholics Anonymous, Page 58
           </p>
         </motion.div>

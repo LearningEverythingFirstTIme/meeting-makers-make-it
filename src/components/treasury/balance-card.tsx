@@ -62,7 +62,7 @@ export const BalanceCard = ({ transactions, showBreakdown = true }: BalanceCardP
           </div>
 
           <div className="text-center pt-2">
-            <span className="neo-mono text-[10px] text-gray-500">
+            <span className="neo-mono text-[10px] text-[var(--gray-muted)]">
               {summary.transactionCount} TRANSACTION{summary.transactionCount !== 1 ? 'S' : ''}
             </span>
           </div>

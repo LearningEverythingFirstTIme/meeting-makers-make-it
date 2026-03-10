@@ -141,7 +141,7 @@ export const MeetingForm = ({
           >
             <div className="flex items-center gap-2">
               <div className="h-3 w-3 bg-black" />
-              <span className="neo-mono text-xs uppercase text-black">{error}</span>
+              <span className="neo-mono text-xs uppercase text-[var(--black)]">{error}</span>
             </div>
           </motion.div>
         )}
@@ -175,7 +175,7 @@ export const MeetingForm = ({
             whileTap={{ scale: 0.98 }}
             type="button"
             onClick={onCancel}
-            className="neo-button flex-1 py-3 bg-gray-200"
+            className="neo-button flex-1 py-3 bg-[var(--gray-disabled)]"
           >
             CANCEL
           </motion.button>

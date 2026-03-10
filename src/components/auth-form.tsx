@@ -112,7 +112,7 @@ export const AuthForm = () => {
               transition={{ duration: 1, repeat: Infinity, delay: 0.4 }}
             />
           </div>
-          <h1 className="neo-title text-5xl text-black leading-none">
+          <h1 className="neo-title text-5xl text-[var(--black)] leading-none">
             MEETING<br/>
             MAKERS<br/>
             <span className="text-[var(--lavender)]" style={{ textShadow: '3px 3px 0px black' }}>
@@ -134,7 +134,7 @@ export const AuthForm = () => {
           className="mb-6 pb-4 border-b-4 border-black flex items-center gap-2"
         >
           <span className="neo-title text-sm text-[var(--coral)]">►</span>
-          <span className="neo-title text-lg text-black">
+          <span className="neo-title text-lg text-[var(--black)]">
             {mode === "login" ? "AUTHENTICATE" : "REGISTER"}
           </span>
         </motion.div>
@@ -183,7 +183,7 @@ export const AuthForm = () => {
                 className="bg-[var(--coral)] border-4 border-black p-4"
                 style={{ boxShadow: '6px 6px 0px 0px black' }}
               >
-                <span className="neo-mono text-xs text-black uppercase">
+                <span className="neo-mono text-xs text-[var(--black)] uppercase">
                   ⚠ {error}
                 </span>
               </motion.div>
@@ -236,7 +236,7 @@ export const AuthForm = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
       >
-        <p className="neo-mono text-xs text-black bg-white border-3 border-black px-4 py-2 inline-block" style={{ boxShadow: '4px 4px 0px 0px black' }}>
+        <p className="neo-mono text-xs text-[var(--black)] bg-[var(--white)] border-3 border-black px-4 py-2 inline-block" style={{ boxShadow: '4px 4px 0px 0px black' }}>
           🔒 SECURE // ENCRYPTED // LOGGED
         </p>
       </motion.div>

@@ -43,7 +43,7 @@ export default function HelpPage() {
               You Are Not Alone
             </h1>
           </div>
-          <p className="neo-mono text-sm text-black/80 ml-11">
+          <p className="neo-mono text-sm text-[var(--black)]/80 ml-11">
             If you&apos;re struggling right now, please reach out. Alcoholics help other alcoholics.
           </p>
         </motion.div>
@@ -59,7 +59,7 @@ export default function HelpPage() {
           <motion.a
             variants={cardVariants}
             href="tel:1-800-252-6463"
-            className="neo-card p-6 bg-white hover:scale-[1.02] transition-transform cursor-pointer block"
+            className="neo-card p-6 bg-[var(--white)] hover:scale-[1.02] transition-transform cursor-pointer block"
             style={{ boxShadow: "8px 8px 0px 0px black" }}
           >
             <div className="flex items-start gap-4">
@@ -70,16 +70,16 @@ export default function HelpPage() {
                 <h2 className="neo-title text-xl mb-1">
                   National AA Hotline
                 </h2>
-                <p className="neo-mono text-2xl font-bold text-black mb-2">
+                <p className="neo-mono text-2xl font-bold text-[var(--black)] mb-2">
                   1-800-252-6463
                 </p>
-                <p className="neo-mono text-xs text-black/60">
+                <p className="neo-mono text-xs text-[var(--black)]/60">
                   Available 24 hours a day, 7 days a week
                 </p>
               </div>
             </div>
             <div className="mt-4 pt-4 border-t-2 border-dashed border-black/20">
-              <p className="neo-mono text-xs text-black/70">
+              <p className="neo-mono text-xs text-[var(--black)]/70">
                 Talk to a sober alcoholic who understands what you&apos;re going through.
               </p>
             </div>
@@ -89,7 +89,7 @@ export default function HelpPage() {
           <motion.a
             variants={cardVariants}
             href="tel:1-800-992-6363"
-            className="neo-card p-6 bg-white hover:scale-[1.02] transition-transform cursor-pointer block"
+            className="neo-card p-6 bg-[var(--white)] hover:scale-[1.02] transition-transform cursor-pointer block"
             style={{ boxShadow: "8px 8px 0px 0px black" }}
           >
             <div className="flex items-start gap-4">
@@ -100,16 +100,16 @@ export default function HelpPage() {
                 <h2 className="neo-title text-xl mb-1">
                   NJ Intergroup
                 </h2>
-                <p className="neo-mono text-2xl font-bold text-black mb-2">
+                <p className="neo-mono text-2xl font-bold text-[var(--black)] mb-2">
                   1-800-992-6363
                 </p>
-                <p className="neo-mono text-xs text-black/60">
+                <p className="neo-mono text-xs text-[var(--black)]/60">
                   New Jersey Statewide Hotline
                 </p>
               </div>
             </div>
             <div className="mt-4 pt-4 border-t-2 border-dashed border-black/20">
-              <p className="neo-mono text-xs text-black/70">
+              <p className="neo-mono text-xs text-[var(--black)]/70">
                 Connect with AA members in New Jersey who can help you find a meeting.
               </p>
             </div>
@@ -131,11 +131,11 @@ export default function HelpPage() {
               <h3 className="neo-title text-lg mb-2">
                 Having Thoughts of Drinking?
               </h3>
-              <p className="neo-mono text-sm text-black/80 mb-3">
+              <p className="neo-mono text-sm text-[var(--black)]/80 mb-3">
                 You don&apos;t have to go through this alone. Pick up the phone before you pick up a drink. 
                 An alcoholic on the other end of the line wants to help you stay sober today.
               </p>
-              <p className="neo-mono text-xs text-black/60">
+              <p className="neo-mono text-xs text-[var(--black)]/60">
                 This too shall pass. Just don&apos;t drink today. One day at a time.
               </p>
             </div>
@@ -158,7 +158,7 @@ export default function HelpPage() {
               href="https://www.aa.org/find-aa" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center justify-between p-3 border-3 border-black bg-white hover:bg-[var(--cream)] transition-colors"
+              className="flex items-center justify-between p-3 border-3 border-black bg-[var(--white)] hover:bg-[var(--cream)] transition-colors"
             >
               <span className="neo-mono text-sm">AA.org Meeting Finder</span>
               <ExternalLink size={14} strokeWidth={3} />
@@ -168,14 +168,14 @@ export default function HelpPage() {
               href="https://www.nj-aa.org" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center justify-between p-3 border-3 border-black bg-white hover:bg-[var(--cream)] transition-colors"
+              className="flex items-center justify-between p-3 border-3 border-black bg-[var(--white)] hover:bg-[var(--cream)] transition-colors"
             >
               <span className="neo-mono text-sm">New Jersey AA Website</span>
               <ExternalLink size={14} strokeWidth={3} />
             </a>
 
             <div className="p-3 border-3 border-black bg-[var(--butter)]">
-              <p className="neo-mono text-xs text-black/80">
+              <p className="neo-mono text-xs text-[var(--black)]/80">
                 <strong>Remember:</strong> The only requirement for AA membership is a desire to stop drinking. 
                 You don&apos;t have to believe in God. You don&apos;t have to do the steps perfectly. 
                 You just have to not drink today, and try to help another alcoholic.

@@ -58,11 +58,11 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
             className="inline-block mb-4"
           >
             <div className="h-16 w-16 bg-[var(--coral)] border-4 border-black mx-auto flex items-center justify-center">
-              <Award size={32} strokeWidth={3} className="text-white" />
+              <Award size={32} strokeWidth={3} className="text-[var(--white)]" />
             </div>
           </motion.div>
           <h3 className="neo-title text-xl mb-2">TRACK YOUR SOBRIETY</h3>
-          <p className="neo-mono text-xs mb-4 text-gray-600">
+          <p className="neo-mono text-xs mb-4 text-[var(--gray-muted)]">
             Set your sobriety date to track progress and celebrate milestones.
           </p>
           <motion.button
@@ -95,8 +95,8 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
     return (
       <div className="neo-card p-6" style={{ boxShadow: '8px 8px 0px 0px black' }}>
         <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded w-32 mb-4"></div>
-          <div className="h-16 bg-gray-200 rounded w-48"></div>
+          <div className="h-8 bg-[var(--gray-disabled)] rounded w-32 mb-4"></div>
+          <div className="h-16 bg-[var(--gray-disabled)] rounded w-48"></div>
         </div>
       </div>
     );
@@ -131,7 +131,7 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
             <Award 
               size={20} 
               strokeWidth={3} 
-              className={currentMilestone?.chipColor === '#000000' ? 'text-white' : 'text-black'} 
+              className={currentMilestone?.chipColor === '#000000' ? 'text-white' : 'text-[var(--black)]'} 
             />
           </motion.div>
           <span className="neo-title text-sm">SOBRIETY COUNTER</span>
@@ -155,10 +155,10 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: "spring", stiffness: 200 }}
         >
-          <p className="neo-title text-6xl md:text-7xl text-black leading-none">
+          <p className="neo-title text-6xl md:text-7xl text-[var(--black)] leading-none">
             {daysSober}
           </p>
-          <p className="neo-mono text-sm text-gray-600 mt-1">DAYS SOBER</p>
+          <p className="neo-mono text-sm text-[var(--gray-muted)] mt-1">DAYS SOBER</p>
         </motion.div>
         
         <motion.p 
@@ -199,7 +199,7 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
       )}
 
       {/* Sobriety Date */}
-      <div className="flex items-center justify-center gap-2 mb-4 text-gray-600">
+      <div className="flex items-center justify-center gap-2 mb-4 text-[var(--gray-muted)]">
         <Calendar size={12} strokeWidth={3} />
         <span className="neo-mono text-xs">SINCE {formatSobrietyDate(sobrietyDate).toUpperCase()}</span>
       </div>
@@ -228,11 +228,11 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
               style={{ backgroundColor: currentMilestone.chipColor }}
             />
             <div>
-              <p className="neo-mono text-[10px] text-gray-600">CURRENT CHIP</p>
+              <p className="neo-mono text-[10px] text-[var(--gray-muted)]">CURRENT CHIP</p>
               <p className="neo-title text-lg" style={{ color: currentMilestone.chipColor === '#000000' ? 'var(--black)' : currentMilestone.chipColor }}>
                 {currentMilestone.label}
               </p>
-              <p className="neo-mono text-[10px] text-gray-500">{currentMilestone.description}</p>
+              <p className="neo-mono text-[10px] text-[var(--gray-muted)]">{currentMilestone.description}</p>
             </div>
           </div>
         </motion.div>
@@ -247,10 +247,10 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
           className="space-y-2"
         >
           <div className="flex items-center justify-between">
-            <span className="neo-mono text-[10px] text-gray-600">PROGRESS TO {nextMilestone.label}</span>
+            <span className="neo-mono text-[10px] text-[var(--gray-muted)]">PROGRESS TO {nextMilestone.label}</span>
             <span className="neo-mono text-[10px]">{Math.round(progress.percent)}%</span>
           </div>
-          <div className="h-3 bg-gray-200 border-3 border-black">
+          <div className="h-3 bg-[var(--gray-disabled)] border-3 border-black">
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: `${progress.percent}%` }}
@@ -258,7 +258,7 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
               className="h-full bg-[var(--mint)] border-r-2 border-black"
             />
           </div>
-          <p className="neo-mono text-[10px] text-center text-gray-500">
+          <p className="neo-mono text-[10px] text-center text-[var(--gray-muted)]">
             {nextMilestone.days - daysSober} DAYS TO GO
           </p>
         </motion.div>
@@ -266,7 +266,7 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
 
       {/* Milestone Grid */}
       <div className="mt-6 pt-4 border-t-2 border-dashed border-black">
-        <p className="neo-mono text-[10px] text-gray-600 mb-3">MILESTONE CHIPS</p>
+        <p className="neo-mono text-[10px] text-[var(--gray-muted)] mb-3">MILESTONE CHIPS</p>
         <div className="flex flex-wrap gap-2">
           {SOBRIETY_MILESTONES.slice(0, 8).map((milestone, index) => {
             const isAchieved = daysSober >= milestone.days;

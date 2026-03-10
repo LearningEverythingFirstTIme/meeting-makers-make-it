@@ -305,9 +305,9 @@ export default function InventoryPage() {
         <Navigation />
         <div className="max-w-2xl mx-auto px-4 py-8">
           <div className="neo-card p-12 text-center">
-            <ClipboardList size={48} className="mx-auto mb-4 text-black/30" />
+            <ClipboardList size={48} className="mx-auto mb-4 text-[var(--black)]/30" />
             <h1 className="neo-title text-2xl mb-2">Sign In Required</h1>
-            <p className="neo-mono text-sm text-black/60">Please sign in to keep your daily inventory.</p>
+            <p className="neo-mono text-sm text-[var(--black)]/60">Please sign in to keep your daily inventory.</p>
           </div>
         </div>
       </div>
@@ -348,7 +348,7 @@ export default function InventoryPage() {
             >
               <div className="flex items-center gap-3">
                 <div className="h-4 w-4 bg-black" />
-                <span className="neo-title text-sm text-black">{error}</span>
+                <span className="neo-title text-sm text-[var(--black)]">{error}</span>
               </div>
             </motion.div>
           )}
@@ -375,7 +375,7 @@ export default function InventoryPage() {
                   {isViewingToday ? "TODAY" : formatDate(selectedDate || todayKey)}
                 </p>
                 {!isViewingToday && (
-                  <p className="neo-mono text-xs text-black/60">
+                  <p className="neo-mono text-xs text-[var(--black)]/60">
                     {getDaysAgo(selectedDate || '')}
                   </p>
                 )}
@@ -392,12 +392,12 @@ export default function InventoryPage() {
 
             {/* Date Quick Select */}
             <div className="mt-4 pt-4 border-t-2 border-dashed border-black/20">
-              <p className="neo-mono text-xs mb-2 text-black/60">JUMP TO:</p>
+              <p className="neo-mono text-xs mb-2 text-[var(--black)]/60">JUMP TO:</p>
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => { setViewMode('today'); setSelectedDate(null); setEditMode(false); }}
                   className={`neo-mono text-xs px-3 py-1.5 border-3 border-black ${
-                    isViewingToday ? 'bg-black text-white' : 'bg-white hover:bg-[var(--cream)]'
+                    isViewingToday ? 'bg-black text-white' : 'bg-[var(--white)] hover:bg-[var(--cream)]'
                   }`}
                 >
                   Today
@@ -407,7 +407,7 @@ export default function InventoryPage() {
                     key={entry.date}
                     onClick={() => { setSelectedDate(entry.date); setViewMode('browse'); setEditMode(false); }}
                     className={`neo-mono text-xs px-3 py-1.5 border-3 border-black ${
-                      selectedDate === entry.date ? 'bg-black text-white' : 'bg-white hover:bg-[var(--cream)]'
+                      selectedDate === entry.date ? 'bg-black text-white' : 'bg-[var(--white)] hover:bg-[var(--cream)]'
                     }`}
                   >
                     {getDaysAgo(entry.date)}
@@ -435,7 +435,7 @@ export default function InventoryPage() {
               </span>
             )}
             {!isViewingToday && !viewingEntry && (
-              <span className="ml-auto neo-mono text-xs text-black/40">
+              <span className="ml-auto neo-mono text-xs text-[var(--black)]/40">
                 NO ENTRY
               </span>
             )}
@@ -485,7 +485,7 @@ export default function InventoryPage() {
                       ? "bg-[var(--mint)]" 
                       : hasChanges()
                         ? "neo-button-primary"
-                        : "bg-gray-200 cursor-not-allowed"
+                        : "bg-[var(--gray-disabled)] cursor-not-allowed"
                   }`}
                 >
                   {saving ? (
@@ -513,7 +513,7 @@ export default function InventoryPage() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={handleCancelEdit}
-                    className="neo-button py-3 px-6 bg-gray-200"
+                    className="neo-button py-3 px-6 bg-[var(--gray-disabled)]"
                   >
                     <X size={16} strokeWidth={3} /> CANCEL
                   </motion.button>
@@ -542,7 +542,7 @@ export default function InventoryPage() {
                         </span>
                         <div className="flex-1">
                           <p className="neo-title text-sm mb-1">{prompt.question}</p>
-                          <p className="neo-mono text-sm text-black/70">
+                          <p className="neo-mono text-sm text-[var(--black)]/70">
                             {viewingEntry[prompt.key] || "—"}
                           </p>
                         </div>
@@ -565,8 +565,8 @@ export default function InventoryPage() {
               ) : (
                 <>
                   <div className="text-center py-12">
-                    <History size={48} className="mx-auto mb-4 text-black/20" />
-                    <p className="neo-mono text-sm text-black/50 mb-4">
+                    <History size={48} className="mx-auto mb-4 text-[var(--black)]/20" />
+                    <p className="neo-mono text-sm text-[var(--black)]/50 mb-4">
                       No inventory was recorded for this day.
                     </p>
                   </div>
@@ -598,18 +598,18 @@ export default function InventoryPage() {
           >
             <h3 className="neo-title text-lg mb-4">YOUR INVENTORY HISTORY</h3>
             <div className="grid grid-cols-2 gap-4">
-              <div className="border-3 border-black bg-white p-4 text-center">
+              <div className="border-3 border-black bg-[var(--white)] p-4 text-center">
                 <p className="neo-title text-3xl">{allEntries.length}</p>
                 <p className="neo-mono text-xs">Total Entries</p>
               </div>
-              <div className="border-3 border-black bg-white p-4 text-center">
+              <div className="border-3 border-black bg-[var(--white)] p-4 text-center">
                 <p className="neo-title text-3xl">
                   {allEntries.filter(e => e.gratitude).length}
                 </p>
                 <p className="neo-mono text-xs">Gratitude Entries</p>
               </div>
             </div>
-            <p className="neo-mono text-xs text-black/60 mt-4 text-center">
+            <p className="neo-mono text-xs text-[var(--black)]/60 mt-4 text-center">
               Keep coming back! Progress, not perfection.
             </p>
           </motion.div>

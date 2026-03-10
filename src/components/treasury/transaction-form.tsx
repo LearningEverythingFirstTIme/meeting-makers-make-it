@@ -70,7 +70,7 @@ export const TransactionForm = ({ transaction, onSubmit, onCancel, onClose }: Tr
         initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.9, y: 20 }}
-        className="w-full max-w-md bg-white border-4 border-black p-6"
+        className="w-full max-w-md bg-[var(--white)] border-4 border-black p-6"
         style={{ boxShadow: '12px 12px 0px 0px black' }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -100,8 +100,8 @@ export const TransactionForm = ({ transaction, onSubmit, onCancel, onClose }: Tr
                 onClick={() => handleTypeChange('contribution')}
                 className={`flex-1 py-3 border-3 border-black neo-title text-sm flex items-center justify-center gap-2 ${
                   type === 'contribution'
-                    ? 'bg-[var(--mint)] text-black'
-                    : 'bg-white text-black hover:bg-[var(--cream)]'
+                    ? 'bg-[var(--mint)] text-[var(--black)]'
+                    : 'bg-[var(--white)] text-[var(--black)] hover:bg-[var(--cream)]'
                 }`}
                 style={{ boxShadow: type === 'contribution' ? 'none' : '4px 4px 0px 0px black' }}
               >
@@ -115,7 +115,7 @@ export const TransactionForm = ({ transaction, onSubmit, onCancel, onClose }: Tr
                 className={`flex-1 py-3 border-3 border-black neo-title text-sm flex items-center justify-center gap-2 ${
                   type === 'expense'
                     ? 'bg-[var(--coral)] text-white'
-                    : 'bg-white text-black hover:bg-[var(--cream)]'
+                    : 'bg-[var(--white)] text-[var(--black)] hover:bg-[var(--cream)]'
                 }`}
                 style={{ boxShadow: type === 'expense' ? 'none' : '4px 4px 0px 0px black' }}
               >
@@ -190,7 +190,7 @@ export const TransactionForm = ({ transaction, onSubmit, onCancel, onClose }: Tr
                 exit={{ height: 0, opacity: 0 }}
                 className="bg-[var(--coral)] border-4 border-black p-3"
               >
-                <span className="neo-mono text-xs text-black">{error}</span>
+                <span className="neo-mono text-xs text-[var(--black)]">{error}</span>
               </motion.div>
             )}
           </AnimatePresence>
@@ -201,7 +201,7 @@ export const TransactionForm = ({ transaction, onSubmit, onCancel, onClose }: Tr
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={onCancel}
-              className="flex-1 neo-button bg-gray-200"
+              className="flex-1 neo-button bg-[var(--gray-disabled)]"
               disabled={submitting}
             >
               CANCEL

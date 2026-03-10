@@ -146,8 +146,8 @@ export default function TreasuryPage() {
             className="bg-[var(--lavender)] border-4 border-black p-1"
             style={{ boxShadow: '8px 8px 0px 0px black' }}
           >
-            <div className="bg-white border-3 border-black p-6 flex items-center justify-between">
-              <h1 className="neo-title text-3xl text-black">TREASURY</h1>
+            <div className="bg-[var(--white)] border-3 border-black p-6 flex items-center justify-between">
+              <h1 className="neo-title text-3xl text-[var(--black)]">TREASURY</h1>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -169,7 +169,7 @@ export default function TreasuryPage() {
                 className="bg-[var(--coral)] border-4 border-black p-4"
                 style={{ boxShadow: '8px 8px 0px 0px black' }}
               >
-                <span className="neo-title text-sm text-black">ERROR: {error}</span>
+                <span className="neo-title text-sm text-[var(--black)]">ERROR: {error}</span>
               </motion.div>
             )}
           </AnimatePresence>

@@ -40,17 +40,17 @@ export const TransactionCard = ({ transaction, onEdit, onDelete }: TransactionCa
             <span className="neo-title text-sm uppercase">{categoryLabel}</span>
           </div>
           
-          <p className={`neo-mono text-lg font-bold text-black`}>
+          <p className={`neo-mono text-lg font-bold text-[var(--black)]`}>
             {isContribution ? '+' : '-'}{formatCurrency(amount)}
           </p>
 
           {transaction.note && (
-            <p className="neo-mono text-xs text-black truncate mt-1">
+            <p className="neo-mono text-xs text-[var(--black)] truncate mt-1">
               {transaction.note}
             </p>
           )}
 
-          <p className="neo-mono text-[10px] text-gray-600 mt-1">
+          <p className="neo-mono text-[10px] text-[var(--gray-muted)] mt-1">
             {formatDate(transaction.date)}
           </p>
         </div>
@@ -61,7 +61,7 @@ export const TransactionCard = ({ transaction, onEdit, onDelete }: TransactionCa
             whileTap={{ scale: 0.9 }}
             type="button"
             onClick={onEdit}
-            className="p-2 bg-white border-3 border-black hover:bg-[var(--butter)]"
+            className="p-2 bg-[var(--white)] border-3 border-black hover:bg-[var(--butter)]"
             style={{ boxShadow: '4px 4px 0px 0px black' }}
           >
             <Edit2 size={12} strokeWidth={3} />
@@ -71,7 +71,7 @@ export const TransactionCard = ({ transaction, onEdit, onDelete }: TransactionCa
             whileTap={{ scale: 0.9 }}
             type="button"
             onClick={onDelete}
-            className="p-2 bg-white border-3 border-black hover:bg-[var(--coral)] hover:text-white"
+            className="p-2 bg-[var(--white)] border-3 border-black hover:bg-[var(--coral)] hover:text-white"
             style={{ boxShadow: '4px 4px 0px 0px black' }}
           >
             <Trash2 size={12} strokeWidth={3} />

@@ -23,7 +23,7 @@ export default function Home() {
             className="mx-auto mb-6 h-16 w-16 border-4 border-black bg-[var(--butter)]"
             style={{ boxShadow: '8px 8px 0px 0px black' }}
           />
-          <p className="neo-title text-xl text-black animate-blink">
+          <p className="neo-title text-xl text-[var(--black)] animate-blink">
             INITIALIZING...
           </p>
         </motion.div>
@@ -43,13 +43,13 @@ export default function Home() {
         >
           <div className="mb-6 flex items-center gap-3 border-b-4 border-black pb-4">
             <div className="h-6 w-6 bg-[var(--coral)] border-3 border-black" />
-            <h1 className="neo-title text-3xl text-black">ERROR</h1>
+            <h1 className="neo-title text-3xl text-[var(--black)]">ERROR</h1>
           </div>
           <p className="neo-mono text-sm mb-6 text-[var(--coral)]">
             {configError}
           </p>
           <div className="bg-[var(--cream)] border-4 border-black p-4">
-            <p className="neo-mono text-xs text-black">
+            <p className="neo-mono text-xs text-[var(--black)]">
               COPY <span className="bg-black text-white px-2 py-1">.env.example</span> TO <span className="bg-black text-white px-2 py-1">.env.local</span>
             </p>
           </div>

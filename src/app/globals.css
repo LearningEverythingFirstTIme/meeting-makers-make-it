@@ -25,6 +25,16 @@
     --white-dark: #16213e;
     --pink-dark: #FF85C0;
     --lime-dark: #9AE635;
+    
+    /* Gray scale - Light Mode */
+    --gray-muted: #9ca3af;
+    --gray-subtle: #d1d5db;
+    --gray-disabled: #e5e7eb;
+    
+    /* Gray scale - Dark Mode */
+    --gray-muted-dark: #6b7280;
+    --gray-subtle-dark: #4b5563;
+    --gray-disabled-dark: #374151;
   }
   
   /* Dark mode class-based switching */
@@ -39,6 +49,9 @@
     --white: var(--white-dark);
     --pink: var(--pink-dark);
     --lime: var(--lime-dark);
+    --gray-muted: var(--gray-muted-dark);
+    --gray-subtle: var(--gray-subtle-dark);
+    --gray-disabled: var(--gray-disabled-dark);
   }
 }
 
