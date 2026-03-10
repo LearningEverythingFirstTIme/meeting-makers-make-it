@@ -805,9 +805,9 @@ export const Dashboard = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
             className="bg-[var(--coral)] border-4 border-black p-1"
-            style={{ boxShadow: "6px 6px 0px 0px black" }}
+            style={{ boxShadow: "8px 8px 0px 0px black" }}
           >
-            <div className="border-2 border-black bg-white p-4">
+            <div className="border-3 border-black bg-white p-4">
               <h2 className="neo-title flex items-center gap-2 text-xl text-black">
                 <Plus size={24} strokeWidth={3} /> ADD MEETING
               </h2>
@@ -839,7 +839,7 @@ export const Dashboard = () => {
               <motion.li
                 variants={logItemVariants}
                 key={entry.id}
-                className="border-2 border-black bg-[var(--cream)] px-3 py-2"
+                className="border-3 border-black bg-[var(--cream)] px-3 py-2"
               >
                 {editingCheckinId === entry.id ? (
                   <div className="space-y-2">
@@ -931,9 +931,9 @@ export const Dashboard = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.15 }}
             className="bg-[var(--sky)] border-4 border-black p-1"
-            style={{ boxShadow: "6px 6px 0px 0px black" }}
+            style={{ boxShadow: "8px 8px 0px 0px black" }}
           >
-            <div className="border-2 border-black bg-white p-4">
+            <div className="border-3 border-black bg-white p-4">
               <h2 className="neo-title text-xl text-black">YOUR MEETINGS</h2>
             </div>
           </motion.div>
@@ -948,7 +948,7 @@ export const Dashboard = () => {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                 className="mx-auto mb-4 h-12 w-12 border-4 border-black bg-[var(--butter)]"
-                style={{ boxShadow: "4px 4px 0px 0px black" }}
+                style={{ boxShadow: "6px 6px 0px 0px black" }}
               />
               <p className="neo-title animate-blink">LOADING...</p>
             </motion.div>
@@ -972,7 +972,7 @@ export const Dashboard = () => {
                     layout
                     variants={meetingCardVariants}
                     key={meeting.id}
-                    className={`neo-card p-5 ${todaysCheckin ? "border-[var(--mint)]" : ""}`}
+                    className={`neo-card p-6 ${todaysCheckin ? "border-[var(--mint)]" : ""}`}
                     style={todaysCheckin ? { boxShadow: "10px 10px 0px 0px var(--mint)" } : {}}
                     whileHover={{ scale: 1.01 }}
                     transition={{ duration: 0.2 }}
@@ -997,7 +997,7 @@ export const Dashboard = () => {
                           <div>
                             <div className="mb-2 flex items-center gap-2">
                               <motion.div
-                                className={`h-3 w-3 border-2 border-black ${todaysCheckin ? "bg-[var(--mint)]" : "bg-gray-400"}`}
+                                className={`h-3 w-3 border-3 border-black ${todaysCheckin ? "bg-[var(--mint)]" : "bg-gray-400"}`}
                                 animate={showSuccess ? { scale: [1, 1.5, 1] } : {}}
                                 transition={{ duration: 0.4 }}
                               />
@@ -1091,7 +1091,7 @@ export const Dashboard = () => {
                 className="neo-card border-dashed p-12 text-center"
               >
                 <motion.div
-                  className="mx-auto mb-4 h-6 w-6 border-2 border-black bg-[var(--coral)]"
+                  className="mx-auto mb-4 h-6 w-6 border-3 border-black bg-[var(--coral)]"
                   animate={{ rotate: [0, 10, -10, 0] }}
                   transition={{ duration: 0.5, repeat: Infinity }}
                 />
@@ -1152,7 +1152,7 @@ export const Dashboard = () => {
                         initial={{ opacity: 0, scale: 0.85 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: weekIndex * 0.01 + dayIndex * 0.01 }}
-                        className={`group relative h-4 w-4 border-2 border-black ${day.isToday ? "ring-2 ring-black ring-offset-2 ring-offset-[var(--cream)]" : ""}`}
+                        className={`group relative h-4 w-4 border-3 border-black ${day.isToday ? "ring-2 ring-black ring-offset-2 ring-offset-[var(--cream)]" : ""}`}
                         style={{
                           backgroundColor: activityToneByLevel[day.level],
                           boxShadow: activityShadowByLevel[day.level],
@@ -1177,7 +1177,7 @@ export const Dashboard = () => {
               {ACTIVITY_LEVELS.map((level) => (
                 <span
                   key={level}
-                  className="h-4 w-4 border-2 border-black"
+                  className="h-4 w-4 border-3 border-black"
                   style={{
                     backgroundColor: activityToneByLevel[level],
                     boxShadow: activityShadowByLevel[level],
@@ -1215,7 +1215,7 @@ export const Dashboard = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 + 0.5 }}
                   key={entry.id}
-                  className="flex items-center justify-between border-2 border-black bg-[var(--lavender)] px-4 py-2"
+                  className="flex items-center justify-between border-3 border-black bg-[var(--lavender)] px-4 py-2"
                 >
                   <div className="min-w-0 flex-1">
                     <span className="neo-mono block text-xs uppercase">{meeting?.name ?? entry.meetingName}</span>
@@ -1250,7 +1250,7 @@ export const Dashboard = () => {
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 className="border-4 border-black bg-[var(--coral)] p-4"
-                style={{ boxShadow: "6px 6px 0px 0px black" }}
+                style={{ boxShadow: "8px 8px 0px 0px black" }}
               >
                 <div className="flex items-center gap-3">
                   <div className="h-4 w-4 bg-black" />

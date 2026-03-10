@@ -194,7 +194,7 @@ export default function LiteraturePage() {
                   style={{ borderColor: group.color }}
                 >
                   <div 
-                    className="w-4 h-4 border-2 border-black"
+                    className="w-4 h-4 border-3 border-black"
                     style={{ backgroundColor: group.color }}
                   />
                   <h2 className="neo-title text-xl text-black">

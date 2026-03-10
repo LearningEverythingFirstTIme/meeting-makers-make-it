@@ -146,7 +146,7 @@ export default function TreasuryPage() {
             className="bg-[var(--lavender)] border-4 border-black p-1"
             style={{ boxShadow: '8px 8px 0px 0px black' }}
           >
-            <div className="bg-white border-2 border-black p-6 flex items-center justify-between">
+            <div className="bg-white border-3 border-black p-6 flex items-center justify-between">
               <h1 className="neo-title text-3xl text-black">TREASURY</h1>
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -167,7 +167,7 @@ export default function TreasuryPage() {
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 className="bg-[var(--coral)] border-4 border-black p-4"
-                style={{ boxShadow: '6px 6px 0px 0px black' }}
+                style={{ boxShadow: '8px 8px 0px 0px black' }}
               >
                 <span className="neo-title text-sm text-black">ERROR: {error}</span>
               </motion.div>
@@ -199,7 +199,7 @@ export default function TreasuryPage() {
                   animate={{ rotate: 360 }}
                   transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                   className="mx-auto mb-4 h-10 w-10 border-4 border-black bg-[var(--butter)]"
-                  style={{ boxShadow: '3px 3px 0px 0px black' }}
+                  style={{ boxShadow: '6px 6px 0px 0px black' }}
                 />
                 <p className="neo-title animate-blink">LOADING...</p>
               </div>
@@ -210,7 +210,7 @@ export default function TreasuryPage() {
                 className="text-center py-12"
               >
                 <motion.div
-                  className="h-6 w-6 bg-[var(--lavender)] border-2 border-black mx-auto mb-4"
+                  className="h-6 w-6 bg-[var(--lavender)] border-3 border-black mx-auto mb-4"
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 1, repeat: Infinity }}
                 />

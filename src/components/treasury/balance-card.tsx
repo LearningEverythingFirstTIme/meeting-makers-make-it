@@ -15,7 +15,7 @@ export const BalanceCard = ({ transactions, showBreakdown = true }: BalanceCardP
   const isPositive = summary.net >= 0;
 
   return (
-    <div className="bg-white border-4 border-black p-6" style={{ boxShadow: '8px 8px 0px 0px black' }}>
+    <div className="neo-card p-6">
       <div className="text-center mb-6">
         <div className="flex items-center justify-center gap-2 mb-2">
           <DollarSign size={24} strokeWidth={3} className={isPositive ? "text-[var(--mint)]" : "text-[var(--coral)]"} />

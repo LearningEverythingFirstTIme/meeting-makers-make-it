@@ -33,13 +33,13 @@ export default function HelpPage() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="neo-card p-6 mb-6 border-[var(--coral)]"
-          style={{ background: "var(--coral)", boxShadow: "10px 10px 0px 0px black" }}
+          style={{ background: "var(--coral)", boxShadow: "8px 8px 0px 0px black" }}
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="h-8 w-8 bg-black border-4 border-black flex items-center justify-center">
+            <div className="h-8 w-8 bg-black border-3 border-black flex items-center justify-center">
               <Heart size={20} className="text-[var(--coral)]" strokeWidth={3} />
             </div>
-            <h1 className="font-['Archivo_Black'] text-3xl text-black uppercase tracking-tight">
+            <h1 className="neo-title text-3xl">
               You Are Not Alone
             </h1>
           </div>
@@ -67,7 +67,7 @@ export default function HelpPage() {
                 <Phone size={24} strokeWidth={3} />
               </div>
               <div className="flex-1">
-                <h2 className="font-['Archivo_Black'] text-xl text-black mb-1">
+                <h2 className="neo-title text-xl mb-1">
                   National AA Hotline
                 </h2>
                 <p className="neo-mono text-2xl font-bold text-black mb-2">
@@ -97,7 +97,7 @@ export default function HelpPage() {
                 <Users size={24} strokeWidth={3} />
               </div>
               <div className="flex-1">
-                <h2 className="font-['Archivo_Black'] text-xl text-black mb-1">
+                <h2 className="neo-title text-xl mb-1">
                   NJ Intergroup
                 </h2>
                 <p className="neo-mono text-2xl font-bold text-black mb-2">
@@ -128,7 +128,7 @@ export default function HelpPage() {
               <AlertCircle size={20} strokeWidth={3} />
             </div>
             <div>
-              <h3 className="font-['Archivo_Black'] text-lg text-black mb-2">
+              <h3 className="neo-title text-lg mb-2">
                 Having Thoughts of Drinking?
               </h3>
               <p className="neo-mono text-sm text-black/80 mb-3">
@@ -149,7 +149,7 @@ export default function HelpPage() {
           transition={{ delay: 0.5 }}
           className="neo-card p-6"
         >
-          <h3 className="font-['Archivo_Black'] text-lg text-black mb-4 flex items-center gap-2">
+          <h3 className="neo-title text-lg mb-4 flex items-center gap-2">
             <ExternalLink size={18} strokeWidth={3} /> MORE RESOURCES
           </h3>
           
@@ -158,7 +158,7 @@ export default function HelpPage() {
               href="https://www.aa.org/find-aa" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center justify-between p-3 border-2 border-black bg-white hover:bg-[var(--cream)] transition-colors"
+              className="flex items-center justify-between p-3 border-3 border-black bg-white hover:bg-[var(--cream)] transition-colors"
             >
               <span className="neo-mono text-sm">AA.org Meeting Finder</span>
               <ExternalLink size={14} strokeWidth={3} />
@@ -168,13 +168,13 @@ export default function HelpPage() {
               href="https://www.nj-aa.org" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center justify-between p-3 border-2 border-black bg-white hover:bg-[var(--cream)] transition-colors"
+              className="flex items-center justify-between p-3 border-3 border-black bg-white hover:bg-[var(--cream)] transition-colors"
             >
               <span className="neo-mono text-sm">New Jersey AA Website</span>
               <ExternalLink size={14} strokeWidth={3} />
             </a>
 
-            <div className="p-3 border-2 border-black bg-[var(--butter)]">
+            <div className="p-3 border-3 border-black bg-[var(--butter)]">
               <p className="neo-mono text-xs text-black/80">
                 <strong>Remember:</strong> The only requirement for AA membership is a desire to stop drinking. 
                 You don&apos;t have to believe in God. You don&apos;t have to do the steps perfectly. 

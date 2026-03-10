@@ -265,6 +265,44 @@ body {
   letter-spacing: -0.05em;
 }
 
+@utility neo-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 4px solid var(--black);
+}
+
+/* 
+  VISUAL STANDARDS DOCUMENTATION:
+  
+  Borders:
+    - border-4: Main cards (neo-card), page headers, stat cards
+    - border-3: Buttons (neo-button), inputs (neo-input), inner sections
+    - border-2: Badges (neo-badge), small chips, decorative elements
+  
+  Shadows (box-shadow):
+    - 12px: Modals (centered overlays)
+    - 10px: Highlighted/success states, special cards
+    - 8px: Main cards (neo-card), page headers
+    - 6px: Error banners, dashboard layout header, inner cards
+    - 4px: Buttons (neo-button), form elements
+    - 3px: Nav items (when inactive)
+    - 2px: Small action buttons (edit/delete icons), badges
+  
+  Padding in cards:
+    - p-6: Standard card padding
+    - p-4: Compact cards (date browser)
+    - p-8: Auth forms, error states
+  
+  Section headers pattern:
+    <div className="flex items-center gap-2 mb-4 pb-3 border-b-4 border-black">
+      <span className="neo-title text-sm text-[var(--accent)]">►</span>
+      <span className="neo-title text-sm">TITLE</span>
+    </div>
+*/
+
 @keyframes wobble {
   0%, 100% { transform: rotate(0deg); }
   25% { transform: rotate(-3deg); }

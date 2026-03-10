@@ -26,7 +26,7 @@ export const TransactionCard = ({ transaction, onEdit, onDelete }: TransactionCa
           ? 'bg-[var(--mint)] bg-opacity-10 border-[var(--mint)]' 
           : 'bg-[var(--coral)] bg-opacity-10 border-[var(--coral)]'
       }`}
-      style={{ boxShadow: '4px 4px 0px 0px black' }}
+      style={{ boxShadow: '6px 6px 0px 0px black' }}
       whileHover={{ scale: 1.01, y: -1 }}
     >
       <div className="flex items-start justify-between gap-4">
@@ -61,8 +61,8 @@ export const TransactionCard = ({ transaction, onEdit, onDelete }: TransactionCa
             whileTap={{ scale: 0.9 }}
             type="button"
             onClick={onEdit}
-            className="p-2 bg-white border-2 border-black hover:bg-[var(--butter)]"
-            style={{ boxShadow: '2px 2px 0px 0px black' }}
+            className="p-2 bg-white border-3 border-black hover:bg-[var(--butter)]"
+            style={{ boxShadow: '4px 4px 0px 0px black' }}
           >
             <Edit2 size={12} strokeWidth={3} />
           </motion.button>
@@ -71,8 +71,8 @@ export const TransactionCard = ({ transaction, onEdit, onDelete }: TransactionCa
             whileTap={{ scale: 0.9 }}
             type="button"
             onClick={onDelete}
-            className="p-2 bg-white border-2 border-black hover:bg-[var(--coral)] hover:text-white"
-            style={{ boxShadow: '2px 2px 0px 0px black' }}
+            className="p-2 bg-white border-3 border-black hover:bg-[var(--coral)] hover:text-white"
+            style={{ boxShadow: '4px 4px 0px 0px black' }}
           >
             <Trash2 size={12} strokeWidth={3} />
           </motion.button>

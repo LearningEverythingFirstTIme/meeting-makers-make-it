@@ -71,7 +71,7 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
         <div className="flex items-start justify-between gap-3 mb-2">
           <div className="flex items-center gap-2 flex-wrap">
             <span
-              className="neo-mono text-xs px-2 py-0.5 border-2 border-black font-bold"
+              className="neo-mono text-xs px-2 py-0.5 border-3 border-black font-bold"
               style={{ background: "var(--butter)" }}
             >
               {DAY_LABELS[meeting.day]}
@@ -82,14 +82,14 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
             </span>
             {isZoom ? (
               <span
-                className="flex items-center gap-1 neo-mono text-xs px-2 py-0.5 border-2 border-black"
+                className="flex items-center gap-1 neo-mono text-xs px-2 py-0.5 border-3 border-black"
                 style={{ background: "var(--coral)", color: "black" }}
               >
                 <Video size={10} strokeWidth={3} /> ZOOM
               </span>
             ) : (
               <span
-                className="flex items-center gap-1 neo-mono text-xs px-2 py-0.5 border-2 border-black"
+                className="flex items-center gap-1 neo-mono text-xs px-2 py-0.5 border-3 border-black"
                 style={{ background: "var(--mint)", color: "black" }}
               >
                 <MapPin size={10} strokeWidth={3} /> IN-PERSON
@@ -102,7 +102,7 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
         </div>
 
         {/* Meeting name */}
-        <p className="font-['Archivo_Black'] text-sm text-black leading-snug mb-2">
+        <p className="neo-title text-sm leading-snug mb-2">
           {meeting.name}
         </p>
 
@@ -120,7 +120,7 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
               return (
                 <span
                   key={t}
-                  className="neo-mono text-xs px-1.5 py-0.5 border-2 border-black"
+                  className="neo-mono text-xs px-1.5 py-0.5 border-3 border-black"
                   style={{ background: info.color }}
                 >
                   {info.label}
@@ -185,7 +185,7 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
                 </p>
               )}
               {meeting.wheelchair && (
-                <span className="neo-mono text-xs px-2 py-0.5 border-2 border-black bg-[var(--sky)] inline-block">
+                <span className="neo-mono text-xs px-2 py-0.5 border-3 border-black bg-[var(--sky)] inline-block">
                   ♿ WHEELCHAIR ACCESSIBLE
                 </span>
               )}
@@ -220,7 +220,7 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
                       <motion.span 
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                        className="inline-block h-3 w-3 border-2 border-black border-t-transparent"
+                        className="inline-block h-3 w-3 border-3 border-black border-t-transparent"
                       />
                       CHECKING IN...
                     </span>
@@ -430,7 +430,7 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
             className="neo-card p-12 text-center"
           >
             <Users size={48} className="mx-auto mb-4 text-black/30" strokeWidth={2} />
-            <h1 className="font-['Archivo_Black'] text-2xl text-black mb-2">Sign In Required</h1>
+            <h1 className="neo-title text-2xl mb-2">Sign In Required</h1>
             <p className="neo-mono text-sm text-black/60">
               Please sign in to find meetings and track your attendance.
             </p>
@@ -452,7 +452,7 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               className="border-4 border-black bg-[var(--coral)] p-4 mb-6"
-              style={{ boxShadow: "6px 6px 0px 0px black" }}
+              style={{ boxShadow: "8px 8px 0px 0px black" }}
             >
               <div className="flex items-center gap-3">
                 <div className="h-4 w-4 bg-black" />
@@ -470,8 +470,8 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
           style={{ background: "var(--butter)" }}
         >
           <div className="flex items-center gap-3 mb-1">
-            <div className="h-4 w-4 bg-black border-2 border-black" />
-            <h1 className="font-['Archivo_Black'] text-3xl text-black uppercase tracking-tight">
+            <div className="h-4 w-4 bg-black border-3 border-black" />
+            <h1 className="neo-title text-3xl">
               Find a Meeting
             </h1>
           </div>
@@ -481,7 +481,7 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
         </motion.div>
 
         {/* Search + Filters */}
-        <div className="neo-card p-5 mb-6 space-y-4">
+        <div className="neo-card p-6 mb-6 space-y-4">
           {/* Search */}
           <div className="relative">
             <Search size={16} strokeWidth={3} className="absolute left-3 top-1/2 -translate-y-1/2 text-black" />
@@ -502,7 +502,7 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
                 className={`neo-mono text-xs px-3 py-1.5 border-3 border-black cursor-pointer transition-all ${
                   dayFilter === null ? "bg-black text-white" : "bg-white text-black hover:bg-[var(--cream)]"
                 }`}
-                style={{ boxShadow: dayFilter === null ? "none" : "3px 3px 0 0 black" }}
+                style={{ boxShadow: dayFilter === null ? "none" : "4px 4px 0 0 black" }}
               >
                 ALL
               </button>
@@ -513,7 +513,7 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
                   className={`neo-mono text-xs px-3 py-1.5 border-3 border-black cursor-pointer transition-all ${
                     dayFilter === idx ? "bg-black text-white" : "bg-white text-black hover:bg-[var(--cream)]"
                   }`}
-                  style={{ boxShadow: dayFilter === idx ? "none" : "3px 3px 0 0 black" }}
+                  style={{ boxShadow: dayFilter === idx ? "none" : "4px 4px 0 0 black" }}
                 >
                   {label}
                 </button>
@@ -532,7 +532,7 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
                   className={`neo-mono text-xs px-3 py-1.5 border-3 border-black cursor-pointer uppercase transition-all ${
                     formatFilter === f ? "bg-black text-white" : "bg-white text-black hover:bg-[var(--cream)]"
                   }`}
-                  style={{ boxShadow: formatFilter === f ? "none" : "3px 3px 0 0 black" }}
+                  style={{ boxShadow: formatFilter === f ? "none" : "4px 4px 0 0 black" }}
                 >
                   {f === "all" ? "All" : f === "in-person" ? "In-Person" : "Zoom"}
                 </button>
@@ -549,7 +549,7 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
                 className={`neo-mono text-xs px-3 py-1.5 border-3 border-black cursor-pointer transition-all ${
                   typeFilter === null ? "bg-black text-white" : "bg-white text-black hover:bg-[var(--cream)]"
                 }`}
-                style={{ boxShadow: typeFilter === null ? "none" : "3px 3px 0 0 black" }}
+                style={{ boxShadow: typeFilter === null ? "none" : "4px 4px 0 0 black" }}
               >
                 ALL
               </button>
@@ -564,7 +564,7 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
                     style={{
                       background: active ? "black" : info.color,
                       color: active ? "white" : "black",
-                      boxShadow: active ? "none" : "3px 3px 0 0 black",
+                      boxShadow: active ? "none" : "4px 4px 0 0 black",
                     }}
                   >
                     {info.label}
@@ -590,7 +590,7 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
                 setTypeFilter(null); resetPage();
               }}
               className="neo-mono text-xs px-3 py-1 border-3 border-black bg-[var(--coral)] hover:bg-[var(--coral)]/80 cursor-pointer"
-              style={{ boxShadow: "2px 2px 0 0 black" }}
+              style={{ boxShadow: "4px 4px 0 0 black" }}
             >
               CLEAR FILTERS
             </button>
@@ -605,7 +605,7 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
             className="neo-card p-12 text-center"
           >
             <Users size={32} className="mx-auto mb-4 text-black/30" strokeWidth={2} />
-            <p className="font-['Archivo_Black'] text-lg text-black/50">NO MEETINGS FOUND</p>
+            <p className="neo-title text-lg text-black/50">NO MEETINGS FOUND</p>
             <p className="neo-mono text-xs text-black/30 mt-1">Try adjusting your search or filters</p>
           </motion.div>
         ) : (

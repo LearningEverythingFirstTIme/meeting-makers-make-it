@@ -83,7 +83,7 @@ export const MeetingForm = ({
     >
       <div className="flex items-center gap-2 mb-5 pb-4 border-b-4 border-black">
         <motion.div 
-          className="h-3 w-3 bg-[var(--butter)] border-2 border-black"
+          className="h-3 w-3 bg-[var(--butter)] border-3 border-black"
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         />
@@ -136,8 +136,8 @@ export const MeetingForm = ({
             initial="hidden"
             animate="show"
             exit="exit"
-            className="bg-[var(--coral)] border-3 border-black p-4 mb-4"
-            style={{ boxShadow: '4px 4px 0px 0px black' }}
+            className="bg-[var(--coral)] border-4 border-black p-4 mb-4"
+            style={{ boxShadow: '6px 6px 0px 0px black' }}
           >
             <div className="flex items-center gap-2">
               <div className="h-3 w-3 bg-black" />
@@ -160,7 +160,7 @@ export const MeetingForm = ({
               <motion.span 
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                className="inline-block h-3 w-3 border-2 border-black border-t-transparent"
+                className="inline-block h-3 w-3 border-3 border-black border-t-transparent"
               />
               SAVING...
             </span>

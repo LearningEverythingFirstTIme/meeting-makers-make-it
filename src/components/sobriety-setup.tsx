@@ -98,7 +98,7 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
             whileTap={{ scale: 0.9 }}
             type="button"
             onClick={onClose}
-            className="p-2 border-2 border-black hover:bg-[var(--coral)]"
+            className="p-2 border-3 border-black hover:bg-[var(--coral)]"
           >
             <X size={16} strokeWidth={3} />
           </motion.button>
@@ -177,8 +177,8 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    className="bg-[var(--coral)] border-3 border-black p-4"
-                    style={{ boxShadow: '4px 4px 0px 0px black' }}
+                    className="bg-[var(--coral)] border-4 border-black p-4"
+                    style={{ boxShadow: '6px 6px 0px 0px black' }}
                   >
                     <div className="flex items-center gap-2">
                       <AlertTriangle size={14} strokeWidth={3} />
@@ -223,7 +223,7 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
                       <motion.span
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                        className="inline-block h-3 w-3 border-2 border-black border-t-transparent"
+                        className="inline-block h-3 w-3 border-3 border-black border-t-transparent"
                       />
                       SAVING...
                     </span>

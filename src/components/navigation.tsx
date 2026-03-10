@@ -30,12 +30,12 @@ export const Navigation = () => {
                   <motion.div
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className={`flex items-center gap-2 px-4 py-2 border-3 border-black font-['Archivo_Black'] uppercase text-sm transition-colors ${
+                    className={`flex items-center gap-2 px-4 py-2 border-3 border-black neo-title text-sm transition-colors ${
                       isActive 
                         ? "bg-[var(--butter)] text-black" 
                         : "bg-white text-black hover:bg-[var(--cream)]"
                     }`}
-                    style={{ boxShadow: isActive ? 'none' : '3px 3px 0px 0px black' }}
+                    style={{ boxShadow: isActive ? 'none' : '4px 4px 0px 0px black' }}
                   >
                     <item.icon size={14} strokeWidth={3} />
                     {item.label}
@@ -51,8 +51,8 @@ export const Navigation = () => {
               <motion.div
                 whileHover={{ scale: 1.03, y: -1 }}
                 whileTap={{ scale: 0.97 }}
-                className="flex items-center gap-2 px-4 py-2 border-3 border-black font-['Archivo_Black'] uppercase text-sm bg-[var(--coral)] text-black hover:bg-[#FF6B6B]"
-                style={{ boxShadow: '3px 3px 0px 0px black' }}
+                className="flex items-center gap-2 px-4 py-2 border-3 border-black neo-title text-sm bg-[var(--coral)] text-black hover:bg-[#FF6B6B]"
+                style={{ boxShadow: '4px 4px 0px 0px black' }}
               >
                 <Heart size={14} strokeWidth={3} fill="black" />
                 <span className="hidden sm:inline">24/7 HELP</span>

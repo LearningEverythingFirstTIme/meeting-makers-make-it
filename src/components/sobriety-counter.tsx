@@ -140,8 +140,8 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
           whileHover={{ scale: 1.1, rotate: -5 }}
           whileTap={{ scale: 0.9 }}
           onClick={onEdit}
-          className="p-2 border-2 border-black hover:bg-[var(--butter)]"
-          style={{ boxShadow: '2px 2px 0px 0px black' }}
+          className="p-2 border-3 border-black hover:bg-[var(--butter)]"
+          style={{ boxShadow: '4px 4px 0px 0px black' }}
         >
           <Edit3 size={14} strokeWidth={3} />
         </motion.button>
@@ -210,8 +210,8 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
-          className="bg-[var(--cream)] border-3 border-black p-4 mb-4"
-          style={{ boxShadow: '4px 4px 0px 0px black' }}
+          className="bg-[var(--cream)] border-4 border-black p-4 mb-4"
+          style={{ boxShadow: '6px 6px 0px 0px black' }}
         >
           <div className="flex items-center gap-3">
             <motion.div
@@ -250,7 +250,7 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
             <span className="neo-mono text-[10px] text-gray-600">PROGRESS TO {nextMilestone.label}</span>
             <span className="neo-mono text-[10px]">{Math.round(progress.percent)}%</span>
           </div>
-          <div className="h-3 bg-gray-200 border-2 border-black">
+          <div className="h-3 bg-gray-200 border-3 border-black">
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: `${progress.percent}%` }}
@@ -278,7 +278,7 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.1 * index }}
-                className={`h-6 w-6 border-2 border-black ${isAchieved ? '' : 'grayscale opacity-40'}`}
+                className={`h-6 w-6 border-3 border-black ${isAchieved ? '' : 'grayscale opacity-40'}`}
                 style={{ 
                   backgroundColor: milestone.chipColor,
                   boxShadow: isNext ? chipGlowByColor[milestone.chipColor] : 'none'

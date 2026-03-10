@@ -83,7 +83,7 @@ export const TransactionForm = ({ transaction, onSubmit, onCancel, onClose }: Tr
             whileTap={{ scale: 0.9 }}
             type="button"
             onClick={onClose}
-            className="p-2 border-2 border-black hover:bg-[var(--coral)]"
+            className="p-2 border-3 border-black hover:bg-[var(--coral)]"
           >
             <X size={16} strokeWidth={3} />
           </motion.button>
@@ -98,12 +98,12 @@ export const TransactionForm = ({ transaction, onSubmit, onCancel, onClose }: Tr
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleTypeChange('contribution')}
-                className={`flex-1 py-3 border-3 border-black font-['Archivo_Black'] uppercase text-sm flex items-center justify-center gap-2 ${
+                className={`flex-1 py-3 border-3 border-black neo-title text-sm flex items-center justify-center gap-2 ${
                   type === 'contribution'
                     ? 'bg-[var(--mint)] text-black'
                     : 'bg-white text-black hover:bg-[var(--cream)]'
                 }`}
-                style={{ boxShadow: type === 'contribution' ? 'none' : '3px 3px 0px 0px black' }}
+                style={{ boxShadow: type === 'contribution' ? 'none' : '4px 4px 0px 0px black' }}
               >
                 <Plus size={14} strokeWidth={3} /> CONTRIBUTION
               </motion.button>
@@ -112,12 +112,12 @@ export const TransactionForm = ({ transaction, onSubmit, onCancel, onClose }: Tr
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleTypeChange('expense')}
-                className={`flex-1 py-3 border-3 border-black font-['Archivo_Black'] uppercase text-sm flex items-center justify-center gap-2 ${
+                className={`flex-1 py-3 border-3 border-black neo-title text-sm flex items-center justify-center gap-2 ${
                   type === 'expense'
                     ? 'bg-[var(--coral)] text-white'
                     : 'bg-white text-black hover:bg-[var(--cream)]'
                 }`}
-                style={{ boxShadow: type === 'expense' ? 'none' : '3px 3px 0px 0px black' }}
+                style={{ boxShadow: type === 'expense' ? 'none' : '4px 4px 0px 0px black' }}
               >
                 <Minus size={14} strokeWidth={3} /> EXPENSE
               </motion.button>
@@ -188,7 +188,7 @@ export const TransactionForm = ({ transaction, onSubmit, onCancel, onClose }: Tr
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                className="bg-[var(--coral)] border-2 border-black p-3"
+                className="bg-[var(--coral)] border-4 border-black p-3"
               >
                 <span className="neo-mono text-xs text-black">{error}</span>
               </motion.div>

@@ -97,17 +97,17 @@ export const AuthForm = () => {
         <div className="bg-[var(--lavender)] border-4 border-black p-6">
           <div className="flex items-center gap-3 mb-4">
             <motion.div 
-              className="h-4 w-4 bg-[var(--butter)] border-2 border-black"
+              className="h-4 w-4 bg-[var(--butter)] border-3 border-black"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1, repeat: Infinity }}
             />
             <motion.div 
-              className="h-4 w-4 bg-[var(--coral)] border-2 border-black"
+              className="h-4 w-4 bg-[var(--coral)] border-3 border-black"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1, repeat: Infinity, delay: 0.2 }}
             />
             <motion.div 
-              className="h-4 w-4 bg-[var(--mint)] border-2 border-black"
+              className="h-4 w-4 bg-[var(--mint)] border-3 border-black"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1, repeat: Infinity, delay: 0.4 }}
             />
@@ -133,7 +133,7 @@ export const AuthForm = () => {
           animate={{ opacity: 1, y: 0 }}
           className="mb-6 pb-4 border-b-4 border-black flex items-center gap-2"
         >
-          <span className="neo-mono text-sm text-[var(--coral)]">►</span>
+          <span className="neo-title text-sm text-[var(--coral)]">►</span>
           <span className="neo-title text-lg text-black">
             {mode === "login" ? "AUTHENTICATE" : "REGISTER"}
           </span>
@@ -180,8 +180,8 @@ export const AuthForm = () => {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="bg-[var(--coral)] border-3 border-black p-4"
-                style={{ boxShadow: '4px 4px 0px 0px black' }}
+                className="bg-[var(--coral)] border-4 border-black p-4"
+                style={{ boxShadow: '6px 6px 0px 0px black' }}
               >
                 <span className="neo-mono text-xs text-black uppercase">
                   ⚠ {error}
@@ -202,7 +202,7 @@ export const AuthForm = () => {
                 <motion.span 
                   animate={{ rotate: 360 }}
                   transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                  className="inline-block h-4 w-4 border-2 border-black border-t-transparent"
+                  className="inline-block h-4 w-4 border-3 border-black border-t-transparent"
                 />
                 PROCESSING...
               </span>
@@ -223,7 +223,7 @@ export const AuthForm = () => {
             whileTap={{ scale: 0.95 }}
             type="button"
             onClick={toggleMode}
-            className="w-full py-3 border-3 border-black font-['Archivo_Black'] uppercase tracking-wider text-sm hover:text-black transition-colors"
+            className="neo-button w-full py-3 text-sm"
           >
             {mode === "login" ? "NO ACCOUNT? REGISTER" : "HAS ACCOUNT? LOGIN"}
           </motion.button>
@@ -236,7 +236,7 @@ export const AuthForm = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
       >
-        <p className="neo-mono text-xs text-black bg-white border-2 border-black px-4 py-2 inline-block" style={{ boxShadow: '3px 3px 0px 0px black' }}>
+        <p className="neo-mono text-xs text-black bg-white border-3 border-black px-4 py-2 inline-block" style={{ boxShadow: '4px 4px 0px 0px black' }}>
           🔒 SECURE // ENCRYPTED // LOGGED
         </p>
       </motion.div>

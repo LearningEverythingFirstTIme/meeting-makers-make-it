@@ -21,7 +21,7 @@ export default function Home() {
             animate={{ rotate: 360 }}
             transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
             className="mx-auto mb-6 h-16 w-16 border-4 border-black bg-[var(--butter)]"
-            style={{ boxShadow: '6px 6px 0px 0px black' }}
+            style={{ boxShadow: '8px 8px 0px 0px black' }}
           />
           <p className="neo-title text-xl text-black animate-blink">
             INITIALIZING...
@@ -42,13 +42,13 @@ export default function Home() {
           style={{ boxShadow: '12px 12px 0px 0px var(--coral)' }}
         >
           <div className="mb-6 flex items-center gap-3 border-b-4 border-black pb-4">
-            <div className="h-6 w-6 bg-[var(--coral)] border-2 border-black" />
+            <div className="h-6 w-6 bg-[var(--coral)] border-3 border-black" />
             <h1 className="neo-title text-3xl text-black">ERROR</h1>
           </div>
           <p className="neo-mono text-sm mb-6 text-[var(--coral)]">
             {configError}
           </p>
-          <div className="bg-[var(--cream)] border-3 border-black p-4">
+          <div className="bg-[var(--cream)] border-4 border-black p-4">
             <p className="neo-mono text-xs text-black">
               COPY <span className="bg-black text-white px-2 py-1">.env.example</span> TO <span className="bg-black text-white px-2 py-1">.env.local</span>
             </p>

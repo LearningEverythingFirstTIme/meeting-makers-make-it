@@ -306,7 +306,7 @@ export default function InventoryPage() {
         <div className="max-w-2xl mx-auto px-4 py-8">
           <div className="neo-card p-12 text-center">
             <ClipboardList size={48} className="mx-auto mb-4 text-black/30" />
-            <h1 className="font-['Archivo_Black'] text-2xl mb-2">Sign In Required</h1>
+            <h1 className="neo-title text-2xl mb-2">Sign In Required</h1>
             <p className="neo-mono text-sm text-black/60">Please sign in to keep your daily inventory.</p>
           </div>
         </div>
@@ -327,12 +327,12 @@ export default function InventoryPage() {
         >
           <div className="flex items-center gap-3 mb-2">
             <ClipboardList size={28} strokeWidth={3} />
-            <h1 className="font-['Archivo_Black'] text-2xl uppercase">
+            <h1 className="neo-title text-2xl">
               Step 10: Daily Inventory
             </h1>
           </div>
           <p className="neo-mono text-sm ml-11">
-            "Continued to take personal inventory and when we were wrong promptly admitted it."
+            &ldquo;Continued to take personal inventory and when we were wrong promptly admitted it.&rdquo;
           </p>
         </motion.div>
 
@@ -344,7 +344,7 @@ export default function InventoryPage() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               className="border-4 border-black bg-[var(--coral)] p-4 mb-6"
-              style={{ boxShadow: "6px 6px 0px 0px black" }}
+              style={{ boxShadow: "8px 8px 0px 0px black" }}
             >
               <div className="flex items-center gap-3">
                 <div className="h-4 w-4 bg-black" />
@@ -396,7 +396,7 @@ export default function InventoryPage() {
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => { setViewMode('today'); setSelectedDate(null); setEditMode(false); }}
-                  className={`neo-mono text-xs px-3 py-1.5 border-2 border-black ${
+                  className={`neo-mono text-xs px-3 py-1.5 border-3 border-black ${
                     isViewingToday ? 'bg-black text-white' : 'bg-white hover:bg-[var(--cream)]'
                   }`}
                 >
@@ -406,7 +406,7 @@ export default function InventoryPage() {
                   <button
                     key={entry.date}
                     onClick={() => { setSelectedDate(entry.date); setViewMode('browse'); setEditMode(false); }}
-                    className={`neo-mono text-xs px-3 py-1.5 border-2 border-black ${
+                    className={`neo-mono text-xs px-3 py-1.5 border-3 border-black ${
                       selectedDate === entry.date ? 'bg-black text-white' : 'bg-white hover:bg-[var(--cream)]'
                     }`}
                   >
@@ -454,7 +454,7 @@ export default function InventoryPage() {
                   >
                     <label className="block mb-2">
                       <span 
-                        className="neo-mono text-xs px-2 py-0.5 border-2 border-black inline-block mb-1"
+                        className="neo-mono text-xs px-2 py-0.5 border-3 border-black inline-block mb-1"
                         style={{ background: prompt.color }}
                       >
                         {prompt.label}
@@ -493,7 +493,7 @@ export default function InventoryPage() {
                       <motion.span 
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                        className="inline-block h-4 w-4 border-2 border-black border-t-transparent"
+                        className="inline-block h-4 w-4 border-3 border-black border-t-transparent"
                       />
                       SAVING...
                     </span>
@@ -535,7 +535,7 @@ export default function InventoryPage() {
                     >
                       <div className="flex items-start gap-3">
                         <span 
-                          className="neo-mono text-xs px-2 py-0.5 border-2 border-black shrink-0"
+                          className="neo-mono text-xs px-2 py-0.5 border-3 border-black shrink-0"
                           style={{ background: prompt.color }}
                         >
                           {prompt.label}
@@ -598,11 +598,11 @@ export default function InventoryPage() {
           >
             <h3 className="neo-title text-lg mb-4">YOUR INVENTORY HISTORY</h3>
             <div className="grid grid-cols-2 gap-4">
-              <div className="border-2 border-black bg-white p-4 text-center">
+              <div className="border-3 border-black bg-white p-4 text-center">
                 <p className="neo-title text-3xl">{allEntries.length}</p>
                 <p className="neo-mono text-xs">Total Entries</p>
               </div>
-              <div className="border-2 border-black bg-white p-4 text-center">
+              <div className="border-3 border-black bg-white p-4 text-center">
                 <p className="neo-title text-3xl">
                   {allEntries.filter(e => e.gratitude).length}
                 </p>
