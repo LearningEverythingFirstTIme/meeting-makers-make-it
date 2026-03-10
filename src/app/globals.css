@@ -60,14 +60,14 @@ body {
   color: var(--black);
   font-family: 'Archivo', sans-serif;
   overflow-x: hidden;
-  background-image: radial-gradient(var(--black) 0.5px, transparent 0.5px);
+  background-image: radial-gradient(var(--black) 1.5px, transparent 1.5px);
   background-size: 24px 24px;
   min-height: 100vh;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .dark body {
-  background-image: radial-gradient(var(--black) 0.5px, transparent 0.5px);
+  background-image: radial-gradient(var(--black) 1.5px, transparent 1.5px);
 }
 
 ::selection {
