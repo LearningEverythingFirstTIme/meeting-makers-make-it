@@ -710,7 +710,7 @@ export const Dashboard = () => {
           variants={statCardVariants}
           initial="hidden"
           animate="show"
-          className={`${dashboardStatCardClass} bg-[var(--mint)]`}
+          className={`${dashboardStatCardClass} bg-[var(--mint)] dark:bg-[#2d5a56]`}
         >
           <div className="mb-4 flex items-center gap-2">
             <Calendar size={20} strokeWidth={3} />
@@ -741,7 +741,7 @@ export const Dashboard = () => {
           variants={statCardVariants}
           initial="hidden"
           animate="show"
-          className={`${dashboardStatCardClass} bg-[var(--butter)]`}
+          className={`${dashboardStatCardClass} bg-[var(--butter)] dark:bg-[#8b7355]`}
         >
           <div className="mb-4 flex items-center gap-2">
             <Activity size={20} strokeWidth={3} />
@@ -1266,7 +1266,7 @@ export const Dashboard = () => {
             className="border-4 border-black bg-[var(--white)] p-1"
             style={{ boxShadow: "8px 8px 0px 0px black" }}
           >
-            <div className="flex flex-col gap-4 border-2 border-black bg-[linear-gradient(135deg,var(--cream),white)] p-4 md:flex-row md:items-center md:justify-between">
+            <div className="flex flex-col gap-4 border-2 border-black bg-[var(--cream)] p-4 md:flex-row md:items-center md:justify-between">
               <div>
                 <div className="mb-2 flex items-center gap-2">
                   <LayoutGrid size={18} strokeWidth={3} />

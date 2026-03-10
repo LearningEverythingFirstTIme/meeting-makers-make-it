@@ -35,6 +35,13 @@
     --gray-muted-dark: #6b7280;
     --gray-subtle-dark: #4b5563;
     --gray-disabled-dark: #374151;
+    
+    /* Stat Card Backgrounds - Dark Mode (muted/darker versions) */
+    --stat-mint-dark: #2d5a56;
+    --stat-butter-dark: #8b7355;
+    --stat-lavender-dark: #5a4a7a;
+    --stat-coral-dark: #8b4a4a;
+    --stat-sky-dark: #2d5a7a;
   }
   
   /* Dark mode class-based switching */
