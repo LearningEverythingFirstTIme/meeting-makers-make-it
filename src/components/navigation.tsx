@@ -3,12 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Home, DollarSign, BookOpen, LogOut, Search, Heart, ClipboardList } from "lucide-react";
+import { Home, DollarSign, BookOpen, LogOut, Search, Heart, ClipboardList, Sun, Moon } from "lucide-react";
 import { useAuth } from "@/components/auth-provider";
+import { useTheme } from "@/components/theme-provider";
 
 export const Navigation = () => {
   const pathname = usePathname();
   const { logout, user } = useAuth();
+  const { resolvedTheme, toggleTheme } = useTheme();
 
   const navItems = [
     { href: "/", label: "Meetings", icon: Home },
@@ -48,8 +50,25 @@ export const Navigation = () => {
             })}
           </div>
           
-          {/* Right: Help, Email, Logout */}
+          {/* Right: Theme, Help, Email, Logout */}
           <div className="flex items-center gap-4 shrink-0">
+            {/* Theme Toggle */}
+            <motion.button
+              whileHover={{ scale: 1.05, rotate: resolvedTheme === "dark" ? 15 : -15 }}
+              whileTap={{ scale: 0.95 }}
+              type="button"
+              onClick={toggleTheme}
+              className="flex items-center justify-center w-10 h-10 border-3 border-black bg-[var(--butter)]"
+              style={{ boxShadow: '4px 4px 0px 0px black' }}
+              title={`Theme: ${resolvedTheme}`}
+            >
+              {resolvedTheme === "dark" ? (
+                <Moon size={18} strokeWidth={3} className="text-[var(--black)]" />
+              ) : (
+                <Sun size={18} strokeWidth={3} className="text-[var(--black)]" />
+              )}
+            </motion.button>
+
             {/* Help Button */}
             <Link href="/help">
               <motion.div
@@ -108,8 +127,24 @@ export const Navigation = () => {
             })}
           </div>
 
-          {/* Right: Help & Logout */}
+          {/* Right: Theme, Help & Logout */}
           <div className="flex items-center gap-2 shrink-0">
+            {/* Theme Toggle */}
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              type="button"
+              onClick={toggleTheme}
+              className="flex items-center justify-center w-11 h-11 border-3 border-black bg-[var(--butter)]"
+              style={{ boxShadow: '3px 3px 0px 0px black' }}
+              title={`Theme: ${resolvedTheme}`}
+            >
+              {resolvedTheme === "dark" ? (
+                <Moon size={22} strokeWidth={3} className="text-[var(--black)]" />
+              ) : (
+                <Sun size={22} strokeWidth={3} className="text-[var(--black)]" />
+              )}
+            </motion.button>
+
             {/* Help Button */}
             <Link href="/help">
               <motion.div

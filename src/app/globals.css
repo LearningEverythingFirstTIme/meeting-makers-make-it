@@ -2,6 +2,7 @@
 
 @layer theme {
   :root {
+    /* Light Mode - Warm Brutalist */
     --cream: #F5F0E6;
     --butter: #FFE66D;
     --coral: #FF6B6B;
@@ -12,6 +13,32 @@
     --white: #FFFFFF;
     --pink: #FF69B4;
     --lime: #84CC16;
+    
+    /* Dark Mode - Midnight Brutalist */
+    --cream-dark: #1a1a2e;
+    --butter-dark: #FFD93D;
+    --coral-dark: #FF6B6B;
+    --mint-dark: #6EE7DE;
+    --lavender-dark: #B9A3FA;
+    --sky-dark: #60D0FA;
+    --black-dark: #E8E8E8;
+    --white-dark: #16213e;
+    --pink-dark: #FF85C0;
+    --lime-dark: #9AE635;
+  }
+  
+  /* Dark mode class-based switching */
+  .dark {
+    --cream: var(--cream-dark);
+    --butter: var(--butter-dark);
+    --coral: var(--coral-dark);
+    --mint: var(--mint-dark);
+    --lavender: var(--lavender-dark);
+    --sky: var(--sky-dark);
+    --black: var(--black-dark);
+    --white: var(--white-dark);
+    --pink: var(--pink-dark);
+    --lime: var(--lime-dark);
   }
 }
 
@@ -20,9 +47,14 @@ body {
   color: var(--black);
   font-family: 'Archivo', sans-serif;
   overflow-x: hidden;
-  background-image: radial-gradient(var(--black) 1px, transparent 1px);
+  background-image: radial-gradient(var(--black) 0.5px, transparent 0.5px);
   background-size: 24px 24px;
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  background-image: radial-gradient(var(--black) 0.5px, transparent 0.5px);
 }
 
 ::selection {
@@ -99,33 +131,37 @@ body {
 
 @utility neo-button-primary {
   background: var(--butter);
+  color: var(--black);
   
   &:hover {
-    background: #FFF176;
+    background: color-mix(in srgb, var(--butter) 85%, var(--black));
   }
 }
 
 @utility neo-button-success {
   background: var(--mint);
+  color: var(--black);
   
   &:hover {
-    background: #6EE7DE;
+    background: color-mix(in srgb, var(--mint) 85%, var(--black));
   }
 }
 
 @utility neo-button-danger {
   background: var(--coral);
+  color: var(--white);
   
   &:hover {
-    background: #FF8A8A;
+    background: color-mix(in srgb, var(--coral) 85%, var(--white));
   }
 }
 
 @utility neo-button-secondary {
   background: var(--lavender);
+  color: var(--black);
   
   &:hover {
-    background: #B9A3FA;
+    background: color-mix(in srgb, var(--lavender) 85%, var(--black));
   }
 }
 
@@ -146,40 +182,40 @@ body {
   }
   
   &::placeholder {
-    color: #666;
+    color: color-mix(in srgb, var(--black) 50%, transparent);
     font-weight: 500;
   }
 }
 
 @utility neo-input-mint {
-  background: #E0F7F5;
+  background: color-mix(in srgb, var(--mint) 15%, var(--white));
   
   &:focus {
-    background: #B2F5EA;
+    background: color-mix(in srgb, var(--mint) 25%, var(--white));
   }
 }
 
 @utility neo-input-coral {
-  background: #FFE8E8;
+  background: color-mix(in srgb, var(--coral) 15%, var(--white));
   
   &:focus {
-    background: #FFDADA;
+    background: color-mix(in srgb, var(--coral) 25%, var(--white));
   }
 }
 
 @utility neo-input-lavender {
-  background: #F3EEFF;
+  background: color-mix(in srgb, var(--lavender) 15%, var(--white));
   
   &:focus {
-    background: #E9DFFF;
+    background: color-mix(in srgb, var(--lavender) 25%, var(--white));
   }
 }
 
 @utility neo-input-sky {
-  background: #E0F7FF;
+  background: color-mix(in srgb, var(--sky) 15%, var(--white));
   
   &:focus {
-    background: #BEEAFF;
+    background: color-mix(in srgb, var(--sky) 25%, var(--white));
   }
 }
 
@@ -248,7 +284,7 @@ body {
   }
   
   &.inactive {
-    background: #999;
+    background: color-mix(in srgb, var(--black) 40%, transparent);
   }
 }
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo, Archivo_Black } from "next/font/google";
 import { AuthProvider } from "@/components/auth-provider";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -26,9 +27,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${archivo.variable} ${archivoBlack.variable} antialiased`}>
-        <AuthProvider>{children}</AuthProvider>
+        <ThemeProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
