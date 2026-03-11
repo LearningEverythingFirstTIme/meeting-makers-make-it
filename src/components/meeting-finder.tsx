@@ -167,8 +167,8 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
             className="overflow-hidden border-t-3 border-black"
           >
             <div className="p-4 bg-[var(--cream)] space-y-2">
-              {/* Show physical address only for in-person meetings */}
-              {!isZoom && meeting.location && (
+              {/* Physical address — show whenever a location exists */}
+              {meeting.location && (
                 <div className="flex items-start gap-2">
                   <MapPin size={13} strokeWidth={3} className="mt-0.5 shrink-0" />
                   <span className="neo-mono text-xs">
@@ -179,8 +179,8 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
                   </span>
                 </div>
               )}
-              {/* Prominent Zoom join button */}
-              {meeting.conference_url && (
+              {/* Zoom join button */}
+              {meeting.conference_url ? (
                 <div className="pb-1">
                   <a
                     href={meeting.conference_url}
@@ -197,6 +197,11 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
                   <p className="neo-mono text-xs text-[var(--black)]/50 mt-1.5 break-all px-0.5">
                     {meeting.conference_url}
                   </p>
+                </div>
+              ) : isZoom && (
+                <div className="flex items-center gap-2 text-[var(--black)]/50">
+                  <Video size={13} strokeWidth={3} />
+                  <span className="neo-mono text-xs">No Zoom link on file for this meeting</span>
                 </div>
               )}
               {meeting.types.includes("PH") && (
