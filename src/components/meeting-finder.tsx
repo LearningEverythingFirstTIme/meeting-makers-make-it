@@ -12,6 +12,19 @@ import { makeCheckinId, toLocalDayKey } from "@/lib/date";
 import type { NJMeeting, NJMeetingType, Checkin } from "@/types";
 
 const DAY_LABELS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+function cleanMeetingName(name: string, day: number, time: string): string {
+  const dayName = DAY_NAMES[day];
+  // Strip "DayName HH:MM " prefix (the format used in the JSON data)
+  const prefix = `${dayName} ${time} `;
+  if (name.startsWith(prefix)) return name.slice(prefix.length).trim();
+  // Also handle times without leading zero (e.g. "7:00" vs "07:00")
+  const [h, m] = time.split(":");
+  const altPrefix = `${dayName} ${parseInt(h)}:${m} `;
+  if (name.startsWith(altPrefix)) return name.slice(altPrefix.length).trim();
+  return name;
+}
 
 const TYPE_INFO: Record<NJMeetingType, { label: string; color: string }> = {
   B:   { label: "Big Book",    color: "var(--butter)" },
@@ -109,7 +122,7 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
 
         {/* Meeting name */}
         <p className="neo-title text-sm leading-snug mb-2">
-          {meeting.name}
+          {cleanMeetingName(meeting.name, meeting.day, meeting.time)}
         </p>
 
         {/* City line */}
@@ -154,7 +167,8 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
             className="overflow-hidden border-t-3 border-black"
           >
             <div className="p-4 bg-[var(--cream)] space-y-2">
-              {meeting.location && (
+              {/* Show physical address only for in-person meetings */}
+              {!isZoom && meeting.location && (
                 <div className="flex items-start gap-2">
                   <MapPin size={13} strokeWidth={3} className="mt-0.5 shrink-0" />
                   <span className="neo-mono text-xs">
@@ -165,18 +179,24 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
                   </span>
                 </div>
               )}
+              {/* Prominent Zoom join button */}
               {meeting.conference_url && (
-                <div className="flex items-start gap-2">
-                  <Video size={13} strokeWidth={3} className="mt-0.5 shrink-0" />
+                <div className="pb-1">
                   <a
                     href={meeting.conference_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="neo-mono text-xs text-[var(--black)] underline flex items-center gap-1 hover:text-[var(--coral)]"
+                    className="neo-button flex items-center justify-center gap-2 py-3 text-sm w-full border-3 border-black"
+                    style={{ background: "var(--coral)", boxShadow: "4px 4px 0px 0px black" }}
                     onClick={(e) => e.stopPropagation()}
                   >
-                    Join Zoom Meeting <ExternalLink size={10} />
+                    <Video size={15} strokeWidth={3} />
+                    JOIN ZOOM MEETING
+                    <ExternalLink size={12} strokeWidth={3} />
                   </a>
+                  <p className="neo-mono text-xs text-[var(--black)]/50 mt-1.5 break-all px-0.5">
+                    {meeting.conference_url}
+                  </p>
                 </div>
               )}
               {meeting.types.includes("PH") && (
