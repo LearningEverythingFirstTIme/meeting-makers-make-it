@@ -54,6 +54,158 @@
     "source": "nnjaa"
   },
   {
+    "name": "Friday 19:30 Waretown Community Center",
+    "slug": "friday-1930-waretown-community-center",
+    "day": 5,
+    "time": "19:30",
+    "location": "Waretown Community Center",
+    "address": "239 11th St",
+    "city": "Barnegat Township",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 07:00 On The Beach at North 13th St",
+    "slug": "sunday-0700-on-the-beach-at-north-13th-st",
+    "day": 0,
+    "time": "07:00",
+    "location": "On The Beach at North 13th St",
+    "address": "13th St",
+    "city": "Surf City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 07:00 On The Beach at North 13th St",
+    "slug": "monday-0700-on-the-beach-at-north-13th-st",
+    "day": 1,
+    "time": "07:00",
+    "location": "On The Beach at North 13th St",
+    "address": "13th St",
+    "city": "Surf City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 07:00 On The Beach at North 13th St",
+    "slug": "tuesday-0700-on-the-beach-at-north-13th-st",
+    "day": 2,
+    "time": "07:00",
+    "location": "On The Beach at North 13th St",
+    "address": "13th St",
+    "city": "Surf City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 07:00 On The Beach at North 13th St",
+    "slug": "wednesday-0700-on-the-beach-at-north-13th-st",
+    "day": 3,
+    "time": "07:00",
+    "location": "On The Beach at North 13th St",
+    "address": "13th St",
+    "city": "Surf City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 07:00 On The Beach at North 13th St",
+    "slug": "thursday-0700-on-the-beach-at-north-13th-st",
+    "day": 4,
+    "time": "07:00",
+    "location": "On The Beach at North 13th St",
+    "address": "13th St",
+    "city": "Surf City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 07:00 On The Beach at North 13th St",
+    "slug": "friday-0700-on-the-beach-at-north-13th-st",
+    "day": 5,
+    "time": "07:00",
+    "location": "On The Beach at North 13th St",
+    "address": "13th St",
+    "city": "Surf City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 07:00 On The Beach at North 13th St",
+    "slug": "saturday-0700-on-the-beach-at-north-13th-st",
+    "day": 6,
+    "time": "07:00",
+    "location": "On The Beach at North 13th St",
+    "address": "13th St",
+    "city": "Surf City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Wednesday 18:00 West Belmar United Methodist Church",
     "slug": "closed-discussion-wednesday-600pm-west-belmar",
     "day": 3,
@@ -301,6 +453,136 @@
     "source": "nnjaa"
   },
   {
+    "name": "Thursday 07:30 On the beach at 30th st",
+    "slug": "thursday-0730-on-the-beach-at-30th-st",
+    "day": 4,
+    "time": "07:30",
+    "location": "On the beach at 30th st",
+    "address": "30th St W",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 07:30 on the beach at 30th In-person and Online",
+    "slug": "sunday-0730-on-the-beach-at-30th-in-person-and-online",
+    "day": 0,
+    "time": "07:30",
+    "location": "on the beach at 30th In-person and Online",
+    "address": "30th St",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 07:30 on the beach at 30th",
+    "slug": "tuesday-0730-on-the-beach-at-30th",
+    "day": 2,
+    "time": "07:30",
+    "location": "on the beach at 30th",
+    "address": "30th St",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 20:00 St. Mary's Episcopal Church",
+    "slug": "tuesday-2000-st-marys-episcopal-church",
+    "day": 2,
+    "time": "20:00",
+    "location": "St. Mary's Episcopal Church",
+    "address": "9425 3rd Ave",
+    "city": "Stone Harbor",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 10:30 St. Mary's Episcopal Church",
+    "slug": "thursday-1030-st-marys-episcopal-church",
+    "day": 4,
+    "time": "10:30",
+    "location": "St. Mary's Episcopal Church",
+    "address": "9425 3rd Ave",
+    "city": "Stone Harbor",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 19:00 St. Mary's Episcopal Church",
+    "slug": "thursday-1900-st-marys-episcopal-church",
+    "day": 4,
+    "time": "19:00",
+    "location": "St. Mary's Episcopal Church",
+    "address": "9425 3rd Ave",
+    "city": "Stone Harbor",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 10:00 Brigantine Community Center",
+    "slug": "saturday-1000-brigantine-community-center",
+    "day": 6,
+    "time": "10:00",
+    "location": "Brigantine Community Center",
+    "address": "265 42nd St S",
+    "city": "Brigantine",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Wednesday 20:00 St. James Episcopal Church",
     "slug": "open-speaker-wednesday-800pm-bradley-beach",
     "day": 3,
@@ -352,6 +634,139 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Monday 07:30 Maris Stella Auditorium",
+    "slug": "monday-0730-maris-stella-auditorium",
+    "day": 1,
+    "time": "07:30",
+    "location": "Maris Stella Auditorium",
+    "address": "50th St & Ocean Dr",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 07:30 Maris Stella Auditorium",
+    "slug": "wednesday-0730-maris-stella-auditorium",
+    "day": 3,
+    "time": "07:30",
+    "location": "Maris Stella Auditorium",
+    "address": "50th St & Ocean Dr",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 19:30 Maris Stella Auditorium",
+    "slug": "thursday-1930-maris-stella-auditorium",
+    "day": 4,
+    "time": "19:30",
+    "location": "Maris Stella Auditorium",
+    "address": "50th St & Ocean Dr",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 07:30 Maris Stella Auditorium",
+    "slug": "friday-0730-maris-stella-auditorium",
+    "day": 5,
+    "time": "07:30",
+    "location": "Maris Stella Auditorium",
+    "address": "50th St & Ocean Dr",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 20:00 Maris Stella Auditorium",
+    "slug": "friday-2000-maris-stella-auditorium",
+    "day": 5,
+    "time": "20:00",
+    "location": "Maris Stella Auditorium",
+    "address": "50th St & Ocean Dr",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 07:30 Maris Stella Auditorium",
+    "slug": "saturday-0730-maris-stella-auditorium",
+    "day": 6,
+    "time": "07:30",
+    "location": "Maris Stella Auditorium",
+    "address": "50th St & Ocean Dr",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 07:30 On the beach at 59th or Under pavilion at 58th S...",
+    "slug": "sunday-0730-on-the-beach-at-59th-or-under-pavilion-at-58th-s",
+    "day": 0,
+    "time": "07:30",
+    "location": "On the beach at 59th or Under pavilion at 58th Street if raining.",
+    "address": "59th St",
+    "city": "Ocean City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Sunday 11:00 Ascension Center",
@@ -648,6 +1063,211 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Sunday 18:00 Online",
+    "slug": "sunday-1800-online",
+    "day": 0,
+    "time": "18:00",
+    "location": "Online",
+    "address": "Absecon, NJ 08201",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 10:00 Online",
+    "slug": "monday-1000-online",
+    "day": 1,
+    "time": "10:00",
+    "location": "Online",
+    "address": "Absecon, NJ 08201",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 18:00 Online",
+    "slug": "monday-1800-online",
+    "day": 1,
+    "time": "18:00",
+    "location": "Online",
+    "address": "Absecon, NJ 08201",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 18:00 Online",
+    "slug": "tuesday-1800-online",
+    "day": 2,
+    "time": "18:00",
+    "location": "Online",
+    "address": "Absecon, NJ 08201",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 10:00 Online",
+    "slug": "wednesday-1000-online",
+    "day": 3,
+    "time": "10:00",
+    "location": "Online",
+    "address": "Absecon, NJ 08201",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 18:00 Online",
+    "slug": "wednesday-1800-online",
+    "day": 3,
+    "time": "18:00",
+    "location": "Online",
+    "address": "Absecon, NJ 08201",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 18:00 Online",
+    "slug": "thursday-1800-online",
+    "day": 4,
+    "time": "18:00",
+    "location": "Online",
+    "address": "Absecon, NJ 08201",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 10:00 Online",
+    "slug": "friday-1000-online",
+    "day": 5,
+    "time": "10:00",
+    "location": "Online",
+    "address": "Absecon, NJ 08201",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 18:00 Online",
+    "slug": "friday-1800-online",
+    "day": 5,
+    "time": "18:00",
+    "location": "Online",
+    "address": "Absecon, NJ 08201",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 07:30 Trudgers Online",
+    "slug": "saturday-0730-trudgers-online",
+    "day": 6,
+    "time": "07:30",
+    "location": "Trudgers Online",
+    "address": "Absecon, NJ 08201",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 18:00 Online",
+    "slug": "saturday-1800-online",
+    "day": 6,
+    "time": "18:00",
+    "location": "Online",
+    "address": "Absecon, NJ 08201",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Sunday 19:00 Caldwell United Methodist Church",
@@ -961,6 +1581,81 @@
     "wheelchair": false
   },
   {
+    "name": "Monday 18:30 Online",
+    "slug": "monday-1830-online",
+    "day": 1,
+    "time": "18:30",
+    "location": "Online",
+    "address": "Atlantic City, NJ 08401",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 18:30 Online",
+    "slug": "thursday-1830-online",
+    "day": 4,
+    "time": "18:30",
+    "location": "Online",
+    "address": "Atlantic City, NJ 08401",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 10:00 Online",
+    "slug": "saturday-1000-online",
+    "day": 6,
+    "time": "10:00",
+    "location": "Online",
+    "address": "Atlantic City, NJ 08401",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 19:00 Recovery Center of America - Outpatient Building",
+    "slug": "sunday-1900-recovery-center-of-america-outpatient-building",
+    "day": 0,
+    "time": "19:00",
+    "location": "Recovery Center of America - Outpatient Building",
+    "address": "5034 Atlantic Ave",
+    "city": "Mays Landing",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Wednesday 19:30 St. Cecelia's Church Hall",
     "slug": "open-speaker-wednesday-730pm-iselin",
     "day": 3,
@@ -976,6 +1671,222 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Sunday 07:30 Online",
+    "slug": "sunday-0730-online",
+    "day": 0,
+    "time": "07:30",
+    "location": "Online",
+    "address": "Avalon, NJ 08202",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 07:30 Online",
+    "slug": "monday-0730-online",
+    "day": 1,
+    "time": "07:30",
+    "location": "Online",
+    "address": "Avalon, NJ 08202",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 10:30 Virtual Meeting - KISS Group - Avalon Online",
+    "slug": "monday-1030-virtual-meeting-kiss-group-avalon-online",
+    "day": 1,
+    "time": "10:30",
+    "location": "Virtual Meeting - KISS Group - Avalon Online",
+    "address": "Avalon, NJ 08202",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 07:30 Online",
+    "slug": "tuesday-0730-online",
+    "day": 2,
+    "time": "07:30",
+    "location": "Online",
+    "address": "Avalon, NJ 08202",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 10:30 Virtual Meeting - KISS Group - Avalon Online",
+    "slug": "tuesday-1030-virtual-meeting-kiss-group-avalon-online",
+    "day": 2,
+    "time": "10:30",
+    "location": "Virtual Meeting - KISS Group - Avalon Online",
+    "address": "Avalon, NJ 08202",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 07:30 Online",
+    "slug": "wednesday-0730-online",
+    "day": 3,
+    "time": "07:30",
+    "location": "Online",
+    "address": "Avalon, NJ 08202",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 10:30 Virtual Meeting - KISS Group - Avalon Online",
+    "slug": "wednesday-1030-virtual-meeting-kiss-group-avalon-online",
+    "day": 3,
+    "time": "10:30",
+    "location": "Virtual Meeting - KISS Group - Avalon Online",
+    "address": "Avalon, NJ 08202",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 07:30 Online",
+    "slug": "thursday-0730-online",
+    "day": 4,
+    "time": "07:30",
+    "location": "Online",
+    "address": "Avalon, NJ 08202",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 10:30 Virtual Meeting - KISS Group - Avalon Online",
+    "slug": "thursday-1030-virtual-meeting-kiss-group-avalon-online",
+    "day": 4,
+    "time": "10:30",
+    "location": "Virtual Meeting - KISS Group - Avalon Online",
+    "address": "Avalon, NJ 08202",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 07:30 Online",
+    "slug": "friday-0730-online",
+    "day": 5,
+    "time": "07:30",
+    "location": "Online",
+    "address": "Avalon, NJ 08202",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 10:30 Virtual Meeting - KISS Group - Avalon Online",
+    "slug": "friday-1030-virtual-meeting-kiss-group-avalon-online",
+    "day": 5,
+    "time": "10:30",
+    "location": "Virtual Meeting - KISS Group - Avalon Online",
+    "address": "Avalon, NJ 08202",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 07:30 Online",
+    "slug": "saturday-0730-online",
+    "day": 6,
+    "time": "07:30",
+    "location": "Online",
+    "address": "Avalon, NJ 08202",
+    "city": "Avalon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Saturday 19:30 St. Peter the Apostle Church",
@@ -1152,6 +2063,656 @@
     "source": "nnjaa"
   },
   {
+    "name": "Monday 07:30 Holy Trinity Church",
+    "slug": "monday-0730-holy-trinity-church",
+    "day": 1,
+    "time": "07:30",
+    "location": "Holy Trinity Church",
+    "address": "Bay Ave & 30th St",
+    "city": "Ocean City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 19:00 Holy Trinity Church",
+    "slug": "monday-1900-holy-trinity-church",
+    "day": 1,
+    "time": "19:00",
+    "location": "Holy Trinity Church",
+    "address": "Bay Ave & 30th St",
+    "city": "Ocean City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 07:30 Holy Trinity Church",
+    "slug": "tuesday-0730-holy-trinity-church",
+    "day": 2,
+    "time": "07:30",
+    "location": "Holy Trinity Church",
+    "address": "Bay Ave & 30th St",
+    "city": "Ocean City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 20:00 Holy Trinity Church",
+    "slug": "tuesday-2000-holy-trinity-church",
+    "day": 2,
+    "time": "20:00",
+    "location": "Holy Trinity Church",
+    "address": "Bay Ave & 30th St",
+    "city": "Ocean City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 07:30 Holy Trinity Church",
+    "slug": "wednesday-0730-holy-trinity-church",
+    "day": 3,
+    "time": "07:30",
+    "location": "Holy Trinity Church",
+    "address": "Bay Ave & 30th St",
+    "city": "Ocean City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 07:30 Holy Trinity Church",
+    "slug": "thursday-0730-holy-trinity-church",
+    "day": 4,
+    "time": "07:30",
+    "location": "Holy Trinity Church",
+    "address": "Bay Ave & 30th St",
+    "city": "Ocean City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 19:30 Holy Trinity Church",
+    "slug": "thursday-1930-holy-trinity-church",
+    "day": 4,
+    "time": "19:30",
+    "location": "Holy Trinity Church",
+    "address": "Bay Ave & 30th St",
+    "city": "Ocean City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST",
+      "MED"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 07:30 Holy Trinity Church",
+    "slug": "friday-0730-holy-trinity-church",
+    "day": 5,
+    "time": "07:30",
+    "location": "Holy Trinity Church",
+    "address": "Bay Ave & 30th St",
+    "city": "Ocean City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 07:30 Holy Trinity Church",
+    "slug": "saturday-0730-holy-trinity-church",
+    "day": 6,
+    "time": "07:30",
+    "location": "Holy Trinity Church",
+    "address": "Bay Ave & 30th St",
+    "city": "Ocean City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 20:00 Holy Trinity Church",
+    "slug": "saturday-2000-holy-trinity-church",
+    "day": 6,
+    "time": "20:00",
+    "location": "Holy Trinity Church",
+    "address": "Bay Ave & 30th St",
+    "city": "Ocean City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 09:00 Last House on the Block",
+    "slug": "sunday-0900-last-house-on-the-block",
+    "day": 0,
+    "time": "09:00",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 18:00 Last House on the Block",
+    "slug": "sunday-1800-last-house-on-the-block",
+    "day": 0,
+    "time": "18:00",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 19:00 Last House on the Block",
+    "slug": "sunday-1900-last-house-on-the-block",
+    "day": 0,
+    "time": "19:00",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 07:30 Last House on the Block",
+    "slug": "monday-0730-last-house-on-the-block",
+    "day": 1,
+    "time": "07:30",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 13:00 Last House on the Block",
+    "slug": "monday-1300-last-house-on-the-block",
+    "day": 1,
+    "time": "13:00",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 18:00 Last House on the Block",
+    "slug": "monday-1800-last-house-on-the-block",
+    "day": 1,
+    "time": "18:00",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 07:30 Last House on the Block",
+    "slug": "tuesday-0730-last-house-on-the-block",
+    "day": 2,
+    "time": "07:30",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 13:00 Last House on the Block",
+    "slug": "tuesday-1300-last-house-on-the-block",
+    "day": 2,
+    "time": "13:00",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 18:00 Last House on the Block",
+    "slug": "tuesday-1800-last-house-on-the-block",
+    "day": 2,
+    "time": "18:00",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 07:30 Last House on the Block",
+    "slug": "wednesday-0730-last-house-on-the-block",
+    "day": 3,
+    "time": "07:30",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 13:00 Last House on the Block",
+    "slug": "wednesday-1300-last-house-on-the-block",
+    "day": 3,
+    "time": "13:00",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 18:00 Last House on the Block",
+    "slug": "wednesday-1800-last-house-on-the-block",
+    "day": 3,
+    "time": "18:00",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 07:30 Last House on the Block",
+    "slug": "thursday-0730-last-house-on-the-block",
+    "day": 4,
+    "time": "07:30",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 13:00 Last House on the Block",
+    "slug": "thursday-1300-last-house-on-the-block",
+    "day": 4,
+    "time": "13:00",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 18:00 Last House on the Block",
+    "slug": "thursday-1800-last-house-on-the-block",
+    "day": 4,
+    "time": "18:00",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST",
+      "S",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 07:30 Last House on the Block",
+    "slug": "friday-0730-last-house-on-the-block",
+    "day": 5,
+    "time": "07:30",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 13:00 Last House on the Block",
+    "slug": "friday-1300-last-house-on-the-block",
+    "day": 5,
+    "time": "13:00",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 18:00 Last House on the Block",
+    "slug": "friday-1800-last-house-on-the-block",
+    "day": 5,
+    "time": "18:00",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 21:00 Last House on the Block",
+    "slug": "friday-2100-last-house-on-the-block",
+    "day": 5,
+    "time": "21:00",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 09:00 Last House on the Block",
+    "slug": "saturday-0900-last-house-on-the-block",
+    "day": 6,
+    "time": "09:00",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 18:00 Last House on the Block",
+    "slug": "saturday-1800-last-house-on-the-block",
+    "day": 6,
+    "time": "18:00",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 19:00 Last House on the Block",
+    "slug": "saturday-1900-last-house-on-the-block",
+    "day": 6,
+    "time": "19:00",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 21:00 Last House on the Block",
+    "slug": "saturday-2100-last-house-on-the-block",
+    "day": 6,
+    "time": "21:00",
+    "location": "Last House on the Block",
+    "address": "1301 Bayshore Rd #204",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "MED"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 19:30 Millman Center",
+    "slug": "thursday-1930-millman-center",
+    "day": 4,
+    "time": "19:30",
+    "location": "Millman Center",
+    "address": "209 Bayshore Rd",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Monday 13:00 MASK RQRD - Limit 25St. Mary's By-The-Sea Episco...",
     "slug": "closed-discussion-monday-100pm-point-pleasant-beach",
     "day": 1,
@@ -1252,6 +2813,100 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Monday 07:00 Manahawkin Baptist Church",
+    "slug": "monday-0700-manahawkin-baptist-church",
+    "day": 1,
+    "time": "07:00",
+    "location": "Manahawkin Baptist Church",
+    "address": "400 Beach Ave",
+    "city": "Manahawkin",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 07:00 Manahawkin Baptist Church",
+    "slug": "tuesday-0700-manahawkin-baptist-church",
+    "day": 2,
+    "time": "07:00",
+    "location": "Manahawkin Baptist Church",
+    "address": "400 Beach Ave",
+    "city": "Manahawkin",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 07:00 Manahawkin Baptist Church",
+    "slug": "wednesday-0700-manahawkin-baptist-church",
+    "day": 3,
+    "time": "07:00",
+    "location": "Manahawkin Baptist Church",
+    "address": "400 Beach Ave",
+    "city": "Manahawkin",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 07:00 Manahawkin Baptist Church",
+    "slug": "thursday-0700-manahawkin-baptist-church",
+    "day": 4,
+    "time": "07:00",
+    "location": "Manahawkin Baptist Church",
+    "address": "400 Beach Ave",
+    "city": "Manahawkin",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 07:00 Manahawkin Baptist Church",
+    "slug": "friday-0700-manahawkin-baptist-church",
+    "day": 5,
+    "time": "07:00",
+    "location": "Manahawkin Baptist Church",
+    "address": "400 Beach Ave",
+    "city": "Manahawkin",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Friday 21:00 Saints Peter & Paul Orthodox Church",
@@ -2017,6 +3672,79 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Sunday 19:00 Lifegate Church",
+    "slug": "sunday-1900-lifegate-church",
+    "day": 0,
+    "time": "19:00",
+    "location": "Lifegate Church",
+    "address": "Bethel Rd & Doran Ave",
+    "city": "Somers Point",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 18:30 Lifegate Church",
+    "slug": "thursday-1830-lifegate-church",
+    "day": 4,
+    "time": "18:30",
+    "location": "Lifegate Church",
+    "address": "Bethel Rd & Doran Ave",
+    "city": "Somers Point",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 20:00 Lifegate Church",
+    "slug": "saturday-2000-lifegate-church",
+    "day": 6,
+    "time": "20:00",
+    "location": "Lifegate Church",
+    "address": "Bethel Rd & Doran Ave",
+    "city": "Somers Point",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 19:00 Somers Point VFW (Rear entrance in the back pa...",
+    "slug": "thursday-1900-somers-point-vfw-rear-entrance-in-the-back-pa",
+    "day": 4,
+    "time": "19:00",
+    "location": "Somers Point VFW (Rear entrance in the back parking lot)",
+    "address": "500 Bethel Rd",
+    "city": "Somers Point",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Sunday 08:15 Bingham Hall",
@@ -3019,6 +4747,725 @@
     "source": "nnjaa"
   },
   {
+    "name": "Sunday 07:00 Stagecoach",
+    "slug": "sunday-0700-stagecoach",
+    "day": 0,
+    "time": "07:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 10:00 Stagecoach",
+    "slug": "sunday-1000-stagecoach",
+    "day": 0,
+    "time": "10:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 13:00 Stagecoach",
+    "slug": "sunday-1300-stagecoach",
+    "day": 0,
+    "time": "13:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 17:30 Stagecoach",
+    "slug": "sunday-1730-stagecoach",
+    "day": 0,
+    "time": "17:30",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 20:00 Stagecoach",
+    "slug": "sunday-2000-stagecoach",
+    "day": 0,
+    "time": "20:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 22:00 Stagecoach",
+    "slug": "sunday-2200-stagecoach",
+    "day": 0,
+    "time": "22:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 07:00 Stagecoach",
+    "slug": "monday-0700-stagecoach",
+    "day": 1,
+    "time": "07:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 10:00 Stagecoach",
+    "slug": "monday-1000-stagecoach",
+    "day": 1,
+    "time": "10:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 13:00 Stagecoach",
+    "slug": "monday-1300-stagecoach",
+    "day": 1,
+    "time": "13:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 17:30 Stagecoach",
+    "slug": "monday-1730-stagecoach",
+    "day": 1,
+    "time": "17:30",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 20:00 Stagecoach",
+    "slug": "monday-2000-stagecoach",
+    "day": 1,
+    "time": "20:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 22:00 Stagecoach",
+    "slug": "monday-2200-stagecoach",
+    "day": 1,
+    "time": "22:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 10:00 Stagecoach",
+    "slug": "tuesday-1000-stagecoach",
+    "day": 2,
+    "time": "10:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 13:00 Stagecoach",
+    "slug": "tuesday-1300-stagecoach",
+    "day": 2,
+    "time": "13:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 17:30 Stagecoach",
+    "slug": "tuesday-1730-stagecoach",
+    "day": 2,
+    "time": "17:30",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 20:00 Stagecoach",
+    "slug": "tuesday-2000-stagecoach",
+    "day": 2,
+    "time": "20:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 22:00 Stagecoach",
+    "slug": "tuesday-2200-stagecoach",
+    "day": 2,
+    "time": "22:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 10:00 Stagecoach",
+    "slug": "wednesday-1000-stagecoach",
+    "day": 3,
+    "time": "10:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 13:00 Stagecoach",
+    "slug": "wednesday-1300-stagecoach",
+    "day": 3,
+    "time": "13:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 17:30 Stagecoach",
+    "slug": "wednesday-1730-stagecoach",
+    "day": 3,
+    "time": "17:30",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 20:00 Stagecoach",
+    "slug": "wednesday-2000-stagecoach",
+    "day": 3,
+    "time": "20:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 22:00 Stagecoach",
+    "slug": "wednesday-2200-stagecoach",
+    "day": 3,
+    "time": "22:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 10:00 Stagecoach",
+    "slug": "thursday-1000-stagecoach",
+    "day": 4,
+    "time": "10:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 13:00 Stagecoach",
+    "slug": "thursday-1300-stagecoach",
+    "day": 4,
+    "time": "13:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 17:30 Stagecoach",
+    "slug": "thursday-1730-stagecoach",
+    "day": 4,
+    "time": "17:30",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 20:00 Stagecoach",
+    "slug": "thursday-2000-stagecoach",
+    "day": 4,
+    "time": "20:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 22:00 Stagecoach",
+    "slug": "thursday-2200-stagecoach",
+    "day": 4,
+    "time": "22:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 10:00 Stagecoach",
+    "slug": "friday-1000-stagecoach",
+    "day": 5,
+    "time": "10:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 13:00 Stagecoach",
+    "slug": "friday-1300-stagecoach",
+    "day": 5,
+    "time": "13:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 17:30 Stagecoach",
+    "slug": "friday-1730-stagecoach",
+    "day": 5,
+    "time": "17:30",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 20:00 Stagecoach",
+    "slug": "friday-2000-stagecoach",
+    "day": 5,
+    "time": "20:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 22:00 Stagecoach",
+    "slug": "friday-2200-stagecoach",
+    "day": 5,
+    "time": "22:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 07:00 Stagecoach",
+    "slug": "saturday-0700-stagecoach",
+    "day": 6,
+    "time": "07:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 10:00 Stagecoach",
+    "slug": "saturday-1000-stagecoach",
+    "day": 6,
+    "time": "10:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 13:00 Stagecoach",
+    "slug": "saturday-1300-stagecoach",
+    "day": 6,
+    "time": "13:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 17:30 Stagecoach",
+    "slug": "saturday-1730-stagecoach",
+    "day": 6,
+    "time": "17:30",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 20:00 Stagecoach",
+    "slug": "saturday-2000-stagecoach",
+    "day": 6,
+    "time": "20:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 22:00 Stagecoach",
+    "slug": "saturday-2200-stagecoach",
+    "day": 6,
+    "time": "22:00",
+    "location": "Stagecoach",
+    "address": "30 Butter Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Friday 20:00 Cross of Glory Church",
     "slug": "closed-speaker-discussion-friday-800pm-aberdeen",
     "day": 5,
@@ -3034,6 +5481,209 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Sunday 21:15 Online",
+    "slug": "sunday-2115-online",
+    "day": 0,
+    "time": "21:15",
+    "location": "Online",
+    "address": "Cape May Court House",
+    "city": "Cape May Courthouse",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 21:15 Online",
+    "slug": "monday-2115-online",
+    "day": 1,
+    "time": "21:15",
+    "location": "Online",
+    "address": "Cape May Court House",
+    "city": "Cape May Courthouse",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 21:15 Online",
+    "slug": "tuesday-2115-online",
+    "day": 2,
+    "time": "21:15",
+    "location": "Online",
+    "address": "Cape May Court House",
+    "city": "Cape May Courthouse",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 17:30 Online",
+    "slug": "wednesday-1730-online",
+    "day": 3,
+    "time": "17:30",
+    "location": "Online",
+    "address": "Cape May Court House",
+    "city": "Cape May Courthouse",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 21:15 Online",
+    "slug": "wednesday-2115-online",
+    "day": 3,
+    "time": "21:15",
+    "location": "Online",
+    "address": "Cape May Court House",
+    "city": "Cape May Courthouse",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 21:15 Online",
+    "slug": "thursday-2115-online",
+    "day": 4,
+    "time": "21:15",
+    "location": "Online",
+    "address": "Cape May Court House",
+    "city": "Cape May Courthouse",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 21:15 Online",
+    "slug": "friday-2115-online",
+    "day": 5,
+    "time": "21:15",
+    "location": "Online",
+    "address": "Cape May Court House",
+    "city": "Cape May Courthouse",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 21:15 Online",
+    "slug": "saturday-2115-online",
+    "day": 6,
+    "time": "21:15",
+    "location": "Online",
+    "address": "Cape May Court House",
+    "city": "Cape May Courthouse",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 19:30 Online",
+    "slug": "thursday-1930-online",
+    "day": 4,
+    "time": "19:30",
+    "location": "Online",
+    "address": "Cape May, NJ 08204",
+    "city": "Cape May",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 19:30 Union Chapel",
+    "slug": "wednesday-1930-union-chapel",
+    "day": 3,
+    "time": "19:30",
+    "location": "Union Chapel",
+    "address": "317 Cape Ave",
+    "city": "Cape May Point",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 19:30 Union Chapel",
+    "slug": "friday-1930-union-chapel",
+    "day": 5,
+    "time": "19:30",
+    "location": "Union Chapel",
+    "address": "317 Cape Ave",
+    "city": "Cape May Point",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Monday 19:30 Community Presbyterian",
@@ -3281,6 +5931,44 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Friday 19:30 N. Wildwood Rec Center",
+    "slug": "friday-1930-n-wildwood-rec-center",
+    "day": 5,
+    "time": "19:30",
+    "location": "N. Wildwood Rec Center",
+    "address": "900 Central Ave",
+    "city": "North Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 07:00 Centre st & the Beach In-person and Online",
+    "slug": "sunday-0700-centre-st-the-beach-in-person-and-online",
+    "day": 0,
+    "time": "07:00",
+    "location": "Centre st & the Beach In-person and Online",
+    "address": "Centre St",
+    "city": "Beach Haven",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Tuesday 12:00 First Reformed Church",
@@ -4048,6 +6736,124 @@
     "source": "nnjaa"
   },
   {
+    "name": "Wednesday 19:00 West Creek United Methodist Church",
+    "slug": "wednesday-1900-west-creek-united-methodist-church",
+    "day": 3,
+    "time": "19:00",
+    "location": "West Creek United Methodist Church",
+    "address": "189 Church St",
+    "city": "West Creek",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 18:00",
+    "slug": "sunday-1800",
+    "day": 0,
+    "time": "18:00",
+    "location": "",
+    "address": "351 Cincinnati Ave",
+    "city": "Egg Harbor City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 19:30",
+    "slug": "sunday-1930",
+    "day": 0,
+    "time": "19:30",
+    "location": "",
+    "address": "351 Cincinnati Ave",
+    "city": "Egg Harbor City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 20:00",
+    "slug": "monday-2000",
+    "day": 1,
+    "time": "20:00",
+    "location": "",
+    "address": "351 Cincinnati Ave",
+    "city": "Egg Harbor City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 20:00",
+    "slug": "wednesday-2000",
+    "day": 3,
+    "time": "20:00",
+    "location": "",
+    "address": "351 Cincinnati Ave",
+    "city": "Egg Harbor City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 20:00",
+    "slug": "friday-2000",
+    "day": 5,
+    "time": "20:00",
+    "location": "",
+    "address": "351 Cincinnati Ave",
+    "city": "Egg Harbor City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Tuesday 20:00 St. Bernard's Church",
     "slug": "open-step-discussion-tuesday-800pm-bernardsville",
     "day": 2,
@@ -4084,6 +6890,62 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Monday 10:00 St. Casmir's Church",
+    "slug": "monday-1000-st-casmirs-church",
+    "day": 1,
+    "time": "10:00",
+    "location": "St. Casmir's Church",
+    "address": "304 Clay St",
+    "city": "Woodbine",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 17:30 St. Casmir's Church",
+    "slug": "thursday-1730-st-casmirs-church",
+    "day": 4,
+    "time": "17:30",
+    "location": "St. Casmir's Church",
+    "address": "304 Clay St",
+    "city": "Woodbine",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 18:00 St. Casmir's Church",
+    "slug": "friday-1800-st-casmirs-church",
+    "day": 5,
+    "time": "18:00",
+    "location": "St. Casmir's Church",
+    "address": "304 Clay St",
+    "city": "Woodbine",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Sunday 09:00 Adelphia Restaurant",
@@ -4204,6 +7066,46 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Tuesday 09:30 Association Building",
+    "slug": "tuesday-0930-association-building",
+    "day": 2,
+    "time": "09:30",
+    "location": "Association Building",
+    "address": "201 Clubhouse Dr",
+    "city": "Townbank",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 09:30 Association Building",
+    "slug": "thursday-0930-association-building",
+    "day": 4,
+    "time": "09:30",
+    "location": "Association Building",
+    "address": "201 Clubhouse Dr",
+    "city": "Townbank",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Tuesday 20:00 MASK RQRDSecond Reformed Church",
@@ -5711,6 +8613,185 @@
     "source": "nnjaa"
   },
   {
+    "name": "Wednesday 19:30 Zion Lutheran Church",
+    "slug": "wednesday-1930-zion-lutheran-church",
+    "day": 3,
+    "time": "19:30",
+    "location": "Zion Lutheran Church",
+    "address": "E 18th St",
+    "city": "Barnegat Light",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 19:30 Zion Lutheran Church",
+    "slug": "thursday-1930-zion-lutheran-church",
+    "day": 4,
+    "time": "19:30",
+    "location": "Zion Lutheran Church",
+    "address": "E 18th St",
+    "city": "Barnegat Light",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 07:30 Lou Booth Pavilion at 2nd Ave.",
+    "slug": "saturday-0730-lou-booth-pavilion-at-2nd-ave",
+    "day": 6,
+    "time": "07:30",
+    "location": "Lou Booth Pavilion at 2nd Ave.",
+    "address": "499 E 2nd Ave",
+    "city": "North Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 07:30 St. Peter's Methodist Church",
+    "slug": "monday-0730-st-peters-methodist-church",
+    "day": 1,
+    "time": "07:30",
+    "location": "St. Peter's Methodist Church",
+    "address": "E 8th St",
+    "city": "Ocean City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "S",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 07:30 St. Peter's Methodist Church",
+    "slug": "tuesday-0730-st-peters-methodist-church",
+    "day": 2,
+    "time": "07:30",
+    "location": "St. Peter's Methodist Church",
+    "address": "E 8th St",
+    "city": "Ocean City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 07:30 St. Peter's Methodist Church",
+    "slug": "wednesday-0730-st-peters-methodist-church",
+    "day": 3,
+    "time": "07:30",
+    "location": "St. Peter's Methodist Church",
+    "address": "E 8th St",
+    "city": "Ocean City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 07:30 St. Peter's Methodist Church",
+    "slug": "thursday-0730-st-peters-methodist-church",
+    "day": 4,
+    "time": "07:30",
+    "location": "St. Peter's Methodist Church",
+    "address": "E 8th St",
+    "city": "Ocean City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 07:30 St. Peter's Methodist Church",
+    "slug": "friday-0730-st-peters-methodist-church",
+    "day": 5,
+    "time": "07:30",
+    "location": "St. Peter's Methodist Church",
+    "address": "E 8th St",
+    "city": "Ocean City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST",
+      "B",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 07:30 St. Peter's Methodist Church",
+    "slug": "saturday-0730-st-peters-methodist-church",
+    "day": 6,
+    "time": "07:30",
+    "location": "St. Peter's Methodist Church",
+    "address": "E 8th St",
+    "city": "Ocean City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Monday 18:00 Club 317",
     "slug": "monday-1800-club-317",
     "day": 1,
@@ -5789,6 +8870,45 @@
     "country": "US",
     "types": [
       "W"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 07:30 Surf Road Beach Entrance",
+    "slug": "sunday-0730-surf-road-beach-entrance",
+    "day": 0,
+    "time": "07:30",
+    "location": "Surf Road Beach Entrance",
+    "address": "323 E Atlantic Blvd",
+    "city": "Ocean City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 10:00 Manahawkin Community Center",
+    "slug": "sunday-1000-manahawkin-community-center",
+    "day": 0,
+    "time": "10:00",
+    "location": "Manahawkin Community Center",
+    "address": "775 E Bay Ave",
+    "city": "Manahawkin",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D",
+      "S"
     ],
     "notes": "",
     "group": "",
@@ -5881,6 +9001,64 @@
     "types": [
       "W",
       "VM"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 19:30 Grace Lutheran Church",
+    "slug": "monday-1930-grace-lutheran-church",
+    "day": 1,
+    "time": "19:30",
+    "location": "Grace Lutheran Church",
+    "address": "11 E Dawes Ave",
+    "city": "Somers Point",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 19:00 Grace Lutheran Church",
+    "slug": "thursday-1900-grace-lutheran-church",
+    "day": 4,
+    "time": "19:00",
+    "location": "Grace Lutheran Church",
+    "address": "11 E Dawes Ave",
+    "city": "Somers Point",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 19:30 Grace Lutheran Church",
+    "slug": "friday-1930-grace-lutheran-church",
+    "day": 5,
+    "time": "19:30",
+    "location": "Grace Lutheran Church",
+    "address": "11 E Dawes Ave",
+    "city": "Somers Point",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C"
     ],
     "notes": "",
     "group": "",
@@ -6040,8 +9218,8 @@
     "postal_code": "",
     "country": "US",
     "types": [
-      "VM",
-      "M"
+      "M",
+      "VM"
     ],
     "notes": "",
     "group": "",
@@ -6152,6 +9330,85 @@
     "wheelchair": false
   },
   {
+    "name": "Sunday 13:00 Holy Spirit Episcopal",
+    "slug": "sunday-1300-holy-spirit-episcopal",
+    "day": 0,
+    "time": "13:00",
+    "location": "Holy Spirit Episcopal",
+    "address": "220 E Main St",
+    "city": "Tuckerton",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 20:00 First Presbyterian Church",
+    "slug": "tuesday-2000-first-presbyterian-church",
+    "day": 2,
+    "time": "20:00",
+    "location": "First Presbyterian Church",
+    "address": "210 E Main St",
+    "city": "Tuckerton",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 19:00 First Presbyterian Church",
+    "slug": "thursday-1900-first-presbyterian-church",
+    "day": 4,
+    "time": "19:00",
+    "location": "First Presbyterian Church",
+    "address": "210 E Main St",
+    "city": "Tuckerton",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 20:00 First Presbyterian Church",
+    "slug": "friday-2000-first-presbyterian-church",
+    "day": 5,
+    "time": "20:00",
+    "location": "First Presbyterian Church",
+    "address": "210 E Main St",
+    "city": "Tuckerton",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Wednesday 19:00 Grace Episcopal Church (Merchantville)",
     "slug": "wednesday-1900-grace-episcopal-church-merchantville",
     "day": 3,
@@ -6180,6 +9437,45 @@
     "country": "US",
     "types": [
       "M"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 19:30 Beach Haven United Methodist Church",
+    "slug": "tuesday-1930-beach-haven-united-methodist-church",
+    "day": 2,
+    "time": "19:30",
+    "location": "Beach Haven United Methodist Church",
+    "address": "101 E New Jersey Ave",
+    "city": "Beach Haven Terrace",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 19:30 Beach Haven United Methodist Church",
+    "slug": "saturday-1930-beach-haven-united-methodist-church",
+    "day": 6,
+    "time": "19:30",
+    "location": "Beach Haven United Methodist Church",
+    "address": "101 E New Jersey Ave",
+    "city": "Beach Haven Terrace",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S"
     ],
     "notes": "",
     "group": "",
@@ -7643,6 +10939,24 @@
     "source": "nnjaa"
   },
   {
+    "name": "Wednesday 07:30 Online",
+    "slug": "wednesday-0730-online",
+    "day": 3,
+    "time": "07:30",
+    "location": "Online",
+    "address": "Egg Harbor Township, NJ 08234",
+    "city": "Cyberspace",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Sunday 19:30 Elmwood United Presbyterian Church",
     "slug": "open-speaker-sunday-730pm-east-orange",
     "day": 0,
@@ -8417,6 +11731,44 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Monday 19:30 The Church of the Advent (Parish Hall)",
+    "slug": "monday-1930-the-church-of-the-advent-parish-hall",
+    "day": 1,
+    "time": "19:30",
+    "location": "The Church of the Advent (Parish Hall)",
+    "address": "612 Franklin St",
+    "city": "Cape May",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 18:30 The Church of the Advent (Parish Hall)",
+    "slug": "saturday-1830-the-church-of-the-advent-parish-hall",
+    "day": 6,
+    "time": "18:30",
+    "location": "The Church of the Advent (Parish Hall)",
+    "address": "612 Franklin St",
+    "city": "Cape May",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Sunday 16:00 Union Hill Presbyterian Church",
@@ -10475,6 +13827,83 @@
     "wheelchair": false
   },
   {
+    "name": "Sunday 10:00 Community Lodge (Rear Entrance)",
+    "slug": "sunday-1000-community-lodge-rear-entrance",
+    "day": 0,
+    "time": "10:00",
+    "location": "Community Lodge (Rear Entrance)",
+    "address": "300 John F Kennedy Blvd",
+    "city": "Sea Isle City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 19:00 Community Lodge (Rear Entrance)",
+    "slug": "monday-1900-community-lodge-rear-entrance",
+    "day": 1,
+    "time": "19:00",
+    "location": "Community Lodge (Rear Entrance)",
+    "address": "300 John F Kennedy Blvd",
+    "city": "Sea Isle City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 17:30 Community Lodge (Rear Entrance)",
+    "slug": "wednesday-1730-community-lodge-rear-entrance",
+    "day": 3,
+    "time": "17:30",
+    "location": "Community Lodge (Rear Entrance)",
+    "address": "300 John F Kennedy Blvd",
+    "city": "Sea Isle City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 19:30 Community Lodge (Rear Entrance)",
+    "slug": "saturday-1930-community-lodge-rear-entrance",
+    "day": 6,
+    "time": "19:30",
+    "location": "Community Lodge (Rear Entrance)",
+    "address": "300 John F Kennedy Blvd",
+    "city": "Sea Isle City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Friday 20:00 Immaculate Conception Church, Notre Dame Hall",
     "slug": "open-big-book-step-friday-800pm-secaucus",
     "day": 5,
@@ -11368,6 +14797,85 @@
     "source": "nnjaa"
   },
   {
+    "name": "Sunday 19:30 Tip Seaman Park",
+    "slug": "sunday-1930-tip-seaman-park",
+    "day": 0,
+    "time": "19:30",
+    "location": "Tip Seaman Park",
+    "address": "120 Lakeside Dr",
+    "city": "Tuckerton",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 08:00 Tip Seaman Park",
+    "slug": "saturday-0800-tip-seaman-park",
+    "day": 6,
+    "time": "08:00",
+    "location": "Tip Seaman Park",
+    "address": "120 Lakeside Dr",
+    "city": "Tuckerton",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 10:00 Tip Seaman Park",
+    "slug": "saturday-1000-tip-seaman-park",
+    "day": 6,
+    "time": "10:00",
+    "location": "Tip Seaman Park",
+    "address": "120 Lakeside Dr",
+    "city": "Tuckerton",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 18:30 Tip Seaman Park",
+    "slug": "saturday-1830-tip-seaman-park",
+    "day": 6,
+    "time": "18:30",
+    "location": "Tip Seaman Park",
+    "address": "120 Lakeside Dr",
+    "city": "Tuckerton",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Tuesday 18:00 BREW Grounds Cafe",
     "slug": "open-discussion-tuesday-600pm-toms-river",
     "day": 2,
@@ -11819,6 +15327,26 @@
     "source": "nnjaa"
   },
   {
+    "name": "Friday 16:00 Seashore Seventh-Day Adventist Church",
+    "slug": "friday-1600-seashore-seventh-day-adventist-church",
+    "day": 5,
+    "time": "16:00",
+    "location": "Seashore Seventh-Day Adventist Church",
+    "address": "102 Linden Ave",
+    "city": "Pleasantville",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Tuesday 19:30 Emerson Bible Church",
     "slug": "open-big-book-tuesday-730pm-emerson",
     "day": 2,
@@ -11927,6 +15455,389 @@
     "source": "nnjaa"
   },
   {
+    "name": "Sunday 06:30 World's End Online",
+    "slug": "sunday-0630-worlds-end-online",
+    "day": 0,
+    "time": "06:30",
+    "location": "World's End Online",
+    "address": "London",
+    "city": "Chelsea London, UK",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 06:30 World's End Online",
+    "slug": "monday-0630-worlds-end-online",
+    "day": 1,
+    "time": "06:30",
+    "location": "World's End Online",
+    "address": "London",
+    "city": "Chelsea London, UK",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 06:30 World's End Online",
+    "slug": "tuesday-0630-worlds-end-online",
+    "day": 2,
+    "time": "06:30",
+    "location": "World's End Online",
+    "address": "London",
+    "city": "Chelsea London, UK",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 06:30 World's End Online",
+    "slug": "wednesday-0630-worlds-end-online",
+    "day": 3,
+    "time": "06:30",
+    "location": "World's End Online",
+    "address": "London",
+    "city": "Chelsea London, UK",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 06:30 World's End Online",
+    "slug": "thursday-0630-worlds-end-online",
+    "day": 4,
+    "time": "06:30",
+    "location": "World's End Online",
+    "address": "London",
+    "city": "Chelsea London, UK",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 06:30 World's End Online",
+    "slug": "friday-0630-worlds-end-online",
+    "day": 5,
+    "time": "06:30",
+    "location": "World's End Online",
+    "address": "London",
+    "city": "Chelsea London, UK",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 06:30 World's End Online",
+    "slug": "saturday-0630-worlds-end-online",
+    "day": 6,
+    "time": "06:30",
+    "location": "World's End Online",
+    "address": "London",
+    "city": "Chelsea London, UK",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 19:00 St. John's United Church of Christ",
+    "slug": "sunday-1900-st-johns-united-church-of-christ",
+    "day": 0,
+    "time": "19:00",
+    "location": "St. John's United Church of Christ",
+    "address": "307 London Ave",
+    "city": "Egg Harbor City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 12:30 St. Thomas of Villanova",
+    "slug": "monday-1230-st-thomas-of-villanova",
+    "day": 1,
+    "time": "12:30",
+    "location": "St. Thomas of Villanova",
+    "address": "Long Beach Blvd & 13th St",
+    "city": "Surf City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 12:30 St. Thomas of Villanova",
+    "slug": "tuesday-1230-st-thomas-of-villanova",
+    "day": 2,
+    "time": "12:30",
+    "location": "St. Thomas of Villanova",
+    "address": "Long Beach Blvd & 13th St",
+    "city": "Surf City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 12:30 St. Thomas of Villanova",
+    "slug": "wednesday-1230-st-thomas-of-villanova",
+    "day": 3,
+    "time": "12:30",
+    "location": "St. Thomas of Villanova",
+    "address": "Long Beach Blvd & 13th St",
+    "city": "Surf City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 12:30 St. Thomas of Villanova",
+    "slug": "thursday-1230-st-thomas-of-villanova",
+    "day": 4,
+    "time": "12:30",
+    "location": "St. Thomas of Villanova",
+    "address": "Long Beach Blvd & 13th St",
+    "city": "Surf City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 12:30 St. Thomas of Villanova",
+    "slug": "friday-1230-st-thomas-of-villanova",
+    "day": 5,
+    "time": "12:30",
+    "location": "St. Thomas of Villanova",
+    "address": "Long Beach Blvd & 13th St",
+    "city": "Surf City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 20:00 St. Thomas of Villanova",
+    "slug": "friday-2000-st-thomas-of-villanova",
+    "day": 5,
+    "time": "20:00",
+    "location": "St. Thomas of Villanova",
+    "address": "Long Beach Blvd & 13th St",
+    "city": "Surf City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 07:00 Holy Trinity Lutheran Church In-person and Online",
+    "slug": "monday-0700-holy-trinity-lutheran-church-in-person-and-online",
+    "day": 1,
+    "time": "07:00",
+    "location": "Holy Trinity Lutheran Church In-person and Online",
+    "address": "5800 Long Beach Blvd",
+    "city": "Brant Beach",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 07:00 Holy Trinity Lutheran Church In-person and On...",
+    "slug": "wednesday-0700-holy-trinity-lutheran-church-in-person-and-on",
+    "day": 3,
+    "time": "07:00",
+    "location": "Holy Trinity Lutheran Church In-person and Online",
+    "address": "5800 Long Beach Blvd",
+    "city": "Brant Beach",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 07:00 Holy Trinity Lutheran Church In-person and Online",
+    "slug": "friday-0700-holy-trinity-lutheran-church-in-person-and-online",
+    "day": 5,
+    "time": "07:00",
+    "location": "Holy Trinity Lutheran Church In-person and Online",
+    "address": "5800 Long Beach Blvd",
+    "city": "Brant Beach",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 10:30 Holy Trinity Lutheran Church",
+    "slug": "saturday-1030-holy-trinity-lutheran-church",
+    "day": 6,
+    "time": "10:30",
+    "location": "Holy Trinity Lutheran Church",
+    "address": "5800 Long Beach Blvd",
+    "city": "Brant Beach",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 20:00 Grace Calvary Church",
+    "slug": "sunday-2000-grace-calvary-church",
+    "day": 0,
+    "time": "20:00",
+    "location": "Grace Calvary Church",
+    "address": "1902 Long Beach Blvd",
+    "city": "Ship Bottom",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 20:00 Grace Calvary Church",
+    "slug": "monday-2000-grace-calvary-church",
+    "day": 1,
+    "time": "20:00",
+    "location": "Grace Calvary Church",
+    "address": "1902 Long Beach Blvd",
+    "city": "Ship Bottom",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Tuesday 10:00 Shrine of St. Joseph",
     "slug": "open-beginner-big-book-tuesday-1000am-stirling",
     "day": 2,
@@ -12011,6 +15922,24 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Saturday 08:30 Madison Street Beach",
+    "slug": "saturday-0830-madison-street-beach",
+    "day": 6,
+    "time": "08:30",
+    "location": "Madison Street Beach",
+    "address": "Madison Ave & Beach Ave",
+    "city": "Cape May",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Sunday 20:30 St. Nicholas Byzantine Catholic Church",
@@ -12304,6 +16233,25 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Tuesday 19:30 United Methodist Church",
+    "slug": "tuesday-1930-united-methodist-church",
+    "day": 2,
+    "time": "19:30",
+    "location": "United Methodist Church",
+    "address": "138 Main St",
+    "city": "Dennisville",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Thursday 20:30 United Methodist Church Hall",
@@ -12675,6 +16623,158 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Sunday 14:00 Presbyterian Church",
+    "slug": "sunday-1400-presbyterian-church",
+    "day": 0,
+    "time": "14:00",
+    "location": "Presbyterian Church",
+    "address": "6001 Main St",
+    "city": "Mays Landing",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 19:00 Presbyterian Church",
+    "slug": "monday-1900-presbyterian-church",
+    "day": 1,
+    "time": "19:00",
+    "location": "Presbyterian Church",
+    "address": "6001 Main St",
+    "city": "Mays Landing",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 09:30 Presbyterian Church",
+    "slug": "tuesday-0930-presbyterian-church",
+    "day": 2,
+    "time": "09:30",
+    "location": "Presbyterian Church",
+    "address": "6001 Main St",
+    "city": "Mays Landing",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 17:30 Presbyterian Church",
+    "slug": "tuesday-1730-presbyterian-church",
+    "day": 2,
+    "time": "17:30",
+    "location": "Presbyterian Church",
+    "address": "6001 Main St",
+    "city": "Mays Landing",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 17:30 Presbyterian Church",
+    "slug": "wednesday-1730-presbyterian-church",
+    "day": 3,
+    "time": "17:30",
+    "location": "Presbyterian Church",
+    "address": "6001 Main St",
+    "city": "Mays Landing",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 20:30 Presbyterian Church",
+    "slug": "thursday-2030-presbyterian-church",
+    "day": 4,
+    "time": "20:30",
+    "location": "Presbyterian Church",
+    "address": "6001 Main St",
+    "city": "Mays Landing",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 17:30 Presbyterian Church",
+    "slug": "friday-1730-presbyterian-church",
+    "day": 5,
+    "time": "17:30",
+    "location": "Presbyterian Church",
+    "address": "6001 Main St",
+    "city": "Mays Landing",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 19:00 Presbyterian Church",
+    "slug": "saturday-1900-presbyterian-church",
+    "day": 6,
+    "time": "19:00",
+    "location": "Presbyterian Church",
+    "address": "6001 Main St",
+    "city": "Mays Landing",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Sunday 13:00 St. Stephen's Episcopal Church",
@@ -13147,6 +17247,177 @@
     "wheelchair": false
   },
   {
+    "name": "Monday 19:00 Our Lady of the Lakes",
+    "slug": "monday-1900-our-lady-of-the-lakes",
+    "day": 1,
+    "time": "19:00",
+    "location": "Our Lady of the Lakes",
+    "address": "19 Malaga Rd",
+    "city": "Gloucester County",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 07:00 Online",
+    "slug": "sunday-0700-online",
+    "day": 0,
+    "time": "07:00",
+    "location": "Online",
+    "address": "Manahawkin",
+    "city": "Manahawkin",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 08:00 Online",
+    "slug": "sunday-0800-online",
+    "day": 0,
+    "time": "08:00",
+    "location": "Online",
+    "address": "Manahawkin",
+    "city": "Manahawkin",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "MED"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 07:00 Online",
+    "slug": "monday-0700-online",
+    "day": 1,
+    "time": "07:00",
+    "location": "Online",
+    "address": "Manahawkin",
+    "city": "Manahawkin",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 07:00 Online",
+    "slug": "tuesday-0700-online",
+    "day": 2,
+    "time": "07:00",
+    "location": "Online",
+    "address": "Manahawkin",
+    "city": "Manahawkin",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 07:00 Online",
+    "slug": "wednesday-0700-online",
+    "day": 3,
+    "time": "07:00",
+    "location": "Online",
+    "address": "Manahawkin",
+    "city": "Manahawkin",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 07:00 Online",
+    "slug": "thursday-0700-online",
+    "day": 4,
+    "time": "07:00",
+    "location": "Online",
+    "address": "Manahawkin",
+    "city": "Manahawkin",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 07:00 Online",
+    "slug": "friday-0700-online",
+    "day": 5,
+    "time": "07:00",
+    "location": "Online",
+    "address": "Manahawkin",
+    "city": "Manahawkin",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 07:00 Online",
+    "slug": "saturday-0700-online",
+    "day": 6,
+    "time": "07:00",
+    "location": "Online",
+    "address": "Manahawkin",
+    "city": "Manahawkin",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Sunday 10:30 Heights Vietnam Veterans Memorial Bldg.",
     "slug": "open-speaker-sunday-1030am-jersey-city",
     "day": 0,
@@ -13248,6 +17519,26 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Wednesday 19:00 Our Lady of Sorrows",
+    "slug": "wednesday-1900-our-lady-of-sorrows",
+    "day": 3,
+    "time": "19:00",
+    "location": "Our Lady of Sorrows",
+    "address": "724 Maple Ave",
+    "city": "Linwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Friday 19:30 St. Peters Church",
@@ -13766,6 +18057,22 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Tuesday 19:00 St. James Lutheran Church",
+    "slug": "tuesday-1900-st-james-lutheran-church",
+    "day": 2,
+    "time": "19:00",
+    "location": "St. James Lutheran Church",
+    "address": "1341 Mays Landing Rd",
+    "city": "Atlantic County",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Sunday 19:00 St. James Lutheran Church",
@@ -14913,8 +19220,8 @@
     "country": "US",
     "types": [
       "W",
-      "VM",
-      "PH"
+      "PH",
+      "VM"
     ],
     "notes": "",
     "group": "",
@@ -15125,6 +19432,26 @@
     "wheelchair": false
   },
   {
+    "name": "Sunday 19:00 Forked River Presbyterian Church",
+    "slug": "sunday-1900-forked-river-presbyterian-church",
+    "day": 0,
+    "time": "19:00",
+    "location": "Forked River Presbyterian Church",
+    "address": "131 N Main St",
+    "city": "Forked River",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Saturday 19:00 St. Thomas Episcopal Church",
     "slug": "saturday-1900-st-thomas-episcopal-church",
     "day": 6,
@@ -15136,6 +19463,62 @@
     "postal_code": "",
     "country": "US",
     "types": [],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 19:30 Lutheran Church of the Holy Spirit",
+    "slug": "tuesday-1930-lutheran-church-of-the-holy-spirit",
+    "day": 2,
+    "time": "19:30",
+    "location": "Lutheran Church of the Holy Spirit",
+    "address": "333 N Main St",
+    "city": "Manahawkin",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 19:30 Lutheran Church of the Holy Spirit",
+    "slug": "thursday-1930-lutheran-church-of-the-holy-spirit",
+    "day": 4,
+    "time": "19:30",
+    "location": "Lutheran Church of the Holy Spirit",
+    "address": "333 N Main St",
+    "city": "Manahawkin",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 10:00 Lutheran Church of the Holy Spirit",
+    "slug": "friday-1000-lutheran-church-of-the-holy-spirit",
+    "day": 5,
+    "time": "10:00",
+    "location": "Lutheran Church of the Holy Spirit",
+    "address": "333 N Main St",
+    "city": "Manahawkin",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
     "notes": "",
     "group": "",
     "wheelchair": false
@@ -15232,6 +19615,361 @@
     "postal_code": "",
     "country": "US",
     "types": [],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 10:00 Venice Park Social Club",
+    "slug": "sunday-1000-venice-park-social-club",
+    "day": 0,
+    "time": "10:00",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 18:30 Venice Park Social Club",
+    "slug": "sunday-1830-venice-park-social-club",
+    "day": 0,
+    "time": "18:30",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 08:00 Venice Park Social Club",
+    "slug": "monday-0800-venice-park-social-club",
+    "day": 1,
+    "time": "08:00",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 17:30 Venice Park Social Club",
+    "slug": "monday-1730-venice-park-social-club",
+    "day": 1,
+    "time": "17:30",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 19:00 Venice Park Social Club",
+    "slug": "monday-1900-venice-park-social-club",
+    "day": 1,
+    "time": "19:00",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 17:30 Venice Park Social Club",
+    "slug": "tuesday-1730-venice-park-social-club",
+    "day": 2,
+    "time": "17:30",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 19:00 Venice Park Social Club",
+    "slug": "tuesday-1900-venice-park-social-club",
+    "day": 2,
+    "time": "19:00",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 13:30 Venice Park Social Club",
+    "slug": "wednesday-1330-venice-park-social-club",
+    "day": 3,
+    "time": "13:30",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 17:30 Venice Park Social Club",
+    "slug": "wednesday-1730-venice-park-social-club",
+    "day": 3,
+    "time": "17:30",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 19:00 Venice Park Social Club",
+    "slug": "wednesday-1900-venice-park-social-club",
+    "day": 3,
+    "time": "19:00",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 08:00 Venice Park Social Club",
+    "slug": "thursday-0800-venice-park-social-club",
+    "day": 4,
+    "time": "08:00",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 19:00 Venice Park Social Club",
+    "slug": "thursday-1900-venice-park-social-club",
+    "day": 4,
+    "time": "19:00",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 08:00 Venice Park Social Club",
+    "slug": "friday-0800-venice-park-social-club",
+    "day": 5,
+    "time": "08:00",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 17:30 Venice Park Social Club",
+    "slug": "friday-1730-venice-park-social-club",
+    "day": 5,
+    "time": "17:30",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 19:00 Venice Park Social Club",
+    "slug": "friday-1900-venice-park-social-club",
+    "day": 5,
+    "time": "19:00",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 21:00 Venice Park Social Club",
+    "slug": "friday-2100-venice-park-social-club",
+    "day": 5,
+    "time": "21:00",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 08:00 Venice Park Social Club",
+    "slug": "saturday-0800-venice-park-social-club",
+    "day": 6,
+    "time": "08:00",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 18:30 Venice Park Social Club",
+    "slug": "saturday-1830-venice-park-social-club",
+    "day": 6,
+    "time": "18:30",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 19:00 Venice Park Social Club",
+    "slug": "saturday-1900-venice-park-social-club",
+    "day": 6,
+    "time": "19:00",
+    "location": "Venice Park Social Club",
+    "address": "2125 N Riverside Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
     "notes": "",
     "group": "",
     "wheelchair": false
@@ -15443,6 +20181,121 @@
     "source": "nnjaa"
   },
   {
+    "name": "Thursday 20:00 Online",
+    "slug": "thursday-2000-online",
+    "day": 4,
+    "time": "20:00",
+    "location": "Online",
+    "address": "New Gretna, NJ 08224",
+    "city": "New Gretna",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 10:00 Absecon Presbyterian Church",
+    "slug": "monday-1000-absecon-presbyterian-church",
+    "day": 1,
+    "time": "10:00",
+    "location": "Absecon Presbyterian Church",
+    "address": "208 New Jersey Ave",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 10:00 Absecon Presbyterian Church",
+    "slug": "wednesday-1000-absecon-presbyterian-church",
+    "day": 3,
+    "time": "10:00",
+    "location": "Absecon Presbyterian Church",
+    "address": "208 New Jersey Ave",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 10:00 Absecon Presbyterian Church",
+    "slug": "friday-1000-absecon-presbyterian-church",
+    "day": 5,
+    "time": "10:00",
+    "location": "Absecon Presbyterian Church",
+    "address": "208 New Jersey Ave",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 20:00 Absecon Presbyterian Church",
+    "slug": "friday-2000-absecon-presbyterian-church",
+    "day": 5,
+    "time": "20:00",
+    "location": "Absecon Presbyterian Church",
+    "address": "208 New Jersey Ave",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 21:00 Absecon Presbyterian Church",
+    "slug": "saturday-2100-absecon-presbyterian-church",
+    "day": 6,
+    "time": "21:00",
+    "location": "Absecon Presbyterian Church",
+    "address": "208 New Jersey Ave",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Tuesday 19:30 Saint Francis Episcopal Church",
     "slug": "open-beginner-discussion-tuesday-730pm-dunellen",
     "day": 2,
@@ -15475,6 +20328,78 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Sunday 10:00 Cape Atlantic Intergroup Office",
+    "slug": "sunday-1000-cape-atlantic-intergroup-office",
+    "day": 0,
+    "time": "10:00",
+    "location": "Cape Atlantic Intergroup Office",
+    "address": "1418 New Rd #4",
+    "city": "Northfield",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 19:00 Cape Atlantic Intergroup Office",
+    "slug": "tuesday-1900-cape-atlantic-intergroup-office",
+    "day": 2,
+    "time": "19:00",
+    "location": "Cape Atlantic Intergroup Office",
+    "address": "1418 New Rd #4",
+    "city": "Northfield",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 17:00 Cape Atlantic Intergroup Office",
+    "slug": "thursday-1700-cape-atlantic-intergroup-office",
+    "day": 4,
+    "time": "17:00",
+    "location": "Cape Atlantic Intergroup Office",
+    "address": "1418 New Rd #4",
+    "city": "Northfield",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 17:30 Cape Atlantic Intergroup Office",
+    "slug": "thursday-1730-cape-atlantic-intergroup-office",
+    "day": 4,
+    "time": "17:30",
+    "location": "Cape Atlantic Intergroup Office",
+    "address": "1418 New Rd #4",
+    "city": "Northfield",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Sunday 07:00 St. Joseph's Church",
@@ -15846,6 +20771,65 @@
     "wheelchair": false
   },
   {
+    "name": "Monday 17:30 Cooper Univ. Hosp. Recovery Center",
+    "slug": "monday-1730-cooper-univ-hosp-recovery-center",
+    "day": 1,
+    "time": "17:30",
+    "location": "Cooper Univ. Hosp. Recovery Center",
+    "address": "1304 NJ-47",
+    "city": "Rio Grande",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 18:00 Cooper Univ. Hosp. Recovery Center",
+    "slug": "wednesday-1800-cooper-univ-hosp-recovery-center",
+    "day": 3,
+    "time": "18:00",
+    "location": "Cooper Univ. Hosp. Recovery Center",
+    "address": "1304 NJ-47",
+    "city": "Rio Grande",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 18:00 Cooper Univ. Hosp. Recovery Center",
+    "slug": "thursday-1800-cooper-univ-hosp-recovery-center",
+    "day": 4,
+    "time": "18:00",
+    "location": "Cooper Univ. Hosp. Recovery Center",
+    "address": "1304 NJ-47",
+    "city": "Rio Grande",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Thursday 18:30 St Bartholomew's Episcopal Church",
     "slug": "thursday-1830-st-bartholomews-episcopal-church",
     "day": 4,
@@ -16082,6 +21066,24 @@
     "source": "nnjaa"
   },
   {
+    "name": "Friday 18:00 Online",
+    "slug": "friday-1800-online",
+    "day": 5,
+    "time": "18:00",
+    "location": "Online",
+    "address": "North Cape May",
+    "city": "North Cape May",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Tuesday 18:00 Grace Baptist Church",
     "slug": "closed-big-book-tuesday-600pm-ramsey",
     "day": 2,
@@ -16135,6 +21137,45 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Sunday 07:30 Good Shepard United Methodist Church",
+    "slug": "sunday-0730-good-shepard-united-methodist-church",
+    "day": 0,
+    "time": "07:30",
+    "location": "Good Shepard United Methodist Church",
+    "address": "207 Northfield Ave",
+    "city": "Northfield",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 19:00 Good Shepard United Methodist Church",
+    "slug": "tuesday-1900-good-shepard-united-methodist-church",
+    "day": 2,
+    "time": "19:00",
+    "location": "Good Shepard United Methodist Church",
+    "address": "207 Northfield Ave",
+    "city": "Northfield",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Tuesday 20:00 St. John's Lutheran Church",
@@ -16814,6 +21855,123 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Monday 06:30 Praise Tabernacle",
+    "slug": "monday-0630-praise-tabernacle",
+    "day": 1,
+    "time": "06:30",
+    "location": "Praise Tabernacle",
+    "address": "2235 Ocean Heights Ave",
+    "city": "Egg Harbor Township",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 16:30 Praise Tabernacle",
+    "slug": "tuesday-1630-praise-tabernacle",
+    "day": 2,
+    "time": "16:30",
+    "location": "Praise Tabernacle",
+    "address": "2235 Ocean Heights Ave",
+    "city": "Egg Harbor Township",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 19:00 Praise Tabernacle",
+    "slug": "tuesday-1900-praise-tabernacle",
+    "day": 2,
+    "time": "19:00",
+    "location": "Praise Tabernacle",
+    "address": "2235 Ocean Heights Ave",
+    "city": "Egg Harbor Township",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 06:30 Praise Tabernacle",
+    "slug": "wednesday-0630-praise-tabernacle",
+    "day": 3,
+    "time": "06:30",
+    "location": "Praise Tabernacle",
+    "address": "2235 Ocean Heights Ave",
+    "city": "Egg Harbor Township",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 16:30 Praise Tabernacle",
+    "slug": "thursday-1630-praise-tabernacle",
+    "day": 4,
+    "time": "16:30",
+    "location": "Praise Tabernacle",
+    "address": "2235 Ocean Heights Ave",
+    "city": "Egg Harbor Township",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 06:30 Praise Tabernacle",
+    "slug": "friday-0630-praise-tabernacle",
+    "day": 5,
+    "time": "06:30",
+    "location": "Praise Tabernacle",
+    "address": "2235 Ocean Heights Ave",
+    "city": "Egg Harbor Township",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Tuesday 20:00 St. Michael RC Church",
@@ -18206,6 +23364,99 @@
     "wheelchair": false
   },
   {
+    "name": "Monday 07:30 United Methodist Church In-person and Online",
+    "slug": "monday-0730-united-methodist-church-in-person-and-online",
+    "day": 1,
+    "time": "07:30",
+    "location": "United Methodist Church In-person and Online",
+    "address": "100 Pitney Rd",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 07:30 United Methodist Church In-person and Online",
+    "slug": "tuesday-0730-united-methodist-church-in-person-and-online",
+    "day": 2,
+    "time": "07:30",
+    "location": "United Methodist Church In-person and Online",
+    "address": "100 Pitney Rd",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 07:30 United Methodist Church In-person and Online",
+    "slug": "wednesday-0730-united-methodist-church-in-person-and-online",
+    "day": 3,
+    "time": "07:30",
+    "location": "United Methodist Church In-person and Online",
+    "address": "100 Pitney Rd",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 07:30 United Methodist Church In-person and Online",
+    "slug": "thursday-0730-united-methodist-church-in-person-and-online",
+    "day": 4,
+    "time": "07:30",
+    "location": "United Methodist Church In-person and Online",
+    "address": "100 Pitney Rd",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 07:30 United Methodist Church In-person and Online",
+    "slug": "friday-0730-united-methodist-church-in-person-and-online",
+    "day": 5,
+    "time": "07:30",
+    "location": "United Methodist Church In-person and Online",
+    "address": "100 Pitney Rd",
+    "city": "Absecon",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Monday 19:30 St. Joseph's High School",
     "slug": "closed-big-book-traditions-monday-730pm-metuchen",
     "day": 1,
@@ -18483,6 +23734,65 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Monday 19:00 Great Bay Gospel Fellowship",
+    "slug": "monday-1900-great-bay-gospel-fellowship",
+    "day": 1,
+    "time": "19:00",
+    "location": "Great Bay Gospel Fellowship",
+    "address": "820 Radio Rd",
+    "city": "Little Egg Harbor Township",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 19:00 Great Bay Gospel Fellowship",
+    "slug": "wednesday-1900-great-bay-gospel-fellowship",
+    "day": 3,
+    "time": "19:00",
+    "location": "Great Bay Gospel Fellowship",
+    "address": "820 Radio Rd",
+    "city": "Little Egg Harbor Township",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 19:00 Great Bay Gospel Fellowship",
+    "slug": "friday-1900-great-bay-gospel-fellowship",
+    "day": 5,
+    "time": "19:00",
+    "location": "Great Bay Gospel Fellowship",
+    "address": "820 Radio Rd",
+    "city": "Little Egg Harbor Township",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Wednesday 19:30 Presbyterian Church",
@@ -20389,6 +25699,44 @@
     "wheelchair": false
   },
   {
+    "name": "Sunday 19:00 Seasonal - On the beach at 35th St.",
+    "slug": "sunday-1900-seasonal-on-the-beach-at-35th-st",
+    "day": 0,
+    "time": "19:00",
+    "location": "Seasonal - On the beach at 35th St.",
+    "address": "S 35th Ave",
+    "city": "Longport",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 19:30 Holy Innocence Episcopal Church",
+    "slug": "thursday-1930-holy-innocence-episcopal-church",
+    "day": 4,
+    "time": "19:30",
+    "location": "Holy Innocence Episcopal Church",
+    "address": "410 S Atlantic Ave",
+    "city": "Beach Haven",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Sunday 13:00 Primary Purpose Group",
     "slug": "sunday-1300-primary-purpose-group",
     "day": 0,
@@ -20725,6 +26073,46 @@
     "wheelchair": false
   },
   {
+    "name": "Monday 19:30 Wrights Memorial Presbyterian Church",
+    "slug": "monday-1930-wrights-memorial-presbyterian-church",
+    "day": 1,
+    "time": "19:30",
+    "location": "Wrights Memorial Presbyterian Church",
+    "address": "332 S Main St",
+    "city": "Barnegat Township",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 19:30 Wrights Memorial Presbyterian Church",
+    "slug": "wednesday-1930-wrights-memorial-presbyterian-church",
+    "day": 3,
+    "time": "19:30",
+    "location": "Wrights Memorial Presbyterian Church",
+    "address": "332 S Main St",
+    "city": "Barnegat Township",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Sunday 09:00 Elmer Borough Hall",
     "slug": "sunday-0900-elmer-borough-hall",
     "day": 0,
@@ -20901,6 +26289,80 @@
     "wheelchair": false
   },
   {
+    "name": "Wednesday 19:00 Junkyard",
+    "slug": "wednesday-1900-junkyard",
+    "day": 3,
+    "time": "19:00",
+    "location": "Junkyard",
+    "address": "28 S Mt Airy Ave",
+    "city": "Egg Harbor Township",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 18:00 Enlightened Solutions",
+    "slug": "thursday-1800-enlightened-solutions",
+    "day": 4,
+    "time": "18:00",
+    "location": "Enlightened Solutions",
+    "address": "600 S Odessa Ave",
+    "city": "Egg Harbor City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 18:00 St. Marks All Saints Episcopal Church",
+    "slug": "tuesday-1800-st-marks-all-saints-episcopal-church",
+    "day": 2,
+    "time": "18:00",
+    "location": "St. Marks All Saints Episcopal Church",
+    "address": "429 S Pitney Rd",
+    "city": "Galloway",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 16:30 St. Marks All Saints Episcopal Church",
+    "slug": "wednesday-1630-st-marks-all-saints-episcopal-church",
+    "day": 3,
+    "time": "16:30",
+    "location": "St. Marks All Saints Episcopal Church",
+    "address": "429 S Pitney Rd",
+    "city": "Galloway",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Tuesday 19:30 Sparta United Methodist Church",
     "slug": "open-speaker-discussion-tuesday-730pm-sparta",
     "day": 2,
@@ -20933,6 +26395,44 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Sunday 08:00 May through Sept - On the BEACH at Suffolk",
+    "slug": "sunday-0800-may-through-sept-on-the-beach-at-suffolk",
+    "day": 0,
+    "time": "08:00",
+    "location": "May through Sept - On the BEACH at Suffolk",
+    "address": "115 S Suffolk Ave",
+    "city": "Ventnor City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 08:00 On the beach at Thurlow",
+    "slug": "saturday-0800-on-the-beach-at-thurlow",
+    "day": 6,
+    "time": "08:00",
+    "location": "On the beach at Thurlow",
+    "address": "S Thurlow Ave",
+    "city": "Margate City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Thursday 17:15 Kenilworth Gospel Chapel",
@@ -21452,6 +26952,389 @@
     "source": "nnjaa"
   },
   {
+    "name": "Sunday 09:00 Cold Spring Presbyterian Church - Price Hall",
+    "slug": "sunday-0900-cold-spring-presbyterian-church-price-hall",
+    "day": 0,
+    "time": "09:00",
+    "location": "Cold Spring Presbyterian Church - Price Hall",
+    "address": "780 Seashore Rd",
+    "city": "Cape May",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST",
+      "D",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 19:00 Cold Spring Presbyterian Church - Price Hall",
+    "slug": "sunday-1900-cold-spring-presbyterian-church-price-hall",
+    "day": 0,
+    "time": "19:00",
+    "location": "Cold Spring Presbyterian Church - Price Hall",
+    "address": "780 Seashore Rd",
+    "city": "Cape May",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 16:00 Cold Spring Presbyterian Church - Price Hall",
+    "slug": "monday-1600-cold-spring-presbyterian-church-price-hall",
+    "day": 1,
+    "time": "16:00",
+    "location": "Cold Spring Presbyterian Church - Price Hall",
+    "address": "780 Seashore Rd",
+    "city": "Cape May",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 17:30 Cold Spring Presbyterian Church - Price Hall",
+    "slug": "tuesday-1730-cold-spring-presbyterian-church-price-hall",
+    "day": 2,
+    "time": "17:30",
+    "location": "Cold Spring Presbyterian Church - Price Hall",
+    "address": "780 Seashore Rd",
+    "city": "Cape May",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 17:30 Cold Spring Presbyterian Church - Price Hall",
+    "slug": "friday-1730-cold-spring-presbyterian-church-price-hall",
+    "day": 5,
+    "time": "17:30",
+    "location": "Cold Spring Presbyterian Church - Price Hall",
+    "address": "780 Seashore Rd",
+    "city": "Cape May",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 10:00 Nameless Bunch of Drunks International Online",
+    "slug": "sunday-1000-nameless-bunch-of-drunks-international-online",
+    "day": 0,
+    "time": "10:00",
+    "location": "Nameless Bunch of Drunks International Online",
+    "address": "Seattle, WA 98109",
+    "city": "Seattle, WA",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 20:30 Nameless Bunch of Drunks International Online",
+    "slug": "sunday-2030-nameless-bunch-of-drunks-international-online",
+    "day": 0,
+    "time": "20:30",
+    "location": "Nameless Bunch of Drunks International Online",
+    "address": "Seattle, WA 98109",
+    "city": "Seattle, WA",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 10:00 Nameless Bunch of Drunks International Online",
+    "slug": "monday-1000-nameless-bunch-of-drunks-international-online",
+    "day": 1,
+    "time": "10:00",
+    "location": "Nameless Bunch of Drunks International Online",
+    "address": "Seattle, WA 98109",
+    "city": "Seattle, WA",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 20:30 Nameless Bunch of Drunks International Online",
+    "slug": "monday-2030-nameless-bunch-of-drunks-international-online",
+    "day": 1,
+    "time": "20:30",
+    "location": "Nameless Bunch of Drunks International Online",
+    "address": "Seattle, WA 98109",
+    "city": "Seattle, WA",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 10:00 Nameless Bunch of Drunks International Online",
+    "slug": "tuesday-1000-nameless-bunch-of-drunks-international-online",
+    "day": 2,
+    "time": "10:00",
+    "location": "Nameless Bunch of Drunks International Online",
+    "address": "Seattle, WA 98109",
+    "city": "Seattle, WA",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 20:30 Nameless Bunch of Drunks International Online",
+    "slug": "tuesday-2030-nameless-bunch-of-drunks-international-online",
+    "day": 2,
+    "time": "20:30",
+    "location": "Nameless Bunch of Drunks International Online",
+    "address": "Seattle, WA 98109",
+    "city": "Seattle, WA",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 07:30 Online",
+    "slug": "wednesday-0730-online",
+    "day": 3,
+    "time": "07:30",
+    "location": "Online",
+    "address": "Seattle, WA 98109",
+    "city": "Seattle, WA",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 10:00 Nameless Bunch of Drunks International Online",
+    "slug": "wednesday-1000-nameless-bunch-of-drunks-international-online",
+    "day": 3,
+    "time": "10:00",
+    "location": "Nameless Bunch of Drunks International Online",
+    "address": "Seattle, WA 98109",
+    "city": "Seattle, WA",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 20:30 Nameless Bunch of Drunks International Online",
+    "slug": "wednesday-2030-nameless-bunch-of-drunks-international-online",
+    "day": 3,
+    "time": "20:30",
+    "location": "Nameless Bunch of Drunks International Online",
+    "address": "Seattle, WA 98109",
+    "city": "Seattle, WA",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 10:00 Nameless Bunch of Drunks International Online",
+    "slug": "thursday-1000-nameless-bunch-of-drunks-international-online",
+    "day": 4,
+    "time": "10:00",
+    "location": "Nameless Bunch of Drunks International Online",
+    "address": "Seattle, WA 98109",
+    "city": "Seattle, WA",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 20:30 Nameless Bunch of Drunks International Online",
+    "slug": "thursday-2030-nameless-bunch-of-drunks-international-online",
+    "day": 4,
+    "time": "20:30",
+    "location": "Nameless Bunch of Drunks International Online",
+    "address": "Seattle, WA 98109",
+    "city": "Seattle, WA",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 10:00 Online",
+    "slug": "friday-1000-online",
+    "day": 5,
+    "time": "10:00",
+    "location": "Online",
+    "address": "Seattle, WA 98109",
+    "city": "Seattle, WA",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 20:30 Nameless Bunch of Drunks International Online",
+    "slug": "friday-2030-nameless-bunch-of-drunks-international-online",
+    "day": 5,
+    "time": "20:30",
+    "location": "Nameless Bunch of Drunks International Online",
+    "address": "Seattle, WA 98109",
+    "city": "Seattle, WA",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 10:00 Nameless Bunch of Drunks International Online",
+    "slug": "saturday-1000-nameless-bunch-of-drunks-international-online",
+    "day": 6,
+    "time": "10:00",
+    "location": "Nameless Bunch of Drunks International Online",
+    "address": "Seattle, WA 98109",
+    "city": "Seattle, WA",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 20:30 Nameless Bunch of Drunks International Online",
+    "slug": "saturday-2030-nameless-bunch-of-drunks-international-online",
+    "day": 6,
+    "time": "20:30",
+    "location": "Nameless Bunch of Drunks International Online",
+    "address": "Seattle, WA 98109",
+    "city": "Seattle, WA",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Monday 12:15 St. Anne's Church",
     "slug": "closed-discussion-monday-1215pm-garwood",
     "day": 1,
@@ -21751,6 +27634,143 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Sunday 14:00 Seaview Baptist Church",
+    "slug": "sunday-1400-seaview-baptist-church",
+    "day": 0,
+    "time": "14:00",
+    "location": "Seaview Baptist Church",
+    "address": "2025 Shore Rd",
+    "city": "Linwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D",
+      "S",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 10:00 Seaview Baptist Church",
+    "slug": "tuesday-1000-seaview-baptist-church",
+    "day": 2,
+    "time": "10:00",
+    "location": "Seaview Baptist Church",
+    "address": "2025 Shore Rd",
+    "city": "Linwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 19:00 Seaview Baptist Church",
+    "slug": "wednesday-1900-seaview-baptist-church",
+    "day": 3,
+    "time": "19:00",
+    "location": "Seaview Baptist Church",
+    "address": "2025 Shore Rd",
+    "city": "Linwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 10:00 Seaview Baptist Church",
+    "slug": "thursday-1000-seaview-baptist-church",
+    "day": 4,
+    "time": "10:00",
+    "location": "Seaview Baptist Church",
+    "address": "2025 Shore Rd",
+    "city": "Linwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 10:00 Seaview Baptist Church",
+    "slug": "saturday-1000-seaview-baptist-church",
+    "day": 6,
+    "time": "10:00",
+    "location": "Seaview Baptist Church",
+    "address": "2025 Shore Rd",
+    "city": "Linwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 19:00 Christ Episcopal Church",
+    "slug": "thursday-1900-christ-episcopal-church",
+    "day": 4,
+    "time": "19:00",
+    "location": "Christ Episcopal Church",
+    "address": "157 Shore Rd",
+    "city": "Somers Point",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 08:30 Christ Episcopal Church",
+    "slug": "saturday-0830-christ-episcopal-church",
+    "day": 6,
+    "time": "08:30",
+    "location": "Christ Episcopal Church",
+    "address": "157 Shore Rd",
+    "city": "Somers Point",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Wednesday 19:15 First Presbyterian Church",
@@ -22892,6 +28912,27 @@
     "postal_code": "",
     "country": "US",
     "types": [],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 19:30 Manahawkin United Methodist Church",
+    "slug": "tuesday-1930-manahawkin-united-methodist-church",
+    "day": 2,
+    "time": "19:30",
+    "location": "Manahawkin United Methodist Church",
+    "address": "116 Stafford Ave",
+    "city": "Manahawkin",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S",
+      "X"
+    ],
     "notes": "",
     "group": "",
     "wheelchair": false
@@ -24522,6 +30563,135 @@
     "source": "nnjaa"
   },
   {
+    "name": "Thursday 19:00 Church of the Resurrection",
+    "slug": "thursday-1900-church-of-the-resurrection",
+    "day": 4,
+    "time": "19:00",
+    "location": "Church of the Resurrection",
+    "address": "200 Tuckahoe Rd",
+    "city": "Marmora",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 20:00 Online",
+    "slug": "sunday-2000-online",
+    "day": 0,
+    "time": "20:00",
+    "location": "Online",
+    "address": "Tuckerton, NJ 08087",
+    "city": "Tuckerton",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 20:00 Online",
+    "slug": "monday-2000-online",
+    "day": 1,
+    "time": "20:00",
+    "location": "Online",
+    "address": "Tuckerton, NJ 08087",
+    "city": "Tuckerton",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 20:00 Online",
+    "slug": "tuesday-2000-online",
+    "day": 2,
+    "time": "20:00",
+    "location": "Online",
+    "address": "Tuckerton, NJ 08087",
+    "city": "Tuckerton",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 20:00 Online",
+    "slug": "wednesday-2000-online",
+    "day": 3,
+    "time": "20:00",
+    "location": "Online",
+    "address": "Tuckerton, NJ 08087",
+    "city": "Tuckerton",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "ST"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 20:00 Online",
+    "slug": "friday-2000-online",
+    "day": 5,
+    "time": "20:00",
+    "location": "Online",
+    "address": "Tuckerton, NJ 08087",
+    "city": "Tuckerton",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 20:00 Online",
+    "slug": "saturday-2000-online",
+    "day": 6,
+    "time": "20:00",
+    "location": "Online",
+    "address": "Tuckerton, NJ 08087",
+    "city": "Tuckerton",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Sunday 19:00 MASK RQRDGood Shepherd Episcopal Church",
     "slug": "open-big-book-sunday-700pm-towaco",
     "day": 0,
@@ -24558,6 +30728,164 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Monday 20:30 Baptist Church",
+    "slug": "monday-2030-baptist-church",
+    "day": 1,
+    "time": "20:30",
+    "location": "Baptist Church",
+    "address": "U.S. 9 & Stites Ave",
+    "city": "Cape May Courthouse",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 20:30 Baptist Church",
+    "slug": "wednesday-2030-baptist-church",
+    "day": 3,
+    "time": "20:30",
+    "location": "Baptist Church",
+    "address": "U.S. 9 & Stites Ave",
+    "city": "Cape May Courthouse",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 19:00 St. Stephens Church",
+    "slug": "sunday-1900-st-stephens-church",
+    "day": 0,
+    "time": "19:00",
+    "location": "St. Stephens Church",
+    "address": "367 U.S. 9",
+    "city": "Waretown",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 19:00 St. Stephens Church",
+    "slug": "monday-1900-st-stephens-church",
+    "day": 1,
+    "time": "19:00",
+    "location": "St. Stephens Church",
+    "address": "367 U.S. 9",
+    "city": "Waretown",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 19:30 St. Stephens Church",
+    "slug": "tuesday-1930-st-stephens-church",
+    "day": 2,
+    "time": "19:30",
+    "location": "St. Stephens Church",
+    "address": "367 U.S. 9",
+    "city": "Waretown",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 19:00 St. Stephens Church",
+    "slug": "wednesday-1900-st-stephens-church",
+    "day": 3,
+    "time": "19:00",
+    "location": "St. Stephens Church",
+    "address": "367 U.S. 9",
+    "city": "Waretown",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B",
+      "D",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 19:30 St. Stephens Church",
+    "slug": "friday-1930-st-stephens-church",
+    "day": 5,
+    "time": "19:30",
+    "location": "St. Stephens Church",
+    "address": "367 U.S. 9",
+    "city": "Waretown",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 08:30 St. Stephens Church",
+    "slug": "saturday-0830-st-stephens-church",
+    "day": 6,
+    "time": "08:30",
+    "location": "St. Stephens Church",
+    "address": "367 U.S. 9",
+    "city": "Waretown",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Sunday 19:30 Bethel Ranch Christian Home",
@@ -24698,6 +31026,64 @@
     "country": "US",
     "types": [
       "W"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 19:00 Unitarian Universalist Congregation of the South...",
+    "slug": "monday-1900-unitarian-universalist-congregation-of-the-south",
+    "day": 1,
+    "time": "19:00",
+    "location": "Unitarian Universalist Congregation of the South Jersey Shore(Galloway)",
+    "address": "Unitarian Universalist Congregation",
+    "city": "Galloway",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B",
+      "D",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 18:00 Unitarian Universalist Congregation of the South...",
+    "slug": "friday-1800-unitarian-universalist-congregation-of-the-south",
+    "day": 5,
+    "time": "18:00",
+    "location": "Unitarian Universalist Congregation of the South Jersey Shore(Galloway)",
+    "address": "Unitarian Universalist Congregation",
+    "city": "Galloway",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 19:00 Unitarian Universalist Congregation of the Sou...",
+    "slug": "saturday-1900-unitarian-universalist-congregation-of-the-sou",
+    "day": 6,
+    "time": "19:00",
+    "location": "Unitarian Universalist Congregation of the South Jersey Shore(Galloway)",
+    "address": "Unitarian Universalist Congregation",
+    "city": "Galloway",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST"
     ],
     "notes": "",
     "group": "",
@@ -25022,6 +31408,25 @@
     "postal_code": "",
     "country": "US",
     "types": [],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 20:00 St. Paul’s United Methodist",
+    "slug": "thursday-2000-st-pauls-united-methodist",
+    "day": 4,
+    "time": "20:00",
+    "location": "St. Paul’s United Methodist",
+    "address": "5630 US-9",
+    "city": "New Gretna",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
     "notes": "",
     "group": "",
     "wheelchair": false
@@ -25373,6 +31778,460 @@
     "source": "nnjaa"
   },
   {
+    "name": "Sunday 13:00 Grupo Sobriedad",
+    "slug": "sunday-1300-grupo-sobriedad",
+    "day": 0,
+    "time": "13:00",
+    "location": "Grupo Sobriedad",
+    "address": "3910 Ventnor Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 19:00 Grupo Sobriedad",
+    "slug": "sunday-1900-grupo-sobriedad",
+    "day": 0,
+    "time": "19:00",
+    "location": "Grupo Sobriedad",
+    "address": "3910 Ventnor Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 13:00 Grupo Sobriedad",
+    "slug": "monday-1300-grupo-sobriedad",
+    "day": 1,
+    "time": "13:00",
+    "location": "Grupo Sobriedad",
+    "address": "3910 Ventnor Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 19:00 Grupo Sobriedad",
+    "slug": "monday-1900-grupo-sobriedad",
+    "day": 1,
+    "time": "19:00",
+    "location": "Grupo Sobriedad",
+    "address": "3910 Ventnor Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 13:00 Grupo Sobriedad",
+    "slug": "tuesday-1300-grupo-sobriedad",
+    "day": 2,
+    "time": "13:00",
+    "location": "Grupo Sobriedad",
+    "address": "3910 Ventnor Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 19:00 Grupo Sobriedad",
+    "slug": "tuesday-1900-grupo-sobriedad",
+    "day": 2,
+    "time": "19:00",
+    "location": "Grupo Sobriedad",
+    "address": "3910 Ventnor Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 13:00 Grupo Sobriedad",
+    "slug": "wednesday-1300-grupo-sobriedad",
+    "day": 3,
+    "time": "13:00",
+    "location": "Grupo Sobriedad",
+    "address": "3910 Ventnor Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 19:00 Grupo Sobriedad",
+    "slug": "wednesday-1900-grupo-sobriedad",
+    "day": 3,
+    "time": "19:00",
+    "location": "Grupo Sobriedad",
+    "address": "3910 Ventnor Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 13:00 Grupo Sobriedad",
+    "slug": "thursday-1300-grupo-sobriedad",
+    "day": 4,
+    "time": "13:00",
+    "location": "Grupo Sobriedad",
+    "address": "3910 Ventnor Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 19:00 Grupo Sobriedad",
+    "slug": "thursday-1900-grupo-sobriedad",
+    "day": 4,
+    "time": "19:00",
+    "location": "Grupo Sobriedad",
+    "address": "3910 Ventnor Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 13:00 Grupo Sobriedad",
+    "slug": "friday-1300-grupo-sobriedad",
+    "day": 5,
+    "time": "13:00",
+    "location": "Grupo Sobriedad",
+    "address": "3910 Ventnor Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 19:00 Grupo Sobriedad",
+    "slug": "friday-1900-grupo-sobriedad",
+    "day": 5,
+    "time": "19:00",
+    "location": "Grupo Sobriedad",
+    "address": "3910 Ventnor Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 13:00 Grupo Sobriedad",
+    "slug": "saturday-1300-grupo-sobriedad",
+    "day": 6,
+    "time": "13:00",
+    "location": "Grupo Sobriedad",
+    "address": "3910 Ventnor Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 19:00 Grupo Sobriedad",
+    "slug": "saturday-1900-grupo-sobriedad",
+    "day": 6,
+    "time": "19:00",
+    "location": "Grupo Sobriedad",
+    "address": "3910 Ventnor Ave",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 12:30 Margate Community Church",
+    "slug": "wednesday-1230-margate-community-church",
+    "day": 3,
+    "time": "12:30",
+    "location": "Margate Community Church",
+    "address": "8900 Ventnor Ave",
+    "city": "Margate City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 19:00 St John's By The Sea",
+    "slug": "sunday-1900-st-johns-by-the-sea",
+    "day": 0,
+    "time": "19:00",
+    "location": "St John's By The Sea",
+    "address": "6300 Ventnor Ave",
+    "city": "Ventnor City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 17:30 St John's By The Sea",
+    "slug": "tuesday-1730-st-johns-by-the-sea",
+    "day": 2,
+    "time": "17:30",
+    "location": "St John's By The Sea",
+    "address": "6300 Ventnor Ave",
+    "city": "Ventnor City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 18:00 St John's By The Sea",
+    "slug": "wednesday-1800-st-johns-by-the-sea",
+    "day": 3,
+    "time": "18:00",
+    "location": "St John's By The Sea",
+    "address": "6300 Ventnor Ave",
+    "city": "Ventnor City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 19:30 St John's By The Sea",
+    "slug": "wednesday-1930-st-johns-by-the-sea",
+    "day": 3,
+    "time": "19:30",
+    "location": "St John's By The Sea",
+    "address": "6300 Ventnor Ave",
+    "city": "Ventnor City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 19:00 St John's By The Sea",
+    "slug": "thursday-1900-st-johns-by-the-sea",
+    "day": 4,
+    "time": "19:00",
+    "location": "St John's By The Sea",
+    "address": "6300 Ventnor Ave",
+    "city": "Ventnor City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 18:00 Playa Bowls",
+    "slug": "friday-1800-playa-bowls",
+    "day": 5,
+    "time": "18:00",
+    "location": "Playa Bowls",
+    "address": "6414 Ventnor Ave",
+    "city": "Ventnor City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST",
+      "B",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 19:00 St John's By The Sea",
+    "slug": "friday-1900-st-johns-by-the-sea",
+    "day": 5,
+    "time": "19:00",
+    "location": "St John's By The Sea",
+    "address": "6300 Ventnor Ave",
+    "city": "Ventnor City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 10:00 St John's By The Sea",
+    "slug": "saturday-1000-st-johns-by-the-sea",
+    "day": 6,
+    "time": "10:00",
+    "location": "St John's By The Sea",
+    "address": "6300 Ventnor Ave",
+    "city": "Ventnor City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 19:00 Playa Bowls",
+    "slug": "saturday-1900-playa-bowls",
+    "day": 6,
+    "time": "19:00",
+    "location": "Playa Bowls",
+    "address": "6414 Ventnor Ave",
+    "city": "Ventnor City",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Tuesday 19:30 Vincent United Methodist Church",
     "slug": "open-speaker-tuesday-730pm-nutley",
     "day": 2,
@@ -25528,6 +32387,121 @@
     "wheelchair": false
   },
   {
+    "name": "Friday 18:30 St. Barnabas By The Bay",
+    "slug": "friday-1830-st-barnabas-by-the-bay",
+    "day": 5,
+    "time": "18:30",
+    "location": "St. Barnabas By The Bay",
+    "address": "13 W Bates Ave",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 10:30 St. Barnabas By The Bay",
+    "slug": "saturday-1030-st-barnabas-by-the-bay",
+    "day": 6,
+    "time": "10:30",
+    "location": "St. Barnabas By The Bay",
+    "address": "13 W Bates Ave",
+    "city": "Villas",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 19:30 Bayside Chapel",
+    "slug": "sunday-1930-bayside-chapel",
+    "day": 0,
+    "time": "19:30",
+    "location": "Bayside Chapel",
+    "address": "965 W Bay Ave",
+    "city": "Barnegat Township",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 19:30 St. Mary's Church",
+    "slug": "saturday-1930-st-marys-church",
+    "day": 6,
+    "time": "19:30",
+    "location": "St. Mary's Church",
+    "address": "747 W Bay Ave",
+    "city": "Barnegat Township",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 10:00 Community Presbyterian",
+    "slug": "wednesday-1000-community-presbyterian",
+    "day": 3,
+    "time": "10:00",
+    "location": "Community Presbyterian",
+    "address": "W Brigantine Ave & 15th St S",
+    "city": "Brigantine",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 19:00 Community Presbyterian",
+    "slug": "thursday-1900-community-presbyterian",
+    "day": 4,
+    "time": "19:00",
+    "location": "Community Presbyterian",
+    "address": "W Brigantine Ave & 15th St S",
+    "city": "Brigantine",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Monday 19:30 St. Mary's Guild Hall",
     "slug": "monday-1930-st-marys-guild-hall",
     "day": 1,
@@ -25603,8 +32577,8 @@
     "postal_code": "",
     "country": "US",
     "types": [
-      "VM",
-      "M"
+      "M",
+      "VM"
     ],
     "notes": "",
     "group": "",
@@ -25986,6 +32960,362 @@
     "postal_code": "",
     "country": "US",
     "types": [],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 19:30 Somers Point Volunteer Fire Company #2",
+    "slug": "tuesday-1930-somers-point-volunteer-fire-company-2",
+    "day": 2,
+    "time": "19:30",
+    "location": "Somers Point Volunteer Fire Company #2",
+    "address": "20 W New Jersey Ave",
+    "city": "Somers Point",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 09:30 12 Step House",
+    "slug": "sunday-0930-12-step-house",
+    "day": 0,
+    "time": "09:30",
+    "location": "12 Step House",
+    "address": "113 W Oak Ave",
+    "city": "Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 18:30 12 Step House",
+    "slug": "sunday-1830-12-step-house",
+    "day": 0,
+    "time": "18:30",
+    "location": "12 Step House",
+    "address": "113 W Oak Ave",
+    "city": "Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Sunday 20:30 12 Step House",
+    "slug": "sunday-2030-12-step-house",
+    "day": 0,
+    "time": "20:30",
+    "location": "12 Step House",
+    "address": "113 W Oak Ave",
+    "city": "Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 09:30 12 Step House",
+    "slug": "monday-0930-12-step-house",
+    "day": 1,
+    "time": "09:30",
+    "location": "12 Step House",
+    "address": "113 W Oak Ave",
+    "city": "Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 18:30 12 Step House",
+    "slug": "monday-1830-12-step-house",
+    "day": 1,
+    "time": "18:30",
+    "location": "12 Step House",
+    "address": "113 W Oak Ave",
+    "city": "Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 09:30 12 Step House",
+    "slug": "tuesday-0930-12-step-house",
+    "day": 2,
+    "time": "09:30",
+    "location": "12 Step House",
+    "address": "113 W Oak Ave",
+    "city": "Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 18:30 12 Step House",
+    "slug": "tuesday-1830-12-step-house",
+    "day": 2,
+    "time": "18:30",
+    "location": "12 Step House",
+    "address": "113 W Oak Ave",
+    "city": "Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 20:30 12 Step House",
+    "slug": "tuesday-2030-12-step-house",
+    "day": 2,
+    "time": "20:30",
+    "location": "12 Step House",
+    "address": "113 W Oak Ave",
+    "city": "Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 09:30 12 Step House",
+    "slug": "wednesday-0930-12-step-house",
+    "day": 3,
+    "time": "09:30",
+    "location": "12 Step House",
+    "address": "113 W Oak Ave",
+    "city": "Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 18:30 12 Step House",
+    "slug": "wednesday-1830-12-step-house",
+    "day": 3,
+    "time": "18:30",
+    "location": "12 Step House",
+    "address": "113 W Oak Ave",
+    "city": "Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 09:30 12 Step House",
+    "slug": "thursday-0930-12-step-house",
+    "day": 4,
+    "time": "09:30",
+    "location": "12 Step House",
+    "address": "113 W Oak Ave",
+    "city": "Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 18:30 12 Step House",
+    "slug": "thursday-1830-12-step-house",
+    "day": 4,
+    "time": "18:30",
+    "location": "12 Step House",
+    "address": "113 W Oak Ave",
+    "city": "Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 09:30 12 Step House",
+    "slug": "friday-0930-12-step-house",
+    "day": 5,
+    "time": "09:30",
+    "location": "12 Step House",
+    "address": "113 W Oak Ave",
+    "city": "Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 18:30 12 Step House",
+    "slug": "friday-1830-12-step-house",
+    "day": 5,
+    "time": "18:30",
+    "location": "12 Step House",
+    "address": "113 W Oak Ave",
+    "city": "Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 09:30 12 Step House",
+    "slug": "saturday-0930-12-step-house",
+    "day": 6,
+    "time": "09:30",
+    "location": "12 Step House",
+    "address": "113 W Oak Ave",
+    "city": "Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 18:30 12 Step House",
+    "slug": "saturday-1830-12-step-house",
+    "day": 6,
+    "time": "18:30",
+    "location": "12 Step House",
+    "address": "113 W Oak Ave",
+    "city": "Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "S",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 20:30 12 Step House",
+    "slug": "saturday-2030-12-step-house",
+    "day": 6,
+    "time": "20:30",
+    "location": "12 Step House",
+    "address": "113 W Oak Ave",
+    "city": "Wildwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "B",
+      "X"
+    ],
     "notes": "",
     "group": "",
     "wheelchair": false
@@ -26458,6 +33788,43 @@
     "source": "nnjaa"
   },
   {
+    "name": "Friday 19:00 Our Lady of Sorrows",
+    "slug": "friday-1900-our-lady-of-sorrows",
+    "day": 5,
+    "time": "19:00",
+    "location": "Our Lady of Sorrows",
+    "address": "Wabash Ave & W Poplar Ave",
+    "city": "Linwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 19:00 Our Lady of Sorrows",
+    "slug": "saturday-1900-our-lady-of-sorrows",
+    "day": 6,
+    "time": "19:00",
+    "location": "Our Lady of Sorrows",
+    "address": "Wabash Ave & W Poplar Ave",
+    "city": "Linwood",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Saturday 10:00 Beacon Unitarian Universalist Congregation",
     "slug": "closed-literature-discussion-saturday-1000am-summit",
     "day": 6,
@@ -26836,6 +34203,87 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Sunday 16:00 Church of The Advent [Parish Hall]",
+    "slug": "sunday-1600-church-of-the-advent-parish-hall",
+    "day": 0,
+    "time": "16:00",
+    "location": "Church of The Advent [Parish Hall]",
+    "address": "Washington St & Franklin St",
+    "city": "Cape May",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 19:30 Church of The Advent [Parish Hall]",
+    "slug": "tuesday-1930-church-of-the-advent-parish-hall",
+    "day": 2,
+    "time": "19:30",
+    "location": "Church of The Advent [Parish Hall]",
+    "address": "Washington St & Franklin St",
+    "city": "Cape May",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 07:30 Church of The Advent [Parish Hall]",
+    "slug": "wednesday-0730-church-of-the-advent-parish-hall",
+    "day": 3,
+    "time": "07:30",
+    "location": "Church of The Advent [Parish Hall]",
+    "address": "Washington St & Franklin St",
+    "city": "Cape May",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 19:30 Church of The Advent [Parish Hall]",
+    "slug": "thursday-1930-church-of-the-advent-parish-hall",
+    "day": 4,
+    "time": "19:30",
+    "location": "Church of The Advent [Parish Hall]",
+    "address": "Washington St & Franklin St",
+    "city": "Cape May",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "C",
+      "ST",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Sunday 17:30 Sanctuary + Seed",
@@ -28666,6 +36114,163 @@
     "wheelchair": false
   },
   {
+    "name": "Sunday 19:00 Faith, Hope, Love & Unity Online",
+    "slug": "sunday-1900-faith-hope-love-unity-online",
+    "day": 0,
+    "time": "19:00",
+    "location": "Faith, Hope, Love & Unity Online",
+    "address": "Wildwood Crest, NJ 08260",
+    "city": "Wildwood Crest",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Monday 19:00 Online",
+    "slug": "monday-1900-online",
+    "day": 1,
+    "time": "19:00",
+    "location": "Online",
+    "address": "Wildwood Crest, NJ 08260",
+    "city": "Wildwood Crest",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Tuesday 19:00 Online",
+    "slug": "tuesday-1900-online",
+    "day": 2,
+    "time": "19:00",
+    "location": "Online",
+    "address": "Wildwood Crest, NJ 08260",
+    "city": "Wildwood Crest",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 19:00 Online",
+    "slug": "wednesday-1900-online",
+    "day": 3,
+    "time": "19:00",
+    "location": "Online",
+    "address": "Wildwood Crest, NJ 08260",
+    "city": "Wildwood Crest",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Wednesday 21:00 Faith, Hope, Love & Unity Online",
+    "slug": "wednesday-2100-faith-hope-love-unity-online",
+    "day": 3,
+    "time": "21:00",
+    "location": "Faith, Hope, Love & Unity Online",
+    "address": "Wildwood Crest, NJ 08260",
+    "city": "Wildwood Crest",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "B",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Thursday 19:00 Online",
+    "slug": "thursday-1900-online",
+    "day": 4,
+    "time": "19:00",
+    "location": "Online",
+    "address": "Wildwood Crest, NJ 08260",
+    "city": "Wildwood Crest",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Friday 19:00 Online",
+    "slug": "friday-1900-online",
+    "day": 5,
+    "time": "19:00",
+    "location": "Online",
+    "address": "Wildwood Crest, NJ 08260",
+    "city": "Wildwood Crest",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST",
+      "D"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
+    "name": "Saturday 19:00 Faith, Hope, Love & Unity Online",
+    "slug": "saturday-1900-faith-hope-love-unity-online",
+    "day": 6,
+    "time": "19:00",
+    "location": "Faith, Hope, Love & Unity Online",
+    "address": "Wildwood Crest, NJ 08260",
+    "city": "Wildwood Crest",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "D",
+      "S"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
+  },
+  {
     "name": "Thursday 18:00 Orthodox Church of the Holy Cross",
     "slug": "thursday-1800-orthodox-church-of-the-holy-cross",
     "day": 4,
@@ -28931,6 +36536,27 @@
     "group": "",
     "wheelchair": false,
     "source": "nnjaa"
+  },
+  {
+    "name": "Monday 19:30 Church of The Nazarene",
+    "slug": "monday-1930-church-of-the-nazarene",
+    "day": 1,
+    "time": "19:30",
+    "location": "Church of The Nazarene",
+    "address": "2151 Zion Rd",
+    "city": "Northfield",
+    "state": "NJ",
+    "postal_code": "",
+    "country": "US",
+    "types": [
+      "O",
+      "ST",
+      "B",
+      "X"
+    ],
+    "notes": "",
+    "group": "",
+    "wheelchair": false
   },
   {
     "name": "Sunday 16:00",
@@ -29245,10 +36871,10 @@
     "postal_code": "",
     "country": "US",
     "types": [
-      "W",
-      "VM",
       "M",
-      "PH"
+      "PH",
+      "W",
+      "VM"
     ],
     "notes": "",
     "group": "",
@@ -29302,9 +36928,9 @@
     "postal_code": "",
     "country": "US",
     "types": [
-      "VM",
       "M",
-      "PH"
+      "PH",
+      "VM"
     ],
     "notes": "",
     "group": "",
@@ -29341,9 +36967,9 @@
     "postal_code": "",
     "country": "US",
     "types": [
-      "VM",
       "M",
-      "PH"
+      "PH",
+      "VM"
     ],
     "notes": "",
     "group": "",
@@ -29379,9 +37005,9 @@
     "postal_code": "",
     "country": "US",
     "types": [
-      "VM",
       "M",
-      "PH"
+      "PH",
+      "VM"
     ],
     "notes": "",
     "group": "",
@@ -29417,9 +37043,9 @@
     "postal_code": "",
     "country": "US",
     "types": [
-      "VM",
       "M",
-      "PH"
+      "PH",
+      "VM"
     ],
     "notes": "",
     "group": "",
@@ -29455,9 +37081,9 @@
     "postal_code": "",
     "country": "US",
     "types": [
-      "VM",
       "M",
-      "PH"
+      "PH",
+      "VM"
     ],
     "notes": "",
     "group": "",
