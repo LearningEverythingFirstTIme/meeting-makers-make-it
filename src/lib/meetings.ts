@@ -16,16 +16,16 @@ export const AVAILABLE_STATES: Record<string, string> = {
  * Expects files named: {state}-meetings.json and {state}-zoom-meetings.json
  * Missing files are silently skipped (some states may only have one format).
  */
-export function loadMeetings(stateCode: string): Meeting[] {
+export function loadMeetings(stateCode: string): MeetingListing[] {
   const normalized = stateCode.toLowerCase().replace(/[^a-z]/g, "");
   const dataDir = path.join(process.cwd(), "src", "data");
-  const meetings: Meeting[] = [];
+  const meetings: MeetingListing[] = [];
 
   for (const suffix of ["meetings", "zoom-meetings"]) {
     try {
       const filePath = path.join(dataDir, `${normalized}-${suffix}.json`);
       const raw = readFileSync(filePath, "utf8");
-      const data = JSON.parse(raw) as Meeting[];
+      const data = JSON.parse(raw) as MeetingListing[];
       meetings.push(...data);
     } catch {
       // File doesn't exist for this state/format — skip silently
