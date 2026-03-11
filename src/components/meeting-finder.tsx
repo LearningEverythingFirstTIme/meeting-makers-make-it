@@ -180,7 +180,7 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
                 </div>
               )}
               {/* Zoom join button */}
-              {meeting.conference_url ? (
+              {meeting.conference_url && (
                 <div className="pb-1">
                   <a
                     href={meeting.conference_url}
