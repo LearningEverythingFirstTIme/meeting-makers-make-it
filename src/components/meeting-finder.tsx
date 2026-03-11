@@ -70,7 +70,7 @@ interface MeetingCardProps {
 
 function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onCheckIn }: MeetingCardProps) {
   const [expanded, setExpanded] = useState(false);
-  const isZoom = meeting.types.includes("VM") || !!meeting.conference_url;
+  const isZoom = !!meeting.conference_url;
 
   return (
     <motion.div
@@ -197,11 +197,6 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
                   <p className="neo-mono text-xs text-[var(--black)]/50 mt-1.5 break-all px-0.5">
                     {meeting.conference_url}
                   </p>
-                </div>
-              ) : isZoom && (
-                <div className="flex items-center gap-2 text-[var(--black)]/50">
-                  <Video size={13} strokeWidth={3} />
-                  <span className="neo-mono text-xs">No Zoom link on file for this meeting</span>
                 </div>
               )}
               {meeting.types.includes("PH") && (
@@ -350,8 +345,8 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
     const q = query.trim().toLowerCase();
     return meetings.filter((m) => {
       if (dayFilter !== null && m.day !== dayFilter) return false;
-      if (formatFilter === "zoom" && !m.conference_url && !m.types.includes("VM")) return false;
-      if (formatFilter === "in-person" && (m.conference_url || m.types.includes("VM"))) return false;
+      if (formatFilter === "zoom" && !m.conference_url) return false;
+      if (formatFilter === "in-person" && m.conference_url) return false;
       if (typeFilter && !m.types.includes(typeFilter)) return false;
       if (q) {
         const haystack = [m.name, m.location, m.city, m.address, m.notes, m.group]
