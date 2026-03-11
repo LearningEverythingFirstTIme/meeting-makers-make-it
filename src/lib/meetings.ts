@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 import path from "path";
-import type { Meeting } from "@/types";
+import type { MeetingListing } from "@/types";
 
 /**
  * Registry of states that have meeting data files in src/data/.

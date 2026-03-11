@@ -10,7 +10,7 @@ import { Navigation } from "@/components/navigation";
 import { useAuth } from "@/components/auth-provider";
 import { getClientDb } from "@/lib/firebase/client";
 import { makeCheckinId, toLocalDayKey } from "@/lib/date";
-import type { Meeting, MeetingType, Checkin } from "@/types";
+import type { MeetingListing, MeetingType, Checkin } from "@/types";
 
 const DAY_LABELS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -51,7 +51,7 @@ function timeLabel(time: string): string {
 // Generates a stable meeting ID namespaced by state code.
 // Uses meeting.state (e.g. "NJ") → lowercase prefix (e.g. "nj_").
 // NJ meetings preserve the same IDs as before (backward-compatible with Firestore).
-function makeMeetingId(meeting: Meeting): string {
+function makeMeetingId(meeting: MeetingListing): string {
   const prefix = meeting.state.toLowerCase();
   if (meeting.slug) return `${prefix}_${meeting.slug}`;
   const base = `${meeting.name}_${meeting.day}_${meeting.time}_${meeting.location}`.toLowerCase();
@@ -59,11 +59,11 @@ function makeMeetingId(meeting: Meeting): string {
 }
 
 interface MeetingCardProps {
-  meeting: Meeting;
+  meeting: MeetingListing;
   checkedInToday: boolean;
   pendingCheckin: boolean;
   showSuccess: boolean;
-  onCheckIn: (meeting: Meeting) => void;
+  onCheckIn: (meeting: MeetingListing) => void;
 }
 
 function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onCheckIn }: MeetingCardProps) {
@@ -257,7 +257,7 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
 }
 
 interface MeetingFinderProps {
-  meetings: Meeting[];
+  meetings: MeetingListing[];
   stateCode: string;
   availableStates: Record<string, string>;
 }
@@ -390,7 +390,7 @@ export function MeetingFinder({ meetings, stateCode, availableStates }: MeetingF
   const alreadyCheckedInToday = (meetingId: string): boolean =>
     checkins.some((e) => e.meetingId === meetingId && e.dayKey === todayKey);
 
-  const checkIn = async (meeting: Meeting) => {
+  const checkIn = async (meeting: MeetingListing) => {
     if (!user) { setError("You must be signed in to check in."); return; }
     if (!db) { setError("Database not available. Please try again later."); return; }
 

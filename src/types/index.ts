@@ -92,7 +92,9 @@ export type SobrietyMilestone = {
 
 export type MeetingType = 'B' | 'C' | 'D' | 'M' | 'MED' | 'O' | 'PH' | 'S' | 'ST' | 'TR' | 'VM' | 'W' | 'X';
 
-export type Meeting = {
+// A listing from the AA meeting directory (JSON data files, one per state).
+// Named MeetingListing to distinguish from the user's own Meeting type above.
+export type MeetingListing = {
   name: string;
   slug: string;
   day: number; // 0=Sun, 1=Mon, ..., 6=Sat
@@ -113,7 +115,7 @@ export type Meeting = {
 
 // Legacy aliases — remove once all consumers are updated
 export type NJMeetingType = MeetingType;
-export type NJMeeting = Meeting;
+export type NJMeeting = MeetingListing;
 
 export type DailyInventory = {
   id: string;
