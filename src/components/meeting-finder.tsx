@@ -262,7 +262,13 @@ interface MeetingFinderProps {
   availableStates: Record<string, string>;
 }
 
-export function MeetingFinder({ meetings, stateCode, availableStates }: MeetingFinderProps) {
+export function MeetingFinder({ meetings: rawMeetings, stateCode, availableStates }: MeetingFinderProps) {
+  // Pre-filter out "Online" placeholder records that have no conference URL
+  const meetings = useMemo(
+    () => rawMeetings.filter((m) => m.conference_url || m.location.toLowerCase() !== "online"),
+    [rawMeetings],
+  );
+
   const { user } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
