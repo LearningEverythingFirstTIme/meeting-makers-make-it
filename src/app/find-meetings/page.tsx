@@ -1,12 +1,24 @@
+import { Suspense } from "react";
 import { MeetingFinder } from "@/components/meeting-finder";
-import njMeetingsRaw from "@/data/nj-meetings.json";
-import njZoomMeetingsRaw from "@/data/nj-zoom-meetings.json";
-import type { NJMeeting } from "@/types";
+import { loadMeetings, AVAILABLE_STATES } from "@/lib/meetings";
 
-export default function FindMeetingsPage() {
-  const inPersonMeetings = njMeetingsRaw as NJMeeting[];
-  const zoomMeetings = njZoomMeetingsRaw as NJMeeting[];
-  const allMeetings: NJMeeting[] = [...inPersonMeetings, ...zoomMeetings];
+interface Props {
+  searchParams: Promise<{ state?: string }>;
+}
 
-  return <MeetingFinder meetings={allMeetings} />;
+export default async function FindMeetingsPage({ searchParams }: Props) {
+  const params = await searchParams;
+  const stateCode = (params.state || "nj").toLowerCase().replace(/[^a-z]/g, "");
+
+  const meetings = loadMeetings(stateCode);
+
+  return (
+    <Suspense>
+      <MeetingFinder
+        meetings={meetings}
+        stateCode={stateCode}
+        availableStates={AVAILABLE_STATES}
+      />
+    </Suspense>
+  );
 }

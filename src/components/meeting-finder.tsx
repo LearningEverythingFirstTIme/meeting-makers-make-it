@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, MapPin, Clock, Video, Phone, Users, ChevronDown, ChevronUp, ExternalLink, CheckCircle } from "lucide-react";
 import { collection, query as firestoreQuery, where, onSnapshot, setDoc, doc, serverTimestamp, getDoc } from "firebase/firestore";
@@ -9,24 +10,22 @@ import { Navigation } from "@/components/navigation";
 import { useAuth } from "@/components/auth-provider";
 import { getClientDb } from "@/lib/firebase/client";
 import { makeCheckinId, toLocalDayKey } from "@/lib/date";
-import type { NJMeeting, NJMeetingType, Checkin } from "@/types";
+import type { Meeting, MeetingType, Checkin } from "@/types";
 
 const DAY_LABELS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 function cleanMeetingName(name: string, day: number, time: string): string {
   const dayName = DAY_NAMES[day];
-  // Strip "DayName HH:MM " prefix (the format used in the JSON data)
   const prefix = `${dayName} ${time} `;
   if (name.startsWith(prefix)) return name.slice(prefix.length).trim();
-  // Also handle times without leading zero (e.g. "7:00" vs "07:00")
   const [h, m] = time.split(":");
   const altPrefix = `${dayName} ${parseInt(h)}:${m} `;
   if (name.startsWith(altPrefix)) return name.slice(altPrefix.length).trim();
   return name;
 }
 
-const TYPE_INFO: Record<NJMeetingType, { label: string; color: string }> = {
+const TYPE_INFO: Record<MeetingType, { label: string; color: string }> = {
   B:   { label: "Big Book",    color: "var(--butter)" },
   ST:  { label: "Step",        color: "var(--mint)" },
   TR:  { label: "Traditions",  color: "var(--sky)" },
@@ -49,23 +48,22 @@ function timeLabel(time: string): string {
   return `${hour12}:${String(m).padStart(2, "0")} ${ampm}`;
 }
 
-// Generate a stable meeting ID for NJ meetings (since they're from static JSON)
-function makeNJMeetingId(meeting: NJMeeting): string {
-  // Use slug if available, otherwise create a deterministic ID from meeting properties
-  if (meeting.slug) {
-    return `nj_${meeting.slug}`;
-  }
-  // Fallback: create ID from name, day, time, and location
+// Generates a stable meeting ID namespaced by state code.
+// Uses meeting.state (e.g. "NJ") → lowercase prefix (e.g. "nj_").
+// NJ meetings preserve the same IDs as before (backward-compatible with Firestore).
+function makeMeetingId(meeting: Meeting): string {
+  const prefix = meeting.state.toLowerCase();
+  if (meeting.slug) return `${prefix}_${meeting.slug}`;
   const base = `${meeting.name}_${meeting.day}_${meeting.time}_${meeting.location}`.toLowerCase();
-  return `nj_${btoa(base).replace(/[^a-zA-Z0-9]/g, "").substring(0, 32)}`;
+  return `${prefix}_${btoa(base).replace(/[^a-zA-Z0-9]/g, "").substring(0, 32)}`;
 }
 
 interface MeetingCardProps {
-  meeting: NJMeeting;
+  meeting: Meeting;
   checkedInToday: boolean;
   pendingCheckin: boolean;
   showSuccess: boolean;
-  onCheckIn: (meeting: NJMeeting) => void;
+  onCheckIn: (meeting: Meeting) => void;
 }
 
 function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onCheckIn }: MeetingCardProps) {
@@ -86,7 +84,7 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
         className="p-4 cursor-pointer select-none"
         onClick={() => setExpanded((e) => !e)}
       >
-        {/* Top row: day chip + time + expand toggle */}
+        {/* Top row: day chip + time + format chip + expand toggle */}
         <div className="flex items-start justify-between gap-3 mb-2">
           <div className="flex items-center gap-2 flex-wrap">
             <span
@@ -130,7 +128,7 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
           <p className="neo-mono text-xs text-[var(--black)]/60">{meeting.city}, {meeting.state}</p>
         )}
 
-        {/* Type badges and check-in indicator */}
+        {/* Type badges + check-in indicator */}
         <div className="flex items-center justify-between mt-2">
           <div className="flex flex-wrap gap-1">
             {meeting.types.filter(t => t !== "VM").map((t) => {
@@ -147,7 +145,6 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
               );
             })}
           </div>
-          {/* Small indicator when checked in */}
           {checkedInToday && (
             <span className="flex items-center gap-1 neo-mono text-xs text-[var(--mint)]">
               <CheckCircle size={12} strokeWidth={3} /> DONE
@@ -167,7 +164,6 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
             className="overflow-hidden border-t-3 border-black"
           >
             <div className="p-4 bg-[var(--cream)] space-y-2">
-              {/* Physical address — show whenever a location exists */}
               {meeting.location && (
                 <div className="flex items-start gap-2">
                   <MapPin size={13} strokeWidth={3} className="mt-0.5 shrink-0" />
@@ -179,7 +175,6 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
                   </span>
                 </div>
               )}
-              {/* Zoom join button */}
               {meeting.conference_url && (
                 <div className="pb-1">
                   <a
@@ -218,8 +213,8 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
               {meeting.group && (
                 <p className="neo-mono text-xs text-[var(--black)]/50">Group: {meeting.group}</p>
               )}
-              
-              {/* Check-in button - moved to expanded dropdown */}
+
+              {/* Check-in button */}
               <div className="pt-3 border-t-2 border-black/20">
                 <motion.button
                   whileHover={!checkedInToday ? { scale: 1.02 } : {}}
@@ -238,12 +233,10 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
                   style={!checkedInToday ? { boxShadow: "4px 4px 0px 0px black" } : {}}
                 >
                   {checkedInToday ? (
-                    <>
-                      <CheckCircle size={14} strokeWidth={3} /> ✓ CHECKED IN TODAY
-                    </>
+                    <><CheckCircle size={14} strokeWidth={3} /> ✓ CHECKED IN TODAY</>
                   ) : pendingCheckin ? (
                     <span className="flex items-center justify-center gap-2">
-                      <motion.span 
+                      <motion.span
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                         className="inline-block h-3 w-3 border-3 border-black border-t-transparent"
@@ -264,47 +257,87 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
 }
 
 interface MeetingFinderProps {
-  meetings: NJMeeting[];
+  meetings: Meeting[];
+  stateCode: string;
+  availableStates: Record<string, string>;
 }
 
-export function MeetingFinder({ meetings }: MeetingFinderProps) {
+export function MeetingFinder({ meetings, stateCode, availableStates }: MeetingFinderProps) {
   const { user } = useAuth();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const [db, setDb] = useState<ReturnType<typeof getClientDb> | null>(null);
-  
   const [checkins, setCheckins] = useState<Checkin[]>([]);
   const [pendingCheckinId, setPendingCheckinId] = useState<string | null>(null);
   const [checkinSuccessId, setCheckinSuccessId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  
-  const [query, setQuery] = useState("");
-  const [dayFilter, setDayFilter] = useState<number | null>(null);
-  const [formatFilter, setFormatFilter] = useState<"all" | "in-person" | "zoom">("all");
-  const [typeFilter, setTypeFilter] = useState<NJMeetingType | null>(null);
-  const [page, setPage] = useState(0);
 
+  const todayDay = new Date().getDay();
+
+  // Current time as "HH:MM" — computed once on mount for "from now" filtering
+  const [currentTimeStr] = useState(() => {
+    const now = new Date();
+    return `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
+  });
+
+  // Filters — initialized from URL params with smart defaults
+  const [query, setQuery] = useState("");
+  const [dayFilter, setDayFilter] = useState<number | null>(() => {
+    const p = searchParams.get("day");
+    return p !== null ? parseInt(p) : todayDay; // default: today
+  });
+  const [formatFilter, setFormatFilter] = useState<"all" | "in-person" | "zoom">(() => {
+    return (searchParams.get("format") as "all" | "in-person" | "zoom") || "all";
+  });
+  const [typeFilter, setTypeFilter] = useState<MeetingType | null>(() => {
+    return (searchParams.get("type") as MeetingType) || null;
+  });
+  // "From now" — only applies when viewing today; defaults to true
+  const [fromNow, setFromNow] = useState(true);
+
+  const [page, setPage] = useState(0);
   const PAGE_SIZE = 30;
   const todayKey = toLocalDayKey();
 
+  // Sync non-state filters to URL without triggering a server re-render
+  useEffect(() => {
+    const params = new URLSearchParams();
+    params.set("state", stateCode);
+    if (dayFilter !== null) params.set("day", String(dayFilter));
+    if (formatFilter !== "all") params.set("format", formatFilter);
+    if (typeFilter) params.set("type", typeFilter);
+    window.history.replaceState(null, "", `?${params.toString()}`);
+  }, [stateCode, dayFilter, formatFilter, typeFilter]);
+
+  // When the user selects a different state, navigate to reload server data
+  const handleStateChange = (newState: string) => {
+    const params = new URLSearchParams();
+    params.set("state", newState);
+    if (dayFilter !== null) params.set("day", String(dayFilter));
+    if (formatFilter !== "all") params.set("format", formatFilter);
+    if (typeFilter) params.set("type", typeFilter);
+    router.push(`/find-meetings?${params.toString()}`);
+  };
+
+  // When day changes, reset fromNow: true when switching to today, false otherwise
+  const handleDayChange = (newDay: number | null) => {
+    setDayFilter(newDay);
+    setFromNow(newDay === todayDay);
+    setPage(0);
+  };
+
   // Initialize Firebase DB on client side
   useEffect(() => {
-    try {
-      setDb(getClientDb());
-    } catch {
-      // Firebase not configured, will show auth error
-    }
+    try { setDb(getClientDb()); } catch { /* Firebase not configured */ }
   }, []);
 
-  // Subscribe to user's checkins
+  // Subscribe to user's check-ins
   useEffect(() => {
     if (!user || !db) return;
-
-    const checkinsQuery = firestoreQuery(
-      collection(db, "checkins"),
-      where("userId", "==", user.uid),
-    );
-
-    const unsubCheckins = onSnapshot(
-      checkinsQuery,
+    const q = firestoreQuery(collection(db, "checkins"), where("userId", "==", user.uid));
+    const unsub = onSnapshot(
+      q,
       (snapshot) => {
         const parsed = snapshot.docs.map((d) => {
           const data = d.data();
@@ -318,33 +351,24 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
             createdAt: data.createdAt?.toDate?.() || undefined,
           } satisfies Checkin;
         });
-
-        parsed.sort((a, b) => {
-          const aTime = a.createdAt?.getTime() ?? 0;
-          const bTime = b.createdAt?.getTime() ?? 0;
-          return bTime - aTime;
-        });
-
+        parsed.sort((a, b) => (b.createdAt?.getTime() ?? 0) - (a.createdAt?.getTime() ?? 0));
         setCheckins(parsed);
       },
       (err) => {
-        if (err instanceof FirebaseError) {
-          setError(`Unable to load check-ins (${err.code}).`);
-          return;
-        }
-        setError("Unable to load check-ins.");
+        setError(err instanceof FirebaseError
+          ? `Unable to load check-ins (${err.code}).`
+          : "Unable to load check-ins.");
       },
     );
-
-    return () => {
-      unsubCheckins();
-    };
+    return () => unsub();
   }, [db, user]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return meetings.filter((m) => {
       if (dayFilter !== null && m.day !== dayFilter) return false;
+      // "From now" filter: hide meetings that have already started today
+      if (fromNow && dayFilter === todayDay && m.time < currentTimeStr) return false;
       if (formatFilter === "zoom" && !m.conference_url) return false;
       if (formatFilter === "in-person" && m.conference_url) return false;
       if (typeFilter && !m.types.includes(typeFilter)) return false;
@@ -355,60 +379,40 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
       }
       return true;
     });
-  }, [meetings, query, dayFilter, formatFilter, typeFilter]);
+  }, [meetings, query, dayFilter, formatFilter, typeFilter, fromNow, todayDay, currentTimeStr]);
 
-  // Reset pagination when filters change
   const displayedMeetings = filtered.slice(0, (page + 1) * PAGE_SIZE);
   const hasMore = displayedMeetings.length < filtered.length;
-
   const resetPage = () => setPage(0);
 
-  const allTypes: NJMeetingType[] = ["B", "ST", "TR", "M", "W", "PH", "C", "D", "MED", "O", "S", "X"];
+  const allTypes: MeetingType[] = ["B", "ST", "TR", "M", "W", "PH", "C", "D", "MED", "O", "S", "X"];
 
-  // Check if user has already checked in to a specific meeting today
   const alreadyCheckedInToday = (meetingId: string): boolean =>
-    checkins.some((entry) => entry.meetingId === meetingId && entry.dayKey === todayKey);
+    checkins.some((e) => e.meetingId === meetingId && e.dayKey === todayKey);
 
-  // Handle check-in for NJ meetings
-  const checkIn = async (meeting: NJMeeting) => {
-    if (!user) {
-      setError("You must be signed in to check in.");
-      return;
-    }
+  const checkIn = async (meeting: Meeting) => {
+    if (!user) { setError("You must be signed in to check in."); return; }
+    if (!db) { setError("Database not available. Please try again later."); return; }
 
-    if (!db) {
-      setError("Database not available. Please try again later.");
-      return;
-    }
-
-    const meetingId = makeNJMeetingId(meeting);
+    const meetingId = makeMeetingId(meeting);
     const checkinId = makeCheckinId(user.uid, meetingId, todayKey);
     const checkinRef = doc(db, "checkins", checkinId);
-    
+
     setPendingCheckinId(meetingId);
     setError(null);
 
     try {
       await user.getIdToken();
-
-      // Check if already checked in today
-      const existingCheckin = checkins.find(
-        (entry) => entry.meetingId === meetingId && entry.dayKey === todayKey,
-      );
-
-      if (existingCheckin) {
+      if (checkins.find((e) => e.meetingId === meetingId && e.dayKey === todayKey)) {
         throw new Error("already-checked-in");
       }
-
-      // Create check-in document
       await setDoc(checkinRef, {
         userId: user.uid,
-        meetingId: meetingId,
+        meetingId,
         meetingName: meeting.name,
         dayKey: todayKey,
         createdAt: serverTimestamp(),
       });
-
       setCheckinSuccessId(meetingId);
       setTimeout(() => setCheckinSuccessId(null), 600);
     } catch (err) {
@@ -416,34 +420,38 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
         setError(`Already checked in to ${meeting.name} today.`);
         return;
       }
-
       if (err instanceof FirebaseError && err.code === "permission-denied") {
-        // Double-check if already exists
         try {
-          const existingCheckinSnap = await getDoc(checkinRef);
-          const existingCheckinData = existingCheckinSnap.data();
-          if (
-            existingCheckinSnap.exists()
-            && existingCheckinData?.userId === user.uid
-            && existingCheckinData?.meetingId === meetingId
-            && existingCheckinData?.dayKey === todayKey
-          ) {
+          const snap = await getDoc(checkinRef);
+          const data = snap.data();
+          if (snap.exists() && data?.userId === user.uid && data?.meetingId === meetingId && data?.dayKey === todayKey) {
             setError(`Already checked in to ${meeting.name} today.`);
             return;
           }
-        } catch {
-          // Ignore follow-up read failures
-        }
-
+        } catch { /* ignore */ }
         setError("Permission denied for this operation.");
         return;
       }
-
       setError("Check-in failed. Please retry.");
     } finally {
       setPendingCheckinId(null);
     }
   };
+
+  const stateName = availableStates[stateCode] ?? stateCode.toUpperCase();
+  const isViewingToday = dayFilter === todayDay;
+
+  // Determine if empty results are because fromNow filtered everything out
+  const filteredWithoutFromNow = fromNow && isViewingToday && filtered.length === 0
+    ? meetings.filter((m) => {
+        if (m.day !== todayDay) return false;
+        if (formatFilter === "zoom" && !m.conference_url) return false;
+        if (formatFilter === "in-person" && m.conference_url) return false;
+        if (typeFilter && !m.types.includes(typeFilter)) return false;
+        return true;
+      })
+    : null;
+  const noMoreMeetingsToday = filteredWithoutFromNow !== null && filteredWithoutFromNow.length > 0;
 
   if (!user) {
     return (
@@ -497,17 +505,39 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
         >
           <div className="flex items-center gap-3 mb-1">
             <div className="h-4 w-4 bg-black border-3 border-black" />
-            <h1 className="neo-title text-3xl">
-              Find a Meeting
-            </h1>
+            <h1 className="neo-title text-3xl">Find a Meeting</h1>
           </div>
           <p className="neo-mono text-xs text-[var(--black)]/70 ml-7">
-            {meetings.length.toLocaleString()} NJ meetings — in-person &amp; Zoom
+            {meetings.length.toLocaleString()} {stateName} meetings — in-person &amp; Zoom
           </p>
         </motion.div>
 
         {/* Search + Filters */}
         <div className="neo-card p-6 mb-6 space-y-4">
+          {/* State selector */}
+          <div>
+            <p className="neo-label mb-2">STATE</p>
+            <div className="flex flex-wrap gap-1.5">
+              {Object.entries(availableStates).map(([code, name]) => (
+                <button
+                  key={code}
+                  onClick={() => handleStateChange(code)}
+                  className={`neo-mono text-xs px-3 py-1.5 border-3 border-black cursor-pointer transition-all ${
+                    stateCode === code ? "bg-black text-white" : "bg-[var(--white)] text-[var(--black)] hover:bg-[var(--cream)]"
+                  }`}
+                  style={{ boxShadow: stateCode === code ? "none" : "4px 4px 0 0 black" }}
+                >
+                  {name}
+                </button>
+              ))}
+              {Object.keys(availableStates).length < 50 && (
+                <span className="neo-mono text-xs px-3 py-1.5 text-[var(--black)]/40 border-3 border-dashed border-black/20">
+                  more states coming soon
+                </span>
+              )}
+            </div>
+          </div>
+
           {/* Search */}
           <div className="relative">
             <Search size={16} strokeWidth={3} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--black)]" />
@@ -521,10 +551,25 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
 
           {/* Day filter */}
           <div>
-            <p className="neo-label mb-2">DAY</p>
+            <div className="flex items-center justify-between mb-2">
+              <p className="neo-label">DAY</p>
+              {/* "From now" toggle — only visible when today is selected */}
+              {isViewingToday && (
+                <button
+                  onClick={() => { setFromNow((f) => !f); resetPage(); }}
+                  className={`neo-mono text-xs px-2.5 py-1 border-3 border-black cursor-pointer transition-all flex items-center gap-1.5 ${
+                    fromNow ? "bg-black text-white" : "bg-[var(--white)] text-[var(--black)] hover:bg-[var(--cream)]"
+                  }`}
+                  style={{ boxShadow: fromNow ? "none" : "3px 3px 0 0 black" }}
+                >
+                  <Clock size={10} strokeWidth={3} />
+                  FROM NOW
+                </button>
+              )}
+            </div>
             <div className="flex flex-wrap gap-1.5">
               <button
-                onClick={() => { setDayFilter(null); resetPage(); }}
+                onClick={() => handleDayChange(null)}
                 className={`neo-mono text-xs px-3 py-1.5 border-3 border-black cursor-pointer transition-all ${
                   dayFilter === null ? "bg-black text-white" : "bg-[var(--white)] text-[var(--black)] hover:bg-[var(--cream)]"
                 }`}
@@ -535,13 +580,17 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
               {DAY_LABELS.map((label, idx) => (
                 <button
                   key={idx}
-                  onClick={() => { setDayFilter(dayFilter === idx ? null : idx); resetPage(); }}
+                  onClick={() => handleDayChange(dayFilter === idx ? null : idx)}
                   className={`neo-mono text-xs px-3 py-1.5 border-3 border-black cursor-pointer transition-all ${
-                    dayFilter === idx ? "bg-black text-white" : "bg-[var(--white)] text-[var(--black)] hover:bg-[var(--cream)]"
+                    dayFilter === idx
+                      ? idx === todayDay ? "bg-black text-white" : "bg-black text-white"
+                      : idx === todayDay
+                        ? "bg-[var(--butter)] text-[var(--black)] hover:bg-[var(--butter)]/80"
+                        : "bg-[var(--white)] text-[var(--black)] hover:bg-[var(--cream)]"
                   }`}
                   style={{ boxShadow: dayFilter === idx ? "none" : "4px 4px 0 0 black" }}
                 >
-                  {label}
+                  {label}{idx === todayDay ? " ★" : ""}
                 </button>
               ))}
             </div>
@@ -566,7 +615,7 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
             </div>
           </div>
 
-          {/* Type filter */}
+          {/* Meeting type filter */}
           <div>
             <p className="neo-label mb-2">MEETING TYPE</p>
             <div className="flex flex-wrap gap-1.5">
@@ -601,7 +650,7 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
           </div>
         </div>
 
-        {/* Results count */}
+        {/* Results count + clear */}
         <div className="flex items-center justify-between mb-4">
           <p className="neo-mono text-xs text-[var(--black)]">
             <span className="font-bold">{filtered.length.toLocaleString()}</span> MEETINGS FOUND
@@ -609,16 +658,20 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
               <span className="text-[var(--black)]/50"> (of {meetings.length.toLocaleString()})</span>
             )}
           </p>
-          {(query || dayFilter !== null || formatFilter !== "all" || typeFilter !== null) && (
+          {(query || dayFilter !== todayDay || formatFilter !== "all" || typeFilter !== null) && (
             <button
               onClick={() => {
-                setQuery(""); setDayFilter(null); setFormatFilter("all");
-                setTypeFilter(null); resetPage();
+                setQuery("");
+                setDayFilter(todayDay);
+                setFormatFilter("all");
+                setTypeFilter(null);
+                setFromNow(true);
+                resetPage();
               }}
               className="neo-mono text-xs px-3 py-1 border-3 border-black bg-[var(--coral)] hover:bg-[var(--coral)]/80 cursor-pointer"
               style={{ boxShadow: "4px 4px 0 0 black" }}
             >
-              CLEAR FILTERS
+              RESET
             </button>
           )}
         </div>
@@ -628,25 +681,40 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="neo-card p-12 text-center"
+            className="neo-card p-10 text-center"
           >
             <Users size={32} className="mx-auto mb-4 text-[var(--black)]/30" strokeWidth={2} />
-            <p className="neo-title text-lg text-[var(--black)]/50">NO MEETINGS FOUND</p>
-            <p className="neo-mono text-xs text-[var(--black)]/30 mt-1">Try adjusting your search or filters</p>
+            {noMoreMeetingsToday ? (
+              <>
+                <p className="neo-title text-lg text-[var(--black)]/50">NO MORE MEETINGS TODAY</p>
+                <p className="neo-mono text-xs text-[var(--black)]/30 mt-1 mb-4">
+                  All of today&apos;s meetings have already started.
+                </p>
+                <button
+                  onClick={() => { setFromNow(false); resetPage(); }}
+                  className="neo-mono text-xs px-4 py-2 border-3 border-black bg-[var(--sky)] cursor-pointer"
+                  style={{ boxShadow: "4px 4px 0 0 black" }}
+                >
+                  SHOW ALL OF TODAY&apos;S MEETINGS
+                </button>
+              </>
+            ) : (
+              <>
+                <p className="neo-title text-lg text-[var(--black)]/50">NO MEETINGS FOUND</p>
+                <p className="neo-mono text-xs text-[var(--black)]/30 mt-1">Try adjusting your search or filters</p>
+              </>
+            )}
           </motion.div>
         ) : (
           <>
-            <motion.div
-              layout
-              className="grid gap-3 sm:grid-cols-2"
-            >
+            <motion.div layout className="grid gap-3 sm:grid-cols-2">
               <AnimatePresence mode="popLayout">
                 {displayedMeetings.map((meeting) => {
-                  const meetingId = makeNJMeetingId(meeting);
+                  const meetingId = makeMeetingId(meeting);
                   return (
-                    <MeetingCard 
-                      key={meeting.slug} 
-                      meeting={meeting} 
+                    <MeetingCard
+                      key={`${meeting.state}_${meeting.slug}`}
+                      meeting={meeting}
                       checkedInToday={alreadyCheckedInToday(meetingId)}
                       pendingCheckin={pendingCheckinId === meetingId}
                       showSuccess={checkinSuccessId === meetingId}

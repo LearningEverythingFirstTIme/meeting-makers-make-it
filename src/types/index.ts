@@ -90,9 +90,9 @@ export type SobrietyMilestone = {
   description: string;
 };
 
-export type NJMeetingType = 'B' | 'C' | 'D' | 'M' | 'MED' | 'O' | 'PH' | 'S' | 'ST' | 'TR' | 'VM' | 'W' | 'X';
+export type MeetingType = 'B' | 'C' | 'D' | 'M' | 'MED' | 'O' | 'PH' | 'S' | 'ST' | 'TR' | 'VM' | 'W' | 'X';
 
-export type NJMeeting = {
+export type Meeting = {
   name: string;
   slug: string;
   day: number; // 0=Sun, 1=Mon, ..., 6=Sat
@@ -103,13 +103,17 @@ export type NJMeeting = {
   state: string;
   postal_code: string;
   country: string;
-  types: NJMeetingType[];
+  types: MeetingType[];
   notes: string;
   group: string;
   wheelchair: boolean;
   source?: string;
   conference_url?: string; // Zoom meetings only
 };
+
+// Legacy aliases — remove once all consumers are updated
+export type NJMeetingType = MeetingType;
+export type NJMeeting = Meeting;
 
 export type DailyInventory = {
   id: string;
