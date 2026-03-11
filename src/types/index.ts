@@ -90,7 +90,7 @@ export type SobrietyMilestone = {
   description: string;
 };
 
-export type NJMeetingType = 'B' | 'M' | 'PH' | 'ST' | 'TR' | 'VM' | 'W';
+export type NJMeetingType = 'B' | 'C' | 'D' | 'M' | 'MED' | 'O' | 'PH' | 'S' | 'ST' | 'TR' | 'VM' | 'W' | 'X';
 
 export type NJMeeting = {
   name: string;

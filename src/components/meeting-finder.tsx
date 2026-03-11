@@ -14,13 +14,19 @@ import type { NJMeeting, NJMeetingType, Checkin } from "@/types";
 const DAY_LABELS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
 const TYPE_INFO: Record<NJMeetingType, { label: string; color: string }> = {
-  B:  { label: "Big Book",    color: "var(--butter)" },
-  ST: { label: "Step",        color: "var(--mint)" },
-  TR: { label: "Traditions",  color: "var(--sky)" },
-  M:  { label: "Men",         color: "var(--lavender)" },
-  W:  { label: "Women",       color: "var(--pink)" },
-  VM: { label: "Virtual",     color: "var(--coral)" },
-  PH: { label: "Phone",       color: "var(--lime)" },
+  B:   { label: "Big Book",    color: "var(--butter)" },
+  ST:  { label: "Step",        color: "var(--mint)" },
+  TR:  { label: "Traditions",  color: "var(--sky)" },
+  M:   { label: "Men",         color: "var(--lavender)" },
+  W:   { label: "Women",       color: "var(--pink)" },
+  VM:  { label: "Virtual",     color: "var(--coral)" },
+  PH:  { label: "Phone",       color: "var(--lime)" },
+  C:   { label: "Closed",      color: "var(--cream)" },
+  D:   { label: "Discussion",  color: "var(--sky)" },
+  MED: { label: "Meditation",  color: "var(--mint)" },
+  O:   { label: "Open",        color: "var(--lavender)" },
+  S:   { label: "Speaker",     color: "var(--butter)" },
+  X:   { label: "Special",     color: "var(--coral)" },
 };
 
 function timeLabel(time: string): string {
@@ -337,7 +343,7 @@ export function MeetingFinder({ meetings }: MeetingFinderProps) {
 
   const resetPage = () => setPage(0);
 
-  const allTypes: NJMeetingType[] = ["B", "ST", "TR", "M", "W", "PH"];
+  const allTypes: NJMeetingType[] = ["B", "ST", "TR", "M", "W", "PH", "C", "D", "MED", "O", "S", "X"];
 
   // Check if user has already checked in to a specific meeting today
   const alreadyCheckedInToday = (meetingId: string): boolean =>
