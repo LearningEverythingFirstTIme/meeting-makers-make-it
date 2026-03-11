@@ -144,7 +144,7 @@ export default function LiteraturePage() {
       })).filter(group => group.items.length > 0);
 
   return (
-    <div className="min-h-screen bg-[var(--cream)]">
+    <div className="min-h-screen">
       <Navigation />
       
       <main className="max-w-4xl mx-auto px-4 md:px-8 py-8">
