@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
+import { useEffect, useMemo, useState, Fragment, type CSSProperties, type ReactNode } from "react";
 import {
   closestCenter,
   DndContext,
@@ -146,7 +146,7 @@ const activityLevelForCount = (count: number) => {
   return 4;
 };
 
-const weekdayLabels = ["MON", "WED", "FRI"];
+const DAY_NAMES = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"] as const;
 
 type DashboardSectionDefinition = {
   id: DashboardSectionId;
@@ -1120,55 +1120,47 @@ export const Dashboard = () => {
             <span className="neo-title text-sm">ACTIVITY TRACKER</span>
           </div>
           <div className="overflow-x-auto pb-2">
-            <div className="inline-flex min-w-full gap-3">
-              <div
-                className="text-[10px]"
-                style={{ display: "grid", gridTemplateRows: "repeat(7, 1rem)", gap: "4px", paddingTop: "2rem" }}
-              >
-                {Array.from({ length: 7 }, (_, dayIndex) => (
-                  <div key={dayIndex} className="neo-mono flex items-center justify-end pr-1 text-[10px] text-[var(--black)]/70">
-                    {weekdayLabels.includes(["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"][dayIndex])
-                      ? ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"][dayIndex]
-                      : ""}
-                  </div>
-                ))}
-              </div>
-              <div className="flex-1">
-                <div className="mb-2 grid" style={{ gridTemplateColumns: `repeat(${activityGrid.length}, minmax(0, 1fr))` }}>
-                  {activityGrid.map((week, index) => (
-                    <div key={`${week.label}-${index}`} className="neo-mono h-6 px-[2px] text-[10px] text-[var(--black)]/70">
-                      {week.label}
-                    </div>
-                  ))}
+            <div
+              className="inline-grid gap-1"
+              style={{
+                gridTemplateColumns: `2.5rem repeat(${activityGrid.length}, 1rem)`,
+                gridTemplateRows: `1.5rem repeat(7, 1rem)`,
+              }}
+            >
+              {/* Top-left corner */}
+              <div />
+              {/* Month labels */}
+              {activityGrid.map((week, weekIndex) => (
+                <div key={`m${weekIndex}`} className="neo-mono self-end text-[10px] text-[var(--black)]/70">
+                  {week.label}
                 </div>
-                <div
-                  className="grid gap-1"
-                  style={{
-                    gridTemplateColumns: `repeat(${activityGrid.length}, minmax(0, 1fr))`,
-                    gridTemplateRows: "repeat(7, 1rem)",
-                  }}
-                >
-                  {activityGrid.flatMap((week, weekIndex) =>
-                    week.days.map((day, dayIndex) => (
+              ))}
+              {/* Day rows: label + one cell per week */}
+              {Array.from({ length: 7 }, (_, dayIndex) => (
+                <Fragment key={dayIndex}>
+                  <div className="neo-mono flex items-center justify-end pr-3 text-[10px] text-[var(--black)]/70">
+                    {DAY_NAMES[dayIndex]}
+                  </div>
+                  {activityGrid.map((week, weekIndex) => {
+                    const day = week.days[dayIndex];
+                    return (
                       <motion.div
                         key={day.key}
                         initial={{ opacity: 0, scale: 0.85 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: weekIndex * 0.01 + dayIndex * 0.01 }}
-                        className={`group relative h-4 w-4 border-3 border-black ${day.isToday ? "ring-2 ring-black ring-offset-2 ring-offset-[var(--cream)]" : ""}`}
+                        className={`border-3 border-black ${day.isToday ? "ring-2 ring-black ring-offset-2 ring-offset-[var(--cream)]" : ""}`}
                         style={{
                           backgroundColor: activityToneByLevel[day.level],
                           boxShadow: activityShadowByLevel[day.level],
-                          gridColumn: weekIndex + 1,
-                          gridRow: dayIndex + 1,
                         }}
                         aria-label={`${day.count} check-ins on ${formatShortDate(day.date)}`}
                         title={`${formatShortDate(day.date)} - ${day.count} check-in${day.count === 1 ? "" : "s"}`}
                       />
-                    )),
-                  )}
-                </div>
-              </div>
+                    );
+                  })}
+                </Fragment>
+              ))}
             </div>
           </div>
           <div className="mt-4 flex flex-col gap-3 border-t-2 border-dashed border-black pt-3 md:flex-row md:items-center md:justify-between">
