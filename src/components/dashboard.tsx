@@ -1148,7 +1148,7 @@ export const Dashboard = () => {
                         key={day.key}
                         initial={{ opacity: 0, scale: 0.85 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: weekIndex * 0.01 + dayIndex * 0.01 }}
+                        transition={{ delay: weekIndex * 0.02 }}
                         className={`border-3 border-black ${day.isToday ? "ring-2 ring-black ring-offset-2 ring-offset-[var(--cream)]" : ""}`}
                         style={{
                           backgroundColor: activityToneByLevel[day.level],
