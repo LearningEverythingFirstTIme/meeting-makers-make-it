@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
+import { Fragment, useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
 import {
   closestCenter,
   DndContext,
@@ -1119,23 +1119,25 @@ export const Dashboard = () => {
             <span className="neo-title text-sm text-[var(--sky)]">►</span>
             <span className="neo-title text-sm">ACTIVITY TRACKER</span>
           </div>
-          <div className="overflow-x-auto pb-2">
-            <div className="flex w-max flex-col gap-1">
-              {/* Month label row */}
-              <div className="flex gap-1" style={{ paddingLeft: "2.5rem" }}>
-                {activityGrid.map((week, weekIndex) => (
-                  <div
-                    key={`m${weekIndex}`}
-                    className="neo-mono flex h-6 w-4 items-end text-[10px] text-[var(--black)]/70"
-                  >
-                    {week.label}
-                  </div>
-                ))}
-              </div>
-              {/* One flex row per day */}
+          <div className="w-full">
+            <div
+              className="grid gap-1"
+              style={{ gridTemplateColumns: `2.75rem repeat(${ACTIVITY_WEEKS}, 1fr)` }}
+            >
+              {/* Month labels row */}
+              <div />
+              {activityGrid.map((week, weekIndex) => (
+                <div
+                  key={`month-${weekIndex}`}
+                  className="neo-mono h-5 text-[10px] leading-tight text-[var(--black)]/70"
+                >
+                  {week.label}
+                </div>
+              ))}
+              {/* Day rows */}
               {Array.from({ length: 7 }, (_, dayIndex) => (
-                <div key={dayIndex} className="flex items-center gap-1">
-                  <div className="neo-mono flex h-4 w-10 shrink-0 items-center justify-end pr-3 text-[10px] text-[var(--black)]/70">
+                <Fragment key={dayIndex}>
+                  <div className="neo-mono flex items-center justify-end pr-1 text-[10px] text-[var(--black)]/70">
                     {DAY_NAMES[dayIndex]}
                   </div>
                   {activityGrid.map((week, weekIndex) => {
@@ -1146,7 +1148,7 @@ export const Dashboard = () => {
                         initial={{ opacity: 0, scale: 0.85 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: weekIndex * 0.02 }}
-                        className={`h-4 w-4 shrink-0 border-3 border-black ${day.isToday ? "ring-2 ring-black ring-offset-2 ring-offset-[var(--cream)]" : ""}`}
+                        className={`aspect-square border-3 border-black ${day.isToday ? "ring-2 ring-black ring-offset-1 ring-offset-[var(--cream)]" : ""}`}
                         style={{
                           backgroundColor: activityToneByLevel[day.level],
                           boxShadow: activityShadowByLevel[day.level],
@@ -1156,7 +1158,7 @@ export const Dashboard = () => {
                       />
                     );
                   })}
-                </div>
+                </Fragment>
               ))}
             </div>
           </div>
