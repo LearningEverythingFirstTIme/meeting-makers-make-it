@@ -1121,9 +1121,12 @@ export const Dashboard = () => {
           </div>
           <div className="overflow-x-auto pb-2">
             <div className="inline-flex min-w-full gap-3">
-              <div className="flex flex-col gap-1 pt-8 text-[10px]">
+              <div
+                className="text-[10px]"
+                style={{ display: "grid", gridTemplateRows: "repeat(7, 1rem)", gap: "4px", paddingTop: "2rem" }}
+              >
                 {Array.from({ length: 7 }, (_, dayIndex) => (
-                  <div key={dayIndex} className="neo-mono flex h-4 items-center justify-end pr-1 text-[10px] text-[var(--black)]/70">
+                  <div key={dayIndex} className="neo-mono flex items-center justify-end pr-1 text-[10px] text-[var(--black)]/70">
                     {weekdayLabels.includes(["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"][dayIndex])
                       ? ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"][dayIndex]
                       : ""}
@@ -1142,7 +1145,7 @@ export const Dashboard = () => {
                   className="grid gap-1"
                   style={{
                     gridTemplateColumns: `repeat(${activityGrid.length}, minmax(0, 1fr))`,
-                    gridTemplateRows: "repeat(7, minmax(0, 1fr))",
+                    gridTemplateRows: "repeat(7, 1rem)",
                   }}
                 >
                   {activityGrid.flatMap((week, weekIndex) =>
