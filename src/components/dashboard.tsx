@@ -1121,7 +1121,7 @@ export const Dashboard = () => {
           </div>
           <div className="overflow-x-auto pb-2">
             <div
-              className="inline-grid gap-1"
+              className="grid w-fit gap-1"
               style={{
                 gridTemplateColumns: `2.5rem repeat(${activityGrid.length}, 1rem)`,
                 gridTemplateRows: `1.5rem repeat(7, 1rem)`,
