@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FirebaseError } from "firebase/app";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/components/auth-provider";
+import { useHaptics } from "@/components/haptics-provider";
 
 type Mode = "login" | "register";
 
@@ -49,6 +50,7 @@ const errorVariants = {
 
 export const AuthForm = () => {
   const { login, register } = useAuth();
+  const { trigger, isSupported } = useHaptics();
   const [mode, setMode] = useState<Mode>("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -67,17 +69,20 @@ export const AuthForm = () => {
       } else {
         await register(email.trim(), password);
       }
+      if (isSupported) trigger('success');
     } catch (err) {
       const msg = friendlyAuthError(err);
       setError(msg);
       setShake(true);
       setTimeout(() => setShake(false), 500);
+      if (isSupported) trigger('error');
     } finally {
       setSubmitting(false);
     }
   };
 
   const toggleMode = () => {
+    if (isSupported) trigger('light');
     setMode((prev) => (prev === "login" ? "register" : "login"));
     setError(null);
   };

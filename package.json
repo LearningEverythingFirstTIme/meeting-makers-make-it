@@ -21,6 +21,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "tailwind-merge": "^3.5.0",
+    "web-haptics": "^0.0.6",
     "zod": "^4.1.11"
   },
   "devDependencies": {

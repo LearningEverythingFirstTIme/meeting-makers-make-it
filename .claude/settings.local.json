@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /c/Users/nickk/.openclaw/workspace/aa-meeting-tracker/src -type f \\\\\\(-name *.tsx -o -name *.ts -o -name *.json \\\\\\))",
+      "Bash(python3 -c \":*)",
+      "Bash(node -e \":*)",
+      "Bash(node -e \"const fs=require\\(''fs''\\);const data=JSON.parse\\(fs.readFileSync\\(''src/data/nj-zoom-meetings.json'',''utf8''\\)\\);const withUrl=data.filter\\(m=>m.conference_url\\);const noUrl=data.filter\\(m=>!m.conference_url\\);console.log\\(''Total:'',data.length,''With URL:'',withUrl.length,''Without:'',noUrl.length\\);if\\(withUrl[0]\\)console.log\\(JSON.stringify\\(withUrl[0],null,2\\)\\);if\\(noUrl[0]\\)console.log\\(JSON.stringify\\(noUrl[0],null,2\\)\\);\")",
+      "Bash(grep -c '\"\"conference_url\"\"' src/data/nj-zoom-meetings.json)",
+      "Bash(grep -c '\"\"conference_url\"\"' src/data/nj-meetings.json)",
+      "Bash(grep -c '\"\"slug\"\"' src/data/nj-zoom-meetings.json)",
+      "Bash(grep -c '\"\"slug\"\"' src/data/nj-meetings.json)",
+      "Bash(grep -c '\"\"VM\"\"' src/data/nj-meetings.json)",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}

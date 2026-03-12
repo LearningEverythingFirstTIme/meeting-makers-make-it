@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Archivo, Archivo_Black } from "next/font/google";
 import { AuthProvider } from "@/components/auth-provider";
 import { ThemeProvider } from "@/components/theme-provider";
+import { HapticsProvider } from "@/components/haptics-provider";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -30,7 +31,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${archivo.variable} ${archivoBlack.variable} antialiased`}>
         <ThemeProvider>
-          <AuthProvider>{children}</AuthProvider>
+          <HapticsProvider>
+            <AuthProvider>{children}</AuthProvider>
+          </HapticsProvider>
         </ThemeProvider>
       </body>
     </html>

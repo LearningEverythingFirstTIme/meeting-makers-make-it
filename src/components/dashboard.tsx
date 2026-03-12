@@ -49,6 +49,7 @@ import {
 } from "lucide-react";
 import { getClientDb } from "@/lib/firebase/client";
 import { useAuth } from "@/components/auth-provider";
+import { useHaptics } from "@/components/haptics-provider";
 import { Navigation } from "@/components/navigation";
 import { MeetingForm } from "@/components/meeting-form";
 import { TreasurySummary } from "@/components/treasury/treasury-summary";
@@ -227,6 +228,7 @@ const SortableDashboardSection = ({
 
 export const Dashboard = () => {
   const { user } = useAuth();
+  const { trigger, isSupported } = useHaptics();
   const db = getClientDb();
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -864,7 +866,7 @@ export const Dashboard = () => {
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={() => saveCheckinEdit(entry.id)}
+                        onClick={() => { if (isSupported) trigger('success'); saveCheckinEdit(entry.id); }}
                         className="neo-button bg-[var(--mint)] px-2 py-1 text-[10px]"
                       >
                         SAVE
@@ -872,7 +874,7 @@ export const Dashboard = () => {
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={cancelEditingCheckin}
+                        onClick={() => { if (isSupported) trigger('light'); cancelEditingCheckin(); }}
                         className="neo-button bg-[var(--gray-disabled)] px-2 py-1 text-[10px]"
                       >
                         CANCEL
@@ -894,7 +896,7 @@ export const Dashboard = () => {
                       <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        onClick={() => startEditingCheckin(entry)}
+                        onClick={() => { if (isSupported) trigger('light'); startEditingCheckin(entry); }}
                         className="border border-black p-1 hover:bg-[var(--butter)]"
                       >
                         <Edit2 size={10} strokeWidth={3} />
@@ -902,7 +904,7 @@ export const Dashboard = () => {
                       <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        onClick={() => deleteCheckin(entry.id, entry.meetingName)}
+                        onClick={() => { if (isSupported) trigger('warning'); deleteCheckin(entry.id, entry.meetingName); }}
                         className="border border-black p-1 hover:bg-[var(--coral)]"
                       >
                         <Trash2 size={10} strokeWidth={3} />
@@ -1020,7 +1022,7 @@ export const Dashboard = () => {
                               whileHover={{ scale: 1.05, y: -2 }}
                               whileTap={{ scale: 0.95 }}
                               type="button"
-                              onClick={() => setEditingMeetingId(meeting.id)}
+                              onClick={() => { if (isSupported) trigger('light'); setEditingMeetingId(meeting.id); }}
                               className="neo-button neo-button-primary py-2 text-xs"
                             >
                               <Edit2 size={12} strokeWidth={3} /> EDIT
@@ -1029,7 +1031,7 @@ export const Dashboard = () => {
                               whileHover={{ scale: 1.05, y: -2, x: [0, -2, 2, -1, 1, 0] }}
                               whileTap={{ scale: 0.95 }}
                               type="button"
-                              onClick={() => void removeMeeting(meeting.id)}
+                              onClick={() => { if (isSupported) trigger('warning'); void removeMeeting(meeting.id); }}
                               className="neo-button neo-button-danger py-2 text-xs"
                             >
                               <Trash2 size={12} strokeWidth={3} /> DEL
@@ -1039,7 +1041,7 @@ export const Dashboard = () => {
                               whileTap={!todaysCheckin ? { scale: 0.95 } : {}}
                               type="button"
                               disabled={todaysCheckin || pendingCheckinId === meeting.id}
-                              onClick={() => void checkIn(meeting)}
+                              onClick={() => { if (isSupported) trigger('success'); void checkIn(meeting); }}
                               className={`neo-button py-2 text-xs ${
                                 todaysCheckin
                                   ? "neo-button-success"
@@ -1280,7 +1282,7 @@ export const Dashboard = () => {
                       whileHover={{ scale: 1.03, y: -1 }}
                       whileTap={{ scale: 0.97 }}
                       type="button"
-                      onClick={() => void saveLayout()}
+                      onClick={() => { if (isSupported) trigger('success'); void saveLayout(); }}
                       disabled={isSavingLayout}
                       className="neo-button bg-[var(--mint)] text-xs"
                     >
@@ -1290,7 +1292,7 @@ export const Dashboard = () => {
                       whileHover={{ scale: 1.03, y: -1 }}
                       whileTap={{ scale: 0.97 }}
                       type="button"
-                      onClick={cancelLayoutEditing}
+                      onClick={() => { if (isSupported) trigger('light'); cancelLayoutEditing(); }}
                       disabled={isSavingLayout}
                       className="neo-button bg-[var(--white)] text-xs"
                     >
@@ -1302,7 +1304,7 @@ export const Dashboard = () => {
                     whileHover={{ scale: 1.03, y: -1 }}
                     whileTap={{ scale: 0.97 }}
                     type="button"
-                    onClick={beginLayoutEditing}
+                    onClick={() => { if (isSupported) trigger('light'); beginLayoutEditing(); }}
                     className="neo-button neo-button-primary text-xs"
                   >
                     <LayoutGrid size={14} strokeWidth={3} /> EDIT LAYOUT

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { meetingSchema, type MeetingInput } from "@/lib/validators";
+import { useHaptics } from "@/components/haptics-provider";
 
 interface MeetingFormProps {
   initialValues?: MeetingInput;
@@ -44,6 +45,7 @@ export const MeetingForm = ({
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [shakeKey, setShakeKey] = useState(0);
+  const { trigger, isSupported } = useHaptics();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -54,6 +56,7 @@ export const MeetingForm = ({
       const errMsg = parsed.error.issues[0]?.message ?? "INPUT VALIDATION FAILED";
       setError(errMsg);
       setShakeKey(k => k + 1);
+      if (isSupported) trigger('error');
       return;
     }
 
@@ -63,9 +66,11 @@ export const MeetingForm = ({
       if (!initialValues.name) {
         setValues({ name: "", location: "", time: "" });
       }
+      if (isSupported) trigger('success');
     } catch {
       setError("WRITE ERROR: COULD NOT SAVE");
       setShakeKey(k => k + 1);
+      if (isSupported) trigger('error');
     } finally {
       setSubmitting(false);
     }
@@ -174,7 +179,7 @@ export const MeetingForm = ({
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             type="button"
-            onClick={onCancel}
+            onClick={() => { if (isSupported) trigger('light'); onCancel(); }}
             className="neo-button flex-1 py-3 bg-[var(--gray-disabled)]"
           >
             CANCEL
