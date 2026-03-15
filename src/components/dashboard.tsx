@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
+import { Fragment, useState, type CSSProperties, type ReactNode } from "react";
 import {
   closestCenter,
   DndContext,
@@ -12,26 +12,12 @@ import {
 } from "@dnd-kit/core";
 import {
   SortableContext,
-  arrayMove,
   rectSortingStrategy,
   sortableKeyboardCoordinates,
   useSortable,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import {
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  onSnapshot,
-  query,
-  runTransaction,
-  serverTimestamp,
-  setDoc,
-  where,
-} from "firebase/firestore";
-import { FirebaseError } from "firebase/app";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin,
@@ -55,19 +41,15 @@ import { MeetingForm } from "@/components/meeting-form";
 import { TreasurySummary } from "@/components/treasury/treasury-summary";
 import { SobrietyCounter } from "@/components/sobriety-counter";
 import { SobrietySetup } from "@/components/sobriety-setup";
-import { addDays, formatDateTime, formatShortDate, makeCheckinId, startOfWeek, toLocalDayKey } from "@/lib/date";
-import { getTodayDate } from "@/lib/treasury-utils";
-import { checkinUpdateSchema, dashboardLayoutSchema, normalizeDashboardLayout } from "@/lib/validators";
-import { DASHBOARD_SECTION_IDS, type Checkin, type DashboardSectionId, type Meeting, type UserProfile } from "@/types";
-import type { MeetingInput, SobrietyDateInput } from "@/lib/validators";
+import { formatDateTime, formatShortDate, toLocalDayKey } from "@/lib/date";
 
-const safeDate = (value: unknown): Date | undefined => {
-  if (!value || typeof value !== "object") return undefined;
-  if ("toDate" in value && typeof (value as { toDate: () => Date }).toDate === "function") {
-    return (value as { toDate: () => Date }).toDate();
-  }
-  return undefined;
-};
+const getTodayDate = () => toLocalDayKey();
+import { useMeetings, useMeetingById } from "@/hooks/useMeetings";
+import { useCheckins } from "@/hooks/useCheckins";
+import { useDashboardLayout } from "@/hooks/useDashboardLayout";
+import { useActivityGrid, DAY_NAMES } from "@/hooks/useActivityGrid";
+import type { DashboardSectionId, Meeting } from "@/types";
+import type { SobrietyDateInput } from "@/lib/validators";
 
 const timeLabel = (time: string) => {
   const [h, m] = time.split(":").map(Number);
@@ -119,35 +101,6 @@ const logItemVariants = {
     transition: { duration: 0.3 }
   },
 };
-
-const ACTIVITY_WEEKS = 16;
-const ACTIVITY_LEVELS = [0, 1, 2, 3, 4] as const;
-
-const activityToneByLevel = [
-  "var(--white)",
-  "var(--butter)",
-  "var(--sky)",
-  "var(--mint)",
-  "var(--coral)",
-] as const;
-
-const activityShadowByLevel = [
-  "2px 2px 0px 0px var(--black)",
-  "2px 2px 0px 0px var(--black)",
-  "2px 2px 0px 0px var(--black)",
-  "2px 2px 0px 0px var(--black)",
-  "2px 2px 0px 0px var(--black)",
-] as const;
-
-const activityLevelForCount = (count: number) => {
-  if (count <= 0) return 0;
-  if (count === 1) return 1;
-  if (count === 2) return 2;
-  if (count === 3) return 3;
-  return 4;
-};
-
-const DAY_NAMES = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"] as const;
 
 type DashboardSectionDefinition = {
   id: DashboardSectionId;
@@ -230,6 +183,66 @@ export const Dashboard = () => {
   const { user } = useAuth();
   const { trigger, isSupported } = useHaptics();
   const db = getClientDb();
+  
+  // Custom hooks for data and operations
+  const {
+    meetings,
+    loading: meetingsLoading,
+    error: meetingsError,
+    createMeeting,
+    updateMeeting,
+    removeMeeting,
+  } = useMeetings();
+
+  const {
+    checkins,
+    thisWeekCheckins,
+    checkinsByMeeting,
+    error: checkinsError,
+    pendingCheckinId,
+    checkinSuccessId,
+    editingCheckinId,
+    editingCheckinNote,
+    editingCheckinDate,
+    checkIn,
+    alreadyCheckedInToday,
+    startEditingCheckin,
+    cancelEditingCheckin,
+    saveCheckinEdit,
+    deleteCheckin,
+    setEditingCheckinNote,
+    setEditingCheckinDate,
+    setError: setCheckinsError,
+  } = useCheckins();
+
+  const {
+    userProfile,
+    activeLayout,
+    isEditingLayout,
+    isSavingLayout,
+    error: layoutError,
+    beginLayoutEditing,
+    cancelLayoutEditing,
+    handleLayoutDragEnd,
+    saveLayout,
+    setError: setLayoutError,
+  } = useDashboardLayout();
+
+  const {
+    activityGrid,
+    activityToneByLevel,
+    activityShadowByLevel,
+    activityLevels,
+    activityWeeks,
+  } = useActivityGrid(checkins);
+
+  const meetingById = useMeetingById(meetings);
+
+  // Local UI state
+  const [editingMeetingId, setEditingMeetingId] = useState<string | null>(null);
+  const [showSobrietySetup, setShowSobrietySetup] = useState(false);
+
+  // DnD sensors
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -240,369 +253,16 @@ export const Dashboard = () => {
       coordinateGetter: sortableKeyboardCoordinates,
     }),
   );
-  const [meetings, setMeetings] = useState<Meeting[]>([]);
-  const [checkins, setCheckins] = useState<Checkin[]>([]);
-  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [editingMeetingId, setEditingMeetingId] = useState<string | null>(null);
-  const [pendingCheckinId, setPendingCheckinId] = useState<string | null>(null);
-  const [checkinSuccessId, setCheckinSuccessId] = useState<string | null>(null);
-  const [showSobrietySetup, setShowSobrietySetup] = useState(false);
-  const [isEditingLayout, setIsEditingLayout] = useState(false);
-  const [isSavingLayout, setIsSavingLayout] = useState(false);
-  const [savedLayout, setSavedLayout] = useState<DashboardSectionId[]>(() => [...DASHBOARD_SECTION_IDS]);
-  const [draftLayout, setDraftLayout] = useState<DashboardSectionId[]>(() => [...DASHBOARD_SECTION_IDS]);
-  
-  // Check-in editing state
-  const [editingCheckinId, setEditingCheckinId] = useState<string | null>(null);
-  const [editingCheckinNote, setEditingCheckinNote] = useState("");
-  const [editingCheckinDate, setEditingCheckinDate] = useState("");
 
-  const profileRef = useMemo(
-    () => (user ? doc(db, "userProfiles", user.uid) : null),
-    [db, user],
-  );
+  // Combine errors from hooks
+  const error = meetingsError || checkinsError || layoutError;
 
-  useEffect(() => {
-    if (!user || !profileRef) return;
-
-    const meetingsQuery = query(
-      collection(db, "meetings"),
-      where("userId", "==", user.uid),
-    );
-
-    const checkinsQuery = query(
-      collection(db, "checkins"),
-      where("userId", "==", user.uid),
-    );
-
-    const unsubMeetings = onSnapshot(
-      meetingsQuery,
-      (snapshot) => {
-        setMeetings(
-          snapshot.docs.map((d) => {
-            const data = d.data();
-            return {
-              id: d.id,
-              userId: data.userId,
-              name: data.name,
-              location: data.location,
-              time: data.time,
-              createdAt: safeDate(data.createdAt),
-              updatedAt: safeDate(data.updatedAt),
-            } satisfies Meeting;
-          }),
-        );
-        setLoading(false);
-      },
-      () => {
-        setError("Unable to load meetings.");
-        setLoading(false);
-      },
-    );
-
-    const unsubCheckins = onSnapshot(
-      checkinsQuery,
-      (snapshot) => {
-        const parsed = snapshot.docs.map((d) => {
-          const data = d.data();
-          return {
-            id: d.id,
-            userId: data.userId,
-            meetingId: data.meetingId,
-            meetingName: data.meetingName,
-            dayKey: data.dayKey,
-            note: data.note,
-            createdAt: safeDate(data.createdAt),
-          } satisfies Checkin;
-        });
-
-        parsed.sort((a, b) => {
-          const aTime = a.createdAt?.getTime() ?? 0;
-          const bTime = b.createdAt?.getTime() ?? 0;
-          return bTime - aTime;
-        });
-
-        setCheckins(parsed);
-      },
-      (err) => {
-        if (err instanceof FirebaseError) {
-          setError(`Unable to load check-ins (${err.code}).`);
-          return;
-        }
-        setError("Unable to load check-ins.");
-      },
-    );
-
-    // Subscribe to user profile
-    const unsubProfile = onSnapshot(
-      profileRef,
-      (snapshot) => {
-        if (snapshot.exists()) {
-          const data = snapshot.data();
-          setUserProfile({
-            userId: snapshot.id,
-            sobrietyDate: data.sobrietyDate,
-            dashboardLayout: normalizeDashboardLayout(data.dashboardLayout),
-            updatedAt: safeDate(data.updatedAt),
-          });
-        } else {
-          setUserProfile(null);
-        }
-      },
-      () => {
-        // Profile might not exist yet, that's okay
-        setUserProfile(null);
-      }
-    );
-
-    return () => {
-      unsubMeetings();
-      unsubCheckins();
-      unsubProfile();
-    };
-  }, [db, profileRef, user]);
-
-  useEffect(() => {
-    if (isEditingLayout) return;
-
-    const nextLayout = normalizeDashboardLayout(userProfile?.dashboardLayout);
-    setSavedLayout(nextLayout);
-    setDraftLayout(nextLayout);
-  }, [isEditingLayout, userProfile]);
-
-  const meetingById = useMemo(
-    () => new Map(meetings.map((meeting) => [meeting.id, meeting])),
-    [meetings],
-  );
-
-  const todayKey = toLocalDayKey();
-
-  const thisWeekCheckins = useMemo(() => {
-    const weekStart = startOfWeek();
-    return checkins.filter((entry) => entry.createdAt && entry.createdAt >= weekStart);
-  }, [checkins]);
-
-  const checkinsByMeeting = useMemo(() => {
-    const map = new Map<string, Checkin[]>();
-    for (const checkin of checkins) {
-      const list = map.get(checkin.meetingId) ?? [];
-      list.push(checkin);
-      map.set(checkin.meetingId, list);
-    }
-    return map;
-  }, [checkins]);
-
-  const activityGrid = useMemo(() => {
-    const dayCounts = new Map<string, number>();
-    for (const entry of checkins) {
-      dayCounts.set(entry.dayKey, (dayCounts.get(entry.dayKey) ?? 0) + 1);
-    }
-
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const start = startOfWeek(addDays(today, -(ACTIVITY_WEEKS - 1) * 7));
-    const weeks = [] as Array<{
-      label: string;
-      days: Array<{
-        key: string;
-        date: Date;
-        count: number;
-        level: number;
-        isToday: boolean;
-      }>;
-    }>;
-
-    for (let weekIndex = 0; weekIndex < ACTIVITY_WEEKS; weekIndex += 1) {
-      const weekStart = addDays(start, weekIndex * 7);
-      const days = Array.from({ length: 7 }, (_, dayOffset) => {
-        const date = addDays(weekStart, dayOffset);
-        const key = toLocalDayKey(date);
-        const count = dayCounts.get(key) ?? 0;
-        return {
-          key,
-          date,
-          count,
-          level: activityLevelForCount(count),
-          isToday: key === todayKey,
-        };
-      });
-
-      weeks.push({
-        label: weekStart.getDate() <= 7 ? weekStart.toLocaleString(undefined, { month: "short" }).toUpperCase() : "",
-        days,
-      });
-    }
-
-    return weeks;
-  }, [checkins, todayKey]);
+  const setError = (err: string | null) => {
+    setCheckinsError(err);
+    setLayoutError(err);
+  };
 
   if (!user) return null;
-
-  const activeLayout = isEditingLayout ? draftLayout : savedLayout;
-
-  const beginLayoutEditing = () => {
-    setError(null);
-    setDraftLayout(savedLayout);
-    setIsEditingLayout(true);
-  };
-
-  const cancelLayoutEditing = () => {
-    setDraftLayout(savedLayout);
-    setIsEditingLayout(false);
-  };
-
-  const handleLayoutDragEnd = ({ active, over }: DragEndEvent) => {
-    if (!isEditingLayout || !over || active.id === over.id) return;
-
-    setDraftLayout((currentLayout) => {
-      const oldIndex = currentLayout.indexOf(active.id as DashboardSectionId);
-      const newIndex = currentLayout.indexOf(over.id as DashboardSectionId);
-
-      if (oldIndex === -1 || newIndex === -1) {
-        return currentLayout;
-      }
-
-      return arrayMove(currentLayout, oldIndex, newIndex);
-    });
-  };
-
-  const saveLayout = async () => {
-    if (!profileRef) return;
-
-    setError(null);
-    setIsSavingLayout(true);
-
-    const parsed = dashboardLayoutSchema.safeParse(draftLayout);
-    if (!parsed.success) {
-      setError(parsed.error.issues[0]?.message ?? "Layout is invalid.");
-      setIsSavingLayout(false);
-      return;
-    }
-
-    try {
-      await setDoc(profileRef, {
-        userId: user.uid,
-        dashboardLayout: parsed.data,
-        updatedAt: serverTimestamp(),
-      }, { merge: true });
-
-      setSavedLayout(parsed.data);
-      setDraftLayout(parsed.data);
-      setIsEditingLayout(false);
-    } catch (err) {
-      if (err instanceof FirebaseError && err.code === "permission-denied") {
-        setError("Permission denied. Unable to save your layout.");
-      } else {
-        setError("Failed to save layout. Please try again.");
-      }
-    } finally {
-      setIsSavingLayout(false);
-    }
-  };
-
-  const createMeeting = async (values: MeetingInput) => {
-    await addDoc(collection(db, "meetings"), {
-      userId: user.uid,
-      name: values.name,
-      location: values.location,
-      time: values.time,
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
-    });
-  };
-
-  const updateMeeting = async (meetingId: string, values: MeetingInput) => {
-    const meetingRef = doc(db, "meetings", meetingId);
-    await runTransaction(db, async (transaction) => {
-      const snap = await transaction.get(meetingRef);
-      if (!snap.exists() || snap.data().userId !== user.uid) {
-        throw new Error("Meeting not found.");
-      }
-      transaction.update(meetingRef, {
-        ...values,
-        updatedAt: serverTimestamp(),
-      });
-    });
-  };
-
-  const removeMeeting = async (meetingId: string) => {
-    const confirmed = window.confirm("Delete this meeting? Existing check-ins will remain in history.");
-    if (!confirmed) return;
-    await deleteDoc(doc(db, "meetings", meetingId));
-  };
-
-  const checkIn = async (meeting: Meeting) => {
-    const checkinId = makeCheckinId(user.uid, meeting.id, todayKey);
-    const meetingRef = doc(db, "meetings", meeting.id);
-    const checkinRef = doc(db, "checkins", checkinId);
-    setPendingCheckinId(meeting.id);
-    setError(null);
-
-    try {
-      await user.getIdToken();
-
-      const existingCheckin = checkins.find(
-        (entry) => entry.meetingId === meeting.id && entry.dayKey === todayKey,
-      );
-
-      if (existingCheckin) {
-        throw new Error("already-checked-in");
-      }
-
-      const meetingSnap = await getDoc(meetingRef);
-
-      if (!meetingSnap.exists() || meetingSnap.data().userId !== user.uid) {
-        throw new Error("Meeting no longer exists.");
-      }
-
-      await setDoc(checkinRef, {
-        userId: user.uid,
-        meetingId: meeting.id,
-        meetingName: meeting.name,
-        dayKey: todayKey,
-        createdAt: serverTimestamp(),
-      });
-
-      setCheckinSuccessId(meeting.id);
-      setTimeout(() => setCheckinSuccessId(null), 600);
-    } catch (err) {
-      if (err instanceof Error && err.message === "already-checked-in") {
-        setError(`Already checked in to ${meeting.name} today.`);
-        return;
-      }
-
-      if (err instanceof FirebaseError && err.code === "permission-denied") {
-        try {
-          const existingCheckinSnap = await getDoc(checkinRef);
-          const existingCheckinData = existingCheckinSnap.data();
-          if (
-            existingCheckinSnap.exists()
-            && existingCheckinData?.userId === user.uid
-            && existingCheckinData?.meetingId === meeting.id
-            && existingCheckinData?.dayKey === todayKey
-          ) {
-            setError(`Already checked in to ${meeting.name} today.`);
-            return;
-          }
-        } catch {
-          // Ignore follow-up read failures and fall through to the original error.
-        }
-
-        setError("Permission denied for this operation.");
-        return;
-      }
-
-      setError("Check-in failed. Please retry.");
-    } finally {
-      setPendingCheckinId(null);
-    }
-  };
-
-  const alreadyCheckedInToday = (meetingId: string): boolean =>
-    checkins.some((entry) => entry.meetingId === meetingId && entry.dayKey === todayKey);
 
   // Sobriety date functions
   const updateSobrietyDate = async (data: SobrietyDateInput) => {
@@ -625,63 +285,11 @@ export const Dashboard = () => {
     }
   };
 
-  // Check-in edit/delete functions
-  const startEditingCheckin = (checkin: Checkin) => {
-    setEditingCheckinId(checkin.id);
-    setEditingCheckinNote(checkin.note || "");
-    setEditingCheckinDate(checkin.dayKey);
-  };
-
-  const cancelEditingCheckin = () => {
-    setEditingCheckinId(null);
-    setEditingCheckinNote("");
-    setEditingCheckinDate("");
-  };
-
-  const saveCheckinEdit = async (checkinId: string) => {
-    setError(null);
-    
-    const parsed = checkinUpdateSchema.safeParse({
-      dayKey: editingCheckinDate,
-      note: editingCheckinNote,
+  const onDragEnd = (event: DragEndEvent) => {
+    handleLayoutDragEnd({
+      active: { id: String(event.active.id) },
+      over: event.over ? { id: String(event.over.id) } : null,
     });
-
-    if (!parsed.success) {
-      setError(parsed.error.issues[0]?.message ?? "Invalid input");
-      return;
-    }
-
-    try {
-      const checkinRef = doc(db, "checkins", checkinId);
-      await setDoc(checkinRef, {
-        dayKey: parsed.data.dayKey,
-        note: parsed.data.note || null,
-        updatedAt: serverTimestamp(),
-      }, { merge: true });
-      
-      cancelEditingCheckin();
-    } catch (err) {
-      if (err instanceof FirebaseError && err.code === "permission-denied") {
-        setError("Permission denied. You can only edit your own check-ins.");
-        return;
-      }
-      setError("Failed to update check-in.");
-    }
-  };
-
-  const deleteCheckin = async (checkinId: string, meetingName: string) => {
-    const confirmed = window.confirm(`Delete check-in for "${meetingName}"? This cannot be undone.`);
-    if (!confirmed) return;
-
-    try {
-      await deleteDoc(doc(db, "checkins", checkinId));
-    } catch (err) {
-      if (err instanceof FirebaseError && err.code === "permission-denied") {
-        setError("Permission denied. You can only delete your own check-ins.");
-        return;
-      }
-      setError("Failed to delete check-in.");
-    }
   };
 
   const dashboardSections: Record<DashboardSectionId, DashboardSectionDefinition> = {
@@ -940,7 +548,7 @@ export const Dashboard = () => {
             </div>
           </motion.div>
 
-          {loading ? (
+          {meetingsLoading ? (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -1086,7 +694,7 @@ export const Dashboard = () => {
               })}
             </AnimatePresence>
 
-            {!loading && meetings.length === 0 ? (
+            {!meetingsLoading && meetings.length === 0 ? (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -1124,7 +732,7 @@ export const Dashboard = () => {
           <div className="w-full">
             <div
               className="grid gap-1"
-              style={{ gridTemplateColumns: `2.75rem repeat(${ACTIVITY_WEEKS}, 1fr)` }}
+              style={{ gridTemplateColumns: `2.75rem repeat(${activityWeeks}, 1fr)` }}
             >
               {/* Month labels row */}
               <div />
@@ -1166,11 +774,11 @@ export const Dashboard = () => {
           </div>
           <div className="mt-4 flex flex-col gap-3 border-t-2 border-dashed border-black pt-3 md:flex-row md:items-center md:justify-between">
             <p className="neo-mono text-[10px] uppercase text-[var(--black)]/80">
-              Last {ACTIVITY_WEEKS} weeks of check-ins across all meetings.
+              Last {activityWeeks} weeks of check-ins across all meetings.
             </p>
             <div className="neo-mono flex items-center gap-2 text-[10px] uppercase">
               <span>Less</span>
-              {ACTIVITY_LEVELS.map((level) => (
+              {activityLevels.map((level) => (
                 <span
                   key={level}
                   className="h-4 w-4 border-3 border-black"
@@ -1317,7 +925,7 @@ export const Dashboard = () => {
           <DndContext
             sensors={sensors}
             collisionDetection={closestCenter}
-            onDragEnd={handleLayoutDragEnd}
+            onDragEnd={onDragEnd}
           >
             <SortableContext items={activeLayout} strategy={rectSortingStrategy}>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-12">

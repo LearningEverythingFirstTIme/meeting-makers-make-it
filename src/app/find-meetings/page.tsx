@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { MeetingFinder } from "@/components/meeting-finder";
+import FindMeetingsPageClient from "@/components/pages/find-meetings-page-client";
 import { loadMeetings, AVAILABLE_STATES } from "@/lib/meetings";
 
 interface Props {
@@ -14,9 +14,9 @@ export default async function FindMeetingsPage({ searchParams }: Props) {
 
   return (
     <Suspense>
-      <MeetingFinder
-        meetings={meetings}
-        stateCode={stateCode}
+      <FindMeetingsPageClient 
+        meetings={meetings} 
+        stateCode={stateCode} 
         availableStates={AVAILABLE_STATES}
       />
     </Suspense>

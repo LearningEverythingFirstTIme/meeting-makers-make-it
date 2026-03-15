@@ -40,3 +40,5 @@ export const formatShortDate = (date: Date): string =>
     month: "short",
     day: "numeric",
   }).format(date);
+
+export const getTodayDate = (): string => toLocalDayKey(new Date());
