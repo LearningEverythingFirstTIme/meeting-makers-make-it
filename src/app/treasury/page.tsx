@@ -17,6 +17,7 @@ import { getClientDb } from "@/lib/firebase/client";
 import { useAuth } from "@/components/auth-provider";
 import { Navigation } from "@/components/navigation";
 import { BalanceCard } from "@/components/treasury/balance-card";
+import { StatsPanel } from "@/components/treasury/stats-panel";
 import { TransactionCard } from "@/components/treasury/transaction-card";
 import { TransactionForm } from "@/components/treasury/transaction-form";
 import { sortByDateDesc } from "@/lib/treasury-utils";
@@ -186,6 +187,14 @@ export default function TreasuryPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
+          >
+            <StatsPanel transactions={transactions} />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
             className="neo-card p-6"
           >
             <div className="flex items-center gap-2 mb-4 pb-3 border-b-4 border-black">
