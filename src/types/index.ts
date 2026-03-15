@@ -65,6 +65,7 @@ export type TreasuryTransaction = {
   type: TransactionType;
   category: TreasuryCategory;
   note: string;
+  synced?: boolean; // true once Firestore confirms the write
   createdAt?: Date;
   updatedAt?: Date;
 };

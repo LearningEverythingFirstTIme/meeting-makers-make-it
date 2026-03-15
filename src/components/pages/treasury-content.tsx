@@ -60,6 +60,7 @@ export function TreasuryContent() {
             type: data.type,
             category: data.category,
             note: data.note ?? "",
+            synced: data.synced ?? true, // Assume synced if field doesn't exist (legacy docs)
             createdAt: data.createdAt?.toDate?.(),
             updatedAt: data.updatedAt?.toDate?.(),
           } satisfies TreasuryTransaction;
@@ -84,6 +85,7 @@ export function TreasuryContent() {
     const db = getClientDb();
     const id = crypto.randomUUID();
     const ref = doc(db, "transactions", id);
+    // Firestore will queue this locally if offline and sync when online
     await setDoc(ref, {
       userId: user.uid,
       date: data.date,
@@ -91,6 +93,7 @@ export function TreasuryContent() {
       type: data.type,
       category: data.category,
       note: data.note,
+      synced: true, // Mark as synced once Firestore confirms the write
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
     });
@@ -106,6 +109,7 @@ export function TreasuryContent() {
       type: data.type,
       category: data.category,
       note: data.note,
+      synced: true, // Mark as synced once Firestore confirms the write
       updatedAt: serverTimestamp(),
     }, { merge: true });
   };

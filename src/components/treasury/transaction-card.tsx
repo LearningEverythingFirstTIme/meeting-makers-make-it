@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TrendingUp, TrendingDown, Edit2, Trash2 } from "lucide-react";
+import { TrendingUp, TrendingDown, Edit2, Trash2, Clock } from "lucide-react";
 import { formatCurrency, formatDate, getCategoryLabel } from "@/lib/treasury-utils";
 import type { TreasuryTransaction } from "@/types";
 
@@ -15,6 +15,7 @@ export const TransactionCard = ({ transaction, onEdit, onDelete }: TransactionCa
   const isContribution = transaction.type === 'contribution';
   const categoryLabel = getCategoryLabel(transaction.type, transaction.category);
   const amount = Number(transaction.amount) || 0;
+  const isPending = transaction.synced === false;
 
   return (
     <motion.div
@@ -38,6 +39,21 @@ export const TransactionCard = ({ transaction, onEdit, onDelete }: TransactionCa
               <TrendingDown size={16} strokeWidth={3} className="text-[var(--coral)]" />
             )}
             <span className="neo-title text-sm uppercase">{categoryLabel}</span>
+            {isPending && (
+              <motion.span
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="neo-badge bg-[var(--butter)] text-[var(--black)] flex items-center gap-1"
+              >
+                <motion.span
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                >
+                  <Clock size={10} strokeWidth={3} />
+                </motion.span>
+                PENDING
+              </motion.span>
+            )}
           </div>
           
           <p className={`neo-mono text-lg font-bold text-[var(--black)]`}>

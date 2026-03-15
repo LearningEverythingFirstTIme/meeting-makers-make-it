@@ -1,0 +1,39 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#F5F0E6"/>
+  
+  <!-- Dotted pattern background -->
+  <pattern id="dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+    <circle cx="1.5" cy="1.5" r="1.5" fill="#000000" opacity="0.15"/>
+  </pattern>
+  <rect width="512" height="512" fill="url(#dots)"/>
+  
+  <!-- Main card background -->
+  <rect x="56" y="80" width="400" height="352" fill="#FFFFFF" stroke="#000000" stroke-width="16"/>
+  
+  <!-- Shadow effect -->
+  <rect x="72" y="96" width="400" height="352" fill="#000000"/>
+  
+  <!-- Main card on top of shadow -->
+  <rect x="56" y="80" width="400" height="352" fill="#FFFFFF" stroke="#000000" stroke-width="16"/>
+  
+  <!-- Lavender header bar -->
+  <rect x="56" y="80" width="400" height="80" fill="#A78BFA" stroke="#000000" stroke-width="16"/>
+  
+  <!-- MM text -->
+  <text x="256" y="148" font-family="Arial Black, sans-serif" font-size="72" font-weight="900" fill="#000000" text-anchor="middle" letter-spacing="-4">MM</text>
+  
+  <!-- Meeting icon - simplified calendar/check -->
+  <rect x="120" y="200" width="120" height="120" fill="#4ECDC4" stroke="#000000" stroke-width="8"/>
+  <line x1="140" y1="240" x2="220" y2="240" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+  <line x1="140" y1="270" x2="200" y2="270" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+  <line x1="140" y1="300" x2="180" y2="300" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Treasury/dollar icon -->
+  <rect x="272" y="200" width="120" height="120" fill="#FFE66D" stroke="#000000" stroke-width="8"/>
+  <text x="332" y="290" font-family="Arial, sans-serif" font-size="80" font-weight="900" fill="#000000" text-anchor="middle">$</text>
+  
+  <!-- Bottom section with checkmark -->
+  <rect x="120" y="340" width="272" height="60" fill="#4ECDC4" stroke="#000000" stroke-width="8"/>
+  <polyline points="200,365 220,385 260,345" stroke="#000000" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

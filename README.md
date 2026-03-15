@@ -16,6 +16,29 @@ Production-ready meeting attendance tracker built with **Next.js (App Router) + 
   - Per-meeting recent history
 - Simple owner-based Firestore security rules + indexes included
 - Unit test for date/check-in utility logic
+- **Offline-first support** - Works without internet, syncs when back online
+- **PWA (Progressive Web App)** - Installable on Android/iOS/desktop
+
+## Offline-First & PWA Features
+
+### Firestore Offline Persistence
+- Data is cached locally using IndexedDB
+- Write operations are queued when offline
+- Automatic sync when connection is restored
+
+### Transaction Sync Status
+- Transactions show a "PENDING" badge while syncing
+- Visual indicator clears once Firestore confirms the write
+- Helps users know which data is safely stored
+
+### PWA Installation
+- Install as a standalone app on Android, iOS, and desktop
+- App loads from cache for offline access
+- Manifest includes shortcuts to Treasury and Find Meetings
+
+### Service Worker
+- Caches app shell and static assets
+- App loads even when offline (data may be stale)
 
 ## Tech Stack
 

@@ -1,6 +1,6 @@
 import { FirebaseError, initializeApp, getApps, getApp, type FirebaseApp } from "firebase/app";
 import { getAuth, type Auth } from "firebase/auth";
-import { getFirestore, type Firestore } from "firebase/firestore";
+import { getFirestore, initializeFirestore, persistentLocalCache, persistentMultipleTabManager, type Firestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -12,6 +12,8 @@ const firebaseConfig = {
 };
 
 const hasConfig = Object.values(firebaseConfig).every(Boolean);
+
+let dbInstance: Firestore | null = null;
 
 const ensureFirebase = (): FirebaseApp => {
   if (!hasConfig) {
@@ -26,4 +28,17 @@ const ensureFirebase = (): FirebaseApp => {
 
 export const getClientAuth = (): Auth => getAuth(ensureFirebase());
 
-export const getClientDb = (): Firestore => getFirestore(ensureFirebase());
+export const getClientDb = (): Firestore => {
+  if (dbInstance) return dbInstance;
+  
+  const app = ensureFirebase();
+  
+  // Enable offline persistence with IndexedDB
+  dbInstance = initializeFirestore(app, {
+    localCache: persistentLocalCache({
+      tabManager: persistentMultipleTabManager(),
+    }),
+  });
+  
+  return dbInstance;
+};
