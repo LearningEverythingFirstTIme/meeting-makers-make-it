@@ -173,9 +173,6 @@ export function LiteratureContent() {
           </div>
         </motion.div>
 
-        {/* Daily Reflection - Featured at top */}
-        <DailyReflection />
-
         {/* Category Filter */}
         <CategoryFilter 
           activeCategory={activeCategory}

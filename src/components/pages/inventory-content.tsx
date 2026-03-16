@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { collection, doc, onSnapshot, query, serverTimestamp, setDoc, where } from "firebase/firestore";
 import { ClipboardList, Save, CheckCircle, Calendar, ChevronLeft, ChevronRight, History, Edit2, X } from "lucide-react";
 import { Navigation } from "@/components/navigation";
+import { DailyReflection } from "@/components/daily-reflection";
 import { useAuth } from "@/components/auth-provider";
 import { toLocalDayKey } from "@/lib/date";
 import { dailyInventorySchema, type DailyInventoryInput } from "@/lib/validators";
@@ -334,6 +335,9 @@ export function InventoryContent() {
             &ldquo;Continued to take personal inventory and when we were wrong promptly admitted it.&rdquo;
           </p>
         </motion.div>
+
+        {/* Daily Reflection */}
+        <DailyReflection />
 
         {/* Error */}
         <AnimatePresence>
