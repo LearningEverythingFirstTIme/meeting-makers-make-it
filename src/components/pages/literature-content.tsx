@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, ChevronDown, ChevronUp } from "lucide-react";
 import { literatureData, categories, type LiteratureItem } from "@/lib/literature-data";
 import { Navigation } from "@/components/navigation";
+import { DailyReflection } from "@/components/daily-reflection";
 
 function LiteratureCard({ item }: { item: LiteratureItem }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -171,6 +172,9 @@ export function LiteratureContent() {
             </div>
           </div>
         </motion.div>
+
+        {/* Daily Reflection - Featured at top */}
+        <DailyReflection />
 
         {/* Category Filter */}
         <CategoryFilter 
