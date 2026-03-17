@@ -36,15 +36,15 @@ export function DailyReflection() {
       animate={{ opacity: 1, y: 0 }}
       className="neo-card mb-8 overflow-hidden"
       style={{ 
-        borderLeft: "6px solid var(--coral)",
-        background: "linear-gradient(135deg, var(--coral) 0%, var(--butter) 100%)"
+        borderLeft: "6px solid var(--mint)",
+        background: "var(--mint)"
       }}
     >
       {/* Header */}
       <div className="flex items-center justify-between p-4 bg-black/5 border-b-3 border-black">
         <div className="flex items-center gap-3">
           <div className="p-2 border-3 border-black bg-white">
-            <Sun size={24} strokeWidth={3} className="text-[var(--coral)]" />
+            <Sun size={24} strokeWidth={3} className="text-[var(--black)]" />
           </div>
           <div>
             <h2 className="neo-title text-xl text-[var(--black)]">DAILY REFLECTION</h2>
