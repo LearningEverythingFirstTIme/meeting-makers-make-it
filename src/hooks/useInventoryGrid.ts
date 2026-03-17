@@ -4,34 +4,51 @@ import { useMemo } from "react";
 import { addDays, startOfWeek, toLocalDayKey } from "@/lib/date";
 import type { DailyInventory } from "@/types";
 
-export type GratitudeDay = {
+export type InventoryDay = {
   key: string;
   date: Date;
+  hasEntry: boolean;
   hasGratitude: boolean;
   isToday: boolean;
 };
 
-export type GratitudeWeek = {
+export type InventoryWeek = {
   label: string;
-  days: GratitudeDay[];
+  days: InventoryDay[];
 };
 
-const GRATITUDE_WEEKS = 16;
+const INVENTORY_WEEKS = 16;
 
-export type UseGratitudeGridResult = {
-  gratitudeGrid: GratitudeWeek[];
-  gratitudeWeeks: number;
+export type UseInventoryGridResult = {
+  inventoryGrid: InventoryWeek[];
+  inventoryWeeks: number;
+  totalInventoryDays: number;
   totalGratitudeDays: number;
   currentStreak: number;
   longestStreak: number;
 };
 
-export const useGratitudeGrid = (entries: DailyInventory[]): UseGratitudeGridResult => {
+const hasAnyContent = (entry: DailyInventory): boolean => {
+  return (
+    (entry.resentments?.trim() !== "") ||
+    (entry.fears?.trim() !== "") ||
+    (entry.dishonesty?.trim() !== "") ||
+    (entry.amends?.trim() !== "") ||
+    (entry.gratitude?.trim() !== "")
+  );
+};
+
+export const useInventoryGrid = (entries: DailyInventory[]): UseInventoryGridResult => {
   const todayKey = toLocalDayKey();
 
-  const { gratitudeGrid, totalGratitudeDays, currentStreak, longestStreak } = useMemo(() => {
+  const { inventoryGrid, totalInventoryDays, totalGratitudeDays, currentStreak, longestStreak } = useMemo(() => {
+    const inventoryDays = new Set<string>();
     const gratitudeDays = new Set<string>();
+    
     for (const entry of entries) {
+      if (hasAnyContent(entry)) {
+        inventoryDays.add(entry.date);
+      }
       if (entry.gratitude && entry.gratitude.trim() !== "") {
         gratitudeDays.add(entry.date);
       }
@@ -40,10 +57,10 @@ export const useGratitudeGrid = (entries: DailyInventory[]): UseGratitudeGridRes
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const start = startOfWeek(addDays(today, -(GRATITUDE_WEEKS - 1) * 7));
-    const weeks: GratitudeWeek[] = [];
+    const start = startOfWeek(addDays(today, -(INVENTORY_WEEKS - 1) * 7));
+    const weeks: InventoryWeek[] = [];
 
-    for (let weekIndex = 0; weekIndex < GRATITUDE_WEEKS; weekIndex += 1) {
+    for (let weekIndex = 0; weekIndex < INVENTORY_WEEKS; weekIndex += 1) {
       const weekStart = addDays(start, weekIndex * 7);
       const days = Array.from({ length: 7 }, (_, dayOffset) => {
         const date = addDays(weekStart, dayOffset);
@@ -51,6 +68,7 @@ export const useGratitudeGrid = (entries: DailyInventory[]): UseGratitudeGridRes
         return {
           key,
           date,
+          hasEntry: inventoryDays.has(key),
           hasGratitude: gratitudeDays.has(key),
           isToday: key === todayKey,
         };
@@ -62,20 +80,18 @@ export const useGratitudeGrid = (entries: DailyInventory[]): UseGratitudeGridRes
       });
     }
 
-    const sortedDays = Array.from(gratitudeDays).sort().reverse();
-    
     let currStreak = 0;
     let checkDate = new Date();
     checkDate.setHours(0, 0, 0, 0);
     
-    while (gratitudeDays.has(toLocalDayKey(checkDate))) {
+    while (inventoryDays.has(toLocalDayKey(checkDate))) {
       currStreak++;
       checkDate = addDays(checkDate, -1);
     }
 
     let longStreak = 0;
     let tempStreak = 0;
-    const allDates = Array.from(gratitudeDays).sort();
+    const allDates = Array.from(inventoryDays).sort();
     for (let i = 0; i < allDates.length; i++) {
       if (i === 0) {
         tempStreak = 1;
@@ -93,7 +109,8 @@ export const useGratitudeGrid = (entries: DailyInventory[]): UseGratitudeGridRes
     }
 
     return {
-      gratitudeGrid: weeks,
+      inventoryGrid: weeks,
+      totalInventoryDays: inventoryDays.size,
       totalGratitudeDays: gratitudeDays.size,
       currentStreak: currStreak,
       longestStreak: longStreak,
@@ -101,8 +118,9 @@ export const useGratitudeGrid = (entries: DailyInventory[]): UseGratitudeGridRes
   }, [entries, todayKey]);
 
   return {
-    gratitudeGrid,
-    gratitudeWeeks: GRATITUDE_WEEKS,
+    inventoryGrid,
+    inventoryWeeks: INVENTORY_WEEKS,
+    totalInventoryDays,
     totalGratitudeDays,
     currentStreak,
     longestStreak,

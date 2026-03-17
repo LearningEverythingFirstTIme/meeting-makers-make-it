@@ -11,7 +11,7 @@ import { useAuth } from "@/components/auth-provider";
 import { toLocalDayKey } from "@/lib/date";
 import { dailyInventorySchema, type DailyInventoryInput } from "@/lib/validators";
 import type { DailyInventory } from "@/types";
-import { useGratitudeGrid, DAY_NAMES } from "@/hooks/useGratitudeGrid";
+import { useInventoryGrid, DAY_NAMES } from "@/hooks/useInventoryGrid";
 
 const INVENTORY_PROMPTS = [
   {
@@ -240,8 +240,8 @@ export function InventoryContent() {
   // Get all inventory entries sorted by date (including today)
   const allEntries = [todayInventory, ...pastInventory].filter(Boolean) as DailyInventory[];
   
-  // Gratitude grid
-  const { gratitudeGrid, gratitudeWeeks, totalGratitudeDays, currentStreak, longestStreak } = useGratitudeGrid(allEntries);
+  // Inventory grid
+  const { inventoryGrid, inventoryWeeks, totalInventoryDays, currentStreak, longestStreak } = useInventoryGrid(allEntries);
   
   // Get current viewing entry
   const getViewingEntry = (): DailyInventory | null => {
@@ -595,7 +595,7 @@ export function InventoryContent() {
           )}
         </motion.div>
 
-        {/* Gratitude Tracker */}
+        {/* Inventory Tracker */}
         <motion.section
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -604,7 +604,7 @@ export function InventoryContent() {
         >
           <div className="mb-4 flex items-center gap-2 border-b-4 border-black pb-3">
             <span className="neo-title text-sm text-[var(--mint)]">♥</span>
-            <span className="neo-title text-sm">GRATITUDE TRACKER</span>
+            <span className="neo-title text-sm">INVENTORY TRACKER</span>
           </div>
           
           {/* Streak Stats */}
@@ -619,7 +619,7 @@ export function InventoryContent() {
             </div>
             <div className="flex items-center gap-2">
               <span className="neo-mono text-xs text-[var(--black)]/60">TOTAL:</span>
-              <span className="neo-title text-lg">{totalGratitudeDays}</span>
+              <span className="neo-title text-lg">{totalInventoryDays}</span>
             </div>
           </div>
 
@@ -627,11 +627,11 @@ export function InventoryContent() {
           <div className="w-full">
             <div
               className="grid gap-1"
-              style={{ gridTemplateColumns: `2.75rem repeat(${gratitudeWeeks}, 1fr)` }}
+              style={{ gridTemplateColumns: `2.75rem repeat(${inventoryWeeks}, 1fr)` }}
             >
               {/* Month labels row */}
               <div />
-              {gratitudeGrid.map((week, weekIndex) => (
+              {inventoryGrid.map((week, weekIndex) => (
                 <div
                   key={`month-${weekIndex}`}
                   className="neo-mono h-5 text-[10px] leading-tight text-[var(--black)]/70"
@@ -645,7 +645,7 @@ export function InventoryContent() {
                   <div className="neo-mono flex items-center justify-end pr-1 text-[10px] text-[var(--black)]/70">
                     {DAY_NAMES[dayIndex]}
                   </div>
-                  {gratitudeGrid.map((week, weekIndex) => {
+                  {inventoryGrid.map((week, weekIndex) => {
                     const day = week.days[dayIndex];
                     return (
                       <motion.div
@@ -655,10 +655,10 @@ export function InventoryContent() {
                         transition={{ delay: weekIndex * 0.02 }}
                         className={`aspect-square border-3 border-black ${day.isToday ? "ring-2 ring-black ring-offset-1 ring-offset-[var(--cream)]" : ""}`}
                         style={{
-                          backgroundColor: day.hasGratitude ? "var(--mint)" : "var(--white)",
-                          boxShadow: day.hasGratitude ? "2px 2px 0 0 var(--black)" : "none",
+                          backgroundColor: day.hasEntry ? "var(--mint)" : "var(--white)",
+                          boxShadow: day.hasEntry ? "2px 2px 0 0 var(--black)" : "none",
                         }}
-                        title={day.hasGratitude ? `Gratitude logged` : "No gratitude"}
+                        title={day.hasEntry ? `Inventory completed` : "No entry"}
                       />
                     );
                   })}
@@ -668,7 +668,7 @@ export function InventoryContent() {
           </div>
 
           <p className="neo-mono text-[10px] text-center text-[var(--black)]/60 mt-4">
-            Last {gratitudeWeeks} weeks of gratitude entries.
+            Last {inventoryWeeks} weeks of inventory entries.
           </p>
         </motion.section>
       </div>
