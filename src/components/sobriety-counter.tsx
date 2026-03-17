@@ -49,7 +49,7 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="neo-card p-6 border-dashed border-4 border-[var(--coral)]"
-        style={{ boxShadow: '8px 8px 0px 0px var(--coral)' }}
+        style={{ boxShadow: '8px 8px 0 0 var(--black), 12px 12px 0 0 var(--coral)' }}
       >
         <div className="text-center">
           <motion.div
@@ -57,16 +57,16 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
             transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2 }}
             className="inline-block mb-4"
           >
-            <div className="h-16 w-16 bg-[var(--coral)] border-4 border-black mx-auto flex items-center justify-center">
+            <div className="h-16 w-16 bg-[var(--coral)] border-4 border-black mx-auto flex items-center justify-center" style={{ boxShadow: '6px 6px 0 0 var(--black)' }}>
               <Award size={32} strokeWidth={3} className="text-[var(--white)]" />
             </div>
           </motion.div>
-          <h3 className="neo-title text-xl mb-2">TRACK YOUR SOBRIETY</h3>
+          <h3 className="neo-title text-xl mb-2" style={{ textShadow: '3px 3px 0 var(--coral)' }}>TRACK YOUR SOBRIETY</h3>
           <p className="neo-mono text-xs mb-4 text-[var(--gray-muted)]">
             Set your sobriety date to track progress and celebrate milestones.
           </p>
           <motion.button
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={onEdit}
             className="neo-button neo-button-primary w-full py-3"
@@ -93,7 +93,7 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
 
   if (!mounted) {
     return (
-      <div className="neo-card p-6" style={{ boxShadow: '8px 8px 0px 0px black' }}>
+      <div className="neo-card p-6" style={{ boxShadow: '8px 8px 0 0 var(--black), 12px 12px 0 0 var(--butter)' }}>
         <div className="animate-pulse">
           <div className="h-8 bg-[var(--gray-disabled)] rounded w-32 mb-4"></div>
           <div className="h-16 bg-[var(--gray-disabled)] rounded w-48"></div>
@@ -106,11 +106,11 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="neo-card p-6"
+      className="neo-card p-6 neo-card-hover"
       style={{ 
         boxShadow: currentMilestone 
-          ? `8px 8px 0px 0px ${currentMilestone.chipColor === '#000000' ? 'var(--black)' : currentMilestone.chipColor}` 
-          : '8px 8px 0px 0px black'
+          ? `8px 8px 0 0 var(--black), 12px 12px 0 0 ${currentMilestone.chipColor === '#000000' ? 'var(--black)' : currentMilestone.chipColor}` 
+          : '8px 8px 0 0 var(--black), 12px 12px 0 0 var(--butter)'
       }}
     >
       {/* Header */}
@@ -126,6 +126,7 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
             className="h-10 w-10 border-3 border-black flex items-center justify-center"
             style={{ 
               backgroundColor: currentMilestone?.chipColor || 'var(--butter)',
+              boxShadow: currentMilestone ? `4px 4px 0 0 var(--black), ${chipGlowByColor[currentMilestone.chipColor] || 'none'}` : '4px 4px 0 0 var(--black)'
             }}
           >
             <Award 
@@ -134,14 +135,14 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
               className={currentMilestone?.chipColor === '#000000' ? 'text-white' : 'text-[var(--black)]'} 
             />
           </motion.div>
-          <span className="neo-title text-sm">SOBRIETY COUNTER</span>
+          <span className="neo-title text-sm" style={{ textShadow: '2px 2px 0 var(--butter)' }}>SOBRIETY COUNTER</span>
         </div>
         <motion.button
           whileHover={{ scale: 1.1, rotate: -5 }}
           whileTap={{ scale: 0.9 }}
           onClick={onEdit}
           className="p-2 border-3 border-black hover:bg-[var(--butter)]"
-          style={{ boxShadow: '4px 4px 0px 0px black' }}
+          style={{ boxShadow: '4px 4px 0 0 var(--black)' }}
         >
           <Edit3 size={14} strokeWidth={3} />
         </motion.button>
@@ -155,17 +156,18 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: "spring", stiffness: 200 }}
         >
-          <p className="neo-title text-6xl md:text-7xl text-[var(--black)] leading-none">
+          <p className="neo-title text-6xl md:text-7xl text-[var(--black)] leading-none" style={{ textShadow: '4px 4px 0 var(--butter)' }}>
             {daysSober}
           </p>
           <p className="neo-mono text-sm text-[var(--gray-muted)] mt-1">DAYS SOBER</p>
         </motion.div>
         
         <motion.p 
-          className="neo-title text-lg mt-3 text-[var(--mint)]"
+          className="neo-title text-lg mt-3"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
+          style={{ color: 'var(--mint)', textShadow: '2px 2px 0 var(--black)' }}
         >
           {anniversaryText}
         </motion.p>
@@ -211,7 +213,7 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
           className="bg-[var(--cream)] border-4 border-black p-4 mb-4"
-          style={{ boxShadow: '6px 6px 0px 0px black' }}
+          style={{ boxShadow: '6px 6px 0 0 var(--black), 10px 10px 0 0 var(--butter)' }}
         >
           <div className="flex items-center gap-3">
             <motion.div
@@ -224,12 +226,15 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
                 ]
               }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="h-12 w-12 rounded-full border-3 border-black flex-shrink-0"
-              style={{ backgroundColor: currentMilestone.chipColor }}
+              className="h-12 w-12 border-3 border-black flex-shrink-0"
+              style={{ 
+                backgroundColor: currentMilestone.chipColor,
+                boxShadow: `4px 4px 0 0 var(--black)`
+              }}
             />
             <div>
               <p className="neo-mono text-[10px] text-[var(--gray-muted)]">CURRENT CHIP</p>
-              <p className="neo-title text-lg" style={{ color: currentMilestone.chipColor === '#000000' ? 'var(--black)' : currentMilestone.chipColor }}>
+              <p className="neo-title text-lg" style={{ color: currentMilestone.chipColor === '#000000' ? 'var(--black)' : currentMilestone.chipColor, textShadow: '2px 2px 0 var(--cream)' }}>
                 {currentMilestone.label}
               </p>
               <p className="neo-mono text-[10px] text-[var(--gray-muted)]">{currentMilestone.description}</p>
@@ -250,12 +255,13 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
             <span className="neo-mono text-[10px] text-[var(--gray-muted)]">PROGRESS TO {nextMilestone.label}</span>
             <span className="neo-mono text-[10px]">{Math.round(progress.percent)}%</span>
           </div>
-          <div className="h-3 bg-[var(--gray-disabled)] border-3 border-black">
+          <div className="h-3 bg-[var(--gray-disabled)] border-3 border-black" style={{ boxShadow: '2px 2px 0 0 var(--black)' }}>
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: `${progress.percent}%` }}
               transition={{ duration: 1, delay: 0.4, type: "spring" }}
               className="h-full bg-[var(--mint)] border-r-2 border-black"
+              style={{ boxShadow: 'inset -2px 0 0 0 var(--black)' }}
             />
           </div>
           <p className="neo-mono text-[10px] text-center text-[var(--gray-muted)]">
@@ -281,7 +287,7 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
                 className={`h-6 w-6 border-3 border-black ${isAchieved ? '' : 'grayscale opacity-40'}`}
                 style={{ 
                   backgroundColor: milestone.chipColor,
-                  boxShadow: isNext ? chipGlowByColor[milestone.chipColor] : 'none'
+                  boxShadow: isNext ? `3px 3px 0 0 var(--black), ${chipGlowByColor[milestone.chipColor]}` : '3px 3px 0 0 var(--black)'
                 }}
                 title={`${milestone.label}: ${milestone.description}`}
               />

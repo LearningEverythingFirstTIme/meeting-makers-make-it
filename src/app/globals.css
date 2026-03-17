@@ -1,32 +1,35 @@
 @import "tailwindcss";
 
-/* Dark mode configuration - uses class strategy */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer theme {
   :root {
-    /* Light Mode - Warm Brutalist */
+    /* Light Mode - Maximum Brutalist (Intensified Palette) */
     --cream: #F5F0E6;
-    --butter: #FFE66D;
-    --coral: #FF6B6B;
-    --mint: #4ECDC4;
-    --lavender: #A78BFA;
-    --sky: #38BDF8;
+    --butter: #FFDD00;
+    --coral: #FF3333;
+    --mint: #00E5C7;
+    --lavender: #8B5CF6;
+    --sky: #00B4FF;
     --black: #000000;
     --white: #FFFFFF;
-    --pink: #FF69B4;
+    --pink: #FF1493;
     --lime: #84CC16;
     
+    /* Accent combos for clashing brutalism */
+    --butter-coral: #FF9933;
+    --mint-lavender: #4BD9B1;
+    
     /* Dark Mode - Midnight Brutalist */
-    --cream-dark: #1a1a2e;
-    --butter-dark: #FFD93D;
-    --coral-dark: #FF6B6B;
-    --mint-dark: #6EE7DE;
-    --lavender-dark: #B9A3FA;
-    --sky-dark: #60D0FA;
+    --cream-dark: #0f0f1a;
+    --butter-dark: #FFE44D;
+    --coral-dark: #FF5555;
+    --mint-dark: #00F5D4;
+    --lavender-dark: #A78BFA;
+    --sky-dark: #4DC3FF;
     --black-dark: #E8E8E8;
-    --white-dark: #16213e;
-    --pink-dark: #FF85C0;
+    --white-dark: #1a1a2e;
+    --pink-dark: #FF69B4;
     --lime-dark: #9AE635;
     
     /* Gray scale - Light Mode */
@@ -39,15 +42,14 @@
     --gray-subtle-dark: #4b5563;
     --gray-disabled-dark: #374151;
     
-    /* Stat Card Backgrounds - Dark Mode (muted/darker versions) */
-    --stat-mint-dark: #2d5a56;
-    --stat-butter-dark: #8b7355;
-    --stat-lavender-dark: #5a4a7a;
-    --stat-coral-dark: #8b4a4a;
-    --stat-sky-dark: #2d5a7a;
+    /* Stat Card Backgrounds - Dark Mode */
+    --stat-mint-dark: #0d3d37;
+    --stat-butter-dark: #5c4d00;
+    --stat-lavender-dark: #3d2d5c;
+    --stat-coral-dark: #5c1a1a;
+    --stat-sky-dark: #0d2d4d;
   }
   
-  /* Dark mode class-based switching */
   .dark {
     --cream: var(--cream-dark);
     --butter: var(--butter-dark);
@@ -70,14 +72,14 @@ body {
   color: var(--black);
   font-family: 'Archivo', sans-serif;
   overflow-x: hidden;
-  background-image: radial-gradient(var(--black) 1.5px, transparent 1.5px);
-  background-size: 24px 24px;
+  background-image: radial-gradient(var(--black) 2px, transparent 2px);
+  background-size: 20px 20px;
   min-height: 100vh;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .dark body {
-  background-image: radial-gradient(var(--black) 1.5px, transparent 1.5px);
+  background-image: radial-gradient(var(--black) 2px, transparent 2px);
 }
 
 ::selection {
@@ -85,10 +87,91 @@ body {
   color: var(--black);
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   ANGULAR CORNERS - Chamfered Neo-Brutalist Shapes
+   ═══════════════════════════════════════════════════════════════ */
+
+@utility neo-card-angular {
+  background: var(--white);
+  border: 4px solid var(--black);
+  box-shadow: 
+    8px 8px 0 0 var(--black),
+    12px 12px 0 0 var(--butter);
+  clip-path: polygon(
+    16px 0, calc(100% - 16px) 0, 100% 16px,
+    100% calc(100% - 16px), calc(100% - 16px) 100%,
+    16px 100%, 0 calc(100% - 16px), 0 16px
+  );
+}
+
+@utility neo-card-angular-lg {
+  background: var(--white);
+  border: 4px solid var(--black);
+  box-shadow: 
+    10px 10px 0 0 var(--black),
+    16px 16px 0 0 var(--butter);
+  clip-path: polygon(
+    24px 0, calc(100% - 24px) 0, 100% 24px,
+    100% calc(100% - 24px), calc(100% - 24px) 100%,
+    24px 100%, 0 calc(100% - 24px), 0 24px
+  );
+}
+
+@utility neo-card-angular-alt {
+  background: var(--white);
+  border: 4px solid var(--black);
+  box-shadow: 
+    -8px 8px 0 0 var(--black),
+    -12px 12px 0 0 var(--mint);
+  clip-path: polygon(
+    16px 0, calc(100% - 16px) 0, 100% 16px,
+    100% calc(100% - 16px), calc(100% - 16px) 100%,
+    16px 100%, 0 calc(100% - 16px), 0 16px
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STANDARD CARDS - Enhanced with Triple Shadows
+   ═══════════════════════════════════════════════════════════════ */
+
 @utility neo-card {
   background: var(--white);
   border: 4px solid var(--black);
-  box-shadow: 8px 8px 0px 0px var(--black);
+  box-shadow: 
+    8px 8px 0 0 var(--black),
+    12px 12px 0 0 var(--butter);
+}
+
+@utility neo-card-mint {
+  background: var(--white);
+  border: 4px solid var(--black);
+  box-shadow: 
+    8px 8px 0 0 var(--black),
+    12px 12px 0 0 var(--mint);
+}
+
+@utility neo-card-coral {
+  background: var(--white);
+  border: 4px solid var(--black);
+  box-shadow: 
+    8px 8px 0 0 var(--black),
+    12px 12px 0 0 var(--coral);
+}
+
+@utility neo-card-lavender {
+  background: var(--white);
+  border: 4px solid var(--black);
+  box-shadow: 
+    8px 8px 0 0 var(--black),
+    12px 12px 0 0 var(--lavender);
+}
+
+@utility neo-card-sky {
+  background: var(--white);
+  border: 4px solid var(--black);
+  box-shadow: 
+    8px 8px 0 0 var(--black),
+    12px 12px 0 0 var(--sky);
 }
 
 @utility neo-dashboard-stat {
@@ -99,27 +182,80 @@ body {
   justify-content: space-between;
   border: 4px solid var(--black);
   padding: 1.5rem;
-  box-shadow: 6px 6px 0px 0px var(--black);
+  box-shadow: 
+    6px 6px 0 0 var(--black),
+    10px 10px 0 0 var(--butter);
+  clip-path: polygon(
+    12px 0, calc(100% - 12px) 0, 100% 12px,
+    100% calc(100% - 12px), calc(100% - 12px) 100%,
+    12px 100%, 0 calc(100% - 12px), 0 12px
+  );
 }
 
 @utility neo-card-hover {
-  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
   
   &:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 10px 10px 0px 0px var(--black);
+    transform: translate(-3px, -3px) rotate(-0.5deg);
+    box-shadow: 
+      11px 11px 0 0 var(--black),
+      16px 16px 0 0 var(--butter);
   }
   
   &:active {
-    transform: translate(2px, 2px);
-    box-shadow: 4px 4px 0px 0px var(--black);
+    transform: translate(3px, 3px) rotate(0.5deg);
+    box-shadow: 
+      4px 4px 0 0 var(--black),
+      6px 6px 0 0 var(--butter);
   }
 }
+
+@utility neo-card-hover-mint {
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  &:hover {
+    transform: translate(-3px, -3px) rotate(-0.5deg);
+    box-shadow: 
+      11px 11px 0 0 var(--black),
+      16px 16px 0 0 var(--mint);
+  }
+  
+  &:active {
+    transform: translate(3px, 3px) rotate(0.5deg);
+    box-shadow: 
+      4px 4px 0 0 var(--black),
+      6px 6px 0 0 var(--mint);
+  }
+}
+
+@utility neo-card-hover-coral {
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  &:hover {
+    transform: translate(-3px, -3px) rotate(-0.5deg);
+    box-shadow: 
+      11px 11px 0 0 var(--black),
+      16px 16px 0 0 var(--coral);
+  }
+  
+  &:active {
+    transform: translate(3px, 3px) rotate(0.5deg);
+    box-shadow: 
+      4px 4px 0 0 var(--black),
+      6px 6px 0 0 var(--coral);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BUTTONS - Angular & Aggressive
+   ═══════════════════════════════════════════════════════════════ */
 
 @utility neo-button {
   background: var(--white);
   border: 3px solid var(--black);
-  box-shadow: 4px 4px 0px 0px var(--black);
+  box-shadow: 
+    4px 4px 0 0 var(--black),
+    6px 6px 0 0 var(--butter);
   font-family: 'Archivo Black', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -128,27 +264,37 @@ body {
   cursor: pointer;
   transition: all 0.1s ease-out;
   will-change: transform, box-shadow;
+  clip-path: polygon(
+    8px 0, calc(100% - 8px) 0, 100% 8px,
+    100% calc(100% - 8px), calc(100% - 8px) 100%,
+    8px 100%, 0 calc(100% - 8px), 0 8px
+  );
   
   &:hover {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0px 0px var(--black);
+    transform: translate(-2px, -2px);
+    box-shadow: 
+      6px 6px 0 0 var(--black),
+      9px 9px 0 0 var(--butter);
   }
   
   &:active {
-    box-shadow: none;
-    transform: translate(4px, 4px);
+    box-shadow: 2px 2px 0 0 var(--black);
+    transform: translate(2px, 2px);
   }
   
   &:focus-visible {
     outline: none;
-    box-shadow: 4px 4px 0px 0px var(--black), 0 0 0 3px var(--butter);
+    box-shadow: 
+      4px 4px 0 0 var(--black),
+      6px 6px 0 0 var(--butter),
+      0 0 0 3px var(--butter);
   }
   
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
     transform: none;
-    box-shadow: 4px 4px 0px 0px var(--black);
+    box-shadow: 4px 4px 0 0 var(--black);
   }
 }
 
@@ -157,51 +303,95 @@ body {
   color: var(--black);
   
   &:hover {
-    background: color-mix(in srgb, var(--butter) 85%, var(--black));
+    background: color-mix(in srgb, var(--butter) 80%, var(--black));
   }
 }
 
 @utility neo-button-success {
   background: var(--mint);
   color: var(--black);
+  box-shadow: 
+    4px 4px 0 0 var(--black),
+    6px 6px 0 0 var(--mint);
   
   &:hover {
-    background: color-mix(in srgb, var(--mint) 85%, var(--black));
+    background: color-mix(in srgb, var(--mint) 80%, var(--black));
+    box-shadow: 
+      6px 6px 0 0 var(--black),
+      9px 9px 0 0 var(--mint);
   }
 }
 
 @utility neo-button-danger {
   background: var(--coral);
   color: var(--white);
+  box-shadow: 
+    4px 4px 0 0 var(--black),
+    6px 6px 0 0 var(--coral);
   
   &:hover {
-    background: color-mix(in srgb, var(--coral) 85%, var(--white));
+    background: color-mix(in srgb, var(--coral) 80%, var(--white));
+    box-shadow: 
+      6px 6px 0 0 var(--black),
+      9px 9px 0 0 var(--coral);
   }
 }
 
 @utility neo-button-secondary {
   background: var(--lavender);
   color: var(--black);
+  box-shadow: 
+    4px 4px 0 0 var(--black),
+    6px 6px 0 0 var(--lavender);
   
   &:hover {
-    background: color-mix(in srgb, var(--lavender) 85%, var(--black));
+    background: color-mix(in srgb, var(--lavender) 80%, var(--black));
+    box-shadow: 
+      6px 6px 0 0 var(--black),
+      9px 9px 0 0 var(--lavender);
   }
 }
+
+@utility neo-button-sky {
+  background: var(--sky);
+  color: var(--black);
+  box-shadow: 
+    4px 4px 0 0 var(--black),
+    6px 6px 0 0 var(--sky);
+  
+  &:hover {
+    background: color-mix(in srgb, var(--sky) 80%, var(--black));
+    box-shadow: 
+      6px 6px 0 0 var(--black),
+      9px 9px 0 0 var(--sky);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INPUTS - Bold & Angular
+   ═══════════════════════════════════════════════════════════════ */
 
 @utility neo-input {
   width: 100%;
   background: var(--white);
-  border: 3px solid var(--black);
+  border: 4px solid var(--black);
   padding: 0.75rem 1rem;
   font-family: 'Archivo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.875rem;
   transition: all 0.15s ease-out;
-  box-shadow: 4px 4px 0px 0px transparent;
+  box-shadow: 4px 4px 0 0 var(--black);
+  clip-path: polygon(
+    6px 0, calc(100% - 6px) 0, 100% 6px,
+    100% calc(100% - 6px), calc(100% - 6px) 100%,
+    6px 100%, 0 calc(100% - 6px), 0 6px
+  );
   
   &:focus {
     outline: none;
-    box-shadow: 6px 6px 0px 0px var(--black);
+    box-shadow: 
+      6px 6px 0 0 var(--black),
+      10px 10px 0 0 var(--butter);
   }
   
   &::placeholder {
@@ -211,44 +401,76 @@ body {
 }
 
 @utility neo-input-mint {
-  background: color-mix(in srgb, var(--mint) 15%, var(--white));
+  background: color-mix(in srgb, var(--mint) 20%, var(--white));
+  border-color: var(--black);
   
   &:focus {
-    background: color-mix(in srgb, var(--mint) 25%, var(--white));
+    background: color-mix(in srgb, var(--mint) 35%, var(--white));
+    box-shadow: 
+      6px 6px 0 0 var(--black),
+      10px 10px 0 0 var(--mint);
   }
 }
 
 @utility neo-input-coral {
-  background: color-mix(in srgb, var(--coral) 15%, var(--white));
+  background: color-mix(in srgb, var(--coral) 20%, var(--white));
+  border-color: var(--black);
   
   &:focus {
-    background: color-mix(in srgb, var(--coral) 25%, var(--white));
+    background: color-mix(in srgb, var(--coral) 35%, var(--white));
+    box-shadow: 
+      6px 6px 0 0 var(--black),
+      10px 10px 0 0 var(--coral);
   }
 }
 
 @utility neo-input-lavender {
-  background: color-mix(in srgb, var(--lavender) 15%, var(--white));
+  background: color-mix(in srgb, var(--lavender) 20%, var(--white));
+  border-color: var(--black);
   
   &:focus {
-    background: color-mix(in srgb, var(--lavender) 25%, var(--white));
+    background: color-mix(in srgb, var(--lavender) 35%, var(--white));
+    box-shadow: 
+      6px 6px 0 0 var(--black),
+      10px 10px 0 0 var(--lavender);
   }
 }
 
 @utility neo-input-sky {
-  background: color-mix(in srgb, var(--sky) 15%, var(--white));
+  background: color-mix(in srgb, var(--sky) 20%, var(--white));
+  border-color: var(--black);
   
   &:focus {
-    background: color-mix(in srgb, var(--sky) 25%, var(--white));
+    background: color-mix(in srgb, var(--sky) 35%, var(--white));
+    box-shadow: 
+      6px 6px 0 0 var(--black),
+      10px 10px 0 0 var(--sky);
   }
 }
+
+@utility neo-input-butter {
+  background: color-mix(in srgb, var(--butter) 20%, var(--white));
+  border-color: var(--black);
+  
+  &:focus {
+    background: color-mix(in srgb, var(--butter) 35%, var(--white));
+    box-shadow: 
+      6px 6px 0 0 var(--black),
+      10px 10px 0 0 var(--butter);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STRIPES & PATTERNS - Bold Decorative
+   ═══════════════════════════════════════════════════════════════ */
 
 @utility neo-stripe {
   background: repeating-linear-gradient(
     45deg,
     var(--butter),
-    var(--butter) 10px,
-    var(--coral) 10px,
-    var(--coral) 20px
+    var(--butter) 8px,
+    var(--coral) 8px,
+    var(--coral) 16px
   );
 }
 
@@ -256,9 +478,9 @@ body {
   background: repeating-linear-gradient(
     45deg,
     var(--mint),
-    var(--mint) 10px,
-    #3BA99C 10px,
-    #3BA99C 20px
+    var(--mint) 8px,
+    #00B5A0 8px,
+    #00B5A0 16px
   );
 }
 
@@ -266,11 +488,40 @@ body {
   background: repeating-linear-gradient(
     45deg,
     var(--lavender),
-    var(--lavender) 10px,
-    #8B5CF6 10px,
-    #8B5CF6 20px
+    var(--lavender) 8px,
+    #7C3AED 8px,
+    #7C3AED 16px
   );
 }
+
+@utility neo-stripe-sky {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--sky),
+    var(--sky) 8px,
+    #0095CC 8px,
+    #0095CC 16px
+  );
+}
+
+@utility neo-stripe-bold {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--butter),
+    var(--butter) 12px,
+    var(--black) 12px,
+    var(--black) 24px
+  );
+}
+
+@utility neo-halftone {
+  background-image: radial-gradient(circle, var(--black) 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TYPOGRAPHY - Bold & Aggressive
+   ═══════════════════════════════════════════════════════════════ */
 
 @utility neo-label {
   display: block;
@@ -286,24 +537,60 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  font-family: 'Archivo', sans-serif;
-  font-weight: 700;
+  font-family: 'Archivo Black', sans-serif;
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 0.25rem 0.5rem;
+  padding: 0.35rem 0.6rem;
   border: 2px solid var(--black);
-  box-shadow: 2px 2px 0px 0px var(--black);
+  box-shadow: 
+    2px 2px 0 0 var(--black),
+    4px 4px 0 0 var(--butter);
+  clip-path: polygon(
+    4px 0, calc(100% - 4px) 0, 100% 4px,
+    100% calc(100% - 4px), calc(100% - 4px) 100%,
+    4px 100%, 0 calc(100% - 4px), 0 4px
+  );
+}
+
+@utility neo-badge-mint {
+  background: var(--mint);
+  box-shadow: 
+    2px 2px 0 0 var(--black),
+    4px 4px 0 0 var(--mint);
+}
+
+@utility neo-badge-coral {
+  background: var(--coral);
+  color: var(--white);
+  box-shadow: 
+    2px 2px 0 0 var(--black),
+    4px 4px 0 0 var(--coral);
+}
+
+@utility neo-badge-lavender {
+  background: var(--lavender);
+  box-shadow: 
+    2px 2px 0 0 var(--black),
+    4px 4px 0 0 var(--lavender);
+}
+
+@utility neo-badge-sky {
+  background: var(--sky);
+  box-shadow: 
+    2px 2px 0 0 var(--black),
+    4px 4px 0 0 var(--sky);
 }
 
 @utility neo-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border: 2px solid var(--black);
   border-radius: 0;
   
   &.active {
     background: var(--mint);
+    box-shadow: 2px 2px 0 0 var(--black);
   }
   
   &.inactive {
@@ -314,8 +601,27 @@ body {
 @utility neo-title {
   font-family: 'Archivo Black', sans-serif;
   text-transform: uppercase;
-  letter-spacing: -0.02em;
-  line-height: 0.9;
+  letter-spacing: -0.03em;
+  line-height: 0.85;
+  text-shadow: 3px 3px 0 var(--butter);
+}
+
+@utility neo-title-mint {
+  text-shadow: 3px 3px 0 var(--mint);
+}
+
+@utility neo-title-coral {
+  text-shadow: 3px 3px 0 var(--coral);
+}
+
+@utility neo-title-lavender {
+  text-shadow: 3px 3px 0 var(--lavender);
+}
+
+@utility neo-title-outline {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--black);
+  text-shadow: none;
 }
 
 @utility neo-mono {
@@ -333,72 +639,167 @@ body {
   border-bottom: 4px solid var(--black);
 }
 
-/* 
-  VISUAL STANDARDS DOCUMENTATION:
+@utility neo-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.5rem 1rem;
+  border: 3px solid var(--black);
+  transform: rotate(-3deg);
+  color: var(--black);
+}
+
+@utility neo-stamp-approved {
+  background: var(--mint);
+  border-color: var(--black);
+  color: var(--black);
+}
+
+@utility neo-stamp-complete {
+  background: var(--butter);
+  border-color: var(--black);
+  color: var(--black);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NAVIGATION - Angular Tabs
+   ═══════════════════════════════════════════════════════════════ */
+
+@utility neo-nav-item {
+  padding: 0.5rem 1rem;
+  border: 3px solid var(--black);
+  background: var(--white);
+  font-family: 'Archivo Black', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.1s ease-out;
+  box-shadow: 3px 3px 0 0 var(--black);
+  clip-path: polygon(
+    6px 0, calc(100% - 6px) 0, 100% 6px,
+    100% calc(100% - 6px), calc(100% - 6px) 100%,
+    6px 100%, 0 calc(100% - 6px), 0 6px
+  );
   
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 0 var(--black);
+  }
+  
+  &.active {
+    background: var(--butter);
+    box-shadow: 
+      4px 4px 0 0 var(--black),
+      7px 7px 0 0 var(--butter);
+    transform: translate(-2px, -2px);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MODALS - Dramatic Overlays
+   ═══════════════════════════════════════════════════════════════ */
+
+@utility neo-modal {
+  background: var(--white);
+  border: 4px solid var(--black);
+  box-shadow: 
+    12px 12px 0 0 var(--black),
+    20px 20px 0 0 var(--butter);
+  clip-path: polygon(
+    20px 0, calc(100% - 20px) 0, 100% 20px,
+    100% calc(100% - 20px), calc(100% - 20px) 100%,
+    20px 100%, 0 calc(100% - 20px), 0 20px
+  );
+}
+
+@utility neo-modal-coral {
+  box-shadow: 
+    12px 12px 0 0 var(--black),
+    20px 20px 0 0 var(--coral);
+}
+
+@utility neo-modal-mint {
+  box-shadow: 
+    12px 12px 0 0 var(--black),
+    20px 20px 0 0 var(--mint);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VISUAL STANDARDS DOCUMENTATION
+   ═══════════════════════════════════════════════════════════════ */
+
+/*
   Borders:
-    - border-4: Main cards (neo-card), page headers, stat cards
-    - border-3: Buttons (neo-button), inputs (neo-input), inner sections
-    - border-2: Badges (neo-badge), small chips, decorative elements
-  
-  Shadows (box-shadow):
-    - 12px: Modals (centered overlays)
-    - 10px: Highlighted/success states, special cards
-    - 8px: Main cards (neo-card), page headers
-    - 6px: Error banners, dashboard layout header, inner cards
-    - 4px: Buttons (neo-button), form elements
-    - 3px: Nav items (when inactive)
-    - 2px: Small action buttons (edit/delete icons), badges
-  
-  Padding in cards:
-    - p-6: Standard card padding
-    - p-4: Compact cards (date browser)
-    - p-8: Auth forms, error states
-  
-  Section headers pattern:
-    <div className="flex items-center gap-2 mb-4 pb-3 border-b-4 border-black">
-      <span className="neo-title text-sm text-[var(--accent)]">►</span>
-      <span className="neo-title text-sm">TITLE</span>
-    </div>
+    - border-4: Main cards, page headers, stat cards, modals
+    - border-3: Buttons, nav items, stamps
+    - border-2: Badges, small chips
+
+  Shadow Layers (Triple-tier brutalism):
+    - Primary: Black hard shadow (8px for cards, 4px for buttons)
+    - Secondary: Colored accent shadow (12px for cards, 6px for buttons)
+    
+  Clip-path corner cuts:
+    - Cards: 12-16px cuts
+    - Buttons: 6-8px cuts  
+    - Badges: 4px cuts
+    - Modals: 20px cuts
+    
+  Text shadows:
+    - Headlines: 3px offset with accent color
 */
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATIONS - Punchy & Angular
+   ═══════════════════════════════════════════════════════════════ */
 
 @keyframes wobble {
   0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(-3deg); }
-  75% { transform: rotate(3deg); }
+  25% { transform: rotate(-4deg); }
+  75% { transform: rotate(4deg); }
 }
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
-  20%, 40%, 60%, 80% { transform: translateX(4px); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-6px); }
+  20%, 40%, 60%, 80% { transform: translateX(6px); }
 }
 
 @keyframes pop-in {
-  0% { transform: scale(0.8); opacity: 0; }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); opacity: 1; }
+  0% { transform: scale(0.7) rotate(-5deg); opacity: 0; }
+  50% { transform: scale(1.1) rotate(2deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 
 @keyframes stamp {
-  0% { transform: scale(1.5); opacity: 0; }
-  60% { transform: scale(0.95); }
-  100% { transform: scale(1); opacity: 1; }
+  0% { transform: scale(2) rotate(-15deg); opacity: 0; }
+  50% { transform: scale(0.9) rotate(2deg); }
+  70% { transform: scale(1.05) rotate(-1deg); }
+  100% { transform: scale(1) rotate(-3deg); opacity: 1; }
 }
 
 @keyframes slide-up {
-  0% { transform: translateY(20px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  0% { transform: translateY(30px) rotate(-2deg); opacity: 0; }
+  100% { transform: translateY(0) rotate(0deg); opacity: 1; }
 }
 
 @keyframes slide-down {
-  0% { transform: translateY(-20px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  0% { transform: translateY(-30px) rotate(2deg); opacity: 0; }
+  100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+}
+
+@keyframes slide-diagonal {
+  0% { transform: translate(40px, 40px); opacity: 0; }
+  100% { transform: translate(0, 0); opacity: 1; }
 }
 
 @keyframes pulse-bg {
   0%, 100% { background-color: var(--white); }
-  50% { background-color: #FFF9C4; }
+  50% { background-color: var(--butter); }
 }
 
 @keyframes spin-slow {
@@ -412,10 +813,22 @@ body {
 }
 
 @keyframes bounce-xy {
-  0%, 100% { transform: translate(0, 0); }
-  25% { transform: translate(-2px, -2px); }
-  50% { transform: translate(2px, -2px); }
-  75% { transform: translate(-2px, 2px); }
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-3px, -3px) rotate(-1deg); }
+  50% { transform: translate(3px, -3px) rotate(1deg); }
+  75% { transform: translate(-3px, 3px) rotate(-1deg); }
+}
+
+@keyframes stamp-drop {
+  0% { transform: translateY(-100px) rotate(15deg); opacity: 0; }
+  60% { transform: translateY(10px) rotate(-5deg); }
+  80% { transform: translateY(-5px) rotate(2deg); }
+  100% { transform: translateY(0) rotate(-3deg); opacity: 1; }
+}
+
+@keyframes card-flip {
+  0% { transform: perspective(1000px) rotateY(0deg); }
+  100% { transform: perspective(1000px) rotateY(180deg); }
 }
 
 @utility animate-wobble {
@@ -423,7 +836,7 @@ body {
 }
 
 @utility animate-shake {
-  animation: shake 0.4s ease-out;
+  animation: shake 0.5s ease-out;
 }
 
 @utility animate-pop-in {
@@ -431,15 +844,19 @@ body {
 }
 
 @utility animate-stamp {
-  animation: stamp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: stamp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 @utility animate-slide-up {
-  animation: slide-up 0.4s ease-out forwards;
+  animation: slide-up 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 @utility animate-slide-down {
-  animation: slide-down 0.4s ease-out forwards;
+  animation: slide-down 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@utility animate-slide-diagonal {
+  animation: slide-diagonal 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 @utility animate-pulse-bg {
@@ -455,7 +872,11 @@ body {
 }
 
 @utility animate-bounce-xy {
-  animation: bounce-xy 0.5s ease-in-out;
+  animation: bounce-xy 0.6s ease-in-out;
+}
+
+@utility animate-stamp-drop {
+  animation: stamp-drop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
