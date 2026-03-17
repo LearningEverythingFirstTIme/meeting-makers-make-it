@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { getClientDb } from "@/lib/firebase/client";
 import { motion, AnimatePresence } from "framer-motion";
 import { collection, doc, onSnapshot, query, serverTimestamp, setDoc, where } from "firebase/firestore";
@@ -11,6 +11,7 @@ import { useAuth } from "@/components/auth-provider";
 import { toLocalDayKey } from "@/lib/date";
 import { dailyInventorySchema, type DailyInventoryInput } from "@/lib/validators";
 import type { DailyInventory } from "@/types";
+import { useGratitudeGrid, DAY_NAMES } from "@/hooks/useGratitudeGrid";
 
 const INVENTORY_PROMPTS = [
   {
@@ -238,6 +239,9 @@ export function InventoryContent() {
 
   // Get all inventory entries sorted by date (including today)
   const allEntries = [todayInventory, ...pastInventory].filter(Boolean) as DailyInventory[];
+  
+  // Gratitude grid
+  const { gratitudeGrid, gratitudeWeeks, totalGratitudeDays, currentStreak, longestStreak } = useGratitudeGrid(allEntries);
   
   // Get current viewing entry
   const getViewingEntry = (): DailyInventory | null => {
@@ -591,32 +595,82 @@ export function InventoryContent() {
           )}
         </motion.div>
 
-        {/* Stats Summary */}
-        {allEntries.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="neo-card p-6 bg-[var(--mint)]/20"
-          >
-            <h3 className="neo-title text-lg mb-4">Your Inventory History</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="border-3 border-black bg-[var(--white)] p-4 text-center">
-                <p className="neo-title text-3xl">{allEntries.length}</p>
-                <p className="neo-mono text-xs">Total Entries</p>
-              </div>
-              <div className="border-3 border-black bg-[var(--white)] p-4 text-center">
-                <p className="neo-title text-3xl">
-                  {allEntries.filter(e => e.gratitude).length}
-                </p>
-                <p className="neo-mono text-xs">Gratitude Entries</p>
-              </div>
+        {/* Gratitude Tracker */}
+        <motion.section
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="neo-card p-6"
+        >
+          <div className="mb-4 flex items-center gap-2 border-b-4 border-black pb-3">
+            <span className="neo-title text-sm text-[var(--mint)]">♥</span>
+            <span className="neo-title text-sm">GRATITUDE TRACKER</span>
+          </div>
+          
+          {/* Streak Stats */}
+          <div className="flex gap-4 mb-4">
+            <div className="flex items-center gap-2">
+              <span className="neo-mono text-xs text-[var(--black)]/60">CURRENT STREAK:</span>
+              <span className="neo-title text-lg text-[var(--mint)]">{currentStreak}</span>
             </div>
-            <p className="neo-mono text-xs text-[var(--black)]/60 mt-4 text-center">
-              Keep coming back! Progress, not perfection.
-            </p>
-          </motion.div>
-        )}
+            <div className="flex items-center gap-2">
+              <span className="neo-mono text-xs text-[var(--black)]/60">BEST:</span>
+              <span className="neo-title text-lg">{longestStreak}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="neo-mono text-xs text-[var(--black)]/60">TOTAL:</span>
+              <span className="neo-title text-lg">{totalGratitudeDays}</span>
+            </div>
+          </div>
+
+          {/* Grid */}
+          <div className="w-full">
+            <div
+              className="grid gap-1"
+              style={{ gridTemplateColumns: `2.75rem repeat(${gratitudeWeeks}, 1fr)` }}
+            >
+              {/* Month labels row */}
+              <div />
+              {gratitudeGrid.map((week, weekIndex) => (
+                <div
+                  key={`month-${weekIndex}`}
+                  className="neo-mono h-5 text-[10px] leading-tight text-[var(--black)]/70"
+                >
+                  {week.label}
+                </div>
+              ))}
+              {/* Day rows */}
+              {Array.from({ length: 7 }, (_, dayIndex) => (
+                <Fragment key={dayIndex}>
+                  <div className="neo-mono flex items-center justify-end pr-1 text-[10px] text-[var(--black)]/70">
+                    {DAY_NAMES[dayIndex]}
+                  </div>
+                  {gratitudeGrid.map((week, weekIndex) => {
+                    const day = week.days[dayIndex];
+                    return (
+                      <motion.div
+                        key={day.key}
+                        initial={{ opacity: 0, scale: 0.85 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: weekIndex * 0.02 }}
+                        className={`aspect-square border-3 border-black ${day.isToday ? "ring-2 ring-black ring-offset-1 ring-offset-[var(--cream)]" : ""}`}
+                        style={{
+                          backgroundColor: day.hasGratitude ? "var(--mint)" : "var(--white)",
+                          boxShadow: day.hasGratitude ? "2px 2px 0 0 var(--black)" : "none",
+                        }}
+                        title={day.hasGratitude ? `Gratitude logged` : "No gratitude"}
+                      />
+                    );
+                  })}
+                </Fragment>
+              ))}
+            </div>
+          </div>
+
+          <p className="neo-mono text-[10px] text-center text-[var(--black)]/60 mt-4">
+            Last {gratitudeWeeks} weeks of gratitude entries.
+          </p>
+        </motion.section>
       </div>
     </div>
   );
