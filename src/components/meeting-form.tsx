@@ -84,16 +84,15 @@ export const MeetingForm = ({
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: shakeKey > 0 ? 0.3 : 0.3 }}
       onSubmit={handleSubmit}
-      className="neo-card p-6 neo-card-hover"
+      className="neo-card p-6"
     >
       <div className="flex items-center gap-2 mb-5 pb-4 border-b-4 border-black">
         <motion.div 
           className="h-3 w-3 bg-[var(--butter)] border-3 border-black"
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          style={{ boxShadow: '2px 2px 0 0 var(--black)' }}
         />
-        <span className="neo-title text-sm" style={{ textShadow: '2px 2px 0 var(--butter)' }}>MEETING DATA</span>
+        <span className="neo-title text-sm">MEETING DATA</span>
       </div>
 
       <motion.div variants={inputVariants} initial="hidden" animate="show" transition={{ delay: 0.05 }}>
@@ -143,11 +142,11 @@ export const MeetingForm = ({
             animate="show"
             exit="exit"
             className="bg-[var(--coral)] border-4 border-black p-4 mb-4"
-            style={{ boxShadow: '6px 6px 0 0 var(--black), 10px 10px 0 0 var(--coral)' }}
+            style={{ boxShadow: '6px 6px 0px 0px black' }}
           >
             <div className="flex items-center gap-2">
-              <div className="h-3 w-3 bg-black" style={{ boxShadow: '2px 2px 0 0 var(--coral)' }} />
-              <span className="neo-mono text-xs uppercase text-[var(--white)]" style={{ textShadow: '1px 1px 0 var(--black)' }}>{error}</span>
+              <div className="h-3 w-3 bg-black" />
+              <span className="neo-mono text-xs uppercase text-[var(--black)]">{error}</span>
             </div>
           </motion.div>
         )}

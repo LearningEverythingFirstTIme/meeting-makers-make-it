@@ -82,14 +82,14 @@ export const TreasurySummary = ({ className }: TreasurySummaryProps) => {
     >
       <Link href="/treasury" className="block h-full">
         <motion.div
-          whileHover={{ scale: 1.01, y: -2, rotate: -0.3 }}
+          whileHover={{ scale: 1.01, y: -2 }}
           whileTap={{ scale: 0.99 }}
-          className={["neo-card flex h-full cursor-pointer flex-col p-6 neo-card-hover", className].filter(Boolean).join(" ")}
+          className={["neo-card flex h-full cursor-pointer flex-col p-6", className].filter(Boolean).join(" ")}
         >
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
               <DollarSign size={18} strokeWidth={3} />
-              <span className="neo-title text-xs" style={{ textShadow: '2px 2px 0 var(--butter)' }}>TREASURY</span>
+              <span className="neo-title text-xs">TREASURY</span>
             </div>
             <ArrowRight size={16} strokeWidth={3} className="text-[var(--black)]" />
           </div>
@@ -104,7 +104,6 @@ export const TreasurySummary = ({ className }: TreasurySummaryProps) => {
               <div className="mt-auto">
                 <motion.p
                   className={`neo-title text-5xl ${summary.net >= 0 ? 'text-[var(--black)]' : 'text-[var(--coral)]'}`}
-                  style={{ textShadow: summary.net >= 0 ? '3px 3px 0 var(--butter)' : '3px 3px 0 var(--black)' }}
                   key={summary.net}
                   initial={{ scale: 1.2 }}
                   animate={{ scale: 1 }}
@@ -118,7 +117,7 @@ export const TreasurySummary = ({ className }: TreasurySummaryProps) => {
                     <TrendingUp size={16} strokeWidth={3} className="text-[var(--mint)]" />
                     <div>
                       <p className="neo-mono text-xs text-[var(--black)]">CONTRIBUTIONS</p>
-                      <p className="neo-mono text-base font-bold" style={{ color: 'var(--mint)', textShadow: '1px 1px 0 var(--black)' }}>
+                      <p className="neo-mono text-base font-bold text-[var(--mint)]">
                         {formatCurrency(summary.contributions)}
                       </p>
                     </div>
@@ -127,7 +126,7 @@ export const TreasurySummary = ({ className }: TreasurySummaryProps) => {
                     <TrendingDown size={16} strokeWidth={3} className="text-[var(--coral)]" />
                     <div>
                       <p className="neo-mono text-xs text-[var(--black)]">EXPENSES</p>
-                      <p className="neo-mono text-base font-bold" style={{ color: 'var(--coral)', textShadow: '1px 1px 0 var(--black)' }}>
+                      <p className="neo-mono text-base font-bold text-[var(--coral)]">
                         {formatCurrency(summary.expenses)}
                       </p>
                     </div>

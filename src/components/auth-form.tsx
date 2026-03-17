@@ -95,35 +95,32 @@ export const AuthForm = () => {
       className="w-full max-w-md"
     >
       <motion.div 
-        className="neo-card mb-6 p-2 neo-card-hover"
-        whileHover={{ scale: 1.02, rotate: 0.5 }}
+        className="neo-card mb-6 p-2"
+        whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.2 }}
       >
-        <div className="bg-[var(--lavender)] border-4 border-black p-6" style={{ boxShadow: '6px 6px 0 0 var(--black)' }}>
+        <div className="bg-[var(--lavender)] border-4 border-black p-6">
           <div className="flex items-center gap-3 mb-4">
             <motion.div 
               className="h-4 w-4 bg-[var(--butter)] border-3 border-black"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1, repeat: Infinity }}
-              style={{ boxShadow: '2px 2px 0 0 var(--black)' }}
             />
             <motion.div 
               className="h-4 w-4 bg-[var(--coral)] border-3 border-black"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1, repeat: Infinity, delay: 0.2 }}
-              style={{ boxShadow: '2px 2px 0 0 var(--black)' }}
             />
             <motion.div 
               className="h-4 w-4 bg-[var(--mint)] border-3 border-black"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1, repeat: Infinity, delay: 0.4 }}
-              style={{ boxShadow: '2px 2px 0 0 var(--black)' }}
             />
           </div>
-          <h1 className="neo-title text-5xl text-[var(--black)] leading-none" style={{ textShadow: '4px 4px 0 var(--black)' }}>
+          <h1 className="neo-title text-5xl text-[var(--black)] leading-none">
             MEETING<br/>
             MAKERS<br/>
-            <span className="text-[var(--white)]" style={{ textShadow: '3px 3px 0 var(--black)' }}>
+            <span className="text-[var(--lavender)]" style={{ textShadow: '3px 3px 0px black' }}>
               v2.0
             </span>
           </h1>
@@ -131,7 +128,7 @@ export const AuthForm = () => {
       </motion.div>
 
       <motion.div 
-        className="neo-card p-8 neo-card-hover"
+        className="neo-card p-8"
         animate={shake ? { x: [-8, 8, -8, 8, 0] } : {}}
         transition={{ duration: 0.4 }}
       >
@@ -141,8 +138,8 @@ export const AuthForm = () => {
           animate={{ opacity: 1, y: 0 }}
           className="mb-6 pb-4 border-b-4 border-black flex items-center gap-2"
         >
-          <span className="neo-title text-sm text-[var(--coral)]" style={{ textShadow: '2px 2px 0 var(--black)' }}>►</span>
-          <span className="neo-title text-lg text-[var(--black)]" style={{ textShadow: '2px 2px 0 var(--coral)' }}>
+          <span className="neo-title text-sm text-[var(--coral)]">►</span>
+          <span className="neo-title text-lg text-[var(--black)]">
             {mode === "login" ? "AUTHENTICATE" : "REGISTER"}
           </span>
         </motion.div>
@@ -189,9 +186,9 @@ export const AuthForm = () => {
                 animate="visible"
                 exit="exit"
                 className="bg-[var(--coral)] border-4 border-black p-4"
-                style={{ boxShadow: '6px 6px 0 0 var(--black), 10px 10px 0 0 var(--coral)' }}
+                style={{ boxShadow: '6px 6px 0px 0px black' }}
               >
-                <span className="neo-mono text-xs text-[var(--white)] uppercase" style={{ textShadow: '1px 1px 0 var(--black)' }}>
+                <span className="neo-mono text-xs text-[var(--black)] uppercase">
                   ⚠ {error}
                 </span>
               </motion.div>
@@ -244,7 +241,7 @@ export const AuthForm = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
       >
-        <p className="neo-mono text-xs text-[var(--black)] bg-[var(--white)] border-3 border-black px-4 py-2 inline-block" style={{ boxShadow: '4px 4px 0 0 var(--black), 6px 6px 0 0 var(--mint)' }}>
+        <p className="neo-mono text-xs text-[var(--black)] bg-[var(--white)] border-3 border-black px-4 py-2 inline-block" style={{ boxShadow: '4px 4px 0px 0px black' }}>
           🔒 SECURE // ENCRYPTED // LOGGED
         </p>
       </motion.div>

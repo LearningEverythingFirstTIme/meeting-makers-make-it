@@ -114,7 +114,7 @@ type SortableDashboardSectionProps = DashboardSectionDefinition & {
   isEditing: boolean;
 };
 
-const dashboardStatCardClass = "neo-dashboard-stat neo-card-hover";
+const dashboardStatCardClass = "neo-dashboard-stat";
 
 const SortableDashboardSection = ({
   id,
@@ -152,7 +152,7 @@ const SortableDashboardSection = ({
             : "",
           isDragging ? "opacity-95" : "",
         ].join(" ")}
-        style={isEditing ? { boxShadow: "8px 8px 0 0 var(--black), 12px 12px 0 0 var(--butter)" } : undefined}
+        style={isEditing ? { boxShadow: "8px 8px 0px 0px black" } : undefined}
       >
         {isEditing ? (
           <div className="mb-3 flex items-center justify-between gap-3 border-b-2 border-dashed border-black pb-3">
@@ -415,10 +415,10 @@ export const Dashboard = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
             className="bg-[var(--coral)] border-4 border-black p-1"
-            style={{ boxShadow: "8px 8px 0 0 var(--black), 12px 12px 0 0 var(--coral)" }}
+            style={{ boxShadow: "8px 8px 0px 0px black" }}
           >
             <div className="border-3 border-black bg-[var(--white)] p-4">
-              <h2 className="neo-title flex items-center gap-2 text-xl text-[var(--black)]" style={{ textShadow: '3px 3px 0 var(--coral)' }}>
+              <h2 className="neo-title flex items-center gap-2 text-xl text-[var(--black)]">
                 <Plus size={24} strokeWidth={3} /> ADD MEETING
               </h2>
             </div>
@@ -441,8 +441,8 @@ export const Dashboard = () => {
           className="neo-card p-6"
         >
           <div className="mb-4 flex items-center gap-2 border-b-4 border-black pb-3">
-            <span className="neo-title text-sm text-[var(--mint)]" style={{ textShadow: '2px 2px 0 var(--black)' }}>►</span>
-            <span className="neo-title text-sm" style={{ textShadow: '3px 3px 0 var(--mint)' }}>RECENT CHECK-INS</span>
+            <span className="neo-title text-sm text-[var(--mint)]">►</span>
+            <span className="neo-title text-sm">RECENT CHECK-INS</span>
           </div>
           <ul className="space-y-2">
             {checkins.slice(0, 8).map((entry) => (
@@ -541,10 +541,10 @@ export const Dashboard = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.15 }}
             className="bg-[var(--sky)] border-4 border-black p-1"
-            style={{ boxShadow: "8px 8px 0 0 var(--black), 12px 12px 0 0 var(--sky)" }}
+            style={{ boxShadow: "8px 8px 0px 0px black" }}
           >
             <div className="border-3 border-black bg-[var(--white)] p-4">
-              <h2 className="neo-title text-xl text-[var(--black)]" style={{ textShadow: '3px 3px 0 var(--sky)' }}>YOUR MEETINGS</h2>
+              <h2 className="neo-title text-xl text-[var(--black)]">YOUR MEETINGS</h2>
             </div>
           </motion.div>
 
@@ -558,9 +558,9 @@ export const Dashboard = () => {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                 className="mx-auto mb-4 h-12 w-12 border-4 border-black bg-[var(--butter)]"
-                style={{ boxShadow: "6px 6px 0 0 var(--black), 10px 10px 0 0 var(--butter)" }}
+                style={{ boxShadow: "6px 6px 0px 0px black" }}
               />
-              <p className="neo-title animate-blink" style={{ textShadow: '3px 3px 0 var(--butter)' }}>LOADING...</p>
+              <p className="neo-title animate-blink">LOADING...</p>
             </motion.div>
           ) : null}
 
@@ -582,9 +582,9 @@ export const Dashboard = () => {
                     layout
                     variants={meetingCardVariants}
                     key={meeting.id}
-                    className={`neo-card p-6 neo-card-hover ${todaysCheckin ? "border-[var(--mint)]" : ""}`}
-                    style={todaysCheckin ? { boxShadow: "8px 8px 0 0 var(--black), 14px 14px 0 0 var(--mint)" } : {}}
-                    whileHover={{ scale: 1.01, rotate: -0.3 }}
+                    className={`neo-card p-6 ${todaysCheckin ? "border-[var(--mint)]" : ""}`}
+                    style={todaysCheckin ? { boxShadow: "10px 10px 0px 0px var(--mint)" } : {}}
+                    whileHover={{ scale: 1.01 }}
                     transition={{ duration: 0.2 }}
                   >
                     {isEditing ? (
@@ -653,8 +653,9 @@ export const Dashboard = () => {
                               className={`neo-button py-2 text-xs ${
                                 todaysCheckin
                                   ? "neo-button-success"
-                                  : "neo-button-sky"
+                                  : "bg-[var(--sky)] border-3 border-black text-[var(--black)] hover:bg-[#7DD3FC]"
                               }`}
+                              style={!todaysCheckin ? { boxShadow: "4px 4px 0px 0px black" } : {}}
                             >
                               {todaysCheckin ? (
                                 <>
@@ -703,9 +704,8 @@ export const Dashboard = () => {
                   className="mx-auto mb-4 h-6 w-6 border-3 border-black bg-[var(--coral)]"
                   animate={{ rotate: [0, 10, -10, 0] }}
                   transition={{ duration: 0.5, repeat: Infinity }}
-                  style={{ boxShadow: "4px 4px 0 0 var(--black), 6px 6px 0 0 var(--coral)" }}
                 />
-                <p className="neo-title text-lg" style={{ textShadow: '3px 3px 0 var(--coral)' }}>NO MEETINGS</p>
+                <p className="neo-title text-lg">NO MEETINGS</p>
                 <p className="neo-mono mt-2 text-xs">Add a meeting above to start tracking.</p>
               </motion.div>
             ) : null}
@@ -726,8 +726,8 @@ export const Dashboard = () => {
           className="neo-card p-6"
         >
           <div className="mb-4 flex items-center gap-2 border-b-4 border-black pb-3">
-            <span className="neo-title text-sm text-[var(--sky)]" style={{ textShadow: '2px 2px 0 var(--black)' }}>►</span>
-            <span className="neo-title text-sm" style={{ textShadow: '3px 3px 0 var(--sky)' }}>ACTIVITY TRACKER</span>
+            <span className="neo-title text-sm text-[var(--sky)]">►</span>
+            <span className="neo-title text-sm">ACTIVITY TRACKER</span>
           </div>
           <div className="w-full">
             <div
@@ -807,8 +807,8 @@ export const Dashboard = () => {
           className="neo-card p-6"
         >
           <div className="mb-4 flex items-center gap-2 border-b-4 border-black pb-3">
-            <span className="neo-title text-sm text-[var(--lavender)]" style={{ textShadow: '2px 2px 0 var(--black)' }}>►</span>
-            <span className="neo-title text-sm" style={{ textShadow: '3px 3px 0 var(--lavender)' }}>WEEKLY LOG</span>
+            <span className="neo-title text-sm text-[var(--lavender)]">►</span>
+            <span className="neo-title text-sm">WEEKLY LOG</span>
           </div>
           <ul className="space-y-2">
             {thisWeekCheckins.map((entry, i) => {
@@ -854,11 +854,11 @@ export const Dashboard = () => {
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 className="border-4 border-black bg-[var(--coral)] p-4"
-                style={{ boxShadow: "8px 8px 0 0 var(--black), 12px 12px 0 0 var(--coral)" }}
+                style={{ boxShadow: "8px 8px 0px 0px black" }}
               >
                 <div className="flex items-center gap-3">
-                  <div className="h-4 w-4 bg-black" style={{ boxShadow: "2px 2px 0 0 var(--coral)" }} />
-                  <span className="neo-title text-sm text-[var(--white)]" style={{ textShadow: '2px 2px 0 var(--black)' }}>ERROR: {error}</span>
+                  <div className="h-4 w-4 bg-black" />
+                  <span className="neo-title text-sm text-[var(--black)]">ERROR: {error}</span>
                 </div>
               </motion.div>
             )}
@@ -868,7 +868,7 @@ export const Dashboard = () => {
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             className="border-4 border-black bg-[var(--white)] p-1"
-            style={{ boxShadow: "8px 8px 0 0 var(--black), 12px 12px 0 0 var(--butter)" }}
+            style={{ boxShadow: "8px 8px 0px 0px black" }}
           >
             <div className="flex flex-col gap-4 border-2 border-black bg-[var(--cream)] p-4 md:flex-row md:items-center md:justify-between">
               <div>
