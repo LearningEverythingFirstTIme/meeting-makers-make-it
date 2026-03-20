@@ -23,7 +23,7 @@ export const Navigation = () => {
   ];
 
   return (
-    <div className="bg-[var(--surface-container-lowest)] border-b-4 border-[var(--on-background)] sticky top-0 z-50">
+    <div className="bg-[var(--white)] border-b-4 border-black sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
         {/* Desktop & Tablet Navigation */}
         <div className="hidden md:flex items-center justify-between py-4 gap-4">
@@ -37,15 +37,12 @@ export const Navigation = () => {
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => { if (isSupported) trigger('light'); }}
-                    className={`flex items-center gap-2.5 px-4 py-2.5 border-3 border-[var(--on-background)] neo-title text-sm transition-all ${
+                    className={`flex items-center gap-2.5 px-4 py-2.5 border-3 border-black neo-title text-sm transition-colors ${
                       isActive 
-                        ? "bg-[var(--tertiary)] text-[var(--on-tertiary)]" 
-                        : "bg-[var(--surface-container-lowest)] text-[var(--on-background)] hover:bg-[var(--surface-container)]"
+                        ? "bg-[var(--butter)] text-[var(--black)]" 
+                        : "bg-[var(--white)] text-[var(--black)] hover:bg-[var(--cream)]"
                     }`}
-                    style={{ 
-                      boxShadow: isActive ? 'none' : '4px 4px 0px 0px var(--on-background)',
-                      transform: isActive ? 'translate(-2px, -2px)' : undefined
-                    }}
+                    style={{ boxShadow: isActive ? 'none' : '4px 4px 0px 0px black' }}
                   >
                     <item.icon size={18} strokeWidth={3} />
                     <span className="hidden lg:inline">{item.label}</span>
@@ -64,14 +61,14 @@ export const Navigation = () => {
               whileTap={{ scale: 0.95 }}
               type="button"
               onClick={() => { if (isSupported) trigger('light'); toggleTheme(); }}
-              className="flex items-center justify-center w-10 h-10 border-3 border-[var(--on-background)] bg-[var(--primary)]"
-              style={{ boxShadow: '4px 4px 0px 0px var(--on-background)' }}
+              className="flex items-center justify-center w-10 h-10 border-3 border-black bg-[var(--butter)]"
+              style={{ boxShadow: '4px 4px 0px 0px black' }}
               title={`Theme: ${resolvedTheme}`}
             >
               {resolvedTheme === "dark" ? (
-                <Moon size={18} strokeWidth={3} className="text-[var(--on-primary)]" />
+                <Moon size={18} strokeWidth={3} className="text-[var(--black)]" />
               ) : (
-                <Sun size={18} strokeWidth={3} className="text-[var(--on-primary)]" />
+                <Sun size={18} strokeWidth={3} className="text-[var(--black)]" />
               )}
             </motion.button>
 
@@ -81,17 +78,17 @@ export const Navigation = () => {
                 whileHover={{ scale: 1.03, y: -1 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => { if (isSupported) trigger('light'); }}
-                className="flex items-center gap-2.5 px-5 py-2.5 border-3 border-[var(--on-background)] neo-title text-sm bg-[var(--tertiary)] text-[var(--on-tertiary)] hover:opacity-90"
-                style={{ boxShadow: '4px 4px 0px 0px var(--on-background)' }}
+                className="flex items-center gap-2.5 px-5 py-2.5 border-3 border-black neo-title text-sm bg-[var(--coral)] text-[var(--black)] hover:bg-[#FF6B6B]"
+                style={{ boxShadow: '4px 4px 0px 0px black' }}
               >
-                <Heart size={18} strokeWidth={3} fill="currentColor" />
+                <Heart size={18} strokeWidth={3} fill="var(--black)" />
                 <span className="hidden lg:inline">24/7 HELP</span>
                 <span className="lg:hidden">HELP</span>
               </motion.div>
             </Link>
             
             {/* User Email - Desktop Only */}
-            <span className="neo-mono text-xs text-[var(--on-surface-variant)] hidden xl:block max-w-[160px] truncate">
+            <span className="neo-mono text-xs text-[var(--black)] hidden xl:block max-w-[160px] truncate">
               {user?.email}
             </span>
             
@@ -120,15 +117,12 @@ export const Navigation = () => {
                   <motion.div
                     whileTap={{ scale: 0.95 }}
                     onClick={() => { if (isSupported) trigger('light'); }}
-                    className={`flex items-center justify-center w-11 h-11 border-3 border-[var(--on-background)] ${
+                    className={`flex items-center justify-center w-11 h-11 border-3 border-black ${
                       isActive 
-                        ? "bg-[var(--tertiary)] text-[var(--on-tertiary)]" 
-                        : "bg-[var(--surface-container-lowest)] text-[var(--on-background)]"
+                        ? "bg-[var(--butter)] text-[var(--black)]" 
+                        : "bg-[var(--white)] text-[var(--black)]"
                     }`}
-                    style={{ 
-                      boxShadow: isActive ? 'none' : '3px 3px 0px 0px var(--on-background)',
-                      transform: isActive ? 'translate(-1px, -1px)' : undefined
-                    }}
+                    style={{ boxShadow: isActive ? 'none' : '3px 3px 0px 0px black' }}
                     title={item.label}
                   >
                     <item.icon size={22} strokeWidth={3} />
@@ -145,14 +139,14 @@ export const Navigation = () => {
               whileTap={{ scale: 0.95 }}
               type="button"
               onClick={() => { if (isSupported) trigger('light'); toggleTheme(); }}
-              className="flex items-center justify-center w-11 h-11 border-3 border-[var(--on-background)] bg-[var(--primary)]"
-              style={{ boxShadow: '3px 3px 0px 0px var(--on-background)' }}
+              className="flex items-center justify-center w-11 h-11 border-3 border-black bg-[var(--butter)]"
+              style={{ boxShadow: '3px 3px 0px 0px black' }}
               title={`Theme: ${resolvedTheme}`}
             >
               {resolvedTheme === "dark" ? (
-                <Moon size={22} strokeWidth={3} className="text-[var(--on-primary)]" />
+                <Moon size={22} strokeWidth={3} className="text-[var(--black)]" />
               ) : (
-                <Sun size={22} strokeWidth={3} className="text-[var(--on-primary)]" />
+                <Sun size={22} strokeWidth={3} className="text-[var(--black)]" />
               )}
             </motion.button>
 
@@ -161,11 +155,11 @@ export const Navigation = () => {
               <motion.div
                 whileTap={{ scale: 0.95 }}
                 onClick={() => { if (isSupported) trigger('light'); }}
-                className="flex items-center justify-center w-11 h-11 border-3 border-[var(--on-background)] bg-[var(--tertiary)]"
-                style={{ boxShadow: '3px 3px 0px 0px var(--on-background)' }}
+                className="flex items-center justify-center w-11 h-11 border-3 border-black bg-[var(--coral)]"
+                style={{ boxShadow: '3px 3px 0px 0px black' }}
                 title="24/7 Help"
               >
-                <Heart size={22} strokeWidth={3} fill="white" />
+                <Heart size={22} strokeWidth={3} fill="black" />
               </motion.div>
             </Link>
 
@@ -174,11 +168,11 @@ export const Navigation = () => {
               whileTap={{ scale: 0.95 }}
               type="button"
               onClick={() => { if (isSupported) trigger('warning'); void logout(); }}
-              className="flex items-center justify-center w-11 h-11 border-3 border-[var(--on-background)] bg-[var(--tertiary)]"
-              style={{ boxShadow: '3px 3px 0px 0px var(--on-background)' }}
+              className="flex items-center justify-center w-11 h-11 border-3 border-black bg-[var(--coral)]"
+              style={{ boxShadow: '3px 3px 0px 0px black' }}
               title="Logout"
             >
-              <LogOut size={22} strokeWidth={3} className="text-white" />
+              <LogOut size={22} strokeWidth={3} />
             </motion.button>
           </div>
         </div>

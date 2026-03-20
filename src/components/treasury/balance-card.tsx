@@ -15,14 +15,14 @@ export const BalanceCard = ({ transactions, showBreakdown = true }: BalanceCardP
   const isPositive = summary.net >= 0;
 
   return (
-    <div className="border-4 border-[var(--on-background)] p-6 bg-[var(--surface-container-lowest)]" style={{ boxShadow: '6px 6px 0px 0px var(--on-background)' }}>
+    <div className="neo-card p-6">
       <div className="text-center mb-6">
         <div className="flex items-center justify-center gap-2 mb-2">
-          <DollarSign size={24} strokeWidth={3} className={isPositive ? "text-[var(--primary)]" : "text-[var(--tertiary)]"} />
-          <span className="neo-title text-sm text-[var(--on-background)]">TREASURY BALANCE</span>
+          <DollarSign size={24} strokeWidth={3} className={isPositive ? "text-[var(--mint)]" : "text-[var(--coral)]"} />
+          <span className="neo-title text-sm">TREASURY BALANCE</span>
         </div>
         <motion.p 
-          className={`headline-lg ${isPositive ? "text-[var(--primary)]" : "text-[var(--tertiary)]"}`}
+          className={`neo-title text-5xl ${isPositive ? "text-[var(--mint)]" : "text-[var(--coral)]"}`}
           key={summary.net}
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
@@ -33,36 +33,36 @@ export const BalanceCard = ({ transactions, showBreakdown = true }: BalanceCardP
       </div>
 
       {showBreakdown && (
-        <div className="border-t-4 border-[var(--on-background)] pt-4 space-y-3">
+        <div className="border-t-4 border-black pt-4 space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <TrendingUp size={14} strokeWidth={3} className="text-[var(--primary)]" />
-              <span className="neo-mono text-xs text-[var(--on-surface-variant)]">CONTRIBUTIONS</span>
+              <TrendingUp size={14} strokeWidth={3} className="text-[var(--mint)]" />
+              <span className="neo-mono text-xs">CONTRIBUTIONS</span>
             </div>
-            <span className="neo-mono text-sm font-bold text-[var(--primary)]">
+            <span className="neo-mono text-sm font-bold text-[var(--mint)]">
               {formatCurrency(summary.contributions)}
             </span>
           </div>
           
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <TrendingDown size={14} strokeWidth={3} className="text-[var(--tertiary)]" />
-              <span className="neo-mono text-xs text-[var(--on-surface-variant)]">EXPENSES</span>
+              <TrendingDown size={14} strokeWidth={3} className="text-[var(--coral)]" />
+              <span className="neo-mono text-xs">EXPENSES</span>
             </div>
-            <span className="neo-mono text-sm font-bold text-[var(--tertiary)]">
+            <span className="neo-mono text-sm font-bold text-[var(--coral)]">
               -{formatCurrency(summary.expenses)}
             </span>
           </div>
 
-          <div className="flex items-center justify-between pt-2 border-t-2 border-dashed border-[var(--outline-variant)]">
-            <span className="neo-mono text-xs font-bold text-[var(--on-background)]">NET</span>
-            <span className={`neo-mono text-sm font-bold ${isPositive ? "text-[var(--primary)]" : "text-[var(--tertiary)]"}`}>
+          <div className="flex items-center justify-between pt-2 border-t-2 border-dashed border-black">
+            <span className="neo-mono text-xs font-bold">NET</span>
+            <span className={`neo-mono text-sm font-bold ${isPositive ? "text-[var(--mint)]" : "text-[var(--coral)]"}`}>
               {formatCurrency(summary.net)}
             </span>
           </div>
 
           <div className="text-center pt-2">
-            <span className="neo-mono text-[10px] text-[var(--on-surface-variant)]">
+            <span className="neo-mono text-[10px] text-[var(--gray-muted)]">
               {summary.transactionCount} TRANSACTION{summary.transactionCount !== 1 ? 'S' : ''}
             </span>
           </div>

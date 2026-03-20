@@ -94,47 +94,41 @@ export const AuthForm = () => {
       variants={formVariants}
       className="w-full max-w-md"
     >
-      {/* Brand Header - Editorial Brutalist Title */}
       <motion.div 
-        className="border-4 border-[var(--on-background)] mb-6 p-2"
-        style={{ boxShadow: '8px 8px 0px 0px var(--on-background)' }}
+        className="neo-card mb-6 p-2"
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.2 }}
       >
-        <div className="bg-[var(--primary)] border-4 border-[var(--on-background)] p-6">
-          {/* Decorative dots - editorial feel */}
+        <div className="bg-[var(--lavender)] border-4 border-black p-6">
           <div className="flex items-center gap-3 mb-4">
             <motion.div 
-              className="h-4 w-4 bg-[var(--tertiary)] border-3 border-[var(--on-background)]"
+              className="h-4 w-4 bg-[var(--butter)] border-3 border-black"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1, repeat: Infinity }}
             />
             <motion.div 
-              className="h-4 w-4 bg-[var(--surface-container-lowest)] border-3 border-[var(--on-background)]"
+              className="h-4 w-4 bg-[var(--coral)] border-3 border-black"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1, repeat: Infinity, delay: 0.2 }}
             />
             <motion.div 
-              className="h-4 w-4 bg-[var(--tertiary)] border-3 border-[var(--on-background)]"
+              className="h-4 w-4 bg-[var(--mint)] border-3 border-black"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1, repeat: Infinity, delay: 0.4 }}
             />
           </div>
-          
-          {/* Main Title - Massive Typography */}
-          <h1 className="headline-display text-5xl text-[var(--on-primary)] leading-none mb-2">
-            ONE DAY
+          <h1 className="neo-title text-5xl text-[var(--black)] leading-none">
+            MEETING<br/>
+            MAKERS<br/>
+            <span className="text-[var(--lavender)]" style={{ textShadow: '3px 3px 0px black' }}>
+              v2.0
+            </span>
           </h1>
-          <div className="neo-mono text-xs uppercase tracking-[0.3em] text-[var(--on-primary)] opacity-70">
-            SOBRIETY_OS // TRACKER_V1
-          </div>
         </div>
       </motion.div>
 
-      {/* Auth Form Card */}
       <motion.div 
-        className="border-4 border-[var(--on-background)] p-8 bg-[var(--surface-container-lowest)]"
-        style={{ boxShadow: '8px 8px 0px 0px var(--on-background)' }}
+        className="neo-card p-8"
         animate={shake ? { x: [-8, 8, -8, 8, 0] } : {}}
         transition={{ duration: 0.4 }}
       >
@@ -142,10 +136,10 @@ export const AuthForm = () => {
           key={mode}
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-6 pb-4 border-b-4 border-[var(--on-background)] flex items-center gap-2"
+          className="mb-6 pb-4 border-b-4 border-black flex items-center gap-2"
         >
-          <span className="neo-title text-sm text-[var(--tertiary)]">►</span>
-          <span className="neo-title text-lg text-[var(--on-background)]">
+          <span className="neo-title text-sm text-[var(--coral)]">►</span>
+          <span className="neo-title text-lg text-[var(--black)]">
             {mode === "login" ? "AUTHENTICATE" : "REGISTER"}
           </span>
         </motion.div>
@@ -162,7 +156,7 @@ export const AuthForm = () => {
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
               required
-              className="neo-input"
+              className="neo-input neo-input-sky"
               placeholder="USER@EXAMPLE.COM"
             />
           </motion.div>
@@ -179,7 +173,7 @@ export const AuthForm = () => {
               autoComplete={mode === "login" ? "current-password" : "new-password"}
               required
               minLength={6}
-              className="neo-input"
+              className="neo-input neo-input-lavender"
               placeholder="••••••••"
             />
           </motion.div>
@@ -191,10 +185,10 @@ export const AuthForm = () => {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="bg-[var(--tertiary)] border-4 border-[var(--on-background)] p-4"
-                style={{ boxShadow: '4px 4px 0px 0px var(--on-background)' }}
+                className="bg-[var(--coral)] border-4 border-black p-4"
+                style={{ boxShadow: '6px 6px 0px 0px black' }}
               >
-                <span className="neo-mono text-xs text-[var(--on-tertiary)] uppercase">
+                <span className="neo-mono text-xs text-[var(--black)] uppercase">
                   ⚠ {error}
                 </span>
               </motion.div>
@@ -202,8 +196,8 @@ export const AuthForm = () => {
           </AnimatePresence>
 
           <motion.button
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98, y: 0 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             type="submit"
             disabled={submitting}
             className="neo-button neo-button-primary w-full py-4 text-lg"
@@ -213,7 +207,7 @@ export const AuthForm = () => {
                 <motion.span 
                   animate={{ rotate: 360 }}
                   transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                  className="inline-block h-4 w-4 border-3 border-[var(--on-primary)] border-t-transparent"
+                  className="inline-block h-4 w-4 border-3 border-black border-t-transparent"
                 />
                 PROCESSING...
               </span>
@@ -224,13 +218,13 @@ export const AuthForm = () => {
         </form>
 
         <motion.div 
-          className="mt-8 pt-6 border-t-4 border-[var(--on-background)]"
+          className="mt-8 pt-6 border-t-4 border-black"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
           <motion.button
-            whileHover={{ scale: 1.05, backgroundColor: 'var(--tertiary)', color: 'var(--on-tertiary)' }}
+            whileHover={{ scale: 1.05, backgroundColor: 'var(--coral)' }}
             whileTap={{ scale: 0.95 }}
             type="button"
             onClick={toggleMode}
@@ -241,14 +235,13 @@ export const AuthForm = () => {
         </motion.div>
       </motion.div>
 
-      {/* Footer Badge */}
       <motion.div 
         className="mt-6 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
       >
-        <p className="neo-mono text-xs text-[var(--on-background)] bg-[var(--surface-container-lowest)] border-3 border-[var(--on-background)] px-4 py-2 inline-block" style={{ boxShadow: '4px 4px 0px 0px var(--on-background)' }}>
+        <p className="neo-mono text-xs text-[var(--black)] bg-[var(--white)] border-3 border-black px-4 py-2 inline-block" style={{ boxShadow: '4px 4px 0px 0px black' }}>
           🔒 SECURE // ENCRYPTED // LOGGED
         </p>
       </motion.div>

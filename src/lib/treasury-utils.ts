@@ -29,10 +29,6 @@ export const getCategoryLabel = (type: 'contribution' | 'expense', category: str
   return EXPENSE_CATEGORIES[category as ExpenseCategory]?.label ?? category;
 };
 
-export const getTransactionTypeLabel = (type: 'contribution' | 'expense'): string => {
-  return type === 'contribution' ? 'Contribution' : 'Expense';
-};
-
 export const calculateSummary = (transactions: TreasuryTransaction[]): TreasurySummary => {
   const contributions = transactions
     .filter(t => t.type === 'contribution')

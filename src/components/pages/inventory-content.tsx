@@ -19,35 +19,35 @@ const INVENTORY_PROMPTS = [
     label: "RESENTMENTS",
     question: "Where was I resentful today?",
     placeholder: "e.g., at work, my neighbor...",
-    color: "var(--tertiary)",
+    color: "var(--coral)",
   },
   {
     key: "fears" as const,
     label: "FEARS",
     question: "Where was I afraid?",
     placeholder: "e.g., money, health, rejection...",
-    color: "var(--primary)",
+    color: "var(--butter)",
   },
   {
     key: "dishonesty" as const,
     label: "SELFISH / DISHONEST",
     question: "Where was I selfish or dishonest?",
     placeholder: "e.g., white lie, hid my feelings...",
-    color: "var(--secondary)",
+    color: "var(--lavender)",
   },
   {
     key: "amends" as const,
     label: "AMENDS",
     question: "Do I owe anyone an amends?",
     placeholder: "e.g., said something harsh to...",
-    color: "var(--on-surface-variant)",
+    color: "var(--sky)",
   },
   {
     key: "gratitude" as const,
     label: "GRATITUDE",
     question: "What am I grateful for today?",
     placeholder: "e.g., my health, a friend, a meeting...",
-    color: "var(--primary-container)",
+    color: "var(--mint)",
   },
 ];
 
@@ -305,13 +305,13 @@ export function InventoryContent() {
 
   if (!user) {
     return (
-      <div className="min-h-screen zine-grid">
+      <div className="min-h-screen">
         <Navigation />
         <div className="max-w-2xl mx-auto px-4 py-8">
-          <div className="border-4 border-[var(--on-background)] p-12 text-center bg-[var(--surface-container-lowest)]" style={{ boxShadow: '8px 8px 0px 0px var(--on-background)' }}>
-            <ClipboardList size={48} className="mx-auto mb-4 text-[var(--on-surface-variant)]" />
-            <h1 className="neo-title text-2xl mb-2 text-[var(--on-background)]">Sign In Required</h1>
-            <p className="neo-mono text-sm text-[var(--on-surface-variant)]">Please sign in to keep your daily inventory.</p>
+          <div className="neo-card p-12 text-center">
+            <ClipboardList size={48} className="mx-auto mb-4 text-[var(--black)]/30" />
+            <h1 className="neo-title text-2xl mb-2">Sign In Required</h1>
+            <p className="neo-mono text-sm text-[var(--black)]/60">Please sign in to keep your daily inventory.</p>
           </div>
         </div>
       </div>
@@ -319,23 +319,23 @@ export function InventoryContent() {
   }
 
   return (
-    <div className="min-h-screen zine-grid">
+    <div className="min-h-screen">
       <Navigation />
       <div className="max-w-2xl mx-auto px-4 py-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="border-4 border-[var(--on-background)] p-6 mb-6 bg-[var(--primary)]"
-          style={{ boxShadow: '8px 8px 0px 0px var(--on-background)' }}
+          className="neo-card p-6 mb-6"
+          style={{ background: "var(--lavender)" }}
         >
           <div className="flex items-center gap-3 mb-2">
-            <ClipboardList size={28} strokeWidth={3} className="text-[var(--on-primary)]" />
-            <h1 className="neo-title text-2xl text-[var(--on-primary)]">
+            <ClipboardList size={28} strokeWidth={3} />
+            <h1 className="neo-title text-2xl">
               Step 10: Daily Inventory
             </h1>
           </div>
-          <p className="quote-text text-sm ml-11 text-[var(--on-primary)] opacity-90">
+          <p className="neo-mono text-sm ml-11">
             &ldquo;Continued to take personal inventory and when we were wrong promptly admitted it.&rdquo;
           </p>
         </motion.div>
@@ -350,12 +350,12 @@ export function InventoryContent() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="border-4 border-[var(--on-background)] bg-[var(--tertiary)] p-4 mb-6"
-              style={{ boxShadow: "8px 8px 0px 0px var(--on-background)" }}
+              className="border-4 border-black bg-[var(--coral)] p-4 mb-6"
+              style={{ boxShadow: "8px 8px 0px 0px black" }}
             >
               <div className="flex items-center gap-3">
-                <div className="h-4 w-4 bg-[var(--on-tertiary)]" />
-                <span className="neo-title text-sm text-[var(--on-tertiary)]">{error}</span>
+                <div className="h-4 w-4 bg-black" />
+                <span className="neo-title text-sm text-[var(--black)]">{error}</span>
               </div>
             </motion.div>
           )}
@@ -366,8 +366,7 @@ export function InventoryContent() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="border-4 border-[var(--on-background)] p-4 mb-6 bg-[var(--surface-container-lowest)]"
-            style={{ boxShadow: '6px 6px 0px 0px var(--on-background)' }}
+            className="neo-card p-4 mb-6 bg-[var(--cream)]"
           >
             <div className="flex items-center justify-between">
               <button
@@ -379,11 +378,11 @@ export function InventoryContent() {
               </button>
               
               <div className="text-center">
-                <p className="neo-title text-sm text-[var(--on-background)]">
+                <p className="neo-title text-sm">
                   {isViewingToday ? "TODAY" : formatDate(selectedDate || todayKey)}
                 </p>
                 {!isViewingToday && (
-                  <p className="neo-mono text-xs text-[var(--on-surface-variant)]">
+                  <p className="neo-mono text-xs text-[var(--black)]/60">
                     {getDaysAgo(selectedDate || '')}
                   </p>
                 )}
@@ -399,13 +398,13 @@ export function InventoryContent() {
             </div>
 
             {/* Date Quick Select */}
-            <div className="mt-4 pt-4 border-t-2 border-dashed border-[var(--outline-variant)]">
-              <p className="neo-mono text-xs mb-2 text-[var(--on-surface-variant)]">JUMP TO:</p>
+            <div className="mt-4 pt-4 border-t-2 border-dashed border-black/20">
+              <p className="neo-mono text-xs mb-2 text-[var(--black)]/60">JUMP TO:</p>
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => { setViewMode('today'); setSelectedDate(null); setEditMode(false); }}
-                  className={`neo-mono text-xs px-3 py-1.5 border-3 border-[var(--on-background)] ${
-                    isViewingToday ? 'bg-[var(--on-background)] text-[var(--surface-container-lowest)]' : 'bg-[var(--surface-container-lowest)] hover:bg-[var(--surface-container)]'
+                  className={`neo-mono text-xs px-3 py-1.5 border-3 border-black ${
+                    isViewingToday ? 'bg-black text-white' : 'bg-[var(--white)] hover:bg-[var(--cream)]'
                   }`}
                 >
                   Today
@@ -414,8 +413,8 @@ export function InventoryContent() {
                   <button
                     key={entry.date}
                     onClick={() => { setSelectedDate(entry.date); setViewMode('browse'); setEditMode(false); }}
-                    className={`neo-mono text-xs px-3 py-1.5 border-3 border-[var(--on-background)] ${
-                      selectedDate === entry.date ? 'bg-[var(--on-background)] text-[var(--surface-container-lowest)]' : 'bg-[var(--surface-container-lowest)] hover:bg-[var(--surface-container)]'
+                    className={`neo-mono text-xs px-3 py-1.5 border-3 border-black ${
+                      selectedDate === entry.date ? 'bg-black text-white' : 'bg-[var(--white)] hover:bg-[var(--cream)]'
                     }`}
                   >
                     {getDaysAgo(entry.date)}
@@ -430,21 +429,20 @@ export function InventoryContent() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="border-4 border-[var(--on-background)] p-6 mb-6 bg-[var(--surface-container-lowest)]"
-          style={{ boxShadow: '6px 6px 0px 0px var(--on-background)' }}
+          className="neo-card p-6 mb-6"
         >
-          <div className="flex items-center gap-2 mb-6 pb-4 border-b-4 border-[var(--on-background)]">
+          <div className="flex items-center gap-2 mb-6 pb-4 border-b-4 border-black">
             <Calendar size={18} strokeWidth={3} />
-            <span className="neo-title text-lg text-[var(--on-background)]">
+            <span className="neo-title text-lg">
               {isViewingToday ? "TODAY" : formatDate(selectedDate || todayKey)}
             </span>
             {viewingEntry && (
-              <span className="ml-auto flex items-center gap-1 neo-mono text-xs text-[var(--primary)]">
+              <span className="ml-auto flex items-center gap-1 neo-mono text-xs text-[var(--mint)]">
                 <CheckCircle size={14} /> SAVED
               </span>
             )}
             {!isViewingToday && !viewingEntry && (
-              <span className="ml-auto neo-mono text-xs text-[var(--on-surface-variant)]">
+              <span className="ml-auto neo-mono text-xs text-[var(--black)]/40">
                 NO ENTRY
               </span>
             )}
@@ -463,12 +461,12 @@ export function InventoryContent() {
                   >
                     <label className="block mb-2">
                       <span 
-                        className="neo-mono text-xs px-2 py-0.5 border-3 border-[var(--on-background)] inline-block mb-1 text-[var(--on-background)]"
+                        className="neo-mono text-xs px-2 py-0.5 border-3 border-black inline-block mb-1"
                         style={{ background: prompt.color }}
                       >
                         {prompt.label}
                       </span>
-                      <span className="block neo-title text-sm text-[var(--on-background)]">{prompt.question}</span>
+                      <span className="block neo-title text-sm">{prompt.question}</span>
                     </label>
                     <input
                       type="text"
@@ -483,18 +481,18 @@ export function InventoryContent() {
               </div>
 
               {/* Save/Cancel Buttons */}
-              <div className="mt-6 pt-4 border-t-2 border-dashed border-[var(--outline-variant)] flex gap-3">
+              <div className="mt-6 pt-4 border-t-2 border-dashed border-black/20 flex gap-3">
                 <motion.button
-                  whileHover={!saving ? { scale: 1.02, y: -2 } : {}}
+                  whileHover={!saving ? { scale: 1.02 } : {}}
                   whileTap={!saving ? { scale: 0.98 } : {}}
                   onClick={handleSave}
                   disabled={saving || !hasChanges()}
                   className={`neo-button py-3 flex-1 ${
                     saved 
-                      ? "bg-[var(--primary)] text-[var(--on-primary)]" 
+                      ? "bg-[var(--mint)]" 
                       : hasChanges()
                         ? "neo-button-primary"
-                        : "bg-[var(--secondary-container)] cursor-not-allowed"
+                        : "bg-[var(--gray-disabled)] cursor-not-allowed"
                   }`}
                 >
                   {saving ? (
@@ -502,7 +500,7 @@ export function InventoryContent() {
                       <motion.span 
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                        className="inline-block h-4 w-4 border-3 border-[var(--on-primary)] border-t-transparent"
+                        className="inline-block h-4 w-4 border-3 border-black border-t-transparent"
                       />
                       SAVING...
                     </span>
@@ -519,10 +517,10 @@ export function InventoryContent() {
                 
                 {!isViewingToday && (
                   <motion.button
-                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={handleCancelEdit}
-                    className="neo-button py-3 px-6 bg-[var(--secondary-container)]"
+                    className="neo-button py-3 px-6 bg-[var(--gray-disabled)]"
                   >
                     <X size={16} strokeWidth={3} /> CANCEL
                   </motion.button>
@@ -544,14 +542,14 @@ export function InventoryContent() {
                     >
                       <div className="flex items-start gap-3">
                         <span 
-                          className="neo-mono text-xs px-2 py-0.5 border-3 border-[var(--on-background)] shrink-0 text-[var(--on-background)]"
+                          className="neo-mono text-xs px-2 py-0.5 border-3 border-black shrink-0"
                           style={{ background: prompt.color }}
                         >
                           {prompt.label}
                         </span>
                         <div className="flex-1">
-                          <p className="neo-title text-sm mb-1 text-[var(--on-background)]">{prompt.question}</p>
-                          <p className="neo-mono text-sm text-[var(--on-surface-variant)]">
+                          <p className="neo-title text-sm mb-1">{prompt.question}</p>
+                          <p className="neo-mono text-sm text-[var(--black)]/70">
                             {viewingEntry[prompt.key] || "—"}
                           </p>
                         </div>
@@ -560,12 +558,12 @@ export function InventoryContent() {
                   ))}
                   
                   {/* Edit Button for Past Entries */}
-                  <div className="pt-4 border-t-2 border-dashed border-[var(--outline-variant)]">
+                  <div className="pt-4 border-t-2 border-dashed border-black/20">
                     <motion.button
-                      whileHover={{ scale: 1.02, y: -2 }}
+                      whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={handleEdit}
-                      className="neo-button py-3 w-full bg-[var(--primary)] text-[var(--on-primary)]"
+                      className="neo-button py-3 w-full bg-[var(--butter)]"
                     >
                       <Edit2 size={16} strokeWidth={3} /> EDIT THIS ENTRY
                     </motion.button>
@@ -574,16 +572,16 @@ export function InventoryContent() {
               ) : (
                 <>
                   <div className="text-center py-12">
-                    <History size={48} className="mx-auto mb-4 text-[var(--on-surface-variant)]" />
-                    <p className="neo-mono text-sm text-[var(--on-surface-variant)] mb-4">
+                    <History size={48} className="mx-auto mb-4 text-[var(--black)]/20" />
+                    <p className="neo-mono text-sm text-[var(--black)]/50 mb-4">
                       No inventory was recorded for this day.
                     </p>
                   </div>
                   
                   {/* Create Entry Button for Empty Days */}
-                  <div className="pt-4 border-t-2 border-dashed border-[var(--outline-variant)]">
+                  <div className="pt-4 border-t-2 border-dashed border-black/20">
                     <motion.button
-                      whileHover={{ scale: 1.02, y: -2 }}
+                      whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={handleEdit}
                       className="neo-button py-3 w-full neo-button-primary"
@@ -602,31 +600,30 @@ export function InventoryContent() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="border-4 border-[var(--on-background)] p-6 bg-[var(--surface-container-lowest)]"
-          style={{ boxShadow: '6px 6px 0px 0px var(--on-background)' }}
+          className="neo-card p-6"
         >
-          <div className="mb-4 flex items-center gap-2 border-b-4 border-[var(--on-background)] pb-3">
-            <span className="neo-title text-sm text-[var(--primary)]">♥</span>
-            <span className="neo-title text-sm text-[var(--on-background)]">INVENTORY TRACKER</span>
+          <div className="mb-4 flex items-center gap-2 border-b-4 border-black pb-3">
+            <span className="neo-title text-sm text-[var(--mint)]">♥</span>
+            <span className="neo-title text-sm">INVENTORY TRACKER</span>
           </div>
           
           {/* Streak Stats */}
           <div className="flex gap-4 mb-4">
             <div className="flex items-center gap-2">
-              <span className="neo-mono text-xs text-[var(--on-surface-variant)]">CURRENT STREAK:</span>
-              <span className="neo-title text-lg text-[var(--primary)]">{currentStreak}</span>
+              <span className="neo-mono text-xs text-[var(--black)]/60">CURRENT STREAK:</span>
+              <span className="neo-title text-lg text-[var(--mint)]">{currentStreak}</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="neo-mono text-xs text-[var(--on-surface-variant)]">BEST:</span>
-              <span className="neo-title text-lg text-[var(--on-background)]">{longestStreak}</span>
+              <span className="neo-mono text-xs text-[var(--black)]/60">BEST:</span>
+              <span className="neo-title text-lg">{longestStreak}</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="neo-mono text-xs text-[var(--on-surface-variant)]">TOTAL:</span>
-              <span className="neo-title text-lg text-[var(--on-background)]">{totalInventoryDays}</span>
+              <span className="neo-mono text-xs text-[var(--black)]/60">TOTAL:</span>
+              <span className="neo-title text-lg">{totalInventoryDays}</span>
             </div>
           </div>
 
-          {/* Grid - Monochromatic burgundy scale */}
+          {/* Grid */}
           <div className="w-full">
             <div
               className="grid gap-1"
@@ -637,7 +634,7 @@ export function InventoryContent() {
               {inventoryGrid.map((week, weekIndex) => (
                 <div
                   key={`month-${weekIndex}`}
-                  className="neo-mono h-5 text-[10px] leading-tight text-[var(--on-surface-variant)]"
+                  className="neo-mono h-5 text-[10px] leading-tight text-[var(--black)]/70"
                 >
                   {week.label}
                 </div>
@@ -645,7 +642,7 @@ export function InventoryContent() {
               {/* Day rows */}
               {Array.from({ length: 7 }, (_, dayIndex) => (
                 <Fragment key={dayIndex}>
-                  <div className="neo-mono flex items-center justify-end pr-1 text-[10px] text-[var(--on-surface-variant)]">
+                  <div className="neo-mono flex items-center justify-end pr-1 text-[10px] text-[var(--black)]/70">
                     {DAY_NAMES[dayIndex]}
                   </div>
                   {inventoryGrid.map((week, weekIndex) => {
@@ -656,10 +653,10 @@ export function InventoryContent() {
                         initial={{ opacity: 0, scale: 0.85 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: weekIndex * 0.02 }}
-                        className={`aspect-square border-3 border-[var(--on-background)] ${day.isToday ? "ring-2 ring-[var(--tertiary)] ring-offset-1 ring-offset-[var(--surface-container-lowest)]" : ""}`}
+                        className={`aspect-square border-3 border-black ${day.isToday ? "ring-2 ring-black ring-offset-1 ring-offset-[var(--cream)]" : ""}`}
                         style={{
-                          backgroundColor: day.hasEntry ? "var(--primary)" : "var(--surface-container-lowest)",
-                          boxShadow: day.hasEntry ? "2px 2px 0 0 var(--on-background)" : "none",
+                          backgroundColor: day.hasEntry ? "var(--mint)" : "var(--white)",
+                          boxShadow: day.hasEntry ? "2px 2px 0 0 var(--black)" : "none",
                         }}
                         title={day.hasEntry ? `Inventory completed` : "No entry"}
                       />
@@ -670,7 +667,7 @@ export function InventoryContent() {
             </div>
           </div>
 
-          <p className="neo-mono text-[10px] text-center text-[var(--on-surface-variant)] mt-4">
+          <p className="neo-mono text-[10px] text-center text-[var(--black)]/60 mt-4">
             Last {inventoryWeeks} weeks of inventory entries.
           </p>
         </motion.section>

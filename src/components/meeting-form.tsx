@@ -84,16 +84,15 @@ export const MeetingForm = ({
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: shakeKey > 0 ? 0.3 : 0.3 }}
       onSubmit={handleSubmit}
-      className="border-4 border-[var(--on-background)] p-6 bg-[var(--surface-container-lowest)]"
-      style={{ boxShadow: '6px 6px 0px 0px var(--on-background)' }}
+      className="neo-card p-6"
     >
-      <div className="flex items-center gap-2 mb-5 pb-4 border-b-4 border-[var(--on-background)]">
+      <div className="flex items-center gap-2 mb-5 pb-4 border-b-4 border-black">
         <motion.div 
-          className="h-3 w-3 bg-[var(--primary)] border-3 border-[var(--on-background)]"
+          className="h-3 w-3 bg-[var(--butter)] border-3 border-black"
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         />
-        <span className="neo-title text-sm text-[var(--on-background)]">MEETING DATA</span>
+        <span className="neo-title text-sm">MEETING DATA</span>
       </div>
 
       <motion.div variants={inputVariants} initial="hidden" animate="show" transition={{ delay: 0.05 }}>
@@ -104,7 +103,7 @@ export const MeetingForm = ({
           value={values.name}
           onChange={(e) => setValues((prev) => ({ ...prev, name: e.target.value }))}
           placeholder="MORNING SERENITY"
-          className="neo-input mb-4"
+          className="neo-input neo-input-mint mb-4"
           required
         />
       </motion.div>
@@ -117,7 +116,7 @@ export const MeetingForm = ({
           value={values.location}
           onChange={(e) => setValues((prev) => ({ ...prev, location: e.target.value }))}
           placeholder="COMMUNITY CENTER - ROOM 2"
-          className="neo-input mb-4"
+          className="neo-input neo-input-coral mb-4"
           required
         />
       </motion.div>
@@ -130,7 +129,7 @@ export const MeetingForm = ({
           type="time"
           value={values.time}
           onChange={(e) => setValues((prev) => ({ ...prev, time: e.target.value }))}
-          className="neo-input mb-4"
+          className="neo-input neo-input-lavender mb-4"
           required
         />
       </motion.div>
@@ -142,12 +141,12 @@ export const MeetingForm = ({
             initial="hidden"
             animate="show"
             exit="exit"
-            className="bg-[var(--tertiary)] border-4 border-[var(--on-background)] p-4 mb-4"
-            style={{ boxShadow: '4px 4px 0px 0px var(--on-background)' }}
+            className="bg-[var(--coral)] border-4 border-black p-4 mb-4"
+            style={{ boxShadow: '6px 6px 0px 0px black' }}
           >
             <div className="flex items-center gap-2">
-              <div className="h-3 w-3 bg-[var(--on-tertiary)]" />
-              <span className="neo-mono text-xs uppercase text-[var(--on-tertiary)]">{error}</span>
+              <div className="h-3 w-3 bg-black" />
+              <span className="neo-mono text-xs uppercase text-[var(--black)]">{error}</span>
             </div>
           </motion.div>
         )}
@@ -155,8 +154,8 @@ export const MeetingForm = ({
 
       <div className="flex items-center gap-3 pt-2">
         <motion.button
-          whileHover={!submitting ? { scale: 1.02, y: -2 } : {}}
-          whileTap={!submitting ? { scale: 0.98, y: 0 } : {}}
+          whileHover={!submitting ? { scale: 1.02 } : {}}
+          whileTap={!submitting ? { scale: 0.98 } : {}}
           type="submit"
           disabled={submitting}
           className="neo-button neo-button-primary flex-1 py-3"
@@ -166,7 +165,7 @@ export const MeetingForm = ({
               <motion.span 
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                className="inline-block h-3 w-3 border-3 border-[var(--on-primary)] border-t-transparent"
+                className="inline-block h-3 w-3 border-3 border-black border-t-transparent"
               />
               SAVING...
             </span>
@@ -177,11 +176,11 @@ export const MeetingForm = ({
         
         {onCancel ? (
           <motion.button
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98, y: 0 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             type="button"
             onClick={() => { if (isSupported) trigger('light'); onCancel(); }}
-            className="neo-button flex-1 py-3 bg-[var(--secondary-container)]"
+            className="neo-button flex-1 py-3 bg-[var(--gray-disabled)]"
           >
             CANCEL
           </motion.button>
