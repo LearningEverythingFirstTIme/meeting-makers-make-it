@@ -55,19 +55,20 @@
     --white: #ffffff;
     --black: #1a1c19;
     
-    /* Activity Grid Scale (Monochromatic Burgundy) */
+    /* Activity Grid Scale - Distinct per meeting count */
     --activity-0: #fafaf5;
-    --activity-1: #eeeee9;
+    --activity-1: #e0bfbf;
     --activity-2: #800020;
     --activity-3: #570013;
     --activity-4: #1a1c19;
     
-    /* Semantic Colors (preserved for compatibility) */
-    --mint: #4d1300;
-    --butter: #570013;
-    --coral: #4d1300;
+    /* Semantic Colors - Activity Grid & compatibility */
+    --white: #ffffff;
+    --butter: #e0bfbf;
+    --sky: #800020;
+    --mint: #570013;
+    --coral: #1a1c19;
     --lavender: #5f5e5e;
-    --sky: #5f5e5e;
     --cream: #fafaf5;
     --periwinkle: #570013;
     
@@ -125,19 +126,19 @@
     --black: #e3e3de;
     --white: #1a1c19;
     
-    /* Activity Grid Scale (Dark Mode) */
+    /* Activity Grid Scale (Dark Mode) - Distinct per meeting count */
     --activity-0: #1a1c19;
-    --activity-1: #252623;
+    --activity-1: #3d2020;
     --activity-2: #8e0f28;
-    --activity-3: #ffb3b5;
+    --activity-3: #e06b6b;
     --activity-4: #e3e3de;
     
-    /* Semantic Colors (Dark Mode) */
-    --mint: #ffb59c;
-    --butter: #ffb3b5;
-    --coral: #ffb4ab;
+    /* Semantic Colors (Dark Mode) - Activity Grid & compatibility */
+    --mint: #e06b6b;
+    --butter: #3d2020;
+    --coral: #e3e3de;
     --lavender: #c8c6c5;
-    --sky: #c8c6c5;
+    --sky: #8e0f28;
     --cream: #1a1c19;
     --periwinkle: #ffb3b5;
     
@@ -349,6 +350,7 @@ body {
 
 @utility neo-button {
   background: var(--surface-container-lowest);
+  color: var(--on-background);
   border: 3px solid var(--on-background);
   box-shadow: 4px 4px 0px 0px var(--on-background);
   font-family: 'Space Grotesk', monospace;

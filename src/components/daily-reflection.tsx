@@ -78,7 +78,7 @@ export function DailyReflection() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={goToToday}
-              className="neo-button px-3 py-2 bg-[var(--primary)] text-sm flex items-center gap-1"
+              className="neo-button px-3 py-2 bg-[var(--primary)] text-[var(--on-primary)] text-sm flex items-center gap-1"
               aria-label="Go to today"
             >
               <RotateCcw size={14} strokeWidth={3} />
