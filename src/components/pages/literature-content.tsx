@@ -16,30 +16,31 @@ function LiteratureCard({ item }: { item: LiteratureItem }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="neo-card overflow-hidden"
+      className="border-4 border-[var(--on-background)] overflow-hidden bg-[var(--surface-container-lowest)]"
       style={{ 
-        borderLeft: `6px solid ${category?.color || "var(--butter)"}` 
+        borderLeft: `6px solid ${category?.color || "var(--primary)"}`,
+        boxShadow: '6px 6px 0px 0px var(--on-background)'
       }}
     >
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full p-6 flex items-center justify-between text-left hover:bg-[var(--cream)]/30 transition-colors"
+        className="w-full p-6 flex items-center justify-between text-left hover:bg-[var(--surface-container)] transition-colors"
       >
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-2">
             <span 
               className="neo-badge text-xs"
-              style={{ backgroundColor: category?.color || "var(--butter)" }}
+              style={{ backgroundColor: category?.color || "var(--primary)", color: 'var(--on-primary)' }}
             >
               {category?.label.toUpperCase()}
             </span>
             {item.source && (
-              <span className="neo-mono text-xs text-[var(--black)]/50">
+              <span className="neo-mono text-xs text-[var(--on-surface-variant)]">
                 {item.source}
               </span>
             )}
           </div>
-          <h3 className="neo-title text-xl text-[var(--black)]">{item.title}</h3>
+          <h3 className="neo-title text-xl text-[var(--on-background)]">{item.title}</h3>
         </div>
         <motion.div
           animate={{ rotate: isExpanded ? 180 : 0 }}
@@ -47,9 +48,9 @@ function LiteratureCard({ item }: { item: LiteratureItem }) {
           className="flex-shrink-0 ml-4"
         >
           {isExpanded ? (
-            <ChevronUp size={24} strokeWidth={3} className="text-[var(--black)]" />
+            <ChevronUp size={24} strokeWidth={3} className="text-[var(--on-background)]" />
           ) : (
-            <ChevronDown size={24} strokeWidth={3} className="text-[var(--black)]" />
+            <ChevronDown size={24} strokeWidth={3} className="text-[var(--on-background)]" />
           )}
         </motion.div>
       </button>
@@ -63,17 +64,17 @@ function LiteratureCard({ item }: { item: LiteratureItem }) {
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <div className="px-6 pb-6 pt-2 border-t-3 border-black/10">
+            <div className="px-6 pb-6 pt-2 border-t-3 border-[var(--outline-variant)]">
               <div className="prose prose-lg max-w-none">
                 {item.content.map((paragraph, index) => (
                   <p 
                     key={index} 
-                    className={`text-[var(--black)] leading-relaxed ${
+                    className={`text-[var(--on-background)] leading-relaxed ${
                       paragraph === "" 
                         ? "h-4" 
                         : paragraph.startsWith("STEP") || paragraph.startsWith("FROM PAGE")
-                        ? "neo-title text-lg mt-6 mb-2 text-[var(--black)]/80"
-                        : "mb-4"
+                        ? "neo-title text-lg mt-6 mb-2 text-[var(--on-surface-variant)]"
+                        : "mb-4 body-editorial"
                     }`}
                   >
                     {paragraph}
@@ -98,13 +99,13 @@ function CategoryFilter({
   return (
     <div className="flex flex-wrap gap-2 mb-8">
       <motion.button
-        whileHover={{ scale: 1.02 }}
+        whileHover={{ scale: 1.02, y: -2 }}
         whileTap={{ scale: 0.98 }}
         onClick={() => onCategoryChange(null)}
         className={`neo-button text-sm ${
           activeCategory === null 
-            ? "bg-[var(--butter)]" 
-            : "bg-[var(--white)]"
+            ? "bg-[var(--primary)] text-[var(--on-primary)]" 
+            : "bg-[var(--surface-container-lowest)]"
         }`}
       >
         ALL
@@ -112,14 +113,15 @@ function CategoryFilter({
       {categories.map((category) => (
         <motion.button
           key={category.id}
-          whileHover={{ scale: 1.02 }}
+          whileHover={{ scale: 1.02, y: -2 }}
           whileTap={{ scale: 0.98 }}
           onClick={() => onCategoryChange(category.id)}
           className={`neo-button text-sm transition-colors`}
           style={{
             backgroundColor: activeCategory === category.id 
               ? category.color 
-              : "white"
+              : "var(--surface-container-lowest)",
+            color: activeCategory === category.id ? 'var(--on-primary)' : 'var(--on-background)'
           }}
         >
           {category.label.toUpperCase()}
@@ -145,7 +147,7 @@ export function LiteratureContent() {
       })).filter(group => group.items.length > 0);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen zine-grid">
       <Navigation />
       
       <main className="max-w-4xl mx-auto px-4 md:px-8 py-8">
@@ -157,21 +159,24 @@ export function LiteratureContent() {
         >
           <div className="flex items-center gap-3 mb-4">
             <div 
-              className="p-3 border-4 border-black"
-              style={{ backgroundColor: "var(--periwinkle)" }}
+              className="p-3 border-4 border-[var(--on-background)]"
+              style={{ backgroundColor: "var(--primary)" }}
             >
-              <BookOpen size={32} strokeWidth={3} className="text-[var(--black)]" />
+              <BookOpen size={32} strokeWidth={3} className="text-[var(--on-primary)]" />
             </div>
             <div>
-              <h1 className="neo-title text-3xl md:text-4xl text-[var(--black)]">
+              <h1 className="neo-title text-3xl md:text-4xl text-[var(--on-background)]">
                 LITERATURE
               </h1>
-              <p className="neo-mono text-sm text-[var(--black)]/60">
+              <p className="neo-mono text-sm text-[var(--on-surface-variant)]">
                 AA READINGS, PRAYERS & PROMISES
               </p>
             </div>
           </div>
         </motion.div>
+
+        {/* Daily Reflection */}
+        <DailyReflection />
 
         {/* Category Filter */}
         <CategoryFilter 
@@ -191,14 +196,13 @@ export function LiteratureContent() {
             groupedByCategory?.map((group) => (
               <div key={group.id} className="mb-8">
                 <div 
-                  className="flex items-center gap-2 mb-4 pb-2 border-b-4 border-black"
-                  style={{ borderColor: group.color }}
+                  className="flex items-center gap-2 mb-4 pb-2 border-b-4 border-[var(--on-background)]"
                 >
                   <div 
-                    className="w-4 h-4 border-3 border-black"
+                    className="w-4 h-4 border-3 border-[var(--on-background)]"
                     style={{ backgroundColor: group.color }}
                   />
-                  <h2 className="neo-title text-xl text-[var(--black)]">
+                  <h2 className="neo-title text-xl text-[var(--on-background)]">
                     {group.label.toUpperCase()}
                   </h2>
                 </div>
@@ -219,7 +223,7 @@ export function LiteratureContent() {
             animate={{ opacity: 1 }}
             className="text-center py-16"
           >
-            <p className="neo-mono text-[var(--black)]/50">
+            <p className="neo-mono text-[var(--on-surface-variant)]">
               No literature found in this category.
             </p>
           </motion.div>
@@ -230,12 +234,12 @@ export function LiteratureContent() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="mt-16 pt-8 border-t-4 border-black/10 text-center"
+          className="mt-16 pt-8 border-t-4 border-[var(--outline-variant)] text-center"
         >
-          <p className="neo-mono text-xs text-[var(--black)]/40">
+          <p className="quote-text text-[var(--on-surface-variant)]">
             &ldquo;Rarely have we seen a person fail who has thoroughly followed our path.&rdquo;
           </p>
-          <p className="neo-mono text-xs text-[var(--black)]/30 mt-2">
+          <p className="neo-mono text-xs text-[var(--on-surface-variant)] mt-2">
             — Alcoholics Anonymous, Page 58
           </p>
         </motion.div>

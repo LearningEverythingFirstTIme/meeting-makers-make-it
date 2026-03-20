@@ -67,28 +67,28 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--on-background)] bg-opacity-70"
       onClick={onClose}
     >
       <motion.div
         initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.9, y: 20 }}
-        className="w-full max-w-md bg-[var(--white)] border-4 border-black p-6"
-        style={{ boxShadow: '12px 12px 0px 0px black' }}
+        className="w-full max-w-md bg-[var(--surface-container-lowest)] border-4 border-[var(--on-background)] p-6"
+        style={{ boxShadow: '12px 12px 0px 0px var(--on-background)' }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between mb-6 pb-4 border-b-4 border-black">
+        <div className="flex items-center justify-between mb-6 pb-4 border-b-4 border-[var(--on-background)]">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 bg-[var(--butter)] border-3 border-black flex items-center justify-center">
-              <Award size={20} strokeWidth={3} />
+            <div className="h-10 w-10 bg-[var(--primary)] border-3 border-[var(--on-background)] flex items-center justify-center">
+              <Award size={20} strokeWidth={3} className="text-[var(--on-primary)]" />
             </div>
             <div>
-              <h2 className="neo-title text-xl">
+              <h2 className="neo-title text-xl text-[var(--on-background)]">
                 {currentDate ? "EDIT" : "SET"} SOBRIETY DATE
               </h2>
-              <p className="neo-mono text-[10px] text-[var(--gray-muted)]">
+              <p className="neo-mono text-[10px] text-[var(--on-surface-variant)]">
                 {currentDate ? "Update your clean date" : "Track your recovery journey"}
               </p>
             </div>
@@ -98,7 +98,7 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
             whileTap={{ scale: 0.9 }}
             type="button"
             onClick={onClose}
-            className="p-2 border-3 border-black hover:bg-[var(--coral)]"
+            className="p-2 border-3 border-[var(--on-background)] hover:bg-[var(--tertiary)]"
           >
             <X size={16} strokeWidth={3} />
           </motion.button>
@@ -111,13 +111,13 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              className="bg-[var(--coral)] bg-opacity-20 border-4 border-[var(--coral)] p-6"
+              className="bg-[var(--tertiary-fixed)] border-4 border-[var(--tertiary)] p-6"
             >
               <div className="flex items-center gap-3 mb-4">
-                <AlertTriangle size={24} strokeWidth={3} className="text-[var(--coral)]" />
-                <h3 className="neo-title text-lg">RESET SOBRIETY DATE?</h3>
+                <AlertTriangle size={24} strokeWidth={3} className="text-[var(--tertiary)]" />
+                <h3 className="neo-title text-lg text-[var(--on-background)]">RESET SOBRIETY DATE?</h3>
               </div>
-              <p className="neo-mono text-sm mb-6">
+              <p className="neo-mono text-sm mb-6 text-[var(--on-surface-variant)]">
                 This will clear your current sobriety date and reset your counter. This action cannot be undone.
               </p>
               <div className="flex gap-3">
@@ -126,7 +126,7 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setShowConfirmReset(false)}
-                  className="flex-1 neo-button bg-[var(--gray-disabled)]"
+                  className="flex-1 neo-button bg-[var(--secondary-container)]"
                   disabled={submitting}
                 >
                   CANCEL
@@ -137,7 +137,7 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
                   whileTap={{ scale: 0.98 }}
                   onClick={handleClear}
                   disabled={submitting}
-                  className="flex-1 neo-button bg-[var(--coral)] text-white"
+                  className="flex-1 neo-button neo-button-danger"
                 >
                   {submitting ? 'CLEARING...' : 'CLEAR DATE'}
                 </motion.button>
@@ -163,10 +163,10 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
                   max={getTodayDate()}
-                  className="neo-input neo-input-mint"
+                  className="neo-input"
                   required
                 />
-                <p className="neo-mono text-[10px] text-[var(--gray-muted)] mt-2">
+                <p className="neo-mono text-[10px] text-[var(--on-surface-variant)] mt-2">
                   Enter the date of your last drink/drug use.
                 </p>
               </div>
@@ -177,12 +177,12 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    className="bg-[var(--coral)] border-4 border-black p-4"
-                    style={{ boxShadow: '6px 6px 0px 0px black' }}
+                    className="bg-[var(--tertiary)] border-4 border-[var(--on-background)] p-4"
+                    style={{ boxShadow: '4px 4px 0px 0px var(--on-background)' }}
                   >
                     <div className="flex items-center gap-2">
                       <AlertTriangle size={14} strokeWidth={3} />
-                      <span className="neo-mono text-xs text-[var(--black)]">{error}</span>
+                      <span className="neo-mono text-xs text-[var(--on-tertiary)]">{error}</span>
                     </div>
                   </motion.div>
                 )}
@@ -194,7 +194,7 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={onClose}
-                  className="flex-1 neo-button bg-[var(--gray-disabled)]"
+                  className="flex-1 neo-button bg-[var(--secondary-container)]"
                   disabled={submitting}
                 >
                   CANCEL
@@ -206,7 +206,7 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
                     whileTap={{ scale: 0.98 }}
                     onClick={() => setShowConfirmReset(true)}
                     disabled={submitting}
-                    className="neo-button bg-[var(--coral)] text-white"
+                    className="neo-button neo-button-danger"
                   >
                     CLEAR
                   </motion.button>
@@ -223,7 +223,7 @@ export const SobrietySetup = ({ currentDate, onSubmit, onClose }: SobrietySetupP
                       <motion.span
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                        className="inline-block h-3 w-3 border-3 border-black border-t-transparent"
+                        className="inline-block h-3 w-3 border-3 border-[var(--on-primary)] border-t-transparent"
                       />
                       SAVING...
                     </span>

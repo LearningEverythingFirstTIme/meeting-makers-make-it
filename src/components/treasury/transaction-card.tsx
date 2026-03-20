@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TrendingUp, TrendingDown, Edit2, Trash2, Clock } from "lucide-react";
-import { formatCurrency, formatDate, getCategoryLabel } from "@/lib/treasury-utils";
+import { Edit2, Trash2 } from "lucide-react";
+import { formatCurrency, getTransactionTypeLabel } from "@/lib/treasury-utils";
 import type { TreasuryTransaction } from "@/types";
 
 interface TransactionCardProps {
@@ -12,86 +12,72 @@ interface TransactionCardProps {
 }
 
 export const TransactionCard = ({ transaction, onEdit, onDelete }: TransactionCardProps) => {
+  const typeLabel = getTransactionTypeLabel(transaction.type);
   const isContribution = transaction.type === 'contribution';
-  const categoryLabel = getCategoryLabel(transaction.type, transaction.category);
-  const amount = Number(transaction.amount) || 0;
-  const isPending = transaction.synced === false;
 
   return (
     <motion.div
       initial={{ opacity: 0, x: -10 }}
       animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 10 }}
-      className={`border-4 border-black p-4 ${
-        isContribution 
-          ? 'bg-[var(--mint)] bg-opacity-10 border-[var(--mint)]' 
-          : 'bg-[var(--coral)] bg-opacity-10 border-[var(--coral)]'
+      className={`border-3 border-[var(--on-background)] p-4 bg-[var(--surface-container-lowest)] flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+        isContribution ? 'border-l-4' : 'border-l-4'
       }`}
-      style={{ boxShadow: '6px 6px 0px 0px black' }}
-      whileHover={{ scale: 1.01, y: -1 }}
+      style={{ 
+        borderLeftColor: isContribution ? 'var(--primary)' : 'var(--tertiary)',
+        boxShadow: '3px 3px 0 0 var(--on-background)' 
+      }}
     >
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            {isContribution ? (
-              <TrendingUp size={16} strokeWidth={3} className="text-[var(--mint)]" />
-            ) : (
-              <TrendingDown size={16} strokeWidth={3} className="text-[var(--coral)]" />
-            )}
-            <span className="neo-title text-sm uppercase">{categoryLabel}</span>
-            {isPending && (
-              <motion.span
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="neo-badge bg-[var(--butter)] text-[var(--black)] flex items-center gap-1"
-              >
-                <motion.span
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                >
-                  <Clock size={10} strokeWidth={3} />
-                </motion.span>
-                PENDING
-              </motion.span>
-            )}
-          </div>
-          
-          <p className={`neo-mono text-lg font-bold text-[var(--black)]`}>
-            {isContribution ? '+' : '-'}{formatCurrency(amount)}
-          </p>
-
-          {transaction.note && (
-            <p className="neo-mono text-xs text-[var(--black)] truncate mt-1">
-              {transaction.note}
-            </p>
-          )}
-
-          <p className="neo-mono text-[10px] text-[var(--gray-muted)] mt-1">
-            {formatDate(transaction.date)}
-          </p>
+      <div className="flex items-center gap-3 flex-1 min-w-0">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+          <span 
+            className={`neo-badge text-xs ${isContribution ? 'bg-[var(--primary)] text-[var(--on-primary)]' : 'bg-[var(--tertiary)] text-[var(--on-tertiary)]'}`}
+          >
+            {typeLabel}
+          </span>
+          <span className="neo-mono text-xs text-[var(--on-surface-variant)]">
+            {transaction.category.replace(/_/g, ' ')}
+          </span>
         </div>
+      </div>
 
-        <div className="flex items-center gap-1">
+      <div className="flex items-center gap-4">
+        <div className="flex flex-col items-end">
+          <span className={`neo-title text-lg ${isContribution ? 'text-[var(--primary)]' : 'text-[var(--tertiary)]'}`}>
+            {isContribution ? '+' : '-'}{formatCurrency(Math.abs(transaction.amount))}
+          </span>
+          {transaction.note && (
+            <span className="neo-mono text-xs text-[var(--on-surface-variant)] truncate max-w-[200px]">
+              {transaction.note}
+            </span>
+          )}
+        </div>
+        
+        <div className="flex items-center gap-2">
           <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             type="button"
             onClick={onEdit}
-            className="p-2 bg-[var(--white)] border-3 border-black hover:bg-[var(--butter)]"
-            style={{ boxShadow: '4px 4px 0px 0px black' }}
+            className="border border-[var(--on-background)] p-1 hover:bg-[var(--surface-container-high)]"
+            title="Edit"
           >
             <Edit2 size={12} strokeWidth={3} />
           </motion.button>
+          
           <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             type="button"
-            onClick={onDelete}
-            className="p-2 bg-[var(--white)] border-3 border-black hover:bg-[var(--coral)] hover:text-white"
-            style={{ boxShadow: '4px 4px 0px 0px black' }}
+            onClick={() => void onDelete()}
+            className="border border-[var(--on-background)] p-1 hover:bg-[var(--tertiary)]"
+            title="Delete"
           >
             <Trash2 size={12} strokeWidth={3} />
           </motion.button>
+        </div>
+
+        <div className="neo-mono text-[10px] text-[var(--on-surface-variant)] hidden sm:block">
+          {transaction.date}
         </div>
       </div>
     </motion.div>

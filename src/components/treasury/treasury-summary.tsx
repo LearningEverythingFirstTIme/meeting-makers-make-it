@@ -84,26 +84,26 @@ export const TreasurySummary = ({ className }: TreasurySummaryProps) => {
         <motion.div
           whileHover={{ scale: 1.01, y: -2 }}
           whileTap={{ scale: 0.99 }}
-          className={["neo-card flex h-full cursor-pointer flex-col p-6", className].filter(Boolean).join(" ")}
+          className={["border-4 border-[var(--on-background)] flex h-full cursor-pointer flex-col p-6 bg-[var(--surface-container-lowest)]", className].filter(Boolean).join(" ")}
         >
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <DollarSign size={18} strokeWidth={3} />
-              <span className="neo-title text-xs">TREASURY</span>
+              <DollarSign size={18} strokeWidth={3} className="text-[var(--primary)]" />
+              <span className="neo-title text-xs text-[var(--on-background)]">TREASURY</span>
             </div>
-            <ArrowRight size={16} strokeWidth={3} className="text-[var(--black)]" />
+            <ArrowRight size={16} strokeWidth={3} className="text-[var(--on-surface-variant)]" />
           </div>
 
           {loading ? (
             <div className="animate-pulse">
-              <div className="h-8 bg-[var(--gray-disabled)] rounded w-24 mb-2"></div>
-              <div className="h-4 bg-[var(--gray-disabled)] rounded w-16"></div>
+              <div className="h-8 bg-[var(--surface-container)] w-24 mb-2"></div>
+              <div className="h-4 bg-[var(--surface-container)] w-16"></div>
             </div>
           ) : (
             <>
               <div className="mt-auto">
                 <motion.p
-                  className={`neo-title text-5xl ${summary.net >= 0 ? 'text-[var(--black)]' : 'text-[var(--coral)]'}`}
+                  className={`headline-lg ${summary.net >= 0 ? 'text-[var(--primary)]' : 'text-[var(--tertiary)]'}`}
                   key={summary.net}
                   initial={{ scale: 1.2 }}
                   animate={{ scale: 1 }}
@@ -112,21 +112,21 @@ export const TreasurySummary = ({ className }: TreasurySummaryProps) => {
                   {formatCurrency(summary.net)}
                 </motion.p>
 
-                <div className="mt-4 grid grid-cols-2 gap-6 border-t-2 border-black pt-4">
+                <div className="mt-4 grid grid-cols-2 gap-6 border-t-2 border-[var(--on-background)] pt-4">
                   <div className="flex items-center gap-3">
-                    <TrendingUp size={16} strokeWidth={3} className="text-[var(--mint)]" />
+                    <TrendingUp size={16} strokeWidth={3} className="text-[var(--primary)]" />
                     <div>
-                      <p className="neo-mono text-xs text-[var(--black)]">CONTRIBUTIONS</p>
-                      <p className="neo-mono text-base font-bold text-[var(--mint)]">
+                      <p className="neo-mono text-xs text-[var(--on-surface-variant)]">CONTRIBUTIONS</p>
+                      <p className="neo-mono text-base font-bold text-[var(--primary)]">
                         {formatCurrency(summary.contributions)}
                       </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <TrendingDown size={16} strokeWidth={3} className="text-[var(--coral)]" />
+                    <TrendingDown size={16} strokeWidth={3} className="text-[var(--tertiary)]" />
                     <div>
-                      <p className="neo-mono text-xs text-[var(--black)]">EXPENSES</p>
-                      <p className="neo-mono text-base font-bold text-[var(--coral)]">
+                      <p className="neo-mono text-xs text-[var(--on-surface-variant)]">EXPENSES</p>
+                      <p className="neo-mono text-base font-bold text-[var(--tertiary)]">
                         {formatCurrency(summary.expenses)}
                       </p>
                     </div>

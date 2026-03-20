@@ -14,6 +14,12 @@ interface TransactionFormProps {
   onClose: () => void;
 }
 
+const errorVariants = {
+  hidden: { height: 0, opacity: 0 },
+  visible: { height: "auto", opacity: 1 },
+  exit: { height: 0, opacity: 0 }
+};
+
 export const TransactionForm = ({ transaction, onSubmit, onCancel, onClose }: TransactionFormProps) => {
   const [type, setType] = useState<TransactionType>(transaction?.type ?? 'contribution');
   const [amount, setAmount] = useState(transaction?.amount?.toString() ?? '');
@@ -63,19 +69,19 @@ export const TransactionForm = ({ transaction, onSubmit, onCancel, onClose }: Tr
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--on-background)] bg-opacity-70"
       onClick={onClose}
     >
       <motion.div
         initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.9, y: 20 }}
-        className="w-full max-w-md bg-[var(--white)] border-4 border-black p-6"
-        style={{ boxShadow: '12px 12px 0px 0px black' }}
+        className="w-full max-w-md bg-[var(--surface-container-lowest)] border-4 border-[var(--on-background)] p-6"
+        style={{ boxShadow: '12px 12px 0px 0px var(--on-background)' }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between mb-6 pb-4 border-b-4 border-black">
-          <h2 className="neo-title text-xl">
+        <div className="flex items-center justify-between mb-6 pb-4 border-b-4 border-[var(--on-background)]">
+          <h2 className="neo-title text-xl text-[var(--on-background)]">
             {transaction ? 'EDIT TRANSACTION' : 'NEW TRANSACTION'}
           </h2>
           <motion.button
@@ -83,7 +89,7 @@ export const TransactionForm = ({ transaction, onSubmit, onCancel, onClose }: Tr
             whileTap={{ scale: 0.9 }}
             type="button"
             onClick={onClose}
-            className="p-2 border-3 border-black hover:bg-[var(--coral)]"
+            className="p-2 border-3 border-[var(--on-background)] hover:bg-[var(--tertiary)]"
           >
             <X size={16} strokeWidth={3} />
           </motion.button>
@@ -98,12 +104,12 @@ export const TransactionForm = ({ transaction, onSubmit, onCancel, onClose }: Tr
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleTypeChange('contribution')}
-                className={`flex-1 py-3 border-3 border-black neo-title text-sm flex items-center justify-center gap-2 ${
+                className={`flex-1 py-3 border-3 border-[var(--on-background)] neo-title text-sm flex items-center justify-center gap-2 ${
                   type === 'contribution'
-                    ? 'bg-[var(--mint)] text-[var(--black)]'
-                    : 'bg-[var(--white)] text-[var(--black)] hover:bg-[var(--cream)]'
+                    ? 'bg-[var(--primary)] text-[var(--on-primary)]'
+                    : 'bg-[var(--surface-container-lowest)] text-[var(--on-background)] hover:bg-[var(--surface-container)]'
                 }`}
-                style={{ boxShadow: type === 'contribution' ? 'none' : '4px 4px 0px 0px black' }}
+                style={{ boxShadow: type === 'contribution' ? 'none' : '4px 4px 0px 0px var(--on-background)' }}
               >
                 <Plus size={14} strokeWidth={3} /> CONTRIBUTION
               </motion.button>
@@ -112,12 +118,12 @@ export const TransactionForm = ({ transaction, onSubmit, onCancel, onClose }: Tr
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleTypeChange('expense')}
-                className={`flex-1 py-3 border-3 border-black neo-title text-sm flex items-center justify-center gap-2 ${
+                className={`flex-1 py-3 border-3 border-[var(--on-background)] neo-title text-sm flex items-center justify-center gap-2 ${
                   type === 'expense'
-                    ? 'bg-[var(--coral)] text-white'
-                    : 'bg-[var(--white)] text-[var(--black)] hover:bg-[var(--cream)]'
+                    ? 'bg-[var(--tertiary)] text-[var(--on-tertiary)]'
+                    : 'bg-[var(--surface-container-lowest)] text-[var(--on-background)] hover:bg-[var(--surface-container)]'
                 }`}
-                style={{ boxShadow: type === 'expense' ? 'none' : '4px 4px 0px 0px black' }}
+                style={{ boxShadow: type === 'expense' ? 'none' : '4px 4px 0px 0px var(--on-background)' }}
               >
                 <Minus size={14} strokeWidth={3} /> EXPENSE
               </motion.button>
@@ -185,12 +191,13 @@ export const TransactionForm = ({ transaction, onSubmit, onCancel, onClose }: Tr
           <AnimatePresence>
             {error && (
               <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="bg-[var(--coral)] border-4 border-black p-3"
+                variants={errorVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="bg-[var(--tertiary)] border-4 border-[var(--on-background)] p-3"
               >
-                <span className="neo-mono text-xs text-[var(--black)]">{error}</span>
+                <span className="neo-mono text-xs text-[var(--on-tertiary)]">{error}</span>
               </motion.div>
             )}
           </AnimatePresence>
@@ -201,7 +208,7 @@ export const TransactionForm = ({ transaction, onSubmit, onCancel, onClose }: Tr
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={onCancel}
-              className="flex-1 neo-button bg-[var(--gray-disabled)]"
+              className="flex-1 neo-button bg-[var(--secondary-container)]"
               disabled={submitting}
             >
               CANCEL

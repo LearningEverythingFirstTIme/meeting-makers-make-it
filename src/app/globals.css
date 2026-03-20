@@ -5,90 +5,330 @@
 
 @layer theme {
   :root {
-    /* Light Mode - Warm Brutalist */
-    --cream: #F5F0E6;
-    --butter: #FFE66D;
-    --coral: #FF6B6B;
-    --mint: #4ECDC4;
-    --lavender: #A78BFA;
-    --sky: #38BDF8;
-    --black: #000000;
-    --white: #FFFFFF;
-    --pink: #FF69B4;
-    --lime: #84CC16;
+    /* Editorial Brutalism - "The Curated Archive" */
     
-    /* Dark Mode - Midnight Brutalist */
-    --cream-dark: #1a1a2e;
-    --butter-dark: #FFD93D;
-    --coral-dark: #FF6B6B;
-    --mint-dark: #6EE7DE;
-    --lavender-dark: #B9A3FA;
-    --sky-dark: #60D0FA;
-    --black-dark: #E8E8E8;
-    --white-dark: #16213e;
-    --pink-dark: #FF85C0;
-    --lime-dark: #9AE635;
+    /* Core Palette - Heritage High-Contrast */
+    --primary: #570013;
+    --primary-container: #800020;
+    --on-primary: #ffffff;
+    --on-primary-fixed: #40000b;
     
-    /* Gray scale - Light Mode */
-    --gray-muted: #9ca3af;
-    --gray-subtle: #d1d5db;
-    --gray-disabled: #e5e7eb;
+    --background: #fafaf5;
+    --surface: #fafaf5;
+    --surface-container-lowest: #ffffff;
+    --surface-container-low: #f4f4ef;
+    --surface-container: #eeeee9;
+    --surface-container-high: #e8e8e3;
+    --surface-container-highest: #e3e3de;
+    --surface-bright: #fafaf5;
+    --surface-dim: #dadad5;
+    --surface-variant: #e3e3de;
+    --surface-tint: #af2b3e;
     
-    /* Gray scale - Dark Mode */
-    --gray-muted-dark: #6b7280;
-    --gray-subtle-dark: #4b5563;
-    --gray-disabled-dark: #374151;
+    --on-background: #1a1c19;
+    --on-surface: #1a1c19;
+    --on-surface-variant: #584141;
     
-    /* Stat Card Backgrounds - Dark Mode (muted/darker versions) */
-    --stat-mint-dark: #2d5a56;
-    --stat-butter-dark: #8b7355;
-    --stat-lavender-dark: #5a4a7a;
-    --stat-coral-dark: #8b4a4a;
-    --stat-sky-dark: #2d5a7a;
+    --secondary: #5f5e5e;
+    --secondary-container: #e5e2e1;
+    --on-secondary: #ffffff;
+    --on-secondary-container: #656464;
+    
+    --tertiary: #4d1300;
+    --tertiary-container: #722100;
+    --on-tertiary: #ffffff;
+    --on-tertiary-container: #ff865b;
+    --tertiary-fixed: #ffdbcf;
+    
+    --outline: #8c7071;
+    --outline-variant: #e0bfbf;
+    
+    --error: #ba1a1a;
+    --error-container: #ffdad6;
+    --on-error: #ffffff;
+    
+    --inverse-surface: #2f312e;
+    --inverse-on-surface: #f1f1ec;
+    --inverse-primary: #ffb3b5;
+    
+    /* Utility Colors */
+    --white: #ffffff;
+    --black: #1a1c19;
+    
+    /* Activity Grid Scale (Monochromatic Burgundy) */
+    --activity-0: #fafaf5;
+    --activity-1: #eeeee9;
+    --activity-2: #800020;
+    --activity-3: #570013;
+    --activity-4: #1a1c19;
+    
+    /* Semantic Colors (preserved for compatibility) */
+    --mint: #4d1300;
+    --butter: #570013;
+    --coral: #4d1300;
+    --lavender: #5f5e5e;
+    --sky: #5f5e5e;
+    --cream: #fafaf5;
+    --periwinkle: #570013;
+    
+    /* Gray scale */
+    --gray-muted: #5f5e5e;
+    --gray-subtle: #8c7071;
+    --gray-disabled: #e0bfbf;
   }
   
   /* Dark mode class-based switching */
   .dark {
-    --cream: var(--cream-dark);
-    --butter: var(--butter-dark);
-    --coral: var(--coral-dark);
-    --mint: var(--mint-dark);
-    --lavender: var(--lavender-dark);
-    --sky: var(--sky-dark);
-    --black: var(--black-dark);
-    --white: var(--white-dark);
-    --pink: var(--pink-dark);
-    --lime: var(--lime-dark);
-    --gray-muted: var(--gray-muted-dark);
-    --gray-subtle: var(--gray-subtle-dark);
-    --gray-disabled: var(--gray-disabled-dark);
+    --primary: #ffb3b5;
+    --primary-container: #8e0f28;
+    --on-primary: #40000b;
+    --on-primary-fixed: #ffffff;
+    
+    --background: #1a1c19;
+    --surface: #1a1c19;
+    --surface-container-lowest: #1a1c19;
+    --surface-container-low: #1f201d;
+    --surface-container: #252623;
+    --surface-container-high: #2b2c29;
+    --surface-container-highest: #2f312e;
+    --surface-bright: #fafaf5;
+    --surface-dim: #dadad5;
+    --surface-variant: #3d3d3d;
+    --surface-tint: #af2b3e;
+    
+    --on-background: #e3e3de;
+    --on-surface: #e3e3de;
+    --on-surface-variant: #c6bfbf;
+    
+    --secondary: #c8c6c5;
+    --secondary-container: #474646;
+    --on-secondary: #1c1b1b;
+    --on-secondary-container: #e5e2e1;
+    
+    --tertiary: #ffb59c;
+    --tertiary-container: #832700;
+    --on-tertiary: #390c00;
+    --on-tertiary-container: #ff865b;
+    --tertiary-fixed: #ffdbcf;
+    
+    --outline: #8c7071;
+    --outline-variant: #5f5e5e;
+    
+    --error: #ffb4ab;
+    --error-container: #93000a;
+    --on-error: #690005;
+    
+    --inverse-surface: #e3e3de;
+    --inverse-on-surface: #2f312e;
+    --inverse-primary: #570013;
+    
+    --black: #e3e3de;
+    --white: #1a1c19;
+    
+    /* Activity Grid Scale (Dark Mode) */
+    --activity-0: #1a1c19;
+    --activity-1: #252623;
+    --activity-2: #8e0f28;
+    --activity-3: #ffb3b5;
+    --activity-4: #e3e3de;
+    
+    /* Semantic Colors (Dark Mode) */
+    --mint: #ffb59c;
+    --butter: #ffb3b5;
+    --coral: #ffb4ab;
+    --lavender: #c8c6c5;
+    --sky: #c8c6c5;
+    --cream: #1a1c19;
+    --periwinkle: #ffb3b5;
+    
+    /* Gray scale - Dark Mode */
+    --gray-muted: #c6bfbf;
+    --gray-subtle: #8c7071;
+    --gray-disabled: #5f5e5e;
   }
 }
 
+/* Base body styles with zine grid background */
 body {
-  background: var(--cream);
-  color: var(--black);
-  font-family: 'Archivo', sans-serif;
+  background: var(--background);
+  color: var(--on-background);
+  font-family: 'Newsreader', Georgia, serif;
   overflow-x: hidden;
-  background-image: radial-gradient(var(--black) 1.5px, transparent 1.5px);
-  background-size: 24px 24px;
   min-height: 100vh;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.dark body {
-  background-image: radial-gradient(var(--black) 1.5px, transparent 1.5px);
+/* Zine grid background - visible grid lines */
+.zine-grid {
+  background-image: 
+    linear-gradient(to right, var(--outline-variant) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--outline-variant) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 ::selection {
-  background: var(--butter);
-  color: var(--black);
+  background: var(--tertiary);
+  color: var(--white);
 }
 
+/* ============================================
+   TYPOGRAPHY - The Three Voices
+   ============================================ */
+
+/* Display/Headlines: Epilogue - Black/Bold, massive scale */
+@utility headline-display {
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+
+@utility headline-xl {
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 900;
+  font-size: 3.5rem;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+@utility headline-lg {
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+}
+
+@utility headline-md {
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+@utility headline-sm {
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.1;
+}
+
+/* Body/Editorial: Newsreader - Medium/Regular, italic for quotes */
+@utility body-editorial {
+  font-family: 'Newsreader', Georgia, serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+@utility body-editorial-lg {
+  font-family: 'Newsreader', Georgia, serif;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+@utility quote-text {
+  font-family: 'Newsreader', Georgia, serif;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.7;
+}
+
+/* Labels/Data: Space Grotesk - Mono/Medium */
+@utility label-mono {
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+@utility label-mono-xs {
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 500;
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@utility label-mono-sm {
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Backwards compatible utilities */
+@utility neo-title {
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+
+@utility neo-mono {
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+@utility neo-label {
+  display: block;
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 500;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  color: var(--on-background);
+}
+
+/* ============================================
+   HARD SHADOWS - The "Offset Shadow" Principle
+   ============================================ */
+
+@utility shadow-hard {
+  box-shadow: 4px 4px 0px 0px var(--on-background);
+}
+
+@utility shadow-hard-lg {
+  box-shadow: 8px 8px 0px 0px var(--on-background);
+}
+
+@utility shadow-hard-hover {
+  box-shadow: 6px 6px 0px 0px var(--on-background);
+}
+
+/* ============================================
+   CARDS - Physical "Layering" Feel
+   ============================================ */
+
 @utility neo-card {
-  background: var(--white);
-  border: 4px solid var(--black);
-  box-shadow: 8px 8px 0px 0px var(--black);
+  background: var(--surface-container-lowest);
+  border: 4px solid var(--on-background);
+  box-shadow: 8px 8px 0px 0px var(--on-background);
+}
+
+@utility neo-card-sm {
+  background: var(--surface-container-lowest);
+  border: 4px solid var(--on-background);
+  box-shadow: 4px 4px 0px 0px var(--on-background);
+}
+
+@utility neo-card-hover {
+  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+  
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 10px 10px 0px 0px var(--on-background);
+  }
+  
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: 4px 4px 0px 0px var(--on-background);
+  }
 }
 
 @utility neo-dashboard-stat {
@@ -97,30 +337,22 @@ body {
   height: 100%;
   flex-direction: column;
   justify-content: space-between;
-  border: 4px solid var(--black);
+  border: 4px solid var(--on-background);
   padding: 1.5rem;
-  box-shadow: 6px 6px 0px 0px var(--black);
+  box-shadow: 6px 6px 0px 0px var(--on-background);
+  background: var(--surface-container-lowest);
 }
 
-@utility neo-card-hover {
-  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
-  
-  &:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 10px 10px 0px 0px var(--black);
-  }
-  
-  &:active {
-    transform: translate(2px, 2px);
-    box-shadow: 4px 4px 0px 0px var(--black);
-  }
-}
+/* ============================================
+   BUTTONS - 0px radius, hard shadows
+   ============================================ */
 
 @utility neo-button {
-  background: var(--white);
-  border: 3px solid var(--black);
-  box-shadow: 4px 4px 0px 0px var(--black);
-  font-family: 'Archivo Black', sans-serif;
+  background: var(--surface-container-lowest);
+  border: 3px solid var(--on-background);
+  box-shadow: 4px 4px 0px 0px var(--on-background);
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-size: 0.75rem;
@@ -128,200 +360,191 @@ body {
   cursor: pointer;
   transition: all 0.1s ease-out;
   will-change: transform, box-shadow;
+  border-radius: 0;
   
   &:hover {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0px 0px var(--black);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px 0px var(--on-background);
   }
   
   &:active {
-    box-shadow: none;
-    transform: translate(4px, 4px);
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px 0px var(--on-background);
   }
   
   &:focus-visible {
     outline: none;
-    box-shadow: 4px 4px 0px 0px var(--black), 0 0 0 3px var(--butter);
+    box-shadow: 4px 4px 0px 0px var(--on-background), 0 0 0 3px var(--tertiary);
   }
   
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
     transform: none;
-    box-shadow: 4px 4px 0px 0px var(--black);
+    box-shadow: 4px 4px 0px 0px var(--on-background);
   }
 }
 
 @utility neo-button-primary {
-  background: var(--butter);
-  color: var(--black);
+  background: var(--primary);
+  color: var(--on-primary);
   
   &:hover {
-    background: color-mix(in srgb, var(--butter) 85%, var(--black));
+    background: color-mix(in srgb, var(--primary) 85%, var(--black));
   }
 }
 
 @utility neo-button-success {
-  background: var(--mint);
-  color: var(--black);
+  background: var(--secondary);
+  color: var(--on-secondary);
   
   &:hover {
-    background: color-mix(in srgb, var(--mint) 85%, var(--black));
+    background: color-mix(in srgb, var(--secondary) 85%, var(--black));
   }
 }
 
 @utility neo-button-danger {
-  background: var(--coral);
-  color: var(--white);
+  background: var(--tertiary);
+  color: var(--on-tertiary);
   
   &:hover {
-    background: color-mix(in srgb, var(--coral) 85%, var(--white));
+    background: color-mix(in srgb, var(--tertiary) 85%, var(--white));
   }
 }
 
 @utility neo-button-secondary {
-  background: var(--lavender);
-  color: var(--black);
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
   
   &:hover {
-    background: color-mix(in srgb, var(--lavender) 85%, var(--black));
+    background: color-mix(in srgb, var(--secondary-container) 85%, var(--black));
   }
 }
 
+/* ============================================
+   INPUT FIELDS - Heavy borders, editorial feel
+   ============================================ */
+
 @utility neo-input {
   width: 100%;
-  background: var(--white);
-  border: 3px solid var(--black);
+  background: var(--surface-container-lowest);
+  border: 4px solid var(--on-background);
   padding: 0.75rem 1rem;
-  font-family: 'Archivo', sans-serif;
-  font-weight: 600;
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 500;
   font-size: 0.875rem;
   transition: all 0.15s ease-out;
   box-shadow: 4px 4px 0px 0px transparent;
+  border-radius: 0;
   
   &:focus {
     outline: none;
-    box-shadow: 6px 6px 0px 0px var(--black);
+    box-shadow: 6px 6px 0px 0px var(--on-background);
+    background: var(--tertiary-fixed);
   }
   
   &::placeholder {
-    color: color-mix(in srgb, var(--black) 50%, transparent);
-    font-weight: 500;
+    color: color-mix(in srgb, var(--on-background) 50%, transparent);
+    font-weight: 400;
   }
 }
 
 @utility neo-input-mint {
-  background: color-mix(in srgb, var(--mint) 15%, var(--white));
-  
   &:focus {
-    background: color-mix(in srgb, var(--mint) 25%, var(--white));
+    background: color-mix(in srgb, var(--tertiary) 10%, var(--surface-container-lowest));
   }
 }
 
 @utility neo-input-coral {
-  background: color-mix(in srgb, var(--coral) 15%, var(--white));
-  
   &:focus {
-    background: color-mix(in srgb, var(--coral) 25%, var(--white));
+    background: color-mix(in srgb, var(--tertiary) 10%, var(--surface-container-lowest));
   }
 }
 
 @utility neo-input-lavender {
-  background: color-mix(in srgb, var(--lavender) 15%, var(--white));
-  
   &:focus {
-    background: color-mix(in srgb, var(--lavender) 25%, var(--white));
+    background: color-mix(in srgb, var(--secondary-container) 20%, var(--surface-container-lowest));
   }
 }
 
 @utility neo-input-sky {
-  background: color-mix(in srgb, var(--sky) 15%, var(--white));
-  
   &:focus {
-    background: color-mix(in srgb, var(--sky) 25%, var(--white));
+    background: color-mix(in srgb, var(--tertiary-fixed) 30%, var(--surface-container-lowest));
+  }
+}
+
+/* ============================================
+   BADGES & CHIPS - Rectangular, hard edges
+   ============================================ */
+
+@utility neo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 700;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.5rem;
+  border: 2px solid var(--on-background);
+  box-shadow: 2px 2px 0px 0px var(--on-background);
+  border-radius: 0;
+}
+
+@utility neo-chip {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.5rem 1rem;
+  border: 3px solid var(--on-background);
+  border-radius: 0;
+  transition: all 0.1s ease-out;
+  
+  &:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px 0px var(--on-background);
+  }
+}
+
+@utility neo-chip-selected {
+  background: var(--tertiary);
+  color: var(--on-tertiary);
+  border-color: var(--on-background);
+  box-shadow: 3px 3px 0px 0px var(--on-background);
+}
+
+/* ============================================
+   DECORATIVE ELEMENTS
+   ============================================ */
+
+@utility neo-dot {
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--on-background);
+  border-radius: 0;
+  
+  &.active {
+    background: var(--primary);
+  }
+  
+  &.inactive {
+    background: color-mix(in srgb, var(--on-background) 40%, transparent);
   }
 }
 
 @utility neo-stripe {
   background: repeating-linear-gradient(
     45deg,
-    var(--butter),
-    var(--butter) 10px,
-    var(--coral) 10px,
-    var(--coral) 20px
+    var(--primary),
+    var(--primary) 10px,
+    var(--tertiary) 10px,
+    var(--tertiary) 20px
   );
-}
-
-@utility neo-stripe-mint {
-  background: repeating-linear-gradient(
-    45deg,
-    var(--mint),
-    var(--mint) 10px,
-    #3BA99C 10px,
-    #3BA99C 20px
-  );
-}
-
-@utility neo-stripe-lavender {
-  background: repeating-linear-gradient(
-    45deg,
-    var(--lavender),
-    var(--lavender) 10px,
-    #8B5CF6 10px,
-    #8B5CF6 20px
-  );
-}
-
-@utility neo-label {
-  display: block;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.5rem;
-  color: var(--black);
-}
-
-@utility neo-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-family: 'Archivo', sans-serif;
-  font-weight: 700;
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.25rem 0.5rem;
-  border: 2px solid var(--black);
-  box-shadow: 2px 2px 0px 0px var(--black);
-}
-
-@utility neo-dot {
-  width: 8px;
-  height: 8px;
-  border: 2px solid var(--black);
-  border-radius: 0;
-  
-  &.active {
-    background: var(--mint);
-  }
-  
-  &.inactive {
-    background: color-mix(in srgb, var(--black) 40%, transparent);
-  }
-}
-
-@utility neo-title {
-  font-family: 'Archivo Black', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  line-height: 0.9;
-}
-
-@utility neo-mono {
-  font-family: 'Courier New', monospace;
-  font-weight: 700;
-  letter-spacing: -0.05em;
 }
 
 @utility neo-section-header {
@@ -330,37 +553,28 @@ body {
   gap: 0.5rem;
   margin-bottom: 1rem;
   padding-bottom: 0.75rem;
-  border-bottom: 4px solid var(--black);
+  border-bottom: 4px solid var(--on-background);
 }
 
-/* 
-  VISUAL STANDARDS DOCUMENTATION:
-  
-  Borders:
-    - border-4: Main cards (neo-card), page headers, stat cards
-    - border-3: Buttons (neo-button), inputs (neo-input), inner sections
-    - border-2: Badges (neo-badge), small chips, decorative elements
-  
-  Shadows (box-shadow):
-    - 12px: Modals (centered overlays)
-    - 10px: Highlighted/success states, special cards
-    - 8px: Main cards (neo-card), page headers
-    - 6px: Error banners, dashboard layout header, inner cards
-    - 4px: Buttons (neo-button), form elements
-    - 3px: Nav items (when inactive)
-    - 2px: Small action buttons (edit/delete icons), badges
-  
-  Padding in cards:
-    - p-6: Standard card padding
-    - p-4: Compact cards (date browser)
-    - p-8: Auth forms, error states
-  
-  Section headers pattern:
-    <div className="flex items-center gap-2 mb-4 pb-3 border-b-4 border-black">
-      <span className="neo-title text-sm text-[var(--accent)]">►</span>
-      <span className="neo-title text-sm">TITLE</span>
-    </div>
-*/
+/* Editorial left-border treatment for quotes */
+@utility editorial-border {
+  border-left: 4px solid var(--primary);
+  padding-left: 1.5rem;
+}
+
+/* ============================================
+   ACTIVITY GRID - Monochromatic Burgundy Scale
+   ============================================ */
+
+@utility activity-cell {
+  aspect-ratio: 1;
+  border: 3px solid var(--on-background);
+  border-radius: 0;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
 
 @keyframes wobble {
   0%, 100% { transform: rotate(0deg); }
@@ -397,8 +611,8 @@ body {
 }
 
 @keyframes pulse-bg {
-  0%, 100% { background-color: var(--white); }
-  50% { background-color: #FFF9C4; }
+  0%, 100% { background-color: var(--surface-container-lowest); }
+  50% { background-color: var(--tertiary-fixed); }
 }
 
 @keyframes spin-slow {
@@ -458,6 +672,10 @@ body {
   animation: bounce-xy 0.5s ease-in-out;
 }
 
+/* ============================================
+   RESPONSIVE & ACCESSIBILITY
+   ============================================ */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -467,3 +685,40 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Force zero border-radius globally */
+*, *::before, *::after {
+  border-radius: 0 !important;
+}
+
+/* 
+  VISUAL STANDARDS DOCUMENTATION:
+  
+  Borders:
+    - border-4: Main cards (neo-card), page headers, stat cards
+    - border-3: Buttons (neo-button), inputs (neo-input), inner sections
+    - border-2: Badges (neo-badge), small chips, decorative elements
+  
+  Shadows (box-shadow) - HARD OFFSETS ONLY:
+    - 12px: Modals (centered overlays)
+    - 10px: Highlighted/success states, hover effects
+    - 8px: Main cards (neo-card), page headers
+    - 6px: Error banners, dashboard layout header, inner cards
+    - 4px: Buttons (neo-button), form elements
+    - 3px: Nav items (when inactive)
+    - 2px: Small action buttons (edit/delete icons), badges
+  
+  Padding in cards:
+    - p-6: Standard card padding
+    - p-4: Compact cards (date browser)
+    - p-8: Auth forms, error states
+  
+  Typography Scale:
+    - Display-LG: 3.5rem (56px) - Hero sobriety counter
+    - Display-MD: 2.5rem (40px) - Section headers
+    - Headline: 1.75rem (28px) - Card titles
+    - Body-LG: 1.125rem (18px) - Editorial quotes
+    - Body: 1rem (16px) - Default body text
+    - Label: 0.75rem (12px) - Mono labels
+    - Label-XS: 0.625rem (10px) - Micro labels
+*/

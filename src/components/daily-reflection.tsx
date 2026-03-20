@@ -34,27 +34,26 @@ export function DailyReflection() {
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="neo-card mb-8 overflow-hidden"
+      className="border-4 border-[var(--on-background)] mb-8 overflow-hidden bg-[var(--surface-container-lowest)]"
       style={{ 
-        borderLeft: "6px solid var(--mint)",
-        background: "var(--mint)"
+        borderLeft: "6px solid var(--primary)"
       }}
     >
       {/* Header */}
-      <div className="flex items-center justify-between p-4 bg-black/5 border-b-3 border-black">
+      <div className="flex items-center justify-between p-4 bg-[var(--surface-container)] border-b-3 border-[var(--on-background)]">
         <div className="flex items-center gap-3">
-          <div className="p-2 border-3 border-black bg-white">
-            <Sun size={24} strokeWidth={3} className="text-[var(--black)]" />
+          <div className="p-2 border-3 border-[var(--on-background)] bg-[var(--surface-container-lowest)]">
+            <Sun size={24} strokeWidth={3} className="text-[var(--primary)]" />
           </div>
           <div>
-            <h2 className="neo-title text-xl text-[var(--black)]">DAILY REFLECTION</h2>
+            <h2 className="neo-title text-xl text-[var(--on-background)]">DAILY REFLECTION</h2>
             <div className="flex items-center gap-2">
-              <Calendar size={14} strokeWidth={3} className="text-[var(--black)]/60" />
-              <span className="neo-mono text-xs text-[var(--black)]/60">
+              <Calendar size={14} strokeWidth={3} className="text-[var(--on-surface-variant)]" />
+              <span className="neo-mono text-xs text-[var(--on-surface-variant)]">
                 DAY {currentDay} OF 365
               </span>
               {!isToday && (
-                <span className="neo-badge text-xs bg-[var(--mint)] ml-2">
+                <span className="neo-badge text-xs bg-[var(--primary)] text-[var(--on-primary)] ml-2">
                   VIEWING PAST
                 </span>
               )}
@@ -68,7 +67,7 @@ export function DailyReflection() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={goToPrevious}
-            className="neo-button p-2 bg-white"
+            className="neo-button p-2 bg-[var(--surface-container-lowest)]"
             aria-label="Previous day"
           >
             <ChevronLeft size={20} strokeWidth={3} />
@@ -79,7 +78,7 @@ export function DailyReflection() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={goToToday}
-              className="neo-button px-3 py-2 bg-[var(--mint)] text-sm flex items-center gap-1"
+              className="neo-button px-3 py-2 bg-[var(--primary)] text-sm flex items-center gap-1"
               aria-label="Go to today"
             >
               <RotateCcw size={14} strokeWidth={3} />
@@ -91,7 +90,7 @@ export function DailyReflection() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={goToNext}
-            className="neo-button p-2 bg-white"
+            className="neo-button p-2 bg-[var(--surface-container-lowest)]"
             aria-label="Next day"
           >
             <ChevronRight size={20} strokeWidth={3} />
@@ -99,7 +98,7 @@ export function DailyReflection() {
         </div>
       </div>
 
-      {/* Quote Content */}
+      {/* Quote Content - Editorial Treatment */}
       <AnimatePresence mode="wait">
         <motion.div
           key={currentDay}
@@ -109,14 +108,8 @@ export function DailyReflection() {
           transition={{ duration: 0.3 }}
           className="p-6"
         >
-          <blockquote className="relative">
-            <div 
-              className="absolute -top-2 -left-2 text-6xl font-bold opacity-20"
-              style={{ fontFamily: "Georgia, serif" }}
-            >
-              &ldquo;
-            </div>
-            <p className="neo-title text-xl md:text-2xl text-[var(--black)] leading-relaxed relative z-10 pl-4">
+          <blockquote className="relative editorial-border">
+            <p className="quote-text text-xl md:text-2xl text-[var(--on-background)] leading-relaxed">
               {reflection.text}
             </p>
           </blockquote>
@@ -127,9 +120,9 @@ export function DailyReflection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="mt-4 pt-4 border-t-3 border-black/10 flex items-center justify-end gap-2"
+              className="mt-4 pt-4 border-t-3 border-[var(--outline-variant)] flex items-center justify-end gap-2"
             >
-              <span className="neo-mono text-sm text-[var(--black)]/70">
+              <span className="neo-mono text-sm text-[var(--on-surface-variant)]">
                 — {reflection.author || reflection.source}
               </span>
             </motion.div>
