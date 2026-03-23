@@ -29,7 +29,7 @@ const chipGlowByColor: Record<string, string> = {
   "#A9A9A9": "0 0 20px rgba(169,169,169,0.5)",
   "#8B4513": "0 0 20px rgba(139,69,19,0.5)",
   "#B8860B": "0 0 20px rgba(184,134,11,0.5)",
-  "#000000": "0 0 20px rgba(100,100,100,0.5)",
+  "#000000": "0 0 30px rgba(100,100,100,0.6)",
 };
 
 export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) => {
@@ -268,7 +268,7 @@ export const SobrietyCounter = ({ sobrietyDate, onEdit }: SobrietyCounterProps) 
       <div className="mt-6 pt-4 border-t-2 border-dashed border-black">
         <p className="neo-mono text-[10px] text-[var(--gray-muted)] mb-3">MILESTONE CHIPS</p>
         <div className="flex flex-wrap gap-2">
-          {SOBRIETY_MILESTONES.slice(0, 8).map((milestone, index) => {
+          {SOBRIETY_MILESTONES.slice(0, 14).map((milestone, index) => {
             const isAchieved = daysSober >= milestone.days;
             const isNext = nextMilestone?.days === milestone.days;
             
