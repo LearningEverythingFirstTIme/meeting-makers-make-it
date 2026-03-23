@@ -85,13 +85,13 @@ body {
   color: var(--black);
 }
 
-@utility neo-card {
+ neo-card {
   background: var(--white);
   border: 4px solid var(--black);
   box-shadow: 8px 8px 0px 0px var(--black);
 }
 
-@utility neo-dashboard-stat {
+ neo-dashboard-stat {
   display: flex;
   min-height: 15rem;
   height: 100%;
@@ -102,7 +102,7 @@ body {
   box-shadow: 6px 6px 0px 0px var(--black);
 }
 
-@utility neo-card-hover {
+ neo-card-hover {
   transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
   
   &:hover {
@@ -116,7 +116,7 @@ body {
   }
 }
 
-@utility neo-button {
+ neo-button {
   background: var(--white);
   border: 3px solid var(--black);
   box-shadow: 4px 4px 0px 0px var(--black);
@@ -152,7 +152,7 @@ body {
   }
 }
 
-@utility neo-button-primary {
+ neo-button-primary {
   background: var(--butter);
   color: var(--black);
   
@@ -161,7 +161,7 @@ body {
   }
 }
 
-@utility neo-button-success {
+ neo-button-success {
   background: var(--mint);
   color: var(--black);
   
@@ -170,7 +170,7 @@ body {
   }
 }
 
-@utility neo-button-danger {
+ neo-button-danger {
   background: var(--coral);
   color: var(--white);
   
@@ -179,7 +179,7 @@ body {
   }
 }
 
-@utility neo-button-secondary {
+ neo-button-secondary {
   background: var(--lavender);
   color: var(--black);
   
@@ -188,7 +188,7 @@ body {
   }
 }
 
-@utility neo-input {
+ neo-input {
   width: 100%;
   background: var(--white);
   border: 3px solid var(--black);
@@ -210,7 +210,7 @@ body {
   }
 }
 
-@utility neo-input-mint {
+ neo-input-mint {
   background: color-mix(in srgb, var(--mint) 15%, var(--white));
   
   &:focus {
@@ -218,7 +218,7 @@ body {
   }
 }
 
-@utility neo-input-coral {
+ neo-input-coral {
   background: color-mix(in srgb, var(--coral) 15%, var(--white));
   
   &:focus {
@@ -226,7 +226,7 @@ body {
   }
 }
 
-@utility neo-input-lavender {
+ neo-input-lavender {
   background: color-mix(in srgb, var(--lavender) 15%, var(--white));
   
   &:focus {
@@ -234,7 +234,7 @@ body {
   }
 }
 
-@utility neo-input-sky {
+ neo-input-sky {
   background: color-mix(in srgb, var(--sky) 15%, var(--white));
   
   &:focus {
@@ -242,7 +242,7 @@ body {
   }
 }
 
-@utility neo-stripe {
+ neo-stripe {
   background: repeating-linear-gradient(
     45deg,
     var(--butter),
@@ -252,7 +252,7 @@ body {
   );
 }
 
-@utility neo-stripe-mint {
+ neo-stripe-mint {
   background: repeating-linear-gradient(
     45deg,
     var(--mint),
@@ -262,7 +262,7 @@ body {
   );
 }
 
-@utility neo-stripe-lavender {
+ neo-stripe-lavender {
   background: repeating-linear-gradient(
     45deg,
     var(--lavender),
@@ -272,7 +272,7 @@ body {
   );
 }
 
-@utility neo-label {
+ neo-label {
   display: block;
   font-family: 'Archivo Black', sans-serif;
   font-size: 0.7rem;
@@ -282,7 +282,7 @@ body {
   color: var(--black);
 }
 
-@utility neo-badge {
+ neo-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
@@ -296,7 +296,7 @@ body {
   box-shadow: 2px 2px 0px 0px var(--black);
 }
 
-@utility neo-dot {
+ neo-dot {
   width: 8px;
   height: 8px;
   border: 2px solid var(--black);
@@ -311,20 +311,20 @@ body {
   }
 }
 
-@utility neo-title {
+ neo-title {
   font-family: 'Archivo Black', sans-serif;
   text-transform: uppercase;
   letter-spacing: -0.02em;
   line-height: 0.9;
 }
 
-@utility neo-mono {
+ neo-mono {
   font-family: 'Courier New', monospace;
   font-weight: 700;
   letter-spacing: -0.05em;
 }
 
-@utility neo-section-header {
+ neo-section-header {
   display: flex;
   align-items: center;
   gap: 0.5rem;
