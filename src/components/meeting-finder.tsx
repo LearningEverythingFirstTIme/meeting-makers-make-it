@@ -766,7 +766,6 @@ export function MeetingFinder({ meetings: rawMeetings, stateCode, availableState
         ) : (
           <>
             <div className="grid gap-3 sm:grid-cols-2">
-              <AnimatePresence>
                 {displayedMeetings.map((meeting) => {
                   const meetingId = makeMeetingId(meeting);
                   return (
@@ -780,7 +779,6 @@ export function MeetingFinder({ meetings: rawMeetings, stateCode, availableState
                     />
                   );
                 })}
-              </AnimatePresence>
             </div>
 
             {hasMore && (
