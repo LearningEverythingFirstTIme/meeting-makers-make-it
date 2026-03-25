@@ -766,8 +766,8 @@ export function MeetingFinder({ meetings: rawMeetings, stateCode, availableState
           </motion.div>
         ) : (
           <>
-            <motion.div layout className="grid gap-3 sm:grid-cols-2">
-              <AnimatePresence mode="popLayout">
+            <div className="grid gap-3 sm:grid-cols-2">
+              <AnimatePresence>
                 {displayedMeetings.map((meeting) => {
                   const meetingId = makeMeetingId(meeting);
                   return (
@@ -782,7 +782,7 @@ export function MeetingFinder({ meetings: rawMeetings, stateCode, availableState
                   );
                 })}
               </AnimatePresence>
-            </motion.div>
+            </div>
 
             {hasMore && (
               <motion.div
