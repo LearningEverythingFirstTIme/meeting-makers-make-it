@@ -91,7 +91,25 @@ export type SobrietyMilestone = {
   description: string;
 };
 
-export type MeetingType = 'B' | 'C' | 'D' | 'M' | 'MED' | 'O' | 'PH' | 'S' | 'ST' | 'TR' | 'VM' | 'W' | 'X';
+export type MeetingType = 
+  // Core formats
+  | 'B' | 'ST' | 'TR' | 'D' | 'S' | 'MED' | 'O' | 'C' | 'X'
+  // Demographics  
+  | 'M' | 'W' | 'Y' | 'YA' | 'LGBTQ' | 'GL' | 'G' | 'T' | 'POC'
+  // Virtual/Remote
+  | 'VM' | 'PH' | 'ONL' | 'DB'
+  // Literature
+  | '12X12' | '12x12' | '11' | 'ABSI' | 'DR' | 'GR' | 'LIT' | 'LS'
+  // Beginner
+  | 'BE' | 'BA'
+  // Other
+  | 'CF' | 'CAN' | 'FF' | 'H' | 'NS' | 'OUT' | 'TC' | 'XB' | 'XT' | 'NDG'
+  // Languages
+  | 'EN' | 'ES' | 'POL' | 'RUS'
+  // Accessibility
+  | 'ASL'
+  // Fellowships
+  | 'AL-AN';
 
 // A listing from the AA meeting directory (JSON data files, one per state).
 // Named MeetingListing to distinguish from the user's own Meeting type above.

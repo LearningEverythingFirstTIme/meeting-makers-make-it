@@ -9,6 +9,7 @@ import type { MeetingListing } from "@/types";
  */
 export const AVAILABLE_STATES: Record<string, string> = {
   nj: "New Jersey",
+  pa: "Pennsylvania",
 };
 
 /**

@@ -25,20 +25,73 @@ function cleanMeetingName(name: string, day: number, time: string): string {
   return name;
 }
 
-const TYPE_INFO: Record<MeetingType, { label: string; color: string }> = {
+// Comprehensive meeting type info covering NJ and PA meeting codes
+const TYPE_INFO: Record<string, { label: string; color: string }> = {
+  // Core meeting formats
   B:   { label: "Big Book",    color: "var(--butter)" },
   ST:  { label: "Step",        color: "var(--mint)" },
   TR:  { label: "Traditions",  color: "var(--sky)" },
-  M:   { label: "Men",         color: "var(--lavender)" },
-  W:   { label: "Women",       color: "var(--pink)" },
-  VM:  { label: "Virtual",     color: "var(--coral)" },
-  PH:  { label: "Phone",       color: "var(--lime)" },
-  C:   { label: "Closed",      color: "var(--cream)" },
   D:   { label: "Discussion",  color: "var(--sky)" },
+  S:   { label: "Speaker",     color: "var(--butter)" },
   MED: { label: "Meditation",  color: "var(--mint)" },
   O:   { label: "Open",        color: "var(--lavender)" },
-  S:   { label: "Speaker",     color: "var(--butter)" },
+  C:   { label: "Closed",      color: "var(--cream)" },
   X:   { label: "Special",     color: "var(--coral)" },
+  
+  // Demographics
+  M:   { label: "Men",         color: "var(--lavender)" },
+  W:   { label: "Women",       color: "var(--pink)" },
+  Y:   { label: "Young People", color: "var(--coral)" },
+  YA:  { label: "Young Adult", color: "var(--coral)" },
+  LGBTQ: { label: "LGBTQ+",    color: "var(--pink)" },
+  GL:  { label: "LGBTQ+",      color: "var(--pink)" },
+  G:   { label: "LGBTQ+",      color: "var(--pink)" },
+  T:   { label: "Trans",       color: "var(--lavender)" },
+  POC: { label: "POC",         color: "var(--coral)" },
+  
+  // Virtual/Remote
+  VM:  { label: "Virtual",     color: "var(--coral)" },
+  PH:  { label: "Phone",       color: "var(--lime)" },
+  ONL: { label: "Online",      color: "var(--coral)" },
+  DB:  { label: "Digital Basket", color: "var(--sky)" },
+  
+  // Literature-based
+  "12X12": { label: "12x12",   color: "var(--mint)" },
+  "12x12": { label: "12x12",   color: "var(--mint)" },
+  "11": { label: "Step 11",    color: "var(--mint)" },
+  ABSI: { label: "As Bill Sees It", color: "var(--butter)" },
+  DR:   { label: "Daily Refl.", color: "var(--butter)" },
+  GR:   { label: "Grapevine",  color: "var(--butter)" },
+  LIT:  { label: "Literature", color: "var(--butter)" },
+  LS:   { label: "Living Sober", color: "var(--mint)" },
+  
+  // Beginner/Newcomer
+  BE:  { label: "Beginner",    color: "var(--lime)" },
+  BA:  { label: "Beginner",    color: "var(--lime)" },
+  
+  // Other formats
+  CF:  { label: "Child-Friendly", color: "var(--pink)" },
+  CAN: { label: "Candlelight", color: "var(--butter)" },
+  FF:  { label: "Fruit & Faith", color: "var(--mint)" },
+  H:   { label: "Hospital",    color: "var(--cream)" },
+  NS:  { label: "Non-Smoking", color: "var(--sky)" },
+  OUT: { label: "Outdoor",     color: "var(--mint)" },
+  TC:  { label: "Temp Closed", color: "var(--coral)" },
+  XB:  { label: "Crossing Bridges", color: "var(--butter)" },
+  XT:  { label: "Extended",    color: "var(--lavender)" },
+  NDG: { label: "Non-Dogmatic", color: "var(--cream)" },
+  
+  // Languages
+  EN:  { label: "English",     color: "var(--cream)" },
+  ES:  { label: "Spanish",     color: "var(--coral)" },
+  POL: { label: "Polish",      color: "var(--sky)" },
+  RUS: { label: "Russian",     color: "var(--lavender)" },
+  
+  // Accessibility
+  ASL: { label: "ASL",         color: "var(--mint)" },
+  
+  // Fellowships
+  "AL-AN": { label: "Al-Anon", color: "var(--lavender)" },
 };
 
 function timeLabel(time: string): string {
@@ -391,7 +444,7 @@ export function MeetingFinder({ meetings: rawMeetings, stateCode, availableState
   const hasMore = displayedMeetings.length < filtered.length;
   const resetPage = () => setPage(0);
 
-  const allTypes: MeetingType[] = ["B", "ST", "TR", "M", "W", "PH", "C", "D", "MED", "O", "S", "X"];
+  const allTypes: MeetingType[] = ["B", "ST", "TR", "M", "W", "PH", "C", "D", "MED", "O", "S", "X", "DR", "LS", "BE", "LGBTQ", "Y", "ONL"];
 
   const alreadyCheckedInToday = (meetingId: string): boolean =>
     checkins.some((e) => e.meetingId === meetingId && e.dayKey === todayKey);
