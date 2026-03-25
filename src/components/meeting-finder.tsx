@@ -125,11 +125,10 @@ function MeetingCard({ meeting, checkedInToday, pendingCheckin, showSuccess, onC
 
   return (
     <motion.div
-      layout
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.25 }}
+      transition={{ duration: 0.15 }}
       className={`neo-card bg-[var(--white)] overflow-hidden ${checkedInToday ? "border-[var(--mint)]" : ""}`}
       style={checkedInToday ? { boxShadow: "10px 10px 0px 0px var(--mint)" } : {}}
     >
